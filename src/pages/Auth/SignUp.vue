@@ -21,7 +21,6 @@ export default {
   methods: {
     redirectTo () {
       let redirectTo = this.$store.getters['Auth/redirectTo']
-      debugger
       if (this.redirect) {
         redirectTo = this.redirect
       }
