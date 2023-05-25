@@ -5,38 +5,6 @@ import APIInstanceWrapper from 'src/api/classes/APIInstanceWrapper.js'
 const appApiServer = process.env.APP_API
 const appApiServerTarget = process.env.APP_SERVER
 
-const AjaxResponseMessages = (function () {
-  const messageMap = {
-    0: 'مشکلی پیش آمده است. مجدد تلاش کنید.',
-    400: 'ابتدا وارد سامانه شوید.',
-    401: 'ابتدا وارد سامانه شوید.',
-    1: 'پیش از این در این آزمون ثبت نام انجام شده است.',
-    2: 'زمان آزمون فرا نرسیده است',
-    3: 'ثبت نام در این آزمون انجام نشده است.',
-    4: 'دانش آموز برای این آزمون ثبت نام نکرده است.',
-    5: 'نتیجه آزمونی برای این آزمون وجود ندارد.',
-    6: 'پاسخنامه داوطلب پیش از این ارسال شده است.',
-    7: 'زمان پاسخگویی قبل از شروع آزمون است.',
-    8: 'آزمون متعلق به کاربر نیست.',
-    13: 'سوالات آزمون آماده نشده است.',
-    14: 'آزمون بسته شده است.',
-    17: 'ثبت درس تکراری در یک دفترچه امکان پذیر نیست.'
-  }
-
-  function isCustomMessage (statusCode) {
-    return !!(messageMap[statusCode.toString()])
-  }
-
-  function getMessage (statusCode) {
-    return messageMap[statusCode]
-  }
-
-  return {
-    isCustomMessage,
-    getMessage
-  }
-}())
-
 const AxiosHooks = (function () {
   let $notify = null
 
@@ -48,7 +16,7 @@ const AxiosHooks = (function () {
   }
 
   function handleErrors (error, router, store) {
-    let messages = []
+    const messages = []
     if (!error || !error.response) {
       return
     }
@@ -64,22 +32,11 @@ const AxiosHooks = (function () {
     } else if (statusCode === 403) {
       const message = error.response.data.detail
       messages.push(message)
-    } else if (error.response.data.error && AjaxResponseMessages.isCustomMessage(error.response.data.error.code)) {
-      console.error('error.response.data.error.code', AjaxResponseMessages.getMessage(error.response.data.error.code))
-      messages.push(AjaxResponseMessages.getMessage(error.response.data.error.code))
-    } else if (error.response.data.error && !AjaxResponseMessages.isCustomMessage(error.response.data.error.code)) {
-      for (const [key, value] of Object.entries(error.response.data.error)) {
-        if (typeof error.response.data.error[key] === 'string') {
-          messages.push(value)
-        }
-      }
-    } else if (error.response.data.errors) {
-      for (const [key, value] of Object.entries(error.response.data.errors)) {
-        if (typeof error.response.data.errors[key] === 'string') {
-          messages.push(value)
-        } else {
-          messages = messages.concat(getMessagesFromArrayWithRecursion(value))
-        }
+    } else if (error.response.data) {
+      for (const key of Object.keys(error.response.data)) {
+        error.response.data[key].forEach(message => {
+          messages.push(key + ': ' + message)
+        })
       }
     }
 
@@ -89,7 +46,7 @@ const AxiosHooks = (function () {
 
   function deAuthorizeUser (router, store) {
     store.dispatch('Auth/logOut')
-    const loginRouteName = 'OtpLogin'
+    const loginRouteName = 'Login'
     const currentRoute = (router?.currentRoute?._value) ? router.currentRoute._value : (router?.history?.current) ? router.history.current : null
     if (currentRoute && currentRoute.name === loginRouteName) {
       return
@@ -118,15 +75,6 @@ const AxiosHooks = (function () {
         })
       }
     })
-  }
-
-  function getMessagesFromArrayWithRecursion (array) {
-    if (array) {
-      if (Array.isArray(array)) {
-        return array.flat(Math.min())
-      }
-      return array[0]
-    }
   }
 
   return {
