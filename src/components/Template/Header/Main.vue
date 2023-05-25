@@ -4,7 +4,7 @@
       <div class="header-section">
         <!--        -----------------------------------------------------Logo Section--------------------------------------------   -->
         <div class="logo-section">
-          <div class="drawer-btn hamburger">
+          <div class="drawer-btn hamburger lt-md">
             <q-btn v-if="showHamburger"
                    class="toolbar-button"
                    icon="isax:menu-1"
