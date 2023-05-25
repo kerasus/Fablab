@@ -36,6 +36,7 @@
 import { EntityCreate } from 'quasar-crud'
 import { mixinWidget } from 'src/mixin/Mixins'
 import { APIGateway } from 'src/api/APIGateway'
+import Enums from 'assets/js/enums/Enums'
 
 export default {
   name: 'RoleCreate',
@@ -54,51 +55,22 @@ export default {
         name: 'slug',
         label: 'نام',
         placeholder: ' ',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       },
       {
         type: 'select',
         name: 'side',
         label: 'دسته',
         placeholder: ' ',
-        options: [
-          {
-            label: 'مافیا',
-            value: 'MAFIA'
-          },
-          {
-            label: 'مافیا ۲',
-            value: 'LEVEL2'
-          },
-          {
-            label: 'مافیا ۳',
-            value: 'LEVEL3'
-          },
-          {
-            label: 'مافیا ۴',
-            value: 'LEVEL4'
-          },
-          {
-            label: 'مافیا ۵',
-            value: 'LEVEL5'
-          },
-          {
-            label: 'مافیا ۶',
-            value: 'LEVEL6'
-          },
-          {
-            label: 'مافیا ۷',
-            value: 'LEVEL7'
-          }
-        ],
-        col: 'col-md-6'
+        options: Enums.Sides.getList(),
+        col: 'col-md-6 col-12'
       },
       {
         type: 'input',
         name: 'link',
         label: 'پیوند',
         placeholder: ' ',
-        col: 'col-md-6'
+        col: 'col-md-6 col-12'
       },
       {
         type: 'file',
@@ -106,14 +78,14 @@ export default {
         name: 'thumbnail',
         label: 'تصویر',
         placeholder: 'تصویر مورد نظر را آپلود کنید',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       },
       {
         type: 'InputEditor',
         name: 'description',
         label: 'توضیحات',
         placeholder: ' ',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       }
     ],
     defaultOptions: {
@@ -146,14 +118,15 @@ export default {
 
     }
   }
-  :deep(.list) {
+  .list {
     margin-top: 25px;
-    & > div {
-      padding: 30px;
-      background-color: #FFFFFF;
-      border: none;
-      box-shadow: none;
-      border-radius: 16px;
+    padding: 30px;
+    background-color: #FFFFFF;
+    border: none;
+    box-shadow: none;
+    border-radius: 16px;
+    .action {
+      margin-top: 24px;
     }
   }
 }

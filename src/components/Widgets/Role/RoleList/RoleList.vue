@@ -30,8 +30,9 @@
 
 <script>
 import { EntityIndex } from 'quasar-crud'
-import { mixinWidget } from 'src/mixin/Mixins'
-import { APIGateway } from 'src/api/APIGateway'
+import Enums from 'assets/js/enums/Enums.js'
+import { mixinWidget } from 'src/mixin/Mixins.js'
+import { APIGateway } from 'src/api/APIGateway.js'
 
 export default {
   name: 'RoleList',
@@ -47,7 +48,31 @@ export default {
       pageKey: 'page'
     },
     inputs: [],
-    table: [],
+    table: {
+      columns: [
+        {
+          name: 'slug',
+          required: true,
+          label: 'نام',
+          align: 'left',
+          field: row => row.slug
+        },
+        {
+          name: 'side',
+          required: true,
+          label: 'دسته',
+          align: 'left',
+          field: row => Enums.Sides.getLabelByValue(row.side)
+        },
+        {
+          name: 'url',
+          required: true,
+          label: 'پیوند',
+          align: 'left',
+          field: row => row.url
+        }
+      ]
+    },
     showEntity: false,
     createRouteName: '',
     defaultOptions: {
@@ -56,26 +81,6 @@ export default {
   }),
   mounted () {
     this.showEntity = true
-  },
-  methods: {
-    getTeacherOfProduct() {
-      if (this.product.attributes.info.teacher) {
-        return this.product.attributes.info.teacher[0]
-      }
-      return null
-    },
-    addToCart() {
-      this.addToCartLoading = true
-      this.$store.dispatch('Cart/addToCart', { product_id: this.product.id })
-        .then(() => {
-          this.$store.dispatch('Cart/reviewCart')
-            .then(() => {
-              this.addToCartLoading = false
-            })
-        }).catch(() => {
-          this.addToCartLoading = false
-        })
-    }
   }
 }
 </script>

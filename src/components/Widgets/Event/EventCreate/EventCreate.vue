@@ -50,7 +50,7 @@ export default {
         name: 'slug',
         label: 'نام بازی',
         placeholder: ' ',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       },
       {
         type: 'select',
@@ -58,7 +58,7 @@ export default {
         label: 'سناریو',
         placeholder: ' ',
         options: [],
-        col: 'col-md-6'
+        col: 'col-md-6 col-12'
       },
       {
         type: 'dateTime',
@@ -66,28 +66,28 @@ export default {
         label: 'زمان برگزاری',
         placeholder: ' ',
         options: [],
-        col: 'col-md-6'
+        col: 'col-md-6 col-12'
       },
       {
         type: 'input',
         name: 'address',
         label: 'نشانی کافه',
         placeholder: ' ',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       },
       {
         type: 'input',
         name: 'minimum_order_amount',
         label: 'حداقل سفارش (اختیاری)',
         placeholder: 'به تومان',
-        col: 'col-md-6'
+        col: 'col-md-6 col-12'
       },
       {
         type: 'input',
         name: 'entrance_amount',
         label: 'ورودی (اختیاری)',
         placeholder: 'به تومان',
-        col: 'col-md-6'
+        col: 'col-md-6 col-12'
       },
       {
         type: 'file',
@@ -95,14 +95,14 @@ export default {
         name: 'thumbnail',
         label: 'بنر بازی',
         placeholder: 'تصویر مورد نظر را آپلود کنید',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       },
       {
         type: 'InputEditor',
         name: 'description',
         label: 'توضیحات بازی',
         placeholder: ' ',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       }
     ],
     defaultOptions: {

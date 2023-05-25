@@ -168,7 +168,7 @@ export default {
 <style lang="scss" scoped>
 .main-layout {
   :deep(.main-layout-container) {
-    background-color: #f1f1f1;
+    background-color: #F2F2F2;
   }
   :deep(.q-layout__section--marginal) {
     background-color: transparent;

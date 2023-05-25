@@ -284,10 +284,11 @@ export default {
 
 <style lang="scss" scoped>
 .app-bar-container {
-  background-color: #fff;
-  height: 72px;
+  background-color: #F2F2F2;
+  height: 100px;
   width: 100%;
   color: #333333;
+  border-bottom: 1px solid #D8D8D8;
   @media screen and (max-width: 1023px) {
     height: 64px;
   }
@@ -386,10 +387,10 @@ export default {
         }
       }
       .tab-section {
-        height: 72px;
+        height: 100px;
         margin-left: 24px;
         .tabs-list {
-          height: 72px;
+          height: 100px;
           .tab-title {
             font-style: normal;
             font-weight: 400;
@@ -409,6 +410,7 @@ export default {
         color: #FFC107;
       }
       .user-action {
+        height: 100px;
         .action-container {
           display: flex;
           height: 42px;
@@ -501,7 +503,6 @@ export default {
         display: flex;
         //justify-content: flex-end;
         align-items: center;
-        height: 72px;
         justify-self: end;
         .btn-user-profile {
           margin-left: 18px;

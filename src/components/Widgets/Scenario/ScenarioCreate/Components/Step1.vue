@@ -57,14 +57,14 @@ export default {
         name: 'title',
         label: 'نام',
         placeholder: ' ',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       },
       {
         type: 'input',
         name: 'slug',
         label: 'slug',
         placeholder: ' ',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       },
       {
         type: 'select',
@@ -72,14 +72,14 @@ export default {
         label: 'سطح',
         placeholder: ' ',
         options: Enums.Levels.getList(),
-        col: 'col-md-6'
+        col: 'col-md-6 col-12'
       },
       {
         type: 'input',
         name: 'link',
         label: 'پیوند',
         placeholder: ' ',
-        col: 'col-md-6'
+        col: 'col-md-6 col-12'
       },
       {
         type: 'file',
@@ -87,14 +87,14 @@ export default {
         name: 'thumbnail',
         label: 'تصویر',
         placeholder: 'تصویر مورد نظر را آپلود کنید',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       },
       {
         type: 'InputEditor',
         name: 'description',
         label: 'توضیحات',
         placeholder: ' ',
-        col: 'col-md-12'
+        col: 'col-md-12 col-12'
       }
     ],
     defaultOptions: {
