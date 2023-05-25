@@ -27,8 +27,8 @@
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide } from 'vue3-carousel'
 import { EventList } from 'src/models/Event.js'
-import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
+import { mixinWidget, mixinPrefetchServerData } from 'src/mixin/Mixins.js'
 import EventItem from 'src/components/Widgets/Event/Eventtem/EventItem.vue'
 
 export default {
@@ -38,7 +38,7 @@ export default {
     Carousel,
     EventItem
   },
-  mixins: [mixinWidget],
+  mixins: [mixinWidget, mixinPrefetchServerData],
   data: () => ({
     defaultMinWidth: '318px',
     events: new EventList(),
@@ -96,38 +96,31 @@ export default {
       }
     }
   },
-  mounted () {
-    this.getBlocksByRequest()
-  },
   methods: {
+    prefetchServerDataPromise () {
+      return this.getApiRequest()
+    },
+    prefetchServerDataPromiseThen ({ list }) {
+      this.events = list
+      this.events.loading = false
+    },
+    prefetchServerDataPromiseCatch () {
+      this.events.loading = false
+    },
+
+    getApiRequest() {
+      this.events.loading = true
+      return APIGateway.event.index()
+    },
+
     goToEvent(eventId) {
       this.$router.push({ name: 'Public.Event.Show', params: { id: eventId } })
-    },
-    getBlocksByRequest() {
-      this.events.loading = true
-      APIGateway.event.index()
-        .then(({ list }) => {
-          this.events = list
-        })
-        .catch(() => {
-          this.events.loading = false
-        })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.product-spacing {
-  margin-right: 30px;
-}
-.set-spacing {
-  margin-right: 30px;
-}
-.content-spacing {
-  margin-right: 30px;
-}
-
 .event-section {
   margin-bottom: 30px;
   .event-header {
@@ -143,20 +136,12 @@ export default {
   }
 
   .event-container {
-    display: flex;
-    margin-bottom: 5px;
-    .scroll-view {
-      display: flex;
-      width: 100%;
-      overflow-x: scroll;
-      /* this padding is needed due to move animation of card
-      to avoid overflow behavior:
-      https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
-      */
-      padding-top: 10px;
-      padding-bottom: 10px;
-      @media screen and (max-width: 600px){
-        //height: 500px;
+    :deep(.carousel) {
+      .carousel__track {
+        .carousel__slide {
+          padding-right: 12px;
+          padding-left: 12px;
+        }
       }
     }
   }

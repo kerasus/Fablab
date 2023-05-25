@@ -221,6 +221,18 @@ const routes = [
         component: () => import('layouts/bareLayout.vue'),
         children: [
           {
+            path: 'event',
+            name: 'UserPanel.Event',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              {
+                path: 'create',
+                name: 'UserPanel.Event.Create',
+                component: () => import('src/pages/User/Event/Create.vue')
+              }
+            ]
+          },
+          {
             path: 'scenarios',
             name: 'UserPanel.Scenario',
             component: () => import('layouts/bareLayout.vue'),

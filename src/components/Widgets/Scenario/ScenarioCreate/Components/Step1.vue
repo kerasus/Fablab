@@ -1,21 +1,21 @@
 <template>
-  <div class="RoleList"
-       :style="localOptions.style">
+  <div class="ScenarioList">
     <div class="header">
       <div class="title">
-        نقش جدید
+        سناریو جدید
       </div>
       <div class="action">
-        <q-btn @click="$router.back()">
+        <q-btn unelevated
+               @click="$router.back()">
           بازگشت
         </q-btn>
       </div>
     </div>
     <div v-if="showEntity"
          class="list">
-      <entity-create ref="entityRole"
+      <entity-create ref="entityScenario"
                      v-model:value="inputs"
-                     title="نقش جدید"
+                     title="سناریو جدید"
                      :api="api"
                      :default-layout="false"
                      :entity-id-key-in-response="entityIdKeyInResponse"
@@ -24,8 +24,9 @@
                      :show-route-name="showRouteName" />
       <div class="action">
         <q-btn color="grey"
+               unelevated
                @click="create">
-          ایجاد نقش
+          ثبت و ادامه
         </q-btn>
       </div>
     </div>
@@ -34,63 +35,43 @@
 
 <script>
 import { EntityCreate } from 'quasar-crud'
-import { mixinWidget } from 'src/mixin/Mixins'
-import { APIGateway } from 'src/api/APIGateway'
+import Enums from 'src/assets/js/enums/Enums.js'
+import { Scenario } from 'src/models/Scenario.js'
+import { mixinWidget } from 'src/mixin/Mixins.js'
+import { APIGateway } from 'src/api/APIGateway.js'
 
 export default {
-  name: 'RoleCreate',
+  name: 'ScenarioCreateStep1',
   components: { EntityCreate },
   mixins: [mixinWidget],
   data: () => ({
     showEntity: false,
-    api: APIGateway.role.APIAdresses.base,
+    api: APIGateway.scenarios.APIAdresses.base,
     entityIdKeyInResponse: 'id',
     showRouteParamKey: 'id',
-    showRouteName: 'Public.Role',
-    indexRouteName: 'Public.Role',
+    showRouteName: 'Public.Scenario',
+    indexRouteName: 'Public.Scenario',
     inputs: [
       {
         type: 'input',
-        name: 'slug',
+        name: 'title',
         label: 'نام',
         placeholder: ' ',
         col: 'col-md-12'
       },
       {
-        type: 'select',
-        name: 'side',
-        label: 'دسته',
+        type: 'input',
+        name: 'slug',
+        label: 'slug',
         placeholder: ' ',
-        options: [
-          {
-            label: 'مافیا',
-            value: 'MAFIA'
-          },
-          {
-            label: 'مافیا ۲',
-            value: 'LEVEL2'
-          },
-          {
-            label: 'مافیا ۳',
-            value: 'LEVEL3'
-          },
-          {
-            label: 'مافیا ۴',
-            value: 'LEVEL4'
-          },
-          {
-            label: 'مافیا ۵',
-            value: 'LEVEL5'
-          },
-          {
-            label: 'مافیا ۶',
-            value: 'LEVEL6'
-          },
-          {
-            label: 'مافیا ۷',
-            value: 'LEVEL7'
-          }
-        ],
+        col: 'col-md-12'
+      },
+      {
+        type: 'select',
+        name: 'level',
+        label: 'سطح',
+        placeholder: ' ',
+        options: Enums.Levels.getList(),
         col: 'col-md-6'
       },
       {
@@ -125,14 +106,18 @@ export default {
   },
   methods: {
     create () {
-      this.$refs.entityRole.createEntity()
+      this.$refs.entityScenario.createEntity(false)
+        .then((response) => {
+          const scenario = new Scenario(response.data)
+          this.$emit('onStep1Complete', scenario)
+        })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.RoleList {
+.ScenarioList {
   .header {
     display: flex;
     flex-flow: row;

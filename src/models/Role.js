@@ -21,6 +21,10 @@ class RoleList extends Collection {
   model() {
     return Role
   }
+
+  getSide (side) {
+    return this.list.filter(item => item.side === side)
+  }
 }
 
 export { Role, RoleList }

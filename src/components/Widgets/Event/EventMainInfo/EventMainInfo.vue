@@ -40,7 +40,7 @@
               زمان:
             </div>
             <div class="sub-meta-item-value">
-              {{ localEvent.holding_time }}
+              {{ getDateTime(localEvent.holding_time) }}
             </div>
           </div>
           <div class="sub-meta-item">
@@ -56,7 +56,7 @@
               سطح مورد نیاز:
             </div>
             <div class="sub-meta-item-value">
-              سطح ۷ به بالا???
+              ??
             </div>
           </div>
         </div>
@@ -77,7 +77,8 @@
               {{ localEvent.moderator_info.lastname }}
             </div>
             <div class="moderator-info-value-info-level">
-              سطح ۷ ???
+              سطح
+              ??
             </div>
           </div>
         </div>
@@ -88,7 +89,7 @@
             </div>
             <div class="capacity-info-value">
               <div class="capacity-info-value-number">
-                {{ localEvent.entrance_amount }} ??
+                ??
               </div>
               <div class="capacity-info-value-unit">
                 نفر
@@ -116,6 +117,7 @@
 
 <script>
 import { Event } from 'src/models/Event.js'
+import Assist from 'src/assets/js/Assist.js'
 import LazyImg from 'src/components/lazyImg.vue'
 import { APIGateway } from 'src/api/APIGateway.js'
 import { mixinWidget, mixinDateOptions, mixinPrefetchServerData } from 'src/mixin/Mixins'
@@ -174,7 +176,7 @@ export default {
     },
 
     getDateTime (date) {
-      return this.convertToShamsiWithFormat(date, 'ddd jDD jMMMM jYYYY ساعت HH:mm')
+      return Assist.miladiToShamsi(date, 'ddd jDD jMMMM jYYYY ساعت HH:mm')
     },
     getTeacherOfEvent() {
       if (this.event.attributes.info.teacher) {

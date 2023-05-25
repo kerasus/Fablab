@@ -29,9 +29,10 @@ export default class RoleAPI extends APIRepository {
       }, data),
       resolveCallback: (response) => {
         const paginate = response.data
+        const results = response.data.results
         delete paginate.results
         return {
-          list: new RoleList(response.data.results),
+          list: new RoleList(results),
           paginate
           // {
           //   "count": 1,

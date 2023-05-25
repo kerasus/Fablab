@@ -1,160 +1,131 @@
 <template>
-  <div class="ScenarioList"
-       :style="localOptions.style">
-    <div class="header">
-      <div class="title">
-        سناریو جدید
-      </div>
-      <div class="action">
-        <q-btn @click="$router.back()">
-          بازگشت
-        </q-btn>
-      </div>
-    </div>
-    <div v-if="showEntity"
-         class="list">
-      <entity-create ref="entityScenario"
-                     v-model:value="inputs"
-                     title="سناریو جدید"
-                     :api="api"
-                     :default-layout="false"
-                     :entity-id-key-in-response="entityIdKeyInResponse"
-                     :show-route-param-key="showRouteParamKey"
-                     :index-route-name="indexRouteName"
-                     :show-route-name="showRouteName" />
-      <div class="action">
-        <q-btn color="grey"
-               @click="create">
-          ثبت و ادامه
-        </q-btn>
-      </div>
-    </div>
-  </div>
+  <q-tab-panels v-model="createStep"
+                class="ScenarioCreate"
+                :style="localOptions.style"
+                animated>
+    <q-tab-panel name="step-1">
+      <scenario-step1-component @onStep1Complete="onStep1Complete" />
+    </q-tab-panel>
+
+    <q-tab-panel name="step-2">
+      <scenario-step2-component v-model:selected-roles="selectedRoles"
+                                :all-roles="allRoles"
+                                @onAccept="onAcceptStep2"
+                                @onGoBack="step2OnGoBack" />
+    </q-tab-panel>
+
+    <q-tab-panel name="step-3">
+      <scenario-step3-component v-model:selected-roles="selectedRoles"
+                                @onGoBack="step3OnGoBack"
+                                @onAccept="onAcceptStep3" />
+    </q-tab-panel>
+
+    <q-tab-panel name="step-4">
+      <scenario-step4-component v-model:selected-roles="selectedRoles"
+                                @onGoBack="step4OnGoBack"
+                                @onAccept="onAcceptStep4" />
+    </q-tab-panel>
+  </q-tab-panels>
 </template>
 
 <script>
-import { EntityCreate } from 'quasar-crud'
-import { mixinWidget } from 'src/mixin/Mixins'
-import { APIGateway } from 'src/api/APIGateway'
+import { RoleList } from 'src/models/Role.js'
+import { Scenario } from 'src/models/Scenario.js'
+import { mixinWidget } from 'src/mixin/Mixins.js'
+import { APIGateway } from 'src/api/APIGateway.js'
+import ScenarioStep1Component from 'src/components/Widgets/Scenario/ScenarioCreate/Components/Step1.vue'
+import ScenarioStep2Component from 'src/components/Widgets/Scenario/ScenarioCreate/Components/Step2.vue'
+import ScenarioStep3Component from 'src/components/Widgets/Scenario/ScenarioCreate/Components/Step3.vue'
+import ScenarioStep4Component from 'src/components/Widgets/Scenario/ScenarioCreate/Components/Step4.vue'
 
 export default {
-  name: 'ScenarioList',
-  components: { EntityCreate },
+  name: 'ScenarioCreate',
+  components: {
+    ScenarioStep1Component,
+    ScenarioStep2Component,
+    ScenarioStep3Component,
+    ScenarioStep4Component
+  },
   mixins: [mixinWidget],
   data: () => ({
-    showEntity: false,
-    api: APIGateway.scenarios.APIAdresses.base,
-    entityIdKeyInResponse: 'id',
-    showRouteParamKey: 'id',
-    showRouteName: 'Public.Scenario',
-    indexRouteName: 'Public.Scenario',
-    inputs: [
-      {
-        type: 'input',
-        name: 'slug',
-        label: 'نام',
-        placeholder: ' ',
-        col: 'col-md-12'
-      },
-      {
-        type: 'select',
-        name: 'level',
-        label: 'سطح',
-        placeholder: ' ',
-        options: [
-          {
-            label: 'سطح ۱',
-            value: 'LEVEL1'
-          },
-          {
-            label: 'سطح ۲',
-            value: 'LEVEL2'
-          },
-          {
-            label: 'سطح ۳',
-            value: 'LEVEL3'
-          },
-          {
-            label: 'سطح ۴',
-            value: 'LEVEL4'
-          },
-          {
-            label: 'سطح ۵',
-            value: 'LEVEL5'
-          },
-          {
-            label: 'سطح ۶',
-            value: 'LEVEL6'
-          },
-          {
-            label: 'سطح ۷',
-            value: 'LEVEL7'
-          }
-        ],
-        col: 'col-md-6'
-      },
-      {
-        type: 'input',
-        name: 'link',
-        label: 'پیوند',
-        placeholder: ' ',
-        col: 'col-md-6'
-      },
-      {
-        type: 'file',
-        responseKey: 'data.photo',
-        name: 'thumbnail',
-        label: 'تصویر',
-        placeholder: 'تصویر مورد نظر را آپلود کنید',
-        col: 'col-md-12'
-      },
-      {
-        type: 'InputEditor',
-        name: 'description',
-        label: 'توضیحات',
-        placeholder: ' ',
-        col: 'col-md-12'
-      }
-    ],
+    createStep: 'step-1',
+    allRoles: new RoleList(),
+    scenario: new Scenario(),
+    selectedRoles: new RoleList(),
     defaultOptions: {
       style: {}
     }
   }),
-  mounted () {
-    this.showEntity = true
+  mounted() {
+    this.loadRoles()
+    this.goToStep('step-1')
   },
   methods: {
-    create () {
-      this.$refs.entityScenario.createEntity()
+    loadRoles () {
+      this.allRoles.loading = true
+      APIGateway.role.index()
+        .then(({ list }) => {
+          this.allRoles = list
+        })
+        .catch(() => {
+          this.allRoles.loading = false
+        })
+    },
+    goToStep (step) {
+      this.createStep = step
+    },
+    step2OnGoBack () {
+      this.goToStep('step-1')
+    },
+    step3OnGoBack () {
+      this.goToStep('step-2')
+    },
+    step4OnGoBack () {
+      this.goToStep('step-3')
+    },
+    onStep1Complete (scenario) {
+      this.scenario = scenario
+      this.goToStep('step-2')
+    },
+    onAcceptStep2 () {
+      this.selectedRoles.list.forEach(role => {
+        role.order = 1
+        role.count = 1
+      })
+      this.goToStep('step-3')
+    },
+    onAcceptStep3 () {
+      this.goToStep('step-4')
+    },
+    onAcceptStep4 (roles) {
+      this.selectedRoles = roles
+      const data = {
+        scenario_id: this.scenario.id,
+        steps: this.selectedRoles.list.map(role => {
+          return {
+            role: role.id,
+            count: role.count,
+            order: role.order
+          }
+        })
+      }
+      this.scenario.loading = true
+      APIGateway.scenarios.changeScenarioSteps(data)
+        .then(() => {
+          this.scenario.loading = false
+        })
+        .catch(() => {
+          this.scenario.loading = false
+        })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.ScenarioList {
-  .header {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    .title {
-      font-weight: 700;
-      font-size: 32px;
-      line-height: 140%;
-    }
-    .action {
-
-    }
-  }
-  :deep(.list) {
-    margin-top: 25px;
-    & > div {
-      padding: 30px;
-      background-color: #FFFFFF;
-      border: none;
-      box-shadow: none;
-      border-radius: 16px;
-    }
+.ScenarioCreate {
+  &.q-tab-panels {
+    background: transparent;
   }
 }
 </style>

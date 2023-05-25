@@ -6,7 +6,9 @@
         نقش‌ها
       </div>
       <div class="action">
-        <q-btn :to="{name: 'UserPanel.Role.Create'}">
+        <q-btn unelevated
+               color="grey-4 text-black"
+               :to="{name: 'UserPanel.Role.Create'}">
           نقش جدید
         </q-btn>
       </div>

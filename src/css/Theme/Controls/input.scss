@@ -9,11 +9,19 @@
     background: #f6f7f9;
     border-radius: 8px;
     .q-field__control{
-      background-color : $customGray;
+      background-color : #F2F2F2;
       border-radius: $radius-10 ;
       color: var(--primary-1);
       height: 40px;
       padding-left: 10px;
+      .q-field__control-container {
+        .q-field__native {
+          color: #656565;
+        }
+      }
+      &:before {
+        border-bottom: none;
+      }
       .q-field__label {
         top: 10px;
         left: 10px;

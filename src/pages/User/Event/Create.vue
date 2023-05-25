@@ -16,7 +16,7 @@ export default {
   mixins: [mixinPageOptions],
   data: () => {
     return {
-      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'ScenarioCreate' }], options: { style: { paddingTop: '32px', paddingBottom: '317px' } } }], options: { className: '', height: 'auto', boxed: true, boxedWidth: '724px', gutterXSize: null, gutterYSize: null, absolute: 'none', paddingOfBoxedInFullWidth: '15px', style: { maxWidth: '724pxpx', width: '724pxpx' } } }] } }]
+      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'EventCreate' }], options: { style: { paddingTop: '32px', paddingBottom: '60px' } } }], options: { className: '', height: 'auto', boxed: true, boxedWidth: 1200, gutterXSize: null, gutterYSize: null, absolute: 'none', paddingOfBoxedInFullWidth: '30px', style: { maxWidth: '1200px', width: '1200px' } } }] } }]
     }
   },
   created() {

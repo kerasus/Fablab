@@ -78,6 +78,7 @@ export default {
   }),
   mounted () {
     this.loading = false
+    this.$store.dispatch('Auth/logOut')
   },
   methods: {
     getToken () {

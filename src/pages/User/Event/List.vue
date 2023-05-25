@@ -12,11 +12,11 @@ import { mixinPageOptions } from 'src/mixin/Mixins.js'
 // import { APIGateway } from 'src/api/APIGateway'
 
 export default {
-  name: 'CreateScenario',
+  name: 'Scenario',
   mixins: [mixinPageOptions],
   data: () => {
     return {
-      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'ScenarioCreate' }], options: { style: { paddingTop: '32px', paddingBottom: '317px' } } }], options: { className: '', height: 'auto', boxed: true, boxedWidth: '724px', gutterXSize: null, gutterYSize: null, absolute: 'none', paddingOfBoxedInFullWidth: '15px', style: { maxWidth: '724pxpx', width: '724pxpx' } } }] } }]
+      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'RoleList' }], options: { style: { paddingTop: '32px' } } }], options: { className: '', height: 'auto', boxed: true, boxedWidth: 1200, gutterXSize: 'md', gutterYSize: 'md', absolute: 'none', paddingOfBoxedInFullWidth: '30px', style: { maxWidth: '1200px', width: '1200px' } } }] } }]
     }
   },
   created() {

@@ -79,15 +79,15 @@
     </div>
     <div class="event-content-box">
       <div class="title-box">
-        <div class="main-title ellipsis-2-lines">
+        <div class="main-title ellipsis">
           {{ event.slug }}
         </div>
       </div>
       <div class="detail-box">
         <div class="meta">
-          <div>{{event.scenario_info.slug}}</div>
-          <div>{{event.address}}</div>
-          <div>{{ getDateTime(event.holding_time) }}</div>
+          <div class="ellipsis">{{event.scenario_info.slug}}</div>
+          <div class="ellipsis">{{event.address}}</div>
+          <div class="ellipsis">{{ getDateTime(event.holding_time) }}</div>
         </div>
         <div class="min-order">
           <div class="min-order-titel">
@@ -271,6 +271,7 @@ export default {
       font-size: 16px;
       line-height: 140%;
       text-align: left;
+      margin-bottom: 16px;
     }
 
     .detail-box {
@@ -284,6 +285,7 @@ export default {
         line-height: 140%;
         text-align: left;
         color: #919191;
+        width: calc( 100% - 100px);
       }
       .min-order {
         width: 100px;

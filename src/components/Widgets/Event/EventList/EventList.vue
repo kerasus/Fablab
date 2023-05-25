@@ -1,15 +1,15 @@
 <template>
-  <div class="ScenarioList"
+  <div class="RoleList"
        :style="localOptions.style">
     <div class="header">
       <div class="title">
-        سناریوها
+        نقش‌ها
       </div>
       <div class="action">
         <q-btn unelevated
                color="grey-4 text-black"
-               :to="{name: 'UserPanel.Scenario.Create'}">
-          سناریو جدید
+               :to="{name: 'UserPanel.Role.Create'}">
+          نقش جدید
         </q-btn>
       </div>
     </div>
@@ -17,7 +17,7 @@
          class="list">
       <q-no-ssr>
         <entity-index v-model:value="inputs"
-                      title="سناریوها"
+                      title="نقش‌ها"
                       :api="api"
                       :table="table"
                       :table-keys="tableKeys"
@@ -30,17 +30,15 @@
 
 <script>
 import { EntityIndex } from 'quasar-crud'
-import Enums from 'src/assets/js/enums/Enums.js'
-import { mixinWidget } from 'src/mixin/Mixins.js'
-import { APIGateway } from 'src/api/APIGateway.js'
-import Assist from 'src/assets/js/Assist.js'
+import { mixinWidget } from 'src/mixin/Mixins'
+import { APIGateway } from 'src/api/APIGateway'
 
 export default {
-  name: 'ScenarioList',
+  name: 'EventList',
   components: { EntityIndex },
   mixins: [mixinWidget],
   data: () => ({
-    api: APIGateway.scenarios.APIAdresses.base,
+    api: APIGateway.role.APIAdresses.base,
     tableKeys: {
       data: 'results',
       total: 'count',
@@ -49,31 +47,7 @@ export default {
       pageKey: 'page'
     },
     inputs: [],
-    table: {
-      columns: [
-        {
-          name: 'slug',
-          required: true,
-          label: 'نام',
-          align: 'left',
-          field: row => row.slug
-        },
-        {
-          name: 'level',
-          required: true,
-          label: 'سطح',
-          align: 'left',
-          field: row => Enums.Levels.getLabelByValue(row.level)
-        },
-        {
-          name: 'creation_time',
-          required: true,
-          label: 'پیوند',
-          align: 'left',
-          field: row => Assist.miladiToShamsi(row.creation_time)
-        }
-      ]
-    },
+    table: [],
     showEntity: false,
     createRouteName: '',
     defaultOptions: {
@@ -107,7 +81,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ScenarioList {
+.RoleList {
   .header {
     display: flex;
     flex-flow: row;

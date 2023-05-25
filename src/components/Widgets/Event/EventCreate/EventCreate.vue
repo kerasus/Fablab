@@ -3,13 +3,9 @@
        :style="localOptions.style">
     <div class="header">
       <div class="title">
-        نقش جدید
+        ساخت بازی
       </div>
-      <div class="action">
-        <q-btn @click="$router.back()">
-          بازگشت
-        </q-btn>
-      </div>
+      <div class="action" />
     </div>
     <div v-if="showEntity"
          class="list">
@@ -25,7 +21,7 @@
       <div class="action">
         <q-btn color="grey"
                @click="create">
-          ایجاد نقش
+          ایجاد بازی
         </q-btn>
       </div>
     </div>
@@ -38,12 +34,12 @@ import { mixinWidget } from 'src/mixin/Mixins'
 import { APIGateway } from 'src/api/APIGateway'
 
 export default {
-  name: 'RoleCreate',
+  name: 'EventCreate',
   components: { EntityCreate },
   mixins: [mixinWidget],
   data: () => ({
     showEntity: false,
-    api: APIGateway.role.APIAdresses.base,
+    api: APIGateway.event.APIAdresses.base,
     entityIdKeyInResponse: 'id',
     showRouteParamKey: 'id',
     showRouteName: 'Public.Role',
@@ -52,66 +48,59 @@ export default {
       {
         type: 'input',
         name: 'slug',
-        label: 'نام',
+        label: 'نام بازی',
         placeholder: ' ',
         col: 'col-md-12'
       },
       {
         type: 'select',
-        name: 'side',
-        label: 'دسته',
+        name: 'scenario',
+        label: 'سناریو',
         placeholder: ' ',
-        options: [
-          {
-            label: 'مافیا',
-            value: 'MAFIA'
-          },
-          {
-            label: 'مافیا ۲',
-            value: 'LEVEL2'
-          },
-          {
-            label: 'مافیا ۳',
-            value: 'LEVEL3'
-          },
-          {
-            label: 'مافیا ۴',
-            value: 'LEVEL4'
-          },
-          {
-            label: 'مافیا ۵',
-            value: 'LEVEL5'
-          },
-          {
-            label: 'مافیا ۶',
-            value: 'LEVEL6'
-          },
-          {
-            label: 'مافیا ۷',
-            value: 'LEVEL7'
-          }
-        ],
+        options: [],
+        col: 'col-md-6'
+      },
+      {
+        type: 'dateTime',
+        name: 'holding_time',
+        label: 'زمان برگزاری',
+        placeholder: ' ',
+        options: [],
         col: 'col-md-6'
       },
       {
         type: 'input',
-        name: 'link',
-        label: 'پیوند',
+        name: 'address',
+        label: 'نشانی کافه',
         placeholder: ' ',
+        col: 'col-md-12'
+      },
+      {
+        type: 'input',
+        name: 'minimum_order_amount',
+        label: 'حداقل سفارش (اختیاری)',
+        placeholder: 'به تومان',
+        col: 'col-md-6'
+      },
+      {
+        type: 'input',
+        name: 'entrance_amount',
+        label: 'ورودی (اختیاری)',
+        placeholder: 'به تومان',
         col: 'col-md-6'
       },
       {
         type: 'file',
         responseKey: 'data.photo',
         name: 'thumbnail',
-        label: 'تصویر',
+        label: 'بنر بازی',
         placeholder: 'تصویر مورد نظر را آپلود کنید',
         col: 'col-md-12'
       },
       {
         type: 'InputEditor',
         name: 'description',
-        label: 'توضیحات',
+        label: 'توضیحات بازی',
         placeholder: ' ',
         col: 'col-md-12'
       }
@@ -122,10 +111,24 @@ export default {
   }),
   mounted () {
     this.showEntity = true
+    this.loadScenarios()
   },
   methods: {
     create () {
       this.$refs.entityRole.createEntity()
+    },
+    loadScenarios () {
+      APIGateway.scenarios.index()
+        .then(({ list }) => {
+          const scenariosList = list
+          this.$refs.entityRole.setInputAttributeByName('scenario', 'options', scenariosList.list.map(item => {
+            return {
+              label: item.slug,
+              value: item.id
+            }
+          }))
+          console.log(list)
+        })
     }
   }
 }
@@ -143,17 +146,22 @@ export default {
       line-height: 140%;
     }
     .action {
-
     }
   }
   :deep(.list) {
-    margin-top: 25px;
+    margin-top: 32px;
     & > div {
       padding: 30px;
       background-color: #FFFFFF;
       border: none;
       box-shadow: none;
       border-radius: 16px;
+    }
+    .action {
+      .q-btn {
+        padding-right: 66px;
+        padding-left: 66px;
+      }
     }
   }
 }

@@ -30,9 +30,10 @@ export default class ScenariosAPI extends APIRepository {
       }, data),
       resolveCallback: (response) => {
         const paginate = response.data
+        const results = response.data.results
         delete paginate.results
         return {
-          list: new ScenarioList(response.data.results),
+          list: new ScenarioList(results),
           paginate
           // {
           //   "count": 1,
@@ -51,20 +52,21 @@ export default class ScenariosAPI extends APIRepository {
   }
 
   changeScenarioSteps (data) {
+    const scenarioId = data.scenario_id
+    const steps = data.steps.map(item => {
+      return {
+        role: item.role, // role id (Number)
+        order: item.order // Number
+      }
+    })
+
     return this.sendRequest({
       apiMethod: 'put',
       api: this.api,
-      request: this.APIAdresses.changeScenarioSteps(data.scenario_id),
-      data: this.getNormalizedSendData({
-        role: '', // role id (Number)
-        order: '' // Number
-      }, data),
+      request: this.APIAdresses.changeScenarioSteps(scenarioId),
+      data: steps,
       resolveCallback: (response) => {
-        const user = response.data.data.user
-        const accessToken = response.data.data.access_token
-        // const user = new User(response.data.data.user)
-
-        return { accessToken, user }
+        return response.data
       },
       rejectCallback: (error) => {
         return error
