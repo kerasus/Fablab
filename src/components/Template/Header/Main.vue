@@ -45,21 +45,7 @@
         </div>
         <!--        -----------------------------------------------------Actions Section--------------------------------------------   -->
         <div class="user-action">
-          <div class="action-container">
-            <q-btn icon="isax:shopping-cart"
-                   unelevated
-                   rounded
-                   size="12px"
-                   class="action-btn"
-                   :to="{name: 'Public.Checkout.Review'}">
-              <q-badge v-if="cartOrdersCount > 0"
-                       color="primary"
-                       floating
-                       rounded>
-                {{cartOrdersCount}}
-              </q-badge>
-            </q-btn>
-          </div>
+          <div class="action-container" />
           <q-btn v-if="isUserLogin"
                  flat
                  class="btn-user-profile">
@@ -85,8 +71,11 @@
                       </div>
                       <div v-if="isUserLogin"
                            class="profile-detail-info">
-                        <div class="info-name">{{user.full_name}}</div>
-                        <div class="info-phoneNumber">{{user.mobile}}</div>
+                        <div class="info-name">
+                          {{user.firstname}}
+                          {{user.lastname}}
+                        </div>
+                        <div class="info-phoneNumber">{{user.mobile_number}}</div>
                       </div>
                     </div>
                   </div>
@@ -192,52 +181,13 @@ export default {
           children: []
         },
         {
-          title: 'فیلم ها و جزوه های من',
-          icon: 'isax:task-square',
-          routeName: 'UserPanel.MyPurchases',
-          params: null,
-          permission: 'all',
-          active: false,
-          children: []
-        },
-        {
-          title: 'علاقه مندی های من',
-          icon: 'isax:heart',
-          routeName: 'UserPanel.MyFavorites',
-          params: null,
-          permission: 'all',
-          active: false,
-          children: []
-        },
-        {
-          title: 'سفارش‌ ها',
-          icon: 'isax:clipboard-text',
-          routeName: 'UserPanel.MyOrders',
-          permission: 'all',
-          active: false,
-          children: []
-        },
-        {
-          title: 'کارت هدیه',
+          title: 'ساخت بازی',
           icon: 'isax:gift',
-          routeName: 'UserPanel.Asset.GiftCard.MyGiftCards',
+          routeName: 'UserPanel.Event.Create',
+          params: null,
           permission: 'all',
           active: false,
           children: []
-        },
-        {
-          title: 'داشبورد چتر نجات',
-          icon: 'isax:document-1',
-          routeName: 'UserPanel.Asset.ChatreNejat.Products',
-          permission: 'all',
-          active: false
-        },
-        {
-          title: 'داشبورد ابریشم',
-          icon: 'isax:document-1',
-          routeName: 'UserPanel.Asset.Abrisham.Progress',
-          permission: 'all',
-          active: false
         }
       ]
     }

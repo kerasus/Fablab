@@ -113,6 +113,7 @@ export default {
       APIGateway.scenarios.changeScenarioSteps(data)
         .then(() => {
           this.scenario.loading = false
+          this.$router.push({ name: 'Public.Scenario' })
         })
         .catch(() => {
           this.scenario.loading = false

@@ -13,11 +13,11 @@ class User extends Model {
       { key: 'firstname' },
       { key: 'lastname' },
       { key: 'picture' },
+      { key: 'mobile_number' },
 
       { key: 'user_id' },
       { key: 'full_name' },
       { key: 'birthdate' },
-      { key: 'mobile' },
       { key: 'city' },
       { key: 'province' },
       { key: 'ostan_id' },
