@@ -99,7 +99,7 @@ import { mixinAuth } from 'src/mixin/Mixins'
 import { APIGateway } from 'src/api/APIGateway'
 
 export default {
-  name: 'OtpLogin',
+  name: 'Login',
   components: {
     VOtpInput
   },

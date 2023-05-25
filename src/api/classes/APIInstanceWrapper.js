@@ -15,10 +15,8 @@ export default class APIInstanceWrapper {
     }
 
     const axiosInstance = function (baseURL, serverURL) {
-      // const isSsl = serverURL.split('/')[0].includes('https')
-      const isSsl = false
-      // const serverAddress = serverURL.split('/')[2].split(':')
-      const serverAddress = 'ali.hghweb.ir'
+      const isSsl = serverURL.split('/')[0].includes('https')
+      const serverAddress = serverURL.split('/')[2].split(':')
       const host = serverAddress[0]
       const port = serverAddress[1] ? parseInt(serverAddress[1]) : (isSsl ? 443 : 80)
       const defaults = {

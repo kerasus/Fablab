@@ -10,9 +10,11 @@ class User extends Model {
         default: API_ADDRESS.user.base
       },
       { key: 'id' },
+      { key: 'firstname' },
+      { key: 'lastname' },
+      { key: 'picture' },
+
       { key: 'user_id' },
-      { key: 'first_name' },
-      { key: 'last_name' },
       { key: 'full_name' },
       { key: 'birthdate' },
       { key: 'mobile' },
@@ -25,7 +27,6 @@ class User extends Model {
       { key: 'email' },
       { key: 'school' },
       { key: 'user_exam_status' },
-      { key: 'photo' },
       { key: 'name_slug' },
       { key: 'kartemeli' },
       { key: 'role' },

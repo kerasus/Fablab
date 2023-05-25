@@ -19,7 +19,7 @@ export function otpLogin (context, data) {
 }
 
 export function login (context, data) {
-  return APIGateway.auth.login(data)
+  return APIGateway.auth.loginByPassword(data)
     .then((authData) => {
       const accessToken = authData.access_token
       const ca = accessToken,
@@ -42,5 +42,5 @@ export function logOut (context, clearRedirectTo = true) {
   if (clearRedirectTo) {
     context.commit('updateRedirectTo', null)
   }
-  this.$router.push({ name: 'OtpLogin' })
+  this.$router.push({ name: 'Login' })
 }

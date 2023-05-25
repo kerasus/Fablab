@@ -122,7 +122,7 @@ export default {
     login () {
       this.loading = true
       this.$store.dispatch('Auth/login', {
-        mobile: this.username,
+        mobile_number: this.username,
         password: this.password
       })
         .then(() => {

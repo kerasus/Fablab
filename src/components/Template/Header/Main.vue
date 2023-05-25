@@ -147,11 +147,11 @@
             <q-btn unelevated
                    class="btn-style"
                    label="ورود"
-                   :to="{ name: 'OtpLogin' }" />
+                   :to="{ name: 'Login' }" />
             <!--            <q-btn unelevated-->
             <!--                   class="btn-style sign-up"-->
             <!--                   label="ثبت نام"-->
-            <!--                   :to="{ name: 'OtpLogin' }" />-->
+            <!--                   :to="{ name: 'Login' }" />-->
           </div>
         </div>
       </div>
@@ -323,7 +323,7 @@ export default {
       return !!(route.name || route.path)
     },
     goToLogin() {
-      this.$router.push({ name: 'OtpLogin' })
+      this.$router.push({ name: 'Login' })
     },
     routeTo(name) {
       this.$router.push({ name })

@@ -16,7 +16,7 @@ export default {
   mixins: [mixinPageOptions],
   data: () => {
     return {
-      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'ImageWidget', options: { imageSource: 'https://cdn-download1.zula.ir/sitecdn/IR/blob/sitecms/20230322133509/Storm-Season-FHD.jpg', ratio: null, hasAction: false, action: { name: null, route: null, scrollTo: null, eventName: null, eventArgs: null }, xs: { height: null, width: null, src: null }, sm: { height: null, width: null, src: null }, md: { height: null, width: null, src: null }, lg: { height: null, width: null, src: null }, xl: { height: null, width: null, src: null }, style: { marginTop: '26px' } } }, { name: 'LastEvents' }], options: {} }], options: { className: '', height: 'auto', boxed: true, boxedWidth: 1200, gutterXSize: 'md', gutterYSize: 'md', absolute: 'none', paddingOfBoxedInFullWidth: '30px', style: { maxWidth: '1200px', width: '1200px' } } }] } }]
+      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'EventMainInfo', options: { className: '', height: 'auto', boxed: false, boxedWidth: 1200, style: { marginTop: '32px' } } }], options: {} }], options: { className: '', height: 'auto', boxed: true, boxedWidth: 1200, gutterXSize: 'md', gutterYSize: 'md', absolute: 'none', paddingOfBoxedInFullWidth: '30px', style: { maxWidth: '1200px', width: '1200px' } } }] } }]
     }
   },
   created() {
