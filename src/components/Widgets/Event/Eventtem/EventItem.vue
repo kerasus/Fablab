@@ -51,7 +51,7 @@
   </q-card>
   <q-card v-else
           class="event-item-box"
-          :style="{minWidth: localOptions.minWidth, ...localOptions.style}">
+          :style="localOptions.style">
     <div class="img-box">
       <router-link :to="getRoutingObject">
         <lazy-img :src="event.thumbnail"
@@ -219,10 +219,6 @@ export default {
       .img {
         width: inherit;
         border-radius: 20px 20px 0 0;
-
-        @media screen and (max-width: 600px){
-          width: 100%;
-        }
       }
     }
     .on-image-info {
@@ -314,85 +310,5 @@ export default {
     }
   }
 
-  @media screen and (max-width: 600px) {
-    width: 240px;
-    display: flex;
-    border-radius: 18px;
-    margin-bottom: 16px;
-
-    .img-box {
-      width: 100px;
-
-      .img {
-        border-radius: 10px;
-      }
-
-      @media screen and (max-width: 600px){
-        width: 100%;
-      }
-    }
-
-    .event-content-box {
-      padding: 0 0 0 16px;
-      width: 100%;
-
-      .main-title {
-        margin-bottom: 0;
-
-        a {
-        }
-
-        .title-box {
-          height: 44px;
-          justify-content: center;
-
-          .title-text {
-            -webkit-line-clamp: 2;
-          }
-        }
-      }
-
-      .price-box {
-        margin-bottom: 0;
-
-        .add-cart-info {
-          .add-cart-icon {
-          }
-        }
-
-        .price-info {
-          .final-price-box {
-            .final-price {
-              margin-left: 2px;
-            }
-          }
-
-          .main-price {
-            margin-left: 4px;
-          }
-
-          .price-Toman {
-          }
-        }
-      }
-
-      .discount {
-        height: 20px;
-        /* margin-left: 3px; */
-      }
-    }
-  }
-
-  @media screen and (max-width: 600px){
-    flex-direction: row;
-    padding: 10px;
-    .img-box{
-      a{
-        .img{
-          border-radius: 20px;
-        }
-      }
-    }
-  }
 }
 </style>

@@ -16,7 +16,7 @@
         <slide v-for="event in events.list"
                :key="event.id"
                @click="goToEvent(event.id)">
-          <event-item :options="{event, minWidth: defaultMinWidth}" />
+          <event-item :options="{event}" />
         </slide>
       </carousel>
     </div>
@@ -60,22 +60,22 @@ export default {
       },
       // 700px and up
       900: {
-        itemsToShow: 3.5,
+        itemsToShow: 2.1,
         snapAlign: 'center'
       },
       // 700px and up
       650: {
-        itemsToShow: 3.5,
+        itemsToShow: 1.8,
         snapAlign: 'center'
       },
       // 700px and up
       400: {
-        itemsToShow: 2.5,
+        itemsToShow: 1.5,
         snapAlign: 'center'
       },
       // 300px and up
       300: {
-        itemsToShow: 1.5,
+        itemsToShow: 1.3,
         snapAlign: 'center'
       }
     },
