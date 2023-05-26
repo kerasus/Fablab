@@ -76,7 +76,7 @@ export default {
         {
           title: 'پروفایل',
           icon: 'isax:user',
-          routeName: 'UserPanel.Profile',
+          routeName: 'Public.Home',
           permission: 'all',
           active: false,
           children: []

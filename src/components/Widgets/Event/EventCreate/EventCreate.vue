@@ -127,7 +127,6 @@ export default {
               value: item.id
             }
           }))
-          console.log(list)
         })
     }
   }
