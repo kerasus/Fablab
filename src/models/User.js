@@ -1,125 +1,68 @@
 /* eslint-disable camelcase,prefer-const */
 import { Model, Collection } from 'js-abstract-model'
-import API_ADDRESS from '../api/Addresses'
 
 class User extends Model {
   constructor (data) {
     super(data, [
-      {
-        key: 'baseRoute',
-        default: API_ADDRESS.user.base
-      },
       { key: 'id' },
+      { key: 'user_id' },
       { key: 'firstname' },
       { key: 'lastname' },
-      { key: 'picture' },
-      { key: 'mobile_number' },
-
-      { key: 'user_id' },
-      { key: 'full_name' },
+      { key: 'father_name' },
+      { key: 'national_code' },
       { key: 'birthdate' },
-      { key: 'city' },
-      { key: 'province' },
-      { key: 'ostan_id' },
-      { key: 'shahr_id' },
+      { key: 'picture' },
+      { key: 'gender' },
+      { key: 'mobile_number' },
+      { key: 'mobile_number_verified' },
+      { key: 'phone_number' },
+      { key: 'phone_number_verified' },
       { key: 'address' },
-      { key: 'postal_code' },
-      { key: 'email' },
-      { key: 'school' },
-      { key: 'user_exam_status' },
-      { key: 'name_slug' },
-      { key: 'kartemeli' },
-      { key: 'role' },
-      { key: 'token' },
-      { key: 'has_purchased_anything' },
-      { key: 'has_admin_permission' },
-      { key: 'has_educational_permission' },
-
-      { key: 'mobile_verified_at' },
-      { key: 'wallet_balance' },
-      { key: 'profile_completion' },
-
-      {
-        key: 'gender',
-        default: { id: null }
-      },
-      {
-        key: 'major',
-        default: { id: null }
-      },
-      {
-        key: 'grade',
-        default: { id: null }
-      },
-      {
-        key: 'updateType',
-        default: 'profile'
-      }
-
+      { key: 'address_info' },
+      { key: 'roles' },
+      { key: 'team' },
+      { key: 'team_info' },
+      { key: 'is_locked_out' },
+      { key: 'failed_login_attempts' },
+      { key: 'lockout_end_date' },
+      { key: 'is_active' },
+      { key: 'is_deleted' },
+      { key: 'creation_time' },
+      { key: 'last_modification_time' }
     ])
 
-    if (!this.full_name) {
-      this.full_name = this.first_name + ' ' + this.last_name
-    }
+    this.totalRoles = [
+      { value: 'superuser', label: 'مدیر کل' },
+      { value: 'admin', label: 'مدیر' },
+      { value: 'meetings_admin', label: 'مدیر جلسات' },
+      { value: 'users_admin', label: 'مدیر کاربران' },
+      { value: 'contents_admin', label: 'مدیر محتوا' },
+      { value: 'unapproved_moballegh', label: 'مبلغ تایید نشده' },
+      { value: 'moballegh', label: 'مبلغ' },
+      { value: 'sokhanran', label: 'سخنران' },
+      { value: 'madah', label: 'مداح' },
+      { value: 'bani', label: 'میزبان' },
+      { value: 'user', label: 'کاربر' },
+      { value: 'anonymous', label: 'کاربر ناشناس' }
+    ]
+
     if (!this.id) {
       this.id = this.user_id
     }
-  }
-
-  getCompletionInfoKeys () {
-    return [
-      'first_name',
-      'last_name',
-      'major',
-      'city',
-      // 'school',
-      'mobile_verified_at',
-      'grade'
-    ]
-  }
-
-  checkInformationCompletionKey (key) {
-    return (
-      (this[key] !== null && typeof this[key] === 'object' && typeof this[key].id !== 'undefined' && this[key].id !== null) ||
-      (this[key] && typeof this[key].id === 'undefined')
-    )
-  }
-
-  percentageOfInformationCompletion () {
-    let percentage = 0
-    let completionInfoKeys = this.getCompletionInfoKeys()
-    let percentageStep = (100 / completionInfoKeys.length)
-
-    completionInfoKeys.forEach(item => {
-      if (this.checkInformationCompletionKey(item)) {
-        percentage += percentageStep
-      }
-    })
-
-    if (percentage > 100) {
-      percentage = 100
+    if (!this.picture) {
+      this.picture = '/img/default-avatar.png'
     }
-
-    return percentage
   }
 
-  needToCompleteInfo () {
-    const completionInfoKeys = this.getCompletionInfoKeys()
-    let status = false
-    try {
-      completionInfoKeys.forEach(item => {
-        if (!this.checkInformationCompletionKey(item)) {
-          // eslint-disable-next-line no-throw-literal
-          throw 'needToCompleteInfo: ' + item
-        }
-      })
-    } catch (e) {
-      status = true
-    }
+  hasRole (role) {
+    return this.roles.includes(role)
+  }
 
-    return status
+  isSuperuser () {
+    return this.hasRole('superuser')
   }
 }
+
 class UserList extends Collection {
   model() {
     return User

@@ -1,5 +1,4 @@
 import SEO from './Seo'
-import Cart from './Cart'
 import Auth from './Auth'
 import process from 'process'
 import Widgets from './Widgets'
@@ -19,7 +18,6 @@ if (process.browser) {
       storage: window.localStorage,
       fetchBeforeUse: true,
       paths: [
-        'Cart',
         'Auth.user',
         'Auth.redirectTo',
         'Auth.accessToken'
@@ -42,7 +40,6 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       SEO,
-      Cart,
       Auth,
       Widgets,
       loading,

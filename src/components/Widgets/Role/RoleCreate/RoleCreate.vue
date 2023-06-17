@@ -74,7 +74,6 @@ export default {
       },
       {
         type: 'file',
-        responseKey: 'data.photo',
         name: 'thumbnail',
         label: 'تصویر',
         placeholder: 'تصویر مورد نظر را آپلود کنید',

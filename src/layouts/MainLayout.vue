@@ -47,28 +47,28 @@
         <floating-action-button v-if="isAdmin && canShowFloatingActionBtn" />
       </template>
       <template #footer>
-        <alaa-footer />
+        <!--        <alaa-footer />-->
       </template>
     </quasar-template-builder>
   </div>
 </template>
 
 <script>
+import { User } from 'src/models/User.js'
 import Router from 'src/router/Router.vue'
 import AuthLogin from 'components/Auth/Auth.vue'
-import AlaaFooter from 'src/components/Widgets/Footer/Footer.vue'
+// import AlaaFooter from 'src/components/Widgets/Footer/Footer.vue'
 import KeepAliveComponents from 'src/assets/js/KeepAliveComponents.js'
 import templateHeader from 'src/components/Template/Header/TemplateHeader.vue'
 import TemplateSideBar from 'src/components/Template/SideBard/TemplateSideBar.vue'
 import QuasarTemplateBuilder from 'quasar-template-builder/src/quasar-template-builder.vue'
 import FloatingActionButton from 'components/Template/FloatingActionButton/FloatingActionButton.vue'
-import { User } from 'src/models/User'
 
 export default {
   components: {
     AuthLogin,
     Router,
-    AlaaFooter,
+    // AlaaFooter,
     templateHeader,
     TemplateSideBar,
     FloatingActionButton,

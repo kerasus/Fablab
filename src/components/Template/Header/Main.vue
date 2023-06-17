@@ -15,11 +15,8 @@
                    @click="toggleLeftDrawer" />
           </div>
           <div class="logo-pic">
-            <div class="homepage">
-              <div class="logo-text">
-                وافیا
-              </div>
-            </div>
+            <q-img src="/img/menu-logo.png"
+                   width="113" />
           </div>
         </div>
         <!--        -----------------------------------------------------Tabs Section--------------------------------------------   -->
@@ -49,7 +46,7 @@
           <q-btn v-if="isUserLogin"
                  flat
                  class="btn-user-profile">
-            <lazy-img :src="user.photo"
+            <lazy-img :src="user.picture"
                       :alt="'user photo'"
                       width="48"
                       height="48"
@@ -62,7 +59,7 @@
                     <div class="profile-detail">
                       <div class="profile-photo-box">
                         <div class="profile-photo-img">
-                          <lazy-img :src="user.photo"
+                          <lazy-img :src="user.picture"
                                     :alt="'user photo'"
                                     width="60"
                                     height="60"
@@ -156,22 +153,24 @@ import { User } from 'src/models/User.js'
 import LazyImg from 'src/components/lazyImg.vue'
 import menuItems from 'components/Template/menuData.js'
 import itemMenu from 'components/Template/Header/itemMenu.vue'
-import { Cart } from 'src/models/Cart'
 
 export default {
   name: 'MainHeaderTemplate',
   components: { LazyImg, megaMenu, simpleMenu, itemMenu },
   data() {
     return {
-      cart: new Cart(),
       conferenceMenu: false,
       showHamburgerConfig: true,
       searchInput: '',
       user: new User(),
       isAdmin: false,
       isUserLogin: false,
-      items: menuItems,
-      profileTitlesList: [
+      items: menuItems
+    }
+  },
+  computed: {
+    profileTitlesList () {
+      const items = [
         {
           title: 'پروفایل',
           icon: 'isax:user',
@@ -181,20 +180,29 @@ export default {
           children: []
         },
         {
-          title: 'ساخت بازی',
+          title: 'داشبورد',
           icon: 'isax:gift',
-          routeName: 'UserPanel.Event.Create',
+          routeName: 'UserPanel.Dashboard',
           params: null,
           permission: 'all',
           active: false,
           children: []
         }
       ]
-    }
-  },
-  computed: {
-    cartOrdersCount () {
-      return this.$store.getters['Cart/cart'].count
+
+      if (this.user.isSuperuser()) {
+        items.push({
+          title: 'پنل ادمین',
+          icon: 'isax:gift',
+          routeName: 'AdminPanel.Dashboard',
+          params: null,
+          permission: 'all',
+          active: false,
+          children: []
+        })
+      }
+
+      return items
     },
     showHamburger () {
       return this.$store.getters['AppLayout/showHamburgerBtn'] || this.$q.screen.lt.md
@@ -344,30 +352,11 @@ export default {
           cursor: pointer;
           display: flex;
           height: 72px;
+          width: 113px;
           align-items: center;
           @media screen and (max-width: 1023px) {
             height: 64px;
           }
-          :deep(.homepage) {
-            .logo-text {
-              font-style: normal;
-              font-weight: 900;
-              font-size: 32px;
-              line-height: 140%;
-              color: #000000;
-            }
-            .logo-pic-img {
-              height: 40px;
-              width: 40px;
-              @media screen and (max-width: 1023px) {
-                height: 48px;
-                width: 48px;
-              }
-            }
-          }
-          //img {
-          //
-          //}
         }
         .hamburger {
           //display: none;
@@ -508,6 +497,7 @@ export default {
           margin-left: 18px;
           width: 48px;
           height: 48px;
+          padding: 0;
           border-radius: 16px;
           :deep(.q-btn__content) {
             width: 100%;
@@ -515,7 +505,7 @@ export default {
             .user-photo {
               width: 100%;
               img {
-                border: 2px solid #FFB74D;
+                border: 2px solid $primary;
                 border-radius: 16px;
                 max-width: 100%;
                 width: 100%;
@@ -589,7 +579,6 @@ export default {
       grid-template-columns: 70px auto;
       align-items: center;
       .profile-photo-box {
-        //background: #FFB74D;
 
         width: 60px;
         height: 60px;
@@ -606,7 +595,7 @@ export default {
           border-radius: 16px;
           .user-photo {
             img {
-              border: 2px solid #FFB74D;
+              border: 2px solid $primary;
               border-radius: 16px;
               max-width: 100%;
               width: 100%;

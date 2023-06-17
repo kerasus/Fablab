@@ -1,7 +1,7 @@
 import { Model, Collection } from 'js-abstract-model'
 import { Block } from 'src/models/Block'
 import { User } from './User'
-import { Major } from 'src/models/Major'
+import { Media } from 'src/models/Media'
 
 class EventResult extends Model {
   constructor(data) {
@@ -20,7 +20,7 @@ class EventResult extends Model {
       },
       {
         key: 'major',
-        relatedModel: Major
+        relatedModel: Media
       },
       {
         key: 'region',

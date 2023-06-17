@@ -63,18 +63,6 @@ export default {
         return this.product.attributes.info.teacher[0]
       }
       return null
-    },
-    addToCart() {
-      this.addToCartLoading = true
-      this.$store.dispatch('Cart/addToCart', { product_id: this.product.id })
-        .then(() => {
-          this.$store.dispatch('Cart/reviewCart')
-            .then(() => {
-              this.addToCartLoading = false
-            })
-        }).catch(() => {
-          this.addToCartLoading = false
-        })
     }
   }
 }

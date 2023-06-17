@@ -6,11 +6,11 @@
 .q-field {
   height: 40px;
   .q-field__inner{
-    background: #f6f7f9;
     border-radius: 8px;
     .q-field__control{
-      background-color : #F2F2F2;
-      border-radius: $radius-10 ;
+      background-color : #FFFFFF;
+      border: solid 1px #EBEBEB;
+      border-radius: 8px;
       color: var(--primary-1);
       height: 40px;
       padding-left: 10px;
@@ -116,6 +116,4 @@
 //}
 
 .q-input{
-  border: 0 solid #f6f7f9;
-  border-radius: 8px;
 }
