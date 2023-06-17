@@ -13,7 +13,7 @@ export default {
   mixins: [mixinPageOptions],
   data: () => {
     return {
-      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'TicketCreate' }], options: { style: { marginTop: '124px' } } }], options: {} }] } }]
+      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'InvoiceThankyou' }], options: { style: { marginTop: '124px' } } }], options: {} }] } }]
     }
   },
   created() {

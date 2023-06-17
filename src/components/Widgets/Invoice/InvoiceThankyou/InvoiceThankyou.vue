@@ -5,7 +5,7 @@
       <div class="col-md-6 q-mt-lg">
         <q-card>
           <q-card-section class="text-center">
-            <div v-if="this.$route.query.status === 'true'">
+            <div v-if="$route.query.status === 'true'">
               پرداخت با موفقیت انجام شد
             </div>
             <div v-else>
@@ -13,7 +13,7 @@
             </div>
             <div>
               کد پیگیری:
-              {{ this.$route.query.code }}
+              {{ $route.query.code }}
             </div>
           </q-card-section>
         </q-card>
