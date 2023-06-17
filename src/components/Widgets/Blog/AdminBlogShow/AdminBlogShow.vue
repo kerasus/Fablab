@@ -197,11 +197,7 @@ export default {
       })
     },
     setInputOptions (name, options) {
-      try {
-        this.$refs.entityEdit.setInputAttributeByName(name, 'options', options)
-      } catch (e) {
-        console.log('e', e)
-      }
+      this.$refs.entityEdit.setInputAttributeByName(name, 'options', options)
     }
   }
 }
