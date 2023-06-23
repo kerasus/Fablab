@@ -9,6 +9,7 @@ class Media extends Model {
       { key: 'id' },
       { key: 'title' },
       { key: 'type' }, //
+      { key: 'thumbnail' },
       { key: 'type_info' }, // VIDEO - TEXT - SOUND
       { key: 'url' },
       { key: 'iframe_code' },
@@ -31,6 +32,10 @@ class Media extends Model {
       { key: 'creation_time' },
       { key: 'last_modification_time' }
     ])
+
+    if (!this.thumbnail) {
+      this.thumbnail = '/img/custom/Mask_group2.png'
+    }
 
     this.typeEnums = [
       {

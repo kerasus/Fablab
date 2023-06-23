@@ -20,6 +20,10 @@ class Package extends Model {
       { key: 'services_relation' },
       { key: 'services_relation_info' }
     ])
+
+    if (!this.thumbnail) {
+      this.thumbnail = '/img/FabLab-logo.png'
+    }
   }
 }
 

@@ -8,7 +8,7 @@ class Invoice extends Model {
       { key: 'amount' },
       { key: 'description' },
       { key: 'status' }, // PAYING ...
-      { key: 'additional_data' }, // PAYING ...
+      { key: 'additional_data' },
       { key: 'creation_time' },
       { key: 'last_modification_time' },
       { key: 'is_active' },

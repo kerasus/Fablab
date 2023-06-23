@@ -10,7 +10,7 @@ const menuItems = [
   {
     selected: 'shop',
     title: 'پکیج ها',
-    routeName: 'Public.Scenario',
+    routeName: 'Public.Packages',
     type: 'itemMenu',
     permission: 'all',
     show: true
@@ -18,7 +18,7 @@ const menuItems = [
   {
     selected: 'shop',
     title: 'خانواده فب',
-    routeName: 'UserPanel.Role.List',
+    routeName: 'Public.FabFamily',
     type: 'itemMenu',
     permission: 'all',
     show: true
@@ -26,7 +26,7 @@ const menuItems = [
   {
     selected: 'shop',
     title: 'درباره ما',
-    routeName: 'Public.Shop',
+    routeName: 'Public.AboutUs',
     type: 'itemMenu',
     permission: 'all',
     show: true
@@ -34,7 +34,7 @@ const menuItems = [
   {
     selected: 'shop',
     title: 'تماس با ما',
-    routeName: 'Public.Shop',
+    routeName: 'Public.ContactUs',
     type: 'itemMenu',
     permission: 'all',
     show: true

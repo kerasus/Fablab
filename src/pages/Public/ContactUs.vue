@@ -1,0 +1,23 @@
+<template>
+  <q-page-builder v-model:sections="currenSections"
+                  v-model:options="pageConfig"
+                  :editable="pageBuilderEditable"
+                  :loading="pageBuilderLoading" />
+</template>
+
+<script>
+import { mixinPageOptions } from 'src/mixin/Mixins.js'
+
+export default {
+  name: 'Public.ContactUs',
+  mixins: [mixinPageOptions],
+  data: () => {
+    return {
+      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'TextWidget', options: { fontFamily: null, color: null, fontSize: null, fontWeight: null, fontStyle: null, xs: { fontSize: null, fontWeight: null, fontStyle: null }, sm: { fontSize: null, fontWeight: null, fontStyle: null }, md: { fontSize: null, fontWeight: null, fontStyle: null }, lg: { fontSize: null, fontWeight: null, fontStyle: null }, xl: { fontSize: null, fontWeight: null, fontStyle: null }, style: { paddingBottom: '16px' }, text: '<div style="text-align: center;"><font size="6"><b>درباره ما</b></font><br></div>' } }, { name: 'TextWidget', options: { fontFamily: null, color: null, fontSize: null, fontWeight: null, fontStyle: null, xs: { fontSize: null, fontWeight: null, fontStyle: null }, sm: { fontSize: null, fontWeight: null, fontStyle: null }, md: { fontSize: null, fontWeight: null, fontStyle: null }, lg: { fontSize: null, fontWeight: null, fontStyle: null }, xl: { fontSize: null, fontWeight: null, fontStyle: null }, style: {}, text: '<div style="text-align: center;"><font color="#a4a4a4" size="5">صفحه اصلی / درباره ما</font><br></div>' } }], options: { style: {} } }], options: {} }] }, options: { fullHeight: false, backgrounds: { xs: { size: null, color: null, image: null, repeat: null, position: null, attachment: null }, sm: { size: null, color: null, image: null, repeat: null, position: null, attachment: null }, md: { size: null, color: null, image: null, repeat: null, position: null, attachment: null }, lg: { size: null, color: null, image: null, repeat: null, position: null, attachment: null }, xl: { size: null, color: null, image: null, repeat: null, position: null, attachment: null } }, verticalAlign: null, style: { backgroundColor: 'rgba(246,246,246,1)', paddingTop: '100px', paddingBottom: '100px', minHeight: 'auto' } } }, { data: { rows: [{ cols: [{ widgets: [{ name: 'Map' }], options: { style: {}, colNumber: 'col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6' } }, { widgets: [{ name: 'TextWidget', options: { fontFamily: null, color: null, fontSize: null, fontWeight: null, fontStyle: null, xs: { fontSize: null, fontWeight: null, fontStyle: null }, sm: { fontSize: null, fontWeight: null, fontStyle: null }, md: { fontSize: null, fontWeight: null, fontStyle: null }, lg: { fontSize: null, fontWeight: null, fontStyle: null }, xl: { fontSize: null, fontWeight: null, fontStyle: null }, style: {}, text: '<div><div><font color="#2e2e2e" size="4">ایمیل</font><br><div><font size="4"><font color="#0b6ab1">iranfablab@gmail.com</font></font></div></div></div><div><br></div><div><font color="#2e2e2e" size="4">آدرس</font><br><div><font color="#0b6ab1" size="4">تهران، خیابان آزادی، بلوار اکبری، خیابان قاسمی شرقی، پلاک ۷۹، کارخانه هنر طراحی و ساخت</font><br></div></div><div><font size="4"><font color="#0b6ab1"><br></font></font></div><div><font color="#2e2e2e" size="4">تلفن</font><br><div><div><font color="#0b6ab1" size="4">۰۲۱۴۰۷۷۴۷۶۷</font></div><div><font color="#0b6ab1" size="4">۰۲۱۷۶۲۵۱۲۵۱</font></div></div></div><div><font size="4"><font color="#0b6ab1"><br></font></font></div><div><font color="#2e2e2e" size="4">کد پستی:</font><br><div><font color="#0b6ab1" size="4">۱۴۵۹۹۷۴۳۱۱</font><br></div></div>' } }], options: { style: {}, colNumber: 'col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6' } }], options: { className: '', height: 'auto', boxed: true, boxedWidth: '1101', gutterXSize: 'md', gutterYSize: 'md', absolute: 'none', paddingOfBoxedInFullWidth: '30px', style: { maxWidth: '1101px', width: '1101px' } } }] }, options: { fullHeight: false, backgrounds: { xs: { size: null, color: null, image: null, repeat: null, position: null, attachment: null }, sm: { size: null, color: null, image: null, repeat: null, position: null, attachment: null }, md: { size: null, color: null, image: null, repeat: null, position: null, attachment: null }, lg: { size: null, color: null, image: null, repeat: null, position: null, attachment: null }, xl: { size: null, color: null, image: null, repeat: null, position: null, attachment: null } }, verticalAlign: null, style: { paddingTop: '100px', paddingBottom: '100px', minHeight: 'auto', backgroundColor: 'rgba(255,255,255,1)' } } }]
+    }
+  },
+  created() {
+    this.currenSections = this.sections
+  }
+}
+</script>

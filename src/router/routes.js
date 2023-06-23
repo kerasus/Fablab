@@ -44,139 +44,24 @@ const routes = [
             component: () => import('src/pages/Public/Home.vue')
           },
           {
-            path: 'scenarios',
-            name: 'Public.Scenario',
-            component: () => import('src/pages/Public/Scenario.vue')
+            path: 'packages',
+            name: 'Public.Packages',
+            component: () => import('src/pages/Public/Packages.vue')
           },
           {
-            path: 'event',
-            name: 'Public.Event',
-            component: () => import('layouts/bareLayout.vue'),
-            children: [
-              {
-                path: ':id',
-                name: 'Public.Event.Show',
-                component: () => import('src/pages/Public/Event/Show.vue')
-              }
-            ]
+            path: 'fab-family',
+            name: 'Public.FabFamily',
+            component: () => import('src/pages/Public/FabFamily.vue')
           },
           {
-            path: 'shop',
-            name: 'Public.Shop',
-            meta: {
-              hasDynamicSetting: true
-            },
-            component: () => import('pages/Public/Shop.vue')
+            path: 'about-us',
+            name: 'Public.AboutUs',
+            component: () => import('src/pages/Public/AboutUs.vue')
           },
           {
-            path: 'product',
-            name: 'Public.Product',
-            component: () => import('layouts/bareLayout.vue'),
-            children: [
-              {
-                name: 'Public.Product.Show',
-                path: ':id',
-                meta: {
-                  hasDynamicSetting: true
-                },
-                component: () => import('pages/Public/Product/Show.vue')
-              }
-            ]
-          },
-          {
-            path: 'c',
-            name: 'Public.Content',
-            component: () => import('layouts/bareLayout.vue'),
-            children: [
-              {
-                name: 'Public.Content.Show',
-                path: ':id',
-                meta: {
-                  hasDynamicSetting: true
-                },
-                component: () => import('pages/Public/Content/Show.vue')
-              },
-              {
-                name: 'Public.Content.Search',
-                path: '',
-                meta: {
-                  hasDynamicSetting: true
-                },
-                component: () => import('pages/Public/Content/Search.vue')
-              }
-            ]
-          },
-          {
-            path: 'set',
-            name: 'Public.Set',
-            component: () => import('layouts/bareLayout.vue'),
-            children: [
-              {
-                name: 'Public.Set.Show',
-                path: ':id',
-                meta: {
-                  hasDynamicSetting: true
-                },
-                component: () => import('pages/Public/Set/Show.vue')
-              }
-            ]
-          },
-          {
-            path: 'checkout',
-            name: 'Public.Checkout',
-            component: () => import('layouts/bareLayout.vue'),
-            children: [
-              {
-                path: 'review',
-                name: 'Public.Checkout.Review',
-                meta: {
-                  hasDynamicSetting: true
-                },
-                component: () => import('src/pages/Public/Cart/Cart.vue')
-              }
-            ]
-          },
-          {
-            path: 'landing',
-            name: 'Public.Landing',
-            layoutConfig: {
-              layoutHeader: false,
-              layoutFooter: false
-            },
-            children: [
-              {
-                path: ':landing_name',
-                meta: {
-                  hasDynamicSettingWithParams: true
-                },
-                name: 'Public.Landing',
-                component: () => import('src/pages/Public/Landings/Landing.vue')
-              },
-              {
-                path: '36',
-                name: 'Public.Landing.FireDay',
-                meta: {
-                  hasDynamicSetting: true
-                },
-                component: () => import('src/pages/Public/Landings/FireDay.vue')
-              },
-              {
-                path: '15',
-                name: 'Public.Landing.Arash',
-                meta: {
-                  hasDynamicSetting: true
-                },
-                component: () => import('src/pages/Public/Landings/Arash.vue')
-              },
-              {
-                path: '9',
-                name: 'Public.Landing.Taftan',
-                meta: {
-                  hasDynamicSetting: true
-                },
-                component: () => import('src/pages/Public/Landings/Taftan.vue')
-              }
-            ]
+            path: 'contact-us',
+            name: 'Public.ContactUs',
+            component: () => import('src/pages/Public/ContactUs.vue')
           }
         ]
       },

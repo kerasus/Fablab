@@ -172,14 +172,6 @@ export default {
     profileTitlesList () {
       const items = [
         {
-          title: 'پروفایل',
-          icon: 'isax:user',
-          routeName: 'Public.Home',
-          permission: 'all',
-          active: false,
-          children: []
-        },
-        {
           title: 'داشبورد',
           icon: 'isax:gift',
           routeName: 'UserPanel.Dashboard',
@@ -292,7 +284,7 @@ export default {
 
 <style lang="scss" scoped>
 .app-bar-container {
-  background-color: #F2F2F2;
+  background-color: white;
   height: 100px;
   width: 100%;
   color: #333333;
