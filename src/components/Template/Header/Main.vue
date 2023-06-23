@@ -151,8 +151,8 @@ import megaMenu from './magaMenu.vue'
 import simpleMenu from './simpleMenu.vue'
 import { User } from 'src/models/User.js'
 import LazyImg from 'src/components/lazyImg.vue'
-import menuItems from 'components/Template/menuData.js'
-import itemMenu from 'components/Template/Header/itemMenu.vue'
+import menuItems from 'src/components/Template/menuData.js'
+import itemMenu from 'src/components/Template/Header/itemMenu.vue'
 
 export default {
   name: 'MainHeaderTemplate',
@@ -380,6 +380,8 @@ export default {
         margin-left: 24px;
         .tabs-list {
           height: 100px;
+          flex-flow: row;
+          justify-content: center;
           .tab-title {
             font-style: normal;
             font-weight: 400;
@@ -394,9 +396,6 @@ export default {
           height: 64px;
           display: none;
         }
-      }
-      .active-item {
-        color: #FFC107;
       }
       .user-action {
         height: 100px;
@@ -529,8 +528,8 @@ export default {
     background: #FFFFFF;
     border-radius: 16px;
     display: flex;
-    margin-bottom: 0px;
-    padding: 0px;
+    margin-bottom: 0;
+    padding: 0;
 
     .btn-style{
       width: 96px;
@@ -546,7 +545,7 @@ export default {
       letter-spacing: -0.03em;
     }
     .sign-up {
-      background: #FFC107;
+      background: $primary;
     }
   }
 }

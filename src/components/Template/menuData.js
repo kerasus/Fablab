@@ -9,7 +9,7 @@ const menuItems = [
   },
   {
     selected: 'shop',
-    title: 'سناریوها',
+    title: 'پکیج ها',
     routeName: 'Public.Scenario',
     type: 'itemMenu',
     permission: 'all',
@@ -17,7 +17,7 @@ const menuItems = [
   },
   {
     selected: 'shop',
-    title: 'نقش ها',
+    title: 'خانواده فب',
     routeName: 'UserPanel.Role.List',
     type: 'itemMenu',
     permission: 'all',
@@ -25,7 +25,7 @@ const menuItems = [
   },
   {
     selected: 'shop',
-    title: 'بلاگ',
+    title: 'درباره ما',
     routeName: 'Public.Shop',
     type: 'itemMenu',
     permission: 'all',
@@ -33,7 +33,7 @@ const menuItems = [
   },
   {
     selected: 'shop',
-    title: 'پرسش های متداول',
+    title: 'تماس با ما',
     routeName: 'Public.Shop',
     type: 'itemMenu',
     permission: 'all',

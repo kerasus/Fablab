@@ -41,14 +41,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .active-item {
-  color: #FFC107;
+  .tab-title {
+    color: $primary;
+    font-weight: bold;
+    font-size: 16px;
+  }
 }
 .tab-title {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 25px;
+  color: lighten($primary, 10%);
+  font-size: 14px;
+  font-weight: 500;
 }
 </style>
