@@ -59,6 +59,23 @@ const routes = [
             component: () => import('src/pages/Public/AboutUs.vue')
           },
           {
+            path: 'blog',
+            name: 'Public.Blog',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              {
+                path: '',
+                name: 'Public.Blog.List',
+                component: () => import('src/pages/Public/BlogList.vue')
+              },
+              {
+                path: ':id',
+                name: 'Public.Blog.Show',
+                component: () => import('src/pages/Public/BlogShow.vue')
+              }
+            ]
+          },
+          {
             path: 'contact-us',
             name: 'Public.ContactUs',
             component: () => import('src/pages/Public/ContactUs.vue')

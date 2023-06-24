@@ -1,6 +1,6 @@
 import { Collection, Model } from 'js-abstract-model'
 import { CelebrityList } from 'src/models/Celebrity.js'
-import { MediaHashtag } from 'src/models/MediaHashtag.js'
+import { MediaHashtagList } from 'src/models/MediaHashtag.js'
 import { MediaCategory } from 'src/models/MediaCategory.js'
 
 class Media extends Model {
@@ -14,6 +14,7 @@ class Media extends Model {
       { key: 'url' },
       { key: 'iframe_code' },
       { key: 'script_code' },
+      { key: 'description' },
       { key: 'is_live_streaming' },
       { key: 'category' },
       {
@@ -27,7 +28,7 @@ class Media extends Model {
       { key: 'hashtags' },
       {
         key: 'hashtags_info',
-        relatedModel: MediaHashtag
+        relatedModel: MediaHashtagList
       },
       { key: 'creation_time' },
       { key: 'last_modification_time' }

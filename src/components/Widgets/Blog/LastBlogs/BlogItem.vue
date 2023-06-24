@@ -2,14 +2,20 @@
   <q-card class="BlogItem"
           flat>
     <div class="thumbnail">
-      <q-img :src="media.thumbnail" />
+      <router-link :to="{name: 'Public.Blog.Show', params: {id: media.id}}">
+        <q-img :src="media.thumbnail" />
+      </router-link>
     </div>
     <div class="texts">
       <div class="category-title">
-        {{ media.category_info.title }}
+        <router-link :to="{name: 'Public.Blog.Show', params: {id: media.id}}">
+          {{ media.category_info.title }}
+        </router-link>
       </div>
       <div class="title ellipsis-2-lines">
-        {{ media.title }}
+        <router-link :to="{name: 'Public.Blog.Show', params: {id: media.id}}">
+          {{ media.title }}
+        </router-link>
       </div>
       <div class="published-date">
         تاریخ انتشار
