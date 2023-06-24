@@ -56,10 +56,10 @@
 </template>
 <script>
 import { defineComponent } from 'vue'
+import Editor from 'src/components/Utils/Editor.vue'
 import { PageBuilderOptionPanel } from 'src/mixin/Mixins.js'
+import EditorOptions from 'src/components/EditorOptions.vue'
 import OptionPanelTabs from 'quasar-ui-q-page-builder/src/components/OptionPanelComponents/OptionPanelTabs.vue'
-import Editor from 'components/Utils/Editor.vue'
-import EditorOptions from 'components/EditorOptions.vue'
 
 export default defineComponent({
   name: 'OptionPanel',
