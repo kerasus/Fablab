@@ -6,7 +6,8 @@
            :key="packageItem.id"
            :class="localOptions.cols">
         <package-item :package-data="packageItem"
-                      :light="localOptions.light" />
+                      :light="localOptions.light"
+                      @click="onSelectPackage(packageItem)" />
       </div>
     </div>
   </div>
@@ -27,6 +28,7 @@ export default {
       packages: new PackageList(),
       defaultOptions: {
         light: false,
+        routeToPanel: true,
         cols: 'col-md-3 col-sm-6 col-12'
       }
     }
@@ -46,6 +48,20 @@ export default {
     getApiRequest() {
       this.packages.loading = true
       return APIGateway.package.index()
+    },
+    onSelectPackage(packageItem) {
+      const packages = this.$store.getters['Reservation/packages']
+      const target = packages.list.findIndex(packageData => packageData.id === packageItem.id)
+      if (target === -1) {
+        packages.add(packageItem)
+      } else {
+        packages.list.splice(target, 1)
+      }
+
+      this.$store.commit('Reservation/updatePackages', packages)
+      if (this.localOptions.routeToPanel) {
+        this.$router.push({ name: 'UserPanel.Reservation' })
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <q-card class="PackageItem"
-          :class="{'light': light}"
+          :class="{'light': light, isSelectedItem}"
           flat>
     <div class="PackageItem-head">
       <div class="thumbnail">
@@ -42,6 +42,12 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  computed: {
+    isSelectedItem () {
+      const packages = this.$store.getters['Reservation/packages']
+      return !!packages.list.find(packageItem => packageItem.id === this.packageData.id)
+    }
   }
 }
 </script>
@@ -51,12 +57,16 @@ export default {
   background: #F5F7FF;
   padding: 32px 30px;
   cursor: pointer;
+  border: 2px solid transparent;
   &.light {
     background: white;
   }
+  &.isSelectedItem {
+    border-color: #2FA84A;
+  }
   &:hover {
     background: white;
-    border: 2px solid $primary;
+    border-color: $primary;
   }
   .PackageItem-head {
     display: flex;

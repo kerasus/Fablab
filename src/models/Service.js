@@ -12,6 +12,10 @@ class Service extends Model {
       { key: 'order_verification_required' },
       { key: 'standalone' },
       { key: 'thumbnail' },
+      {
+        key: 'count',
+        default: 1
+      },
       { key: 'description' },
       { key: 'creation_time' },
       { key: 'last_modification_time' },
@@ -24,11 +28,27 @@ class Service extends Model {
       this.thumbnail = '/img/FabLab-logo.png'
     }
   }
+
+  addCount () {
+    this.count++
+  }
+
+  reduceCount () {
+    if (this.count === 0) {
+      return
+    }
+
+    this.count--
+  }
 }
 
 class ServiceList extends Collection {
   model () {
     return Service
+  }
+
+  removeZeroCount () {
+    this.list = this.list.filter(item => item.count > 0)
   }
 }
 

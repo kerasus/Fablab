@@ -1,26 +1,10 @@
-import { User } from 'src/models/User'
+import { ServiceList } from 'src/models/Service.js'
+import { PackageList } from 'src/models/Package.js'
 
-const appenv = process.env.APP_ENV
-
-export function user (state) {
-  return new User(state.user)
+export function packages (state) {
+  return new PackageList(state.packages)
 }
 
-export function isUserLogin (state) {
-  return !!new User(state.user).id
-}
-
-export function isAdmin (state) {
-  return (appenv === 'production' && new User(state.user).mobile === '09358745928') || (appenv === 'development')
-}
-
-export function accessToken (state) {
-  return state.accessToken
-}
-
-export function redirectTo (state) {
-  return state.redirectTo
-}
-export function incompleteProfile (state) {
-  return state.incompleteProfile
+export function services (state) {
+  return new ServiceList(state.services)
 }

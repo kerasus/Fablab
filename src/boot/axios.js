@@ -34,9 +34,13 @@ const AxiosHooks = (function () {
       messages.push(message)
     } else if (error.response.data) {
       for (const key of Object.keys(error.response.data)) {
-        error.response.data[key].forEach(message => {
-          messages.push(key + ': ' + message)
-        })
+        if (typeof error.response.data[key] === 'string') {
+          messages.push(key + ': ' + error.response.data[key])
+        } else if (Array.isArray(error.response.data[key])) {
+          error.response.data[key].forEach(message => {
+            messages.push(key + ': ' + message)
+          })
+        }
       }
     }
 

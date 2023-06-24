@@ -1,5 +1,5 @@
-import APIRepository from '../classes/APIRepository'
-import { appApiInstance } from 'src/boot/axios'
+import { appApiInstance } from 'src/boot/axios.js'
+import APIRepository from '../classes/APIRepository.js'
 import { Invoice, InvoiceList } from 'src/models/Invoice.js'
 
 export default class InvoiceAPI extends APIRepository {
@@ -59,7 +59,25 @@ export default class InvoiceAPI extends APIRepository {
       api: this.api,
       request: this.APIAdresses.pay(invoiceId),
       resolveCallback: (response) => {
-        return response.data.url // String -> redirect url // thankyou
+        return response.data.detail // String : message
+      },
+      rejectCallback: (error) => {
+        return error
+      }
+    })
+  }
+
+  createService (products = []) {
+    return this.sendRequest({
+      apiMethod: 'post',
+      api: this.api,
+      request: this.APIAdresses.base,
+      data: {
+        type: 'SERVICE', // String
+        products // Array of Object
+      },
+      resolveCallback: (response) => {
+        return new Invoice(response.data)
       },
       rejectCallback: (error) => {
         return error

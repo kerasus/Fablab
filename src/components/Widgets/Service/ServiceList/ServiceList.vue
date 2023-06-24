@@ -6,7 +6,8 @@
            :key="serviceItem.id"
            :class="localOptions.cols">
         <service-item :service-data="serviceItem"
-                      :light="localOptions.light" />
+                      :light="localOptions.light"
+                      @click="onSelectService(serviceItem)" />
       </div>
     </div>
   </div>
@@ -26,6 +27,7 @@ export default {
     return {
       services: new ServiceList(),
       defaultOptions: {
+        routeToPanel: false,
         light: false,
         cols: 'col-md-3 col-sm-6 col-12'
       }
@@ -46,6 +48,19 @@ export default {
     getApiRequest() {
       this.services.loading = true
       return APIGateway.service.index()
+    },
+    onSelectService(serviceItem) {
+      const services = this.$store.getters['Reservation/services']
+      const target = services.list.findIndex(serviceData => serviceData.id === serviceItem.id)
+      if (target === -1) {
+        services.add(serviceItem)
+      } else {
+        services.list.splice(target, 1)
+      }
+      this.$store.commit('Reservation/updateServices', services)
+      if (this.localOptions.routeToPanel) {
+        this.$router.push({ name: 'UserPanel.Reservation' })
+      }
     }
   }
 }

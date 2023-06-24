@@ -12,6 +12,10 @@ class Package extends Model {
       { key: 'slug' },
       { key: 'description' },
       { key: 'slug' },
+      {
+        key: 'count',
+        default: 1
+      },
       { key: 'creator' },
       {
         key: 'creator_info',
@@ -25,11 +29,27 @@ class Package extends Model {
       this.thumbnail = '/img/FabLab-logo.png'
     }
   }
+
+  addCount () {
+    this.count++
+  }
+
+  reduceCount () {
+    if (this.count === 0) {
+      return
+    }
+
+    this.count--
+  }
 }
 
 class PackageList extends Collection {
   model () {
     return Package
+  }
+
+  removeZeroCount () {
+    this.list = this.list.filter(item => item.count > 0)
   }
 }
 

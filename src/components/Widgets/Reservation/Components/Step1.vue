@@ -14,7 +14,8 @@
     </div>
     <div class="action">
       <q-btn color="primary"
-             class="q-px-xl">
+             class="q-px-xl"
+             @click="onNextStep">
         مرحله بعد
       </q-btn>
     </div>
@@ -30,6 +31,11 @@ export default {
   components: {
     PackageList,
     ServiceList
+  },
+  methods: {
+    onNextStep () {
+      this.$emit('onNextStep')
+    }
   }
 }
 </script>
