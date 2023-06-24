@@ -135,7 +135,14 @@ export default {
       showRouteName: 'AdminPanel.Ticket.Show',
       indexRouteName: 'AdminPanel.Ticket.List',
       inputs: [
-        { type: 'select', name: 'category', responseKey: 'category', options: [], label: 'دسته', col: 'col-md-6' },
+        {
+          type: 'select',
+          name: 'category',
+          responseKey: 'category',
+          options: [],
+          label: 'دسته',
+          col: 'col-md-6 col-12'
+        },
         {
           type: 'select',
           name: 'state',
@@ -143,13 +150,13 @@ export default {
           options: (new Ticket()).statusEnums,
           multiple: false,
           label: 'وضعیت',
-          col: 'col-md-3'
+          col: 'col-md-6 col-12'
         },
-        { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', col: 'col-md-12' },
-        { type: 'inputEditor', name: 'body', responseKey: 'body', label: 'متن', col: 'col-md-12' },
-        { type: 'hidden', name: 'id', responseKey: 'id', label: 'شناسه', col: 'col-md-12' },
-        { type: 'hidden', name: 'owner', responseKey: 'owner', label: 'owner', col: 'col-md-12' },
-        { type: 'hidden', name: 'replies_info', responseKey: 'replies_info', label: 'replies_info', col: 'col-md-12' }
+        { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', col: 'col-12' },
+        { type: 'inputEditor', name: 'body', responseKey: 'body', label: 'متن', col: 'col-12' },
+        { type: 'hidden', name: 'id', responseKey: 'id' },
+        { type: 'hidden', name: 'owner', responseKey: 'owner' },
+        { type: 'hidden', name: 'replies_info', responseKey: 'replies_info' }
       ]
     }
   },
@@ -214,7 +221,7 @@ export default {
       })
     },
     setInputOptions (name, options) {
-      this.$refs.entityCreate.setInputAttributeByName(name, 'options', options)
+      this.$refs.entityEdit.setInputAttributeByName(name, 'options', options)
     },
     sendReply() {
       this.entityLoading = true
