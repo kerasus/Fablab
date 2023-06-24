@@ -420,19 +420,19 @@ const routes = [
             ]
           },
           {
-            path: 'order',
-            name: 'AdminPanel.Order',
+            path: 'invoice',
+            name: 'AdminPanel.Invoice',
             component: () => import('layouts/bareLayout.vue'),
             children: [
               {
                 path: '',
-                name: 'AdminPanel.Order.List',
-                component: () => import('src/pages/Admin/Order/List.vue')
+                name: 'AdminPanel.Invoice.List',
+                component: () => import('src/pages/Admin/Invoice/List.vue')
               },
               {
                 path: ':id',
-                name: 'AdminPanel.Order.Show',
-                component: () => import('src/pages/Admin/Order/Show.vue')
+                name: 'AdminPanel.Invoice.Show',
+                component: () => import('src/pages/Admin/Invoice/Show.vue')
               }
             ]
           }

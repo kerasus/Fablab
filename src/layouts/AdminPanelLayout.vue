@@ -70,7 +70,7 @@ export default {
         {
           label: 'سفارشات',
           icon: 'reorder',
-          route: { name: 'AdminPanel.Order.List' }
+          route: { name: 'AdminPanel.Invoice.List' }
         },
         {
           label: 'رویدادها',
