@@ -18,18 +18,16 @@
                     :show-reload-button="false"
                     :default-layout="false">
         <template #entity-index-table-cell="{inputData}">
-          <q-td>
-            <template v-if="inputData.col.name === 'action'">
-              <q-btn flat
-                     color="primary"
-                     :to="{name: 'UserPanel.Package.Show', params: {id: inputData.props.row.id}}">
-                مشاهده جزییات
-              </q-btn>
-            </template>
-            <template v-else>
-              {{ inputData.col.value }}
-            </template>
-          </q-td>
+          <template v-if="inputData.col.name === 'action'">
+            <q-btn flat
+                   color="primary"
+                   :to="{name: 'UserPanel.Package.Show', params: {id: inputData.props.row.id}}">
+              مشاهده جزییات
+            </q-btn>
+          </template>
+          <template v-else>
+            {{ inputData.col.value }}
+          </template>
         </template>
       </entity-index>
     </q-card>
@@ -41,6 +39,7 @@ import Assist from 'assets/js/Assist.js'
 import { EntityIndex } from 'quasar-crud'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
+import { Payment } from 'src/models/Payment'
 
 export default {
   name: 'PaymentList',
@@ -71,14 +70,14 @@ export default {
             required: true,
             label: 'مبلغ',
             align: 'left',
-            field: row => row.amount
+            field: row => row.amount.toLocaleString('fa')
           },
           {
-            name: 'status',
+            name: 'type',
             required: true,
             label: 'وضعیت',
             align: 'left',
-            field: row => row.status
+            field: row => (new Payment(row)).type_info.label
           },
           {
             name: 'creation_time',
@@ -92,7 +91,7 @@ export default {
             required: true,
             label: 'پرداخت کننده',
             align: 'left',
-            field: row => row.owner_info?.nickname
+            field: row => row.creator_info?.nickname ? row.creator_info.nickname : ((row.creator_info?.firstname ? row.creator_info.firstname : '') + ' ' + (row.creator_info?.lastname ? row.creator_info.lastname : ''))
           }
         ]
       },

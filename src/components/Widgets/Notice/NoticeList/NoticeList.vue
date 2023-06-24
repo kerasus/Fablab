@@ -18,18 +18,16 @@
                     :show-reload-button="false"
                     :default-layout="false">
         <template #entity-index-table-cell="{inputData}">
-          <q-td>
-            <template v-if="inputData.col.name === 'action'">
-              <q-btn flat
-                     color="primary"
-                     :to="{name: 'UserPanel.Notice.Show', params: {id: inputData.props.row.id}}">
-                مشاهده جزییات
-              </q-btn>
-            </template>
-            <template v-else>
-              {{ inputData.col.value }}
-            </template>
-          </q-td>
+          <template v-if="inputData.col.name === 'action'">
+            <q-btn flat
+                   color="primary"
+                   :to="{name: 'UserPanel.Notice.Show', params: {id: inputData.props.row.id}}">
+              مشاهده جزییات
+            </q-btn>
+          </template>
+          <template v-else>
+            {{ inputData.col.value }}
+          </template>
         </template>
       </entity-index>
     </q-card>
@@ -38,9 +36,9 @@
 
 <script>
 import { EntityIndex } from 'quasar-crud'
+import { Notice } from 'src/models/Notice.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
-import { Ticket } from 'src/models/Ticket'
 
 export default {
   name: 'NoticeList',
@@ -78,7 +76,7 @@ export default {
             required: true,
             label: 'وضعیت',
             align: 'left',
-            field: row => (new Ticket(row)).status_info.label
+            field: row => (new Notice(row)).status_info.label
           },
           {
             name: 'action',

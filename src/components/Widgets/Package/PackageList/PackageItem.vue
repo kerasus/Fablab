@@ -1,5 +1,6 @@
 <template>
   <q-card class="PackageItem"
+          :class="{'light': light}"
           flat>
     <div class="PackageItem-head">
       <div class="thumbnail">
@@ -36,6 +37,10 @@ export default {
     packageData: {
       type: Package,
       default: new Package()
+    },
+    light: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -46,6 +51,9 @@ export default {
   background: #F5F7FF;
   padding: 32px 30px;
   cursor: pointer;
+  &.light {
+    background: white;
+  }
   &:hover {
     background: white;
     border: 2px solid $primary;

@@ -6,12 +6,13 @@ class Team extends Model {
     super(data, [
       { key: 'id' },
       { key: 'name' },
+      { key: 'thumbnail' },
       { key: 'site_url' },
       { key: 'instagram_url' },
       { key: 'telegram_url' },
       { key: 'bale_url' },
       { key: 'additional_info' },
-      { key: 'status' }, // APPROVED ...
+      { key: 'status' }, // APPROVED - DISAPPROVED - SUSPENDED
       { key: 'picture' },
       { key: 'creation_time' },
       { key: 'last_modification_time' },
@@ -32,8 +33,38 @@ class Team extends Model {
         relatedModel: User
       }
     ])
-    if (!this.picture) {
-      this.picture = '/img/default-avatar.png'
+
+    if (!this.thumbnail) {
+      this.thumbnail = '/img/custom/Mask_group2.png'
+    }
+
+    this.statusEnums = [
+      {
+        label: 'تایید شده',
+        value: 'APPROVED'
+      },
+      {
+        label: 'تایید نشده',
+        value: 'DISAPPROVED'
+      },
+      {
+        label: 'معلق',
+        value: 'SUSPENDED'
+      }
+    ]
+
+    this.loadStatusInfo()
+  }
+
+  loadStatusInfo () {
+    const target = this.statusEnums.find(type => type.value === this.status)
+    if (!target) {
+      this.status_info = {
+        label: null,
+        value: null
+      }
+    } else {
+      this.status_info = target
     }
   }
 }

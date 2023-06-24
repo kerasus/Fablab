@@ -85,6 +85,7 @@ export default {
           name: 'title',
           responseKey: 'title',
           label: 'عنوان',
+          placeholder: ' ',
           col: 'col-12'
         },
         {
@@ -92,6 +93,7 @@ export default {
           name: 'url',
           responseKey: 'url',
           label: 'لینک',
+          placeholder: ' ',
           col: 'col-12'
         },
         {
@@ -99,6 +101,7 @@ export default {
           name: 'body',
           responseKey: 'body',
           label: 'متن',
+          placeholder: ' ',
           col: 'col-12'
         },
         {

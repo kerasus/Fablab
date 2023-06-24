@@ -57,6 +57,20 @@ export default class UserAPI extends APIRepository {
     })
   }
 
+  getCurrent() {
+    return this.sendRequest({
+      apiMethod: 'get',
+      api: this.api,
+      request: this.APIAdresses.current,
+      resolveCallback: (response) => {
+        return new User(response.data)
+      },
+      rejectCallback: (error) => {
+        return error
+      }
+    })
+  }
+
   updateCurrent(data) {
     return this.sendRequest({
       apiMethod: 'put',

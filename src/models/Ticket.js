@@ -37,27 +37,33 @@ class Ticket extends Model {
     this.statusEnums = [
       {
         label: 'باز شده',
-        value: 'OPENED'
+        value: 'OPENED',
+        color: '#2FA84A'
       },
       {
         label: 'پاسخ داده شده',
-        value: 'ADMIN_REPLIED'
+        value: 'ADMIN_REPLIED',
+        color: '#0B6AB1'
       },
       {
         label: 'در حال انتظار',
-        value: 'PENDING'
+        value: 'PENDING',
+        color: '#2FA84A'
       },
       {
         label: 'خوانده نشده',
-        value: 'UNREAD'
+        value: 'UNREAD',
+        color: '#2FA84A'
       },
       {
         label: 'خوانده شده',
-        value: 'READ'
+        value: 'READ',
+        color: '#2FA84A'
       },
       {
         label: 'بسته شده',
-        value: 'CLOSED'
+        value: 'CLOSED',
+        color: '#989898'
       }
     ]
 
@@ -79,7 +85,8 @@ class Ticket extends Model {
     if (!target) {
       this.status_info = {
         label: null,
-        value: null
+        value: null,
+        color: ''
       }
     } else {
       this.status_info = target

@@ -24,7 +24,8 @@
                 100,000
               </div>
             </div>
-            <q-btn class="action card">
+            <q-btn class="action card"
+                   @click="chargeWallet">
               شارژ کیف پول
             </q-btn>
           </q-card>
@@ -45,12 +46,66 @@
               </q-item-section>
             </q-item>
           </q-list>
-
         </div>
       </q-card>
       <div class="content">
         <router :include="keepAliveComponents" />
       </div>
+      <q-dialog v-model="chargeWalletDialog">
+        <q-card style="min-width: 300px; width: 466px; padding: 24px">
+          <div class="header flex justify-between">
+            <div style="color: #272727; font-size: 20px; font-weight: 700; line-height: 140%; margin-bottom: 24px;">
+              شارژ کیف پول
+            </div>
+            <q-btn icon="close"
+                   flat
+                   round />
+          </div>
+          <div style="margin-bottom: 40px;">
+            موجودی فعلی:
+            ۱۰۰,۰۰۰
+            تومان
+          </div>
+          <div class="flex justify-between"
+               style="margin-bottom: 32px;">
+            <q-btn :loading="depositLoading"
+                   style="background: #F6F6F6; color: #272727"
+                   flat
+                   @click="deposit(50000)">
+              ۵۰ هزار تومان
+            </q-btn>
+            <q-btn :loading="depositLoading"
+                   style="background: #F6F6F6; color: #272727"
+                   flat
+                   @click="deposit(100000)">
+              ۱۰۰ هزار تومان
+            </q-btn>
+            <q-btn :loading="depositLoading"
+                   style="background: #F6F6F6; color: #272727"
+                   flat
+                   @click="deposit(200000)">
+              ۲۰۰ هزار تومان
+            </q-btn>
+          </div>
+          <div class="q-mb-lg">
+            <div style="text-align: center;">
+              <q-input v-model="chargeWalletAmount"
+                       style="text-align: center;" />
+            </div>
+            <div style="color: #747474; font-size: 14px; line-height: 140%; text-align: center;">
+              تومان
+            </div>
+          </div>
+          <div>
+            <q-btn :loading="depositLoading"
+                   class="full-width"
+                   style="background: #2FA84A; color: white;"
+                   @click="deposit(chargeWalletAmount)">
+              پرداخت
+            </q-btn>
+          </div>
+        </q-card>
+      </q-dialog>
     </div>
   </div>
 </template>
@@ -59,10 +114,14 @@
 import { User } from 'src/models/User.js'
 import Router from 'src/router/Router.vue'
 import KeepAliveComponents from 'src/assets/js/KeepAliveComponents.js'
+import { APIGateway } from 'src/api/APIGateway'
 export default {
   components: { Router },
   data () {
     return {
+      depositLoading: false,
+      chargeWalletDialog: false,
+      chargeWalletAmount: 20000,
       menuItems: [
         {
           label: 'داشبورد',
@@ -72,7 +131,7 @@ export default {
         {
           label: 'رزرو خدمات',
           icon: 'person_pin',
-          route: { name: 'UserPanel.Dashboard' }
+          route: { name: 'UserPanel.Reservation' }
         },
         {
           label: 'پیام ها',
@@ -97,7 +156,7 @@ export default {
         {
           label: 'ویرایش حساب',
           icon: 'person',
-          route: { name: 'UserPanel.Dashboard' }
+          route: { name: 'UserPanel.Profile' }
         },
         {
           label: 'پکیج ها',
@@ -107,7 +166,7 @@ export default {
         {
           label: 'خروج از حساب',
           icon: 'logout',
-          route: { name: 'UserPanel.Dashboard' }
+          route: { name: 'Login' }
         }
       ],
       user: new User(),
@@ -120,6 +179,19 @@ export default {
   methods: {
     loadAuthData() { // prevent Hydration node mismatch
       this.user = this.$store.getters['Auth/user']
+    },
+    chargeWallet () {
+      this.chargeWalletDialog = true
+    },
+    deposit (amount) {
+      this.depositLoading = true
+      APIGateway.wallet.deposit(amount)
+        .then((url) => {
+          window.location.href = url
+        })
+        .catch(() => {
+          this.depositLoading = false
+        })
     }
   }
 }

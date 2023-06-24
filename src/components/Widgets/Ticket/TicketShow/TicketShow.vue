@@ -17,7 +17,7 @@
       </div>
       <div class="back-action">
         <q-btn flat
-               :to="{name: 'AdminPanel.Ticket.List'}"
+               :to="{name: 'UserPanel.Ticket.List'}"
                color="grey">
           بازگشت
           >
@@ -75,12 +75,19 @@
 
       <div class="action">
         <div class="row q-mt-lg justify-end">
+          <div class="col-md-12 col-12">
+            متن پیام
+          </div>
+          <div class="col-md-12 col-12 q-mb-md">
+            <q-input v-model="replyText"
+                     type="textarea" />
+          </div>
           <div class="col-md-4 col-12">
             <q-btn color="primary"
                    class="full-width"
                    :loading="entityLoading"
-                   @click="edit">
-              ثبت تغییرات
+                   @click="sendReply">
+              ارسال پاسخ
             </q-btn>
           </div>
         </div>
@@ -105,6 +112,7 @@ export default {
   mixins: [mixinWidget],
   data: () => {
     return {
+      replyText: null,
       mounted: false,
       entityLoading: true,
       packageTitle: '',
@@ -116,18 +124,41 @@ export default {
       showRouteName: 'AdminPanel.Ticket.Show',
       indexRouteName: 'AdminPanel.Ticket.List',
       inputs: [
-        { type: 'select', name: 'category', responseKey: 'category', options: [], label: 'دسته', col: 'col-md-6' },
         {
           type: 'select',
-          name: 'state',
-          responseKey: 'state',
+          name: 'category',
+          responseKey: 'category',
+          placeholder: ' ',
+          options: [],
+          label: 'دسته',
+          col: 'col-md-6 col-12'
+        },
+        {
+          type: 'select',
+          name: 'status',
+          responseKey: 'status',
           options: (new Ticket()).statusEnums,
           multiple: false,
           label: 'وضعیت',
-          col: 'col-md-3'
+          placeholder: ' ',
+          col: 'col-md-6 col-12'
         },
-        { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', col: 'col-md-12' },
-        { type: 'inputEditor', name: 'body', responseKey: 'body', label: 'متن', col: 'col-md-12' },
+        {
+          type: 'input',
+          name: 'title',
+          responseKey: 'title',
+          label: 'عنوان',
+          placeholder: ' ',
+          col: 'col-md-12 col-12'
+        },
+        {
+          type: 'inputEditor',
+          name: 'body',
+          responseKey: 'body',
+          label: 'متن',
+          placeholder: ' ',
+          col: 'col-md-12 col-12'
+        },
         { type: 'hidden', name: 'id', responseKey: 'id', label: 'شناسه', col: 'col-md-12' },
         { type: 'hidden', name: 'owner', responseKey: 'owner', label: 'owner', col: 'col-md-12' },
         { type: 'hidden', name: 'replies_info', responseKey: 'replies_info', label: 'replies_info', col: 'col-md-12' }
@@ -167,12 +198,22 @@ export default {
     afterLoadInputData () {
       this.entityLoading = false
     },
-    edit() {
+    sendReply() {
       this.entityLoading = true
-      this.$refs.entityEdit.editEntity()
+      APIGateway.ticket.reply({
+        id: this.$route.params.id,
+        body: this.replyText
+      })
         .then(() => {
-          this.$refs.entityEdit.getData()
-          this.entityLoading = false
+          this.$refs.entityEdit.editEntity()
+            .then(() => {
+              this.$refs.entityEdit.getData()
+              this.entityLoading = false
+            })
+            .catch(() => {
+              this.$refs.entityEdit.getData()
+              this.entityLoading = false
+            })
         })
         .catch(() => {
           this.$refs.entityEdit.getData()

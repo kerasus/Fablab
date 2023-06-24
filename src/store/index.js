@@ -5,6 +5,7 @@ import Widgets from './Widgets'
 import loading from './loading'
 import { createStore } from 'vuex'
 import AppLayout from './AppLayout'
+import Reservation from './Reservation'
 import PageBuilder from './PageBuilder'
 import { store } from 'quasar/wrappers'
 import createPersistedState from 'vuex-persistedstate'
@@ -44,6 +45,7 @@ export default store(function (/* { ssrContext } */) {
       Widgets,
       loading,
       AppLayout,
+      Reservation,
       PageBuilder
     },
     plugins,

@@ -1,5 +1,6 @@
 /* eslint-disable camelcase,prefer-const */
 import { Model, Collection } from 'js-abstract-model'
+import { Team } from 'src/models/Team'
 
 class User extends Model {
   constructor (data) {
@@ -50,8 +51,12 @@ class User extends Model {
       this.id = this.user_id
     }
     if (!this.picture) {
-      this.picture = '/img/default-avatar.png'
+      this.picture = '/img/custom/Mask_group2.png'
     }
+  }
+
+  getTeam () {
+    return new Team(this.team_info)
   }
 
   hasRole (role) {

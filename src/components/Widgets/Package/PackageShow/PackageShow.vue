@@ -2,9 +2,7 @@
   <div class="PackageShow"
        :style="localOptions.style">
     <div class="title">
-      <div class="static-title">
-        ویرایش
-      </div>
+      <div class="static-title" />
       <div class="dynamic-title">
         <template v-if="entityLoading">
           <q-skeleton type="text"
@@ -42,23 +40,6 @@
                    :default-layout="false"
                    :redirect-after-edit="false"
                    :after-load-input-data="afterLoadInputData" />
-      <div class="action">
-        <div class="row q-mt-lg justify-end">
-          <div class="col-md-4 col-12">
-            <q-btn color="primary"
-                   class="full-width"
-                   :loading="entityLoading"
-                   @click="edit">
-              ثبت تغییرات
-            </q-btn>
-          </div>
-        </div>
-      </div>
-      <div class="AttachServiceSection q-mt-lg">
-        <select-services-for-attach-to-package v-model:services="services"
-                                               v-model:loading="entityLoading"
-                                               @updated="onUpdateServices" />
-      </div>
     </q-card>
   </div>
 </template>
@@ -67,13 +48,12 @@
 import { EntityShow } from 'quasar-crud'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
-import SelectServicesForAttachToPackage from 'src/components/FormBuilderCustomControls/SelectServicesForAttachToPackage.vue'
+import { Registration } from 'src/models/Registration'
 
 export default {
   name: 'PackageShow',
   components: {
-    EntityShow,
-    SelectServicesForAttachToPackage
+    EntityShow
   },
   mixins: [mixinWidget],
   data: () => {
@@ -82,34 +62,35 @@ export default {
       entityLoading: true,
       packageTitle: '',
       services: [],
-      api: APIGateway.package.APIAdresses.base,
+      api: APIGateway.registration.APIAdresses.base,
       entityIdKey: 'id',
       entityParamKey: 'id',
       showRouteName: 'UserPanel.Package.Show',
       indexRouteName: 'UserPanel.Package.List',
       inputs: [
         {
-          type: 'input',
+          type: 'date',
           name: 'title',
-          responseKey: 'title',
-          label: 'نام پکیج',
+          responseKey: 'creation_time',
+          label: 'تاریخ خرید پکیج',
           placeholder: ' ',
           col: 'col-md-4 col-12'
         },
         {
-          type: 'input',
-          name: 'capacity',
-          responseKey: 'capacity',
-          label: 'ظرفیت',
+          type: 'date',
+          name: 'title',
+          responseKey: 'termination_datetime',
+          label: 'تاریخ سررسید',
           placeholder: ' ',
           col: 'col-md-4 col-12'
         },
         {
-          type: 'input',
-          name: 'unit_price',
-          responseKey: 'unit_price',
-          label: 'قیمت',
+          type: 'select',
+          name: 'time_status',
+          responseKey: 'time_status',
+          label: 'وضعیت پکیج',
           placeholder: ' ',
+          options: (new Registration()).timeStatusEnums,
           col: 'col-md-4 col-12'
         },
         {
@@ -141,21 +122,8 @@ export default {
       this.$refs.entityEdit.getData()
     },
     afterLoadInputData (response) {
-      this.packageTitle = response.title
-      this.services = response.services_relation_info
+      this.packageTitle = response.product_info.title
       this.entityLoading = false
-    },
-    edit() {
-      this.entityLoading = true
-      this.$refs.entityEdit.editEntity()
-        .then(() => {
-          this.$refs.entityEdit.getData()
-          this.entityLoading = false
-        })
-        .catch(() => {
-          this.$refs.entityEdit.getData()
-          this.entityLoading = false
-        })
     }
   }
 }

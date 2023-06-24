@@ -119,7 +119,7 @@ const routes = [
             component: () => import('layouts/bareLayout.vue'),
             children: [
               {
-                path: ':id',
+                path: 'registered/:id',
                 name: 'UserPanel.Package.Show',
                 component: () => import('src/pages/User/Package/Show.vue')
               },
@@ -221,10 +221,14 @@ const routes = [
             ]
           },
           {
-            // ToDo: check this to remove
-            name: 'UserPanel.CompleteInfo',
-            path: 'complete-info',
-            component: () => import('pages/User/UserInfoForm.vue')
+            name: 'UserPanel.Profile',
+            path: 'profile',
+            component: () => import('src/pages/User/Profile.vue')
+          },
+          {
+            name: 'UserPanel.Reservation',
+            path: 'reservation',
+            component: () => import('src/pages/User/Reservation.vue')
           }
         ]
       },

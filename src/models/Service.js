@@ -19,6 +19,10 @@ class Service extends Model {
       { key: 'is_deleted' },
       { key: 'creator' }
     ])
+
+    if (!this.thumbnail) {
+      this.thumbnail = '/img/FabLab-logo.png'
+    }
   }
 }
 

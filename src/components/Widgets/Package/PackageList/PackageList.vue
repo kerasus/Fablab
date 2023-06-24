@@ -4,8 +4,9 @@
     <div class="row q-col-gutter-md">
       <div v-for="packageItem in packages.list"
            :key="packageItem.id"
-           class="col-md-3 col-sm-6 col-12">
-        <package-item :package-data="packageItem" />
+           :class="localOptions.cols">
+        <package-item :package-data="packageItem"
+                      :light="localOptions.light" />
       </div>
     </div>
   </div>
@@ -23,7 +24,11 @@ export default {
   mixins: [mixinWidget, mixinPrefetchServerData],
   data: () => {
     return {
-      packages: new PackageList()
+      packages: new PackageList(),
+      defaultOptions: {
+        light: false,
+        cols: 'col-md-3 col-sm-6 col-12'
+      }
     }
   },
   methods: {

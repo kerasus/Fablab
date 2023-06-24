@@ -18,18 +18,20 @@
                     :show-reload-button="false"
                     :default-layout="false">
         <template #entity-index-table-cell="{inputData}">
-          <q-td>
-            <template v-if="inputData.col.name === 'action'">
-              <q-btn flat
-                     color="primary"
-                     :to="{name: 'UserPanel.Package.Show', params: {id: inputData.props.row.id}}">
-                مشاهده جزییات
-              </q-btn>
-            </template>
-            <template v-else>
-              {{ inputData.col.value }}
-            </template>
-          </q-td>
+          <template v-if="inputData.col.name === 'thumbnail'">
+            <q-img :src="inputData.col.value"
+                   width="32px" />
+          </template>
+          <template v-else-if="inputData.col.name === 'action'">
+            <q-btn flat
+                   color="primary"
+                   :to="{name: 'UserPanel.Package.Show', params: {id: inputData.props.row.id}}">
+              مشاهده جزییات
+            </q-btn>
+          </template>
+          <template v-else>
+            {{ inputData.col.value }}
+          </template>
         </template>
       </entity-index>
     </q-card>
@@ -38,8 +40,11 @@
 
 <script>
 import { EntityIndex } from 'quasar-crud'
+import Assist from 'src/assets/js/Assist.js'
+import { Package } from 'src/models/Package.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
+import { Registration } from 'src/models/Registration'
 
 export default {
   name: 'RegisteredPackageList',
@@ -47,7 +52,7 @@ export default {
   mixins: [mixinWidget],
   data: () => {
     return {
-      api: APIGateway.package.APIAdresses.base,
+      api: APIGateway.registration.APIAdresses.base,
       tableKeys: {
         data: 'results',
         total: 'count',
@@ -55,43 +60,52 @@ export default {
         perPage: 'per_page',
         pageKey: 'page'
       },
-      inputs: [],
+      inputs: [
+        { type: 'hidden', name: 'product_type', value: 'package' }
+      ],
       table: {
         columns: [
+          {
+            name: 'thumbnail',
+            required: true,
+            label: '',
+            align: 'left',
+            field: row => (new Package(row.product_info)).thumbnail
+          },
           {
             name: 'title',
             required: true,
             label: 'پکیج',
             align: 'left',
-            field: row => row.title
+            field: row => row.product_info.title
           },
           {
             name: 'unit_price',
             required: true,
             label: 'قیمت',
             align: 'left',
-            field: row => row.unit_price
+            field: row => row.product_info.unit_price
           },
           {
-            name: 'status',
+            name: 'time_status',
             required: true,
             label: 'وضعیت',
             align: 'left',
-            field: row => '????'
+            class: 'text-red',
+            field: row => (new Registration(row)).time_status_info.label
           },
           {
             name: 'dateTime',
             required: true,
             label: 'تاریخ سررسید',
             align: 'left',
-            field: row => '????'
+            field: row => Assist.miladiToShamsi(row.termination_datetime, 'jDD jMMM jYYYY')
           },
           {
             name: 'action',
             required: true,
             label: 'جزییات',
-            align: 'left',
-            field: row => ''
+            align: 'left'
           }
         ]
       },

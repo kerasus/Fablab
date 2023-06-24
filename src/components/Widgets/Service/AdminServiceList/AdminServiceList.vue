@@ -17,18 +17,16 @@
                     :show-reload-button="false"
                     :default-layout="false">
         <template #entity-index-table-cell="{inputData}">
-          <q-td>
-            <template v-if="inputData.col.name === 'action'">
-              <q-btn flat
-                     color="primary"
-                     :to="{name: 'AdminPanel.Service.Show', params: {id: inputData.props.row.id}}">
-                مشاهده جزییات
-              </q-btn>
-            </template>
-            <template v-else>
-              {{ inputData.col.value }}
-            </template>
-          </q-td>
+          <template v-if="inputData.col.name === 'action'">
+            <q-btn flat
+                   color="primary"
+                   :to="{name: 'AdminPanel.Service.Show', params: {id: inputData.props.row.id}}">
+              مشاهده جزییات
+            </q-btn>
+          </template>
+          <template v-else>
+            {{ inputData.col.value }}
+          </template>
         </template>
       </entity-index>
     </q-card>

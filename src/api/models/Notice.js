@@ -1,6 +1,6 @@
 import { appApiInstance } from 'src/boot/axios'
 import APIRepository from '../classes/APIRepository.js'
-import { Ticket, TicketList } from 'src/models/Ticket.js'
+import { Notice, NoticeList } from 'src/models/Notice.js'
 
 export default class NoticeAPI extends APIRepository {
   constructor() {
@@ -11,9 +11,9 @@ export default class NoticeAPI extends APIRepository {
     this.restUrl = (id) => this.url + '/' + id
     /* Setting the callback functions for the CRUD operations. */
     this.setCrudCallbacks({
-      get: (response) => { return new Ticket(response.data) },
-      post: (response) => { return new Ticket(response.data) },
-      put: (response) => { return new Ticket(response.data) },
+      get: (response) => { return new Notice(response.data) },
+      post: (response) => { return new Notice(response.data) },
+      put: (response) => { return new Notice(response.data) },
       delete: (response) => { return response.data }
     })
   }
@@ -31,7 +31,7 @@ export default class NoticeAPI extends APIRepository {
         const results = response.data.results
         delete paginate.results
         return {
-          list: new TicketList(results),
+          list: new NoticeList(results),
           paginate
           // {
           //   "count": 1,

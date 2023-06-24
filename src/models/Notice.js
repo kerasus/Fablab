@@ -10,6 +10,7 @@ class Notice extends Model {
       { key: 'body' }, //
       { key: 'priority' }, // HIGH - ...
       { key: 'status' }, // ADMIN_REPLIED - ...
+      { key: 'state' },
       { key: 'category' },
       {
         key: 'category_info',
@@ -63,7 +64,10 @@ class Notice extends Model {
   loadPriorityInfo () {
     const target = this.priorityEnums.find(type => type.value === this.priority)
     if (!target) {
-      this.priority_info = null
+      this.priority_info = {
+        label: null,
+        value: null
+      }
     } else {
       this.priority_info = target
     }
@@ -72,7 +76,10 @@ class Notice extends Model {
   loadStatusInfo () {
     const target = this.statusEnums.find(type => type.value === this.status)
     if (!target) {
-      this.status_info = null
+      this.status_info = {
+        label: null,
+        value: null
+      }
     } else {
       this.status_info = target
     }

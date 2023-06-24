@@ -3,7 +3,8 @@
        :style="localOptions.style">
     <div class="title">
       <div class="static-title">
-        ویرایش
+        مشاهده صورتحساب
+        شماره:
       </div>
       <div class="dynamic-title">
         <template v-if="entityLoading">
@@ -12,7 +13,7 @@
                       width="100px" />
         </template>
         <template v-else>
-          {{ packageTitle }}
+          {{ entityId }}
         </template>
       </div>
       <div class="back-action">
@@ -29,7 +30,6 @@
       <entity-show v-if="mounted"
                    ref="entityEdit"
                    v-model:value="inputs"
-                   title="اطلاعات کاربری"
                    :api="api"
                    :entity-id-key="entityIdKey"
                    :entity-param-key="entityParamKey"
@@ -48,6 +48,7 @@
 
 <script>
 import { EntityShow } from 'quasar-crud'
+import { Invoice } from 'src/models/Invoice.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 
@@ -61,8 +62,7 @@ export default {
     return {
       mounted: false,
       entityLoading: true,
-      packageTitle: '',
-      services: [],
+      entityId: '',
       api: APIGateway.invoice.APIAdresses.base,
       entityIdKey: 'id',
       entityParamKey: 'id',
@@ -70,7 +70,7 @@ export default {
       indexRouteName: 'UserPanel.Invoice.List',
       inputs: [
         {
-          type: 'dateTime',
+          type: 'date',
           name: 'creation_time',
           responseKey: 'creation_time',
           label: 'تاریخ صورت‌حساب',
@@ -78,7 +78,7 @@ export default {
           col: 'col-md-6 col-12'
         },
         {
-          type: 'dateTime',
+          type: 'date',
           name: 'creation_time',
           responseKey: 'creation_time',
           label: 'تاریخ سررسید',
@@ -91,7 +91,16 @@ export default {
           responseKey: 'amount',
           label: 'مبلغ کل',
           placeholder: ' ',
-          col: 'col-md-12 col-12'
+          col: 'col-md-6 col-12'
+        },
+        {
+          type: 'select',
+          name: 'status',
+          responseKey: 'status',
+          label: 'وضعیت',
+          placeholder: ' ',
+          options: (new Invoice()).statusEnums,
+          col: 'col-md-6 col-12'
         },
         {
           type: 'formBuilder',
@@ -160,8 +169,7 @@ export default {
       this.$refs.entityEdit.getData()
     },
     afterLoadInputData (response) {
-      this.packageTitle = response.title
-      this.services = response.services_relation_info
+      this.entityId = response.id
       this.entityLoading = false
     },
     edit() {
