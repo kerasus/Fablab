@@ -72,21 +72,21 @@ export default {
           icon: 'reorder',
           route: { name: 'AdminPanel.Invoice.List' }
         },
-        {
-          label: 'رویدادها',
-          icon: 'panorama_photosphere',
-          route: { name: 'UserPanel.Dashboard' }
-        },
+        // {
+        //   label: 'رویدادها',
+        //   icon: 'panorama_photosphere',
+        //   route: { name: 'UserPanel.Dashboard' }
+        // },
         {
           label: 'بلاگ',
           icon: 'content_copy',
           route: { name: 'AdminPanel.Blog.List' }
         },
-        {
-          label: 'چندرسانه‌ای',
-          icon: 'folder',
-          route: { name: 'UserPanel.Dashboard' }
-        },
+        // {
+        //   label: 'چندرسانه‌ای',
+        //   icon: 'folder',
+        //   route: { name: 'UserPanel.Dashboard' }
+        // },
         {
           label: 'پیام‌ها',
           icon: 'chat_bubble_outline',
@@ -100,7 +100,7 @@ export default {
         {
           label: 'مالی',
           icon: 'credit_card',
-          route: { name: 'UserPanel.Dashboard' }
+          route: { name: 'AdminPanel.Payment.List' }
         },
         {
           label: 'کاربران',

@@ -435,6 +435,23 @@ const routes = [
                 component: () => import('src/pages/Admin/Invoice/Show.vue')
               }
             ]
+          },
+          {
+            path: 'payment',
+            name: 'AdminPanel.Payment',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              {
+                path: '',
+                name: 'AdminPanel.Payment.List',
+                component: () => import('src/pages/Admin/Payment/List.vue')
+              },
+              {
+                path: ':id',
+                name: 'AdminPanel.Payment.Show',
+                component: () => import('src/pages/Admin/Payment/Show.vue')
+              }
+            ]
           }
         ]
       },
