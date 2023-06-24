@@ -27,7 +27,7 @@
     <q-card class="form"
             flat>
       <entity-show v-if="mounted"
-                   ref="entityEdit"
+                   ref="entityShow"
                    v-model:value="inputs"
                    title="اطلاعات کاربری"
                    :api="api"
@@ -205,18 +205,18 @@ export default {
         body: this.replyText
       })
         .then(() => {
-          this.$refs.entityEdit.editEntity()
+          this.$refs.entityShow.editEntity()
             .then(() => {
-              this.$refs.entityEdit.getData()
+              this.$refs.entityShow.getData()
               this.entityLoading = false
             })
             .catch(() => {
-              this.$refs.entityEdit.getData()
+              this.$refs.entityShow.getData()
               this.entityLoading = false
             })
         })
         .catch(() => {
-          this.$refs.entityEdit.getData()
+          this.$refs.entityShow.getData()
           this.entityLoading = false
         })
     },

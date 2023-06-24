@@ -43,6 +43,17 @@
                    :redirect-after-edit="false"
                    :after-load-input-data="afterLoadInputData" />
 
+      <div class="row q-mt-lg justify-end">
+        <div class="col-md-4 col-12">
+          <q-btn color="primary"
+                 class="full-width"
+                 :loading="entityLoading"
+                 @click="edit">
+            ثبت تغییرات
+          </q-btn>
+        </div>
+      </div>
+
       <q-card v-if="mounted"
               class="q-mt-md">
         <q-card-section>
@@ -75,12 +86,19 @@
 
       <div class="action">
         <div class="row q-mt-lg justify-end">
+          <div class="col-md-12 col-12">
+            متن پیام
+          </div>
+          <div class="col-md-12 col-12 q-mb-md">
+            <q-input v-model="replyText"
+                     type="textarea" />
+          </div>
           <div class="col-md-4 col-12">
             <q-btn color="primary"
                    class="full-width"
                    :loading="entityLoading"
-                   @click="edit">
-              ثبت تغییرات
+                   @click="sendReply">
+              ارسال پاسخ
             </q-btn>
           </div>
         </div>
@@ -105,6 +123,7 @@ export default {
   mixins: [mixinWidget],
   data: () => {
     return {
+      replyText: null,
       mounted: false,
       entityLoading: true,
       packageTitle: '',
@@ -196,6 +215,28 @@ export default {
     },
     setInputOptions (name, options) {
       this.$refs.entityCreate.setInputAttributeByName(name, 'options', options)
+    },
+    sendReply() {
+      this.entityLoading = true
+      APIGateway.ticket.reply({
+        id: this.$route.params.id,
+        body: this.replyText
+      })
+        .then(() => {
+          this.$refs.entityEdit.editEntity()
+            .then(() => {
+              this.$refs.entityEdit.getData()
+              this.entityLoading = false
+            })
+            .catch(() => {
+              this.$refs.entityEdit.getData()
+              this.entityLoading = false
+            })
+        })
+        .catch(() => {
+          this.$refs.entityEdit.getData()
+          this.entityLoading = false
+        })
     }
   }
 }
