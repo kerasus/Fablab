@@ -246,6 +246,11 @@ const routes = [
             name: 'UserPanel.Reservation',
             path: 'reservation',
             component: () => import('src/pages/User/Reservation.vue')
+          },
+          {
+            name: 'UserPanel.Registration',
+            path: 'registration',
+            component: () => import('src/pages/User/Registration.vue')
           }
         ]
       },

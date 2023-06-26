@@ -134,6 +134,11 @@ export default {
           route: { name: 'UserPanel.Reservation' }
         },
         {
+          label: 'رزرو رویداد ها',
+          icon: 'inventory_2',
+          route: { name: 'UserPanel.Registration' }
+        },
+        {
           label: 'پیام ها',
           icon: 'chat_bubble_outline',
           route: { name: 'UserPanel.Ticket.List' }

@@ -3,6 +3,7 @@ import User from 'src/api/models/User.js'
 import Role from 'src/api/models/Role.js'
 import Team from 'src/api/models/Team.js'
 import Media from 'src/api/models/Media.js'
+import Event from 'src/api/models/Event.js'
 import Notice from 'src/api/models/Notice.js'
 import Ticket from 'src/api/models/Ticket.js'
 import Wallet from 'src/api/models/Wallet.js'
@@ -24,6 +25,7 @@ export const APIGateway = {
   role: new Role(),
   team: new Team(),
   media: new Media(),
+  event: new Event(),
   notice: new Notice(),
   ticket: new Ticket(),
   wallet: new Wallet(),

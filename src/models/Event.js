@@ -1,35 +1,24 @@
-import { Model, Collection } from 'js-abstract-model'
 import { User } from 'src/models/User.js'
-import { Scenario } from 'src/models/Scenario.js'
+import { Model, Collection } from 'js-abstract-model'
 
 class Event extends Model {
   constructor(data) {
     super(data, [
       { key: 'id' },
-      { key: 'moderator' },
+      { key: 'creator' },
       {
-        key: 'moderator_info',
+        key: 'creator_info',
         relatedModel: User
       },
-      { key: 'scenario' },
-      {
-        key: 'scenario_info',
-        relatedModel: Scenario
-      },
-      { key: 'registrations_info' },
+      { key: 'title' },
+      { key: 'slug' },
+      { key: 'capacity' },
+      { key: 'price' },
+      { key: 'holding_time' },
       { key: 'holding_time' },
       { key: 'thumbnail' },
-      { key: 'slug' },
       { key: 'description' },
       { key: 'address' },
-      {
-        key: 'minimum_order_amount',
-        default: 0
-      },
-      {
-        key: 'entrance_amount',
-        default: 0
-      },
       {
         key: 'cancelled_by',
         relatedModel: User

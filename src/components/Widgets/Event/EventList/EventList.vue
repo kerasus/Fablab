@@ -1,101 +1,63 @@
 <template>
-  <div class="RoleList"
+  <div class="EventList"
        :style="localOptions.style">
-    <div class="header">
-      <div class="title">
-        نقش‌ها
+    <div class="row q-col-gutter-md">
+      <div v-for="eventItem in events.list"
+           :key="eventItem.id"
+           :class="localOptions.cols">
+        <event-item :event-data="eventItem"
+                    :light="localOptions.light"
+                    @click="onSelectEvent(eventItem)" />
       </div>
-      <div class="action">
-        <q-btn unelevated
-               color="grey-4 text-black"
-               :to="{name: 'UserPanel.Role.Create'}">
-          نقش جدید
-        </q-btn>
-      </div>
-    </div>
-    <div v-if="showEntity"
-         class="list">
-      <q-no-ssr>
-        <entity-index v-model:value="inputs"
-                      title="نقش‌ها"
-                      :api="api"
-                      :table="table"
-                      :table-keys="tableKeys"
-                      :create-route-name="createRouteName"
-                      :default-layout="false" />
-      </q-no-ssr>
     </div>
   </div>
 </template>
 
 <script>
-import { EntityIndex } from 'quasar-crud'
-import { mixinWidget } from 'src/mixin/Mixins'
-import { APIGateway } from 'src/api/APIGateway'
+import { APIGateway } from 'src/api/APIGateway.js'
+import { EventList } from 'src/models/Event.js'
+import { mixinPrefetchServerData, mixinWidget } from 'src/mixin/Mixins.js'
+import EventItem from 'src/components/Widgets/Event/Eventtem/EventItem.vue'
 
 export default {
   name: 'EventList',
-  components: { EntityIndex },
-  mixins: [mixinWidget],
-  data: () => ({
-    api: APIGateway.role.APIAdresses.base,
-    tableKeys: {
-      data: 'results',
-      total: 'count',
-      currentPage: 'current',
-      perPage: 'per_page',
-      pageKey: 'page'
-    },
-    inputs: [],
-    table: [],
-    showEntity: false,
-    createRouteName: '',
-    defaultOptions: {
-      style: {}
+  components: { EventItem },
+  mixins: [mixinWidget, mixinPrefetchServerData],
+  data: () => {
+    return {
+      events: new EventList(),
+      defaultOptions: {
+        light: false,
+        routeToPanel: true,
+        cols: 'col-md-3 col-sm-6 col-12'
+      }
     }
-  }),
-  mounted () {
-    this.showEntity = true
   },
   methods: {
-    getTeacherOfProduct() {
-      if (this.product.attributes.info.teacher) {
-        return this.product.attributes.info.teacher[0]
-      }
-      return null
+    prefetchServerDataPromise () {
+      return this.getApiRequest()
+    },
+    prefetchServerDataPromiseThen ({ list }) {
+      this.events = new EventList(list)
+      this.events.loading = false
+    },
+    prefetchServerDataPromiseCatch () {
+      this.events.loading = false
+    },
+
+    getApiRequest() {
+      this.events.loading = true
+      return APIGateway.event.index()
+    },
+    onSelectEvent(eventItem) {
+      this.$emit('onSelectEvent', eventItem)
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-.RoleList {
-  .header {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    .title {
-      font-weight: 700;
-      font-size: 32px;
-      line-height: 140%;
-    }
-    .action {
+<style scoped lang="scss">
+.EventList {
 
-    }
-  }
-  :deep(.list) {
-    margin-top: 25px;
-    .quasar-crud-index-table {
-      .q-table__container {
-        background-color: #FFFFFF;
-        border: none;
-        box-shadow: none;
-        border-radius: 16px;
-        .q-table__top {
-          display: none;
-        }
-      }
-    }
-  }
 }
 </style>

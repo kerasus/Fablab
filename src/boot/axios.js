@@ -102,12 +102,14 @@ export default boot(({ app, store, router, ssrContext }) => {
     : Cookies // otherwise we're on client
 
   const allCookies = cookies.getAll()
-  const cookiesAccessToken = cookies.get('BearerAccessToken') ? cookies.get('BearerAccessToken') : allCookies.BearerAccessToken
+  const accessTokenInCookies = cookies.get('BearerAccessToken') ? cookies.get('BearerAccessToken') : allCookies.BearerAccessToken
+  const accessTokenInLocalStorage = store.getters['Auth/accessToken']
+  const accessToken = accessTokenInLocalStorage || accessTokenInCookies
 
-  if (cookiesAccessToken) {
+  if (accessToken) {
     const tokenType = 'Bearer'
-    store.$accessToken = cookiesAccessToken
-    appApiInstance.defaults.headers.common.Authorization = tokenType + ' ' + cookiesAccessToken
+    store.$accessToken = accessToken
+    appApiInstance.defaults.headers.common.Authorization = tokenType + ' ' + accessToken
   }
 
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
