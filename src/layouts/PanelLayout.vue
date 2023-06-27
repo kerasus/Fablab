@@ -144,6 +144,16 @@ export default {
           route: { name: 'UserPanel.Ticket.List' }
         },
         {
+          label: 'کافه',
+          icon: 'chat_bubble_outline',
+          route: { name: 'UserPanel.Shop', params: { shopServiceName: 'cafe' } }
+        },
+        {
+          label: 'فروشگاه',
+          icon: 'chat_bubble_outline',
+          route: { name: 'UserPanel.Shop', params: { shopServiceName: 'store' } }
+        },
+        {
           label: 'اعلان ها',
           icon: 'notifications',
           route: { name: 'UserPanel.Notice.List' }

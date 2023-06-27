@@ -251,6 +251,11 @@ const routes = [
             name: 'UserPanel.Registration',
             path: 'registration',
             component: () => import('src/pages/User/Registration.vue')
+          },
+          {
+            name: 'UserPanel.Shop',
+            path: 'shop/:shopServiceName',
+            component: () => import('src/pages/User/Shop.vue')
           }
         ]
       },
@@ -287,6 +292,52 @@ const routes = [
                 path: ':id',
                 name: 'AdminPanel.Package.Show',
                 component: () => import('src/pages/Admin/Package/Show.vue')
+              }
+            ]
+          },
+          {
+            path: 'event',
+            name: 'AdminPanel.Event',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              {
+                path: '',
+                name: 'AdminPanel.Event.List',
+                component: () => import('src/pages/Admin/Event/List.vue')
+              },
+              {
+                path: ':id',
+                name: 'AdminPanel.Event.Show',
+                component: () => import('src/pages/Admin/Event/Show.vue')
+              }
+            ]
+          },
+          {
+            path: 'shop',
+            name: 'AdminPanel.Product',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              {
+                path: ':shopServiceName/product',
+                name: 'AdminPanel.Product.List',
+                component: () => import('src/pages/Admin/Product/List.vue')
+              },
+              {
+                path: ':shopServiceName/product/:id',
+                name: 'AdminPanel.Product.Show',
+                component: () => import('src/pages/Admin/Product/Show.vue')
+              }
+            ]
+          },
+          {
+            path: 'shop',
+            name: 'AdminPanel.ProductCategory',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              {
+                path: ':shopServiceName/product-category/:id',
+                name: 'AdminPanel.ProductCategory.Show',
+                component: () => import('src/pages/Admin/ProductCategory/Show.vue')
               }
             ]
           },

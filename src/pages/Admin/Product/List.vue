@@ -13,7 +13,7 @@ export default {
   mixins: [mixinPageOptions],
   data: () => {
     return {
-      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminPackageList', options: { style: { marginTop: '' } } }, { name: 'AdminPackageCreate', options: { style: { marginTop: '32px' } } }], options: { style: { marginTop: '124px' } } }], options: {} }] } }]
+      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminProductList', options: { style: { marginBottom: '32px' } } }, { name: 'AdminProductCreate', options: { style: { marginBottom: '32px' } } }, { name: 'AdminProductCategoryList', options: { style: { marginBottom: '32px' } } }, { name: 'AdminProductCategoryCreate' }], options: { style: { paddingTop: '124px' } } }], options: {} }] } }]
     }
   },
   created() {

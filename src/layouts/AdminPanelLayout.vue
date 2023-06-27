@@ -72,11 +72,21 @@ export default {
           icon: 'reorder',
           route: { name: 'AdminPanel.Invoice.List' }
         },
-        // {
-        //   label: 'رویدادها',
-        //   icon: 'panorama_photosphere',
-        //   route: { name: 'UserPanel.Dashboard' }
-        // },
+        {
+          label: 'رویدادها',
+          icon: 'panorama_photosphere',
+          route: { name: 'AdminPanel.Event.List' }
+        },
+        {
+          label: 'کافه',
+          icon: 'content_copy',
+          route: { name: 'AdminPanel.Product.List', params: { shopServiceName: 'cafe' } }
+        },
+        {
+          label: 'فروشگاه',
+          icon: 'content_copy',
+          route: { name: 'AdminPanel.Product.List', params: { shopServiceName: 'store' } }
+        },
         {
           label: 'بلاگ',
           icon: 'content_copy',

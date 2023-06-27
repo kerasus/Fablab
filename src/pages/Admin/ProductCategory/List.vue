@@ -13,7 +13,7 @@ export default {
   mixins: [mixinPageOptions],
   data: () => {
     return {
-      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminPackageList', options: { style: { marginTop: '' } } }, { name: 'AdminPackageCreate', options: { style: { marginTop: '32px' } } }], options: { style: { marginTop: '124px' } } }], options: {} }] } }]
+      sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminPackageList', options: { style: { marginTop: '124px' } } }, { name: 'AdminPackageCreate', options: { style: { marginTop: '32px' } } }], options: {} }], options: {} }] } }]
     }
   },
   created() {

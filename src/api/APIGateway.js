@@ -11,12 +11,14 @@ import Invoice from 'src/api/models/Invoice.js'
 import Package from 'src/api/models/Package.js'
 import Service from 'src/api/models/Service.js'
 import Payment from 'src/api/models/Payment.js'
+import Product from 'src/api/models/Product.js'
 import Scenarios from 'src/api/models/Scenarios.js'
 import PageSetting from 'src/api/models/PageSetting.js'
 import MediaHashtag from 'src/api/models/MediaHashtag.js'
 import Registration from 'src/api/models/Registration.js'
 import MediaCategory from 'src/api/models/MediaCategory.js'
 import TicketCategory from 'src/api/models/TicketCategory.js'
+import ProductCategory from 'src/api/models/ProductCategory.js'
 
 /* Exporting the APIGateway object. */
 export const APIGateway = {
@@ -29,6 +31,7 @@ export const APIGateway = {
   notice: new Notice(),
   ticket: new Ticket(),
   wallet: new Wallet(),
+  product: new Product(),
   invoice: new Invoice(),
   package: new Package(),
   service: new Service(),
@@ -38,5 +41,6 @@ export const APIGateway = {
   mediaHashtag: new MediaHashtag(),
   registration: new Registration(),
   mediaCategory: new MediaCategory(),
-  ticketCategory: new TicketCategory()
+  ticketCategory: new TicketCategory(),
+  productCategory: new ProductCategory()
 }
