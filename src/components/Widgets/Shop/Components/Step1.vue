@@ -5,6 +5,14 @@
     <product-category v-for="productCategory in productCategories.list"
                       :key="productCategory.id"
                       :product-category-data="productCategory" />
+    <div class="action">
+      <q-btn color="primary"
+             :loading="loading"
+             class="q-px-xl"
+             @click="onNextStep">
+        مرحله بعد
+      </q-btn>
+    </div>
   </div>
 </template>
 
@@ -17,6 +25,12 @@ export default {
   name: 'Step1',
   components: {
     ProductCategory
+  },
+  props: {
+    loading: {
+      type: Boolean,
+      default: false
+    }
   },
   data: () => {
     return {
@@ -37,6 +51,9 @@ export default {
         .catch(() => {
           this.productCategories.loading = false
         })
+    },
+    onNextStep () {
+      this.$emit('onNextStep')
     }
   }
 }

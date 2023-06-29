@@ -1,226 +1,183 @@
 <template>
-  <div class="Step2">
-    <div class="list">
-      <div class="list-title">
-        پکیج و خدمات انتخاب شده
-        <div class="back-action">
-          <q-btn flat
-                 color="grey"
-                 :loading="loading"
-                 @click="onPrevStep">
-            بازگشت
-            >
-          </q-btn>
+  <div class="Step3"
+       :style="localOptions.style">
+    <div class="title">
+      <div class="static-title">
+        جزئیات صورت‌حساب
+      </div>
+      <div class="back-action">
+        <q-btn flat
+               color="grey"
+               @click="onPrevStep">
+          بازگشت
+          >
+        </q-btn>
+      </div>
+    </div>
+    <q-card class="form"
+            flat>
+      <div class="selectedProductsList">
+        <div class="selectedProductsList-row head">
+          <div class="selectedProductsList-title">
+            شرح خدمات
+          </div>
+          <div class="selectedProductsList-price">
+            مبلغ
+          </div>
+        </div>
+        <div v-for="product in selectedProducts.list"
+             :key="product.id"
+             class="selectedProductsList-row">
+          <div class="selectedProductsList-title">
+            {{ product.title }}
+          </div>
+          <div class="selectedProductsList-price">
+            {{ (product.count * product.unit_price).toLocaleString('fa') }}
+            تومان
+          </div>
+        </div>
+        <div class="selectedProductsList-row footer">
+          <div class="selectedProductsList-title">
+            قابل پرداخت
+          </div>
+          <div class="selectedProductsList-price">
+            {{ invoice.amount.toLocaleString('fa') }}
+            تومان
+          </div>
         </div>
       </div>
-      <div class="items">
-        <q-card v-for="packageItem in packages.list"
-                :key="packageItem.id"
-                flat
-                class="item">
-          <div class="thumbnail">
-            <q-img :src="packageItem.thumbnail" />
-          </div>
-          <div class="title">
-            {{ packageItem.title }}
-          </div>
-          <div class="count-action">
-            <q-btn icon="delete"
-                   flat
-                   size="sm"
-                   round
-                   @click="reducePackageCount(packageItem)" />
-            <span class="count">
-              {{ packageItem.count }}
-            </span>
-            <q-btn icon="add"
-                   flat
-                   size="sm"
-                   round
-                   @click="addPackageCount(packageItem)" />
-          </div>
-        </q-card>
-        <q-card v-for="servicesItem in services.list"
-                :key="servicesItem.id"
-                flat
-                class="item">
-          <div class="thumbnail">
-            <q-img :src="servicesItem.thumbnail" />
-          </div>
-          <div class="title">
-            {{ servicesItem.title }}
-          </div>
-          <div class="count-action">
-            <q-btn icon="delete"
-                   flat
-                   size="sm"
-                   round
-                   @click="reduceServiceCount(servicesItem)" />
-            <span class="count">
-              {{ servicesItem.count }}
-            </span>
-            <q-btn icon="add"
-                   flat
-                   size="sm"
-                   round
-                   @click="addServiceCount(servicesItem)" />
-          </div>
-        </q-card>
-      </div>
-    </div>
-    <div class="action">
-      <q-btn color="primary"
-             :loading="loading"
-             class="q-px-xl"
-             @click="onNextStep">
-        مرحله بعد
-      </q-btn>
-    </div>
+    </q-card>
   </div>
 </template>
 
 <script>
+import { Invoice } from 'src/models/Invoice.js'
+import { mixinWidget } from 'src/mixin/Mixins.js'
+
 export default {
   name: 'Step2',
+  mixins: [mixinWidget],
   props: {
-    loading: {
-      type: Boolean,
-      default: false
+    invoice: {
+      type: Invoice,
+      default: new Invoice()
+    }
+  },
+  data: () => {
+    return {
+      entityLoading: true
     }
   },
   computed: {
-    packages () {
-      return this.$store.getters['Reservation/packages']
-    },
-    services () {
-      return this.$store.getters['Reservation/services']
-    },
-    countOfTotalList () {
-      return this.packages.list.length + this.services.list.length
+    selectedProducts() {
+      return this.$store.getters['Shop/selectedProducts']
     }
   },
   methods: {
     onPrevStep () {
       this.$emit('onPrevStep')
-    },
-    onNextStep () {
-      this.$emit('onNextStep')
-    },
-    addPackageCount (packageItem) {
-      const packages = this.packages
-      const target = packages.list.findIndex(item => item.id === packageItem.id)
-      if (target === -1) {
-        return
-      }
-      packages.list[target].addCount()
-      packages.removeZeroCount()
-      this.$store.commit('Reservation/updatePackages', packages)
-      if (this.countOfTotalList === 0) {
-        this.$emit('onPrevStep')
-      }
-    },
-    reducePackageCount (packageItem) {
-      const packages = this.packages
-      const target = packages.list.findIndex(item => item.id === packageItem.id)
-      if (target === -1) {
-        return
-      }
-      packages.list[target].reduceCount()
-      packages.removeZeroCount()
-      this.$store.commit('Reservation/updatePackages', packages)
-      if (this.countOfTotalList === 0) {
-        this.$emit('onPrevStep')
-      }
-    },
-    addServiceCount (serviceItem) {
-      const services = this.services
-      const target = services.list.findIndex(item => item.id === serviceItem.id)
-      if (target === -1) {
-        return
-      }
-      services.list[target].addCount()
-      services.removeZeroCount()
-      this.$store.commit('Reservation/updateServices', services)
-      if (this.countOfTotalList === 0) {
-        this.$emit('onPrevStep')
-      }
-    },
-    reduceServiceCount (serviceItem) {
-      const services = this.services
-      const target = services.list.findIndex(item => item.id === serviceItem.id)
-      if (target === -1) {
-        return
-      }
-      services.list[target].reduceCount()
-      services.removeZeroCount()
-      this.$store.commit('Reservation/updateServices', services)
-      if (this.countOfTotalList === 0) {
-        this.$emit('onPrevStep')
-      }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.Step2 {
-  .list {
-    margin-bottom: 40px;
-    .list-title {
-      color: #424242;
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 140%;
-      margin-bottom: 32px;
-      .back-action {
-        position: absolute;
-        right: 0;
-        top: 0;
-      }
+.Step3 {
+  .title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 140%;
+    color: #424242;
+    margin-bottom: 27px;
+    display: flex;
+    flex-flow: row;
+    position: relative;
+
+    .static-title {
+
+    }
+
+    .dynamic-title {
+
+    }
+
+    .back-action {
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
-  .items {
-    .item {
-      padding: 26px 24px;
+
+  .selectedProductsList {
+    width: 100%;
+
+    .selectedProductsList-row {
       display: flex;
       flex-flow: row;
       justify-content: flex-start;
-      margin-bottom: 20px;
-      .thumbnail {
-        width: 46px;
-      }
-      .title {
-        width: calc( 100% - 146px );
-        color: #393939;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 140%;
-        display: flex;
-        flex-flow: row;
-        justify-content: flex-start;
-        align-items: center;
-        padding-left: 16px;
-      }
-      .count-action {
-        width: 100px;
-        display: flex;
-        flex-flow: row;
-        justify-content: space-between;
-        align-items: center;
-        color: #c5c5c5;
-        .count {
-          color: #000;
-          text-align: center;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: solid 1px #F6F6F6;
+
+      &.head {
+        .selectedProductsList-title {
+          color: #6589C3;
           font-size: 16px;
+          font-weight: 700;
+          line-height: 140%;
+        }
+
+        .selectedProductsList-price {
+          color: #6589C3;
+          font-size: 16px;
+          font-weight: 700;
           line-height: 140%;
         }
       }
+
+      &.footer {
+        .selectedProductsList-title {
+          color: #2FA84A;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 140%;
+        }
+
+        .selectedProductsList-price {
+          color: #2FA84A;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 140%;
+        }
+      }
+
+      .selectedProductsList-title {
+        width: calc(100% - 150px);
+        color: #272727;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 140%;
+      }
+
+      .selectedProductsList-price {
+        width: 150px;
+        color: #272727;
+        font-size: 16px;
+        line-height: 140%;
+      }
     }
-  }
-  .action {
-    display: flex;
-    flex-flow: row;
-    justify-content: flex-end;
+
+    :deep(.form) {
+      padding: 24px;
+
+      .action {
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-end;
+        margin-top: 32px;
+      }
+    }
   }
 }
 </style>

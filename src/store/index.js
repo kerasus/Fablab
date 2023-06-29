@@ -1,4 +1,5 @@
 import SEO from './Seo'
+import Shop from './Shop'
 import Auth from './Auth'
 import process from 'process'
 import Widgets from './Widgets'
@@ -42,6 +43,7 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       SEO,
       Auth,
+      Shop,
       Widgets,
       loading,
       AppLayout,

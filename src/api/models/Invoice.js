@@ -84,4 +84,22 @@ export default class InvoiceAPI extends APIRepository {
       }
     })
   }
+
+  create (type, products = []) {
+    return this.sendRequest({
+      apiMethod: 'post',
+      api: this.api,
+      request: this.APIAdresses.base,
+      data: {
+        type, // String
+        products // Array of Object
+      },
+      resolveCallback: (response) => {
+        return new Invoice(response.data)
+      },
+      rejectCallback: (error) => {
+        return error
+      }
+    })
+  }
 }

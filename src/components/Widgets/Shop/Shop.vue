@@ -4,21 +4,13 @@
     <q-tab-panels v-model="step"
                   animated>
       <q-tab-panel name="step1">
-        <step1 @onNextStep="setStep('step2')" />
+        <step1 @onNextStep="onStep1Complete" />
       </q-tab-panel>
       <q-tab-panel name="step2">
         <step2 :loading="invoice.loading"
+               :invoice="invoice"
                @onPrevStep="setStep('step1')"
-               @onNextStep="createInvoice" />
-      </q-tab-panel>
-      <q-tab-panel name="step3">
-        <step3 :loading="invoice.loading"
-               :invoice-id="invoice.id"
-               @onPrevStep="setStep('step2')"
                @onAccept="onAccept" />
-      </q-tab-panel>
-      <q-tab-panel name="step4">
-        <step4 :message="payMessage" />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
@@ -30,16 +22,12 @@ import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 import Step1 from 'src/components/Widgets/Shop/Components/Step1.vue'
 import Step2 from 'src/components/Widgets/Shop/Components/Step2.vue'
-import Step3 from 'src/components/Widgets/Shop/Components/Step3.vue'
-import Step4 from 'src/components/Widgets/Shop/Components/Step4.vue'
 
 export default {
   name: 'Reservation',
   components: {
     Step1,
-    Step2,
-    Step3,
-    Step4
+    Step2
   },
   mixins: [mixinWidget],
   data: () => {
@@ -51,38 +39,53 @@ export default {
     }
   },
   computed: {
-    packages () {
-      return this.$store.getters['Reservation/packages']
+    shopServiceName () {
+      return this.$store.getters['Shop/selectedProducts']
     },
-    services () {
-      return this.$store.getters['Reservation/services']
-    },
-    products () {
-      const products = []
-      this.packages.list.forEach(item => {
-        products.push({
-          product_type: 'package',
-          product_id: item.id,
-          count: item.count
-        })
-      })
-      this.services.list.forEach(item => {
-        products.push({
-          product_type: 'service',
-          product_id: item.id,
-          count: item.count
-        })
-      })
-      return products
+    selectedProducts () {
+      return this.$store.getters['Shop/selectedProducts']
     }
   },
   mounted() {
+    this.setStore()
     this.mounted = true
   },
   methods: {
+    setStore () {
+      if (this.$route.params.shopServiceName === this.shopServiceName) {
+        return
+      }
+
+      this.$store.commit('Shop/updateShopServiceName', this.$route.params.shopServiceName)
+      this.$store.commit('Shop/updateSelectedProducts', [])
+    },
     setStep(step) {
       this.step = step
     },
+    onStep1Complete () {
+      this.createBasket()
+    },
+    createBasket () {
+      const type = this.$route.params.shopServiceName.toUpperCase()
+      const products = this.selectedProducts.list.map(item => {
+        return {
+          product_type: this.$route.params.shopServiceName + '_basket',
+          product_id: item.id,
+          count: item.count
+        }
+      })
+      this.invoice.loading = true
+      APIGateway.invoice.create(type, products)
+        .then((invoice) => {
+          this.invoice = new Invoice(invoice)
+          this.invoice.loading = false
+          this.setStep('step2')
+        })
+        .catch(() => {
+          this.invoice.loading = false
+        })
+    },
+
     onAccept() {
       this.payInvoice()
     },
