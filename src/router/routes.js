@@ -41,21 +41,33 @@ const routes = [
           {
             path: '',
             name: 'Public.Home',
+            meta: {
+              hasDynamicSetting: true
+            },
             component: () => import('src/pages/Public/Home.vue')
           },
           {
             path: 'packages',
             name: 'Public.Packages',
+            meta: {
+              hasDynamicSetting: true
+            },
             component: () => import('src/pages/Public/Packages.vue')
           },
           {
             path: 'fab-family',
             name: 'Public.FabFamily',
+            meta: {
+              hasDynamicSetting: true
+            },
             component: () => import('src/pages/Public/FabFamily.vue')
           },
           {
             path: 'about-us',
             name: 'Public.AboutUs',
+            meta: {
+              hasDynamicSetting: true
+            },
             component: () => import('src/pages/Public/AboutUs.vue')
           },
           {
@@ -66,11 +78,17 @@ const routes = [
               {
                 path: '',
                 name: 'Public.Blog.List',
+                meta: {
+                  hasDynamicSetting: true
+                },
                 component: () => import('src/pages/Public/BlogList.vue')
               },
               {
                 path: ':id',
                 name: 'Public.Blog.Show',
+                meta: {
+                  hasDynamicSetting: true
+                },
                 component: () => import('src/pages/Public/BlogShow.vue')
               }
             ]
@@ -78,6 +96,9 @@ const routes = [
           {
             path: 'contact-us',
             name: 'Public.ContactUs',
+            meta: {
+              hasDynamicSetting: true
+            },
             component: () => import('src/pages/Public/ContactUs.vue')
           }
         ]

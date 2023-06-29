@@ -6,8 +6,8 @@ export default class PageSettingAPI extends APIRepository {
   constructor() {
     super('page-setting', appApiInstance)
     this.APIAdresses = {
-      base: '/admin/setting',
-      getWithKey: (key) => '/setting/' + key,
+      base: '/cma/settings',
+      getWithKey: (key) => '/cma/settings/key/' + key,
       updateWithKey: (key) => '/admin/setting/' + key
     }
     this.CacheList = {
@@ -65,14 +65,14 @@ export default class PageSettingAPI extends APIRepository {
   update (data) {
     const settingKey = encodeURI(data.key)
     const settingValue = data.value
-    const formData = new FormData()
-    formData.append('value', settingValue)
-    formData.append('_method', 'PUT')
     return this.sendRequest({
       apiMethod: 'post',
       api: this.api,
-      request: this.APIAdresses.updateWithKey(settingKey),
-      data: formData,
+      request: this.APIAdresses.base,
+      data: {
+        key: settingValue,
+        value: settingKey
+      },
       resolveCallback: (response) => {
         return response
       },
