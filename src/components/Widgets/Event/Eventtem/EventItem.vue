@@ -10,15 +10,6 @@
         {{ eventData.title }}
       </div>
     </div>
-    <div v-if="false"
-         class="EventItem-price">
-      <div class="number">
-        <div class="unit">
-          تومان
-        </div>
-        {{ eventData.price.toLocaleString('fa') }}
-      </div>
-    </div>
   </q-card>
 </template>
 
@@ -39,7 +30,7 @@ export default {
   },
   computed: {
     isSelectedItem () {
-      return false
+      return this.eventData.is_current_user_registered
     }
   }
 }

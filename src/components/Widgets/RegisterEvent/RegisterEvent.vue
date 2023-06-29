@@ -41,6 +41,13 @@ export default {
   methods: {
     onSelectEvent(event) {
       this.selectedEvent = event
+      if (this.selectedEvent.is_current_user_registered) {
+        this.$q.notify({
+          message: 'پیش از این در این همایش ثبت نام کرده اید',
+          type: 'positive'
+        })
+        return
+      }
       this.registerEvent()
     },
     registerEvent () {

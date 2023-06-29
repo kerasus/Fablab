@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import { APIGateway } from 'src/api/APIGateway.js'
 import { EventList } from 'src/models/Event.js'
+import { APIGateway } from 'src/api/APIGateway.js'
 import { mixinPrefetchServerData, mixinWidget } from 'src/mixin/Mixins.js'
 import EventItem from 'src/components/Widgets/Event/Eventtem/EventItem.vue'
 

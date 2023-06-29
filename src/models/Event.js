@@ -18,6 +18,7 @@ class Event extends Model {
       { key: 'holding_time' },
       { key: 'thumbnail' },
       { key: 'description' },
+      { key: 'is_current_user_registered' },
       { key: 'address' },
       {
         key: 'cancelled_by',
