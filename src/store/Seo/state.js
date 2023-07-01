@@ -1,11 +1,11 @@
 export default function () {
   return {
-    title: 'آموزش مجازی آلاء',
-    description: 'کلاس های درس آلاء برای کنکور، دهم، یازدهم و دوازدهم و خدمات تکمیلی از قبیل همایش‌های طلایی و اردو طلایی؛ در دروس مختلف زیست شیمی فیزیک ریاضی عربی ادبیات و.',
+    title: 'فب لب',
+    description: 'اگر خود را صاحب ایده‌ای می‌دانید یا حتی دوست دارید چیزی طراحی کنید و یا بسازید، احتمالا فب‌لب جای مناسبی برای شما خواهد بود.',
     robots: 'index, follow',
     ogTitle: null,
     ogUrl: null,
     ogDescription: null,
-    ogImage: 'https://nodes.alaatv.com/upload/footer-alaaLogo.png'
+    ogImage: '/img/menu-logo.png'
   }
 }

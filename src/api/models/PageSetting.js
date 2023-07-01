@@ -70,8 +70,8 @@ export default class PageSettingAPI extends APIRepository {
       api: this.api,
       request: this.APIAdresses.base,
       data: {
-        key: settingValue,
-        value: settingKey
+        key: settingKey,
+        value: settingValue
       },
       resolveCallback: (response) => {
         return response
@@ -90,7 +90,7 @@ export default class PageSettingAPI extends APIRepository {
       cacheKey: this.CacheList.getWithKey(encodeURI(data)),
       ...(cache !== undefined && { cache }),
       resolveCallback: (response) => {
-        return new PageSetting(response.data.data)
+        return new PageSetting(response.data)
       },
       rejectCallback: (error) => {
         return error

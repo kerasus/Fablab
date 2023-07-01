@@ -10,6 +10,7 @@ class Registration extends Model {
       { key: 'product_info' },
       { key: 'item' },
       { key: 'item_info' },
+      { key: 'basket' },
       { key: 'count' },
       { key: 'user' },
       {
