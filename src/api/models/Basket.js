@@ -7,6 +7,7 @@ export default class BasketAPI extends APIRepository {
     super('basket', appApiInstance, 'basket', Basket)
     this.APIAdresses = {
       base: (shopServiceName) => '/' + shopServiceName + '/baskets',
+      checkoutReview: (shopServiceName) => '/' + shopServiceName + '/baskets/checkout_review',
       pay: (shopServiceName, id) => '/' + shopServiceName + '/baskets/' + id + '/pay'
     }
     this.restUrl = (id) => this.APIAdresses.base + '/' + id
@@ -45,6 +46,20 @@ export default class BasketAPI extends APIRepository {
           //   "previous": null,
           // }
         }
+      },
+      rejectCallback: (error) => {
+        return error
+      }
+    })
+  }
+
+  checkoutReview(shopServiceName) {
+    return this.sendRequest({
+      apiMethod: 'get',
+      api: this.api,
+      request: this.APIAdresses.checkoutReview(shopServiceName),
+      resolveCallback: (response) => {
+        return new Basket(response.data)
       },
       rejectCallback: (error) => {
         return error

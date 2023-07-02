@@ -19,14 +19,24 @@
         </q-card>
       </div>
     </div>
+    <div v-if="$route.query.invoice"
+         class="row justify-center items-center">
+      <div class="col-md-6 q-mt-lg">
+        <invoice-show :invoice-id="$route.query.invoice" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mixinWidget } from 'src/mixin/Mixins.js'
+import InvoiceShow from 'src/components/Widgets/Invoice/InvoiceShow/InvoiceShow.vue'
 
 export default {
   name: 'InvoiceShow',
+  components: {
+    InvoiceShow
+  },
   mixins: [mixinWidget]
 }
 </script>

@@ -19,12 +19,14 @@
       <div class="not-selected">
         <!--      count-->
         <q-btn unelevated
-               @click="onAddToCart">
+               :loading="basket.loading"
+               @click="onIncrease">
           افزودن
         </q-btn>
       </div>
       <div class="selected">
         <q-btn unelevated
+               :loading="basket.loading"
                icon="delete"
                class="reduceCount"
                @click="onDecrease" />
@@ -32,6 +34,7 @@
           {{ productCount }}
         </div>
         <q-btn unelevated
+               :loading="basket.loading"
                class="addCount"
                @click="onIncrease">
           +
@@ -42,11 +45,16 @@
 </template>
 
 <script>
+import { Basket } from 'src/models/Basket.js'
 import { Product } from 'src/models/Product.js'
 
 export default {
   name: 'ProductItem',
   props: {
+    basket: {
+      type: Basket,
+      default: new Basket()
+    },
     productData: {
       type: Product,
       default: new Product()
@@ -54,12 +62,17 @@ export default {
   },
   computed: {
     productCount () {
-      const selectedProducts = this.selectedProducts
-      const targetIndex = selectedProducts.list.findIndex(item => item.id === this.productData.id)
-      if (targetIndex === -1) {
+      // const selectedProducts = this.selectedProducts
+      // const targetIndex = selectedProducts.list.findIndex(item => item.id === this.productData.id)
+      // if (this.itemFromRegistration) {
+      //   return 0
+      // }
+      // return selectedProducts.list[targetIndex].count
+
+      if (!this.itemFromBasket) {
         return 0
       }
-      return selectedProducts.list[targetIndex].count
+      return this.itemFromBasket.count
     },
     shopServiceName () {
       return this.$store.getters['Shop/shopServiceName']
@@ -67,8 +80,12 @@ export default {
     selectedProducts () {
       return this.$store.getters['Shop/selectedProducts']
     },
+    itemFromBasket () {
+      return this.basket.registrations_info.list.find(basketItem => basketItem.item === this.productData.id)
+    },
     isSelectedProduct () {
-      return !!this.selectedProducts.list.find(product => product.id === this.productData.id)
+      return !!this.itemFromBasket
+      // return !!this.selectedProducts.list.find(product => product.id === this.productData.id)
     }
   },
   methods: {
@@ -85,24 +102,26 @@ export default {
       this.$store.commit('Shop/updateSelectedProducts', selectedProducts)
     },
     onIncrease () {
-      const selectedProducts = this.selectedProducts
-      const targetIndex = selectedProducts.list.findIndex(item => item.id === this.productData.id)
-      if (targetIndex === -1) {
-        return
-      }
-      selectedProducts.list[targetIndex].addCount()
-      selectedProducts.removeZeroCount()
-      this.$store.commit('Shop/updateSelectedProducts', selectedProducts)
+      this.$emit('onIncrease', this.productData)
+      // const selectedProducts = this.selectedProducts
+      // const targetIndex = selectedProducts.list.findIndex(item => item.id === this.productData.id)
+      // if (targetIndex === -1) {
+      //   return
+      // }
+      // selectedProducts.list[targetIndex].addCount()
+      // selectedProducts.removeZeroCount()
+      // this.$store.commit('Shop/updateSelectedProducts', selectedProducts)
     },
     onDecrease () {
-      const selectedProducts = this.selectedProducts
-      const targetIndex = selectedProducts.list.findIndex(item => item.id === this.productData.id)
-      if (targetIndex === -1) {
-        return
-      }
-      selectedProducts.list[targetIndex].reduceCount()
-      selectedProducts.removeZeroCount()
-      this.$store.commit('Shop/updateSelectedProducts', selectedProducts)
+      this.$emit('onDecrease', this.productData)
+      // const selectedProducts = this.selectedProducts
+      // const targetIndex = selectedProducts.list.findIndex(item => item.id === this.productData.id)
+      // if (targetIndex === -1) {
+      //   return
+      // }
+      // selectedProducts.list[targetIndex].reduceCount()
+      // selectedProducts.removeZeroCount()
+      // this.$store.commit('Shop/updateSelectedProducts', selectedProducts)
     }
   }
 }

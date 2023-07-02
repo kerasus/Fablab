@@ -9,13 +9,17 @@
       <div v-for="product in products.list"
            :key="product.id"
            :class="cols">
-        <product-item :product-data="product" />
+        <product-item :product-data="product"
+                      :basket="basket"
+                      @onIncrease="onIncrease"
+                      @onDecrease="onDecrease" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { Basket } from 'src/models/Basket.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 import { ProductList } from 'src/models/Product.js'
 import { ProductCategory } from 'src/models/ProductCategory.js'
@@ -25,6 +29,10 @@ export default {
   name: 'ProductCategory',
   components: { ProductItem },
   props: {
+    basket: {
+      type: Basket,
+      default: new Basket()
+    },
     productCategoryData: {
       type: ProductCategory,
       default: new ProductCategory()
@@ -43,6 +51,12 @@ export default {
     this.getProducts()
   },
   methods: {
+    onIncrease (product) {
+      this.$emit('onIncrease', product)
+    },
+    onDecrease (product) {
+      this.$emit('onDecrease', product)
+    },
     getProducts () {
       this.products.loading = true
       APIGateway.product.index({ category: this.productCategoryData.id, shopServiceName: this.$route.params.shopServiceName })

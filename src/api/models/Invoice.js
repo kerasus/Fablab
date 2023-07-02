@@ -85,6 +85,30 @@ export default class InvoiceAPI extends APIRepository {
     })
   }
 
+  createBasket (basketType, basketId) {
+    return this.sendRequest({
+      apiMethod: 'post',
+      api: this.api,
+      request: this.APIAdresses.base,
+      data: {
+        type: basketType.toUpperCase(), // String
+        products: [
+          {
+            product_type: basketType + '_basket',
+            product_id: basketId,
+            count: 1
+          }
+        ]
+      },
+      resolveCallback: (response) => {
+        return new Invoice(response.data)
+      },
+      rejectCallback: (error) => {
+        return error
+      }
+    })
+  }
+
   create (type, products = []) {
     return this.sendRequest({
       apiMethod: 'post',

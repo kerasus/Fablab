@@ -16,6 +16,10 @@
     </div>
     <q-card class="form"
             flat>
+      <q-inner-loading :showing="basket.loading">
+        <q-spinner-gears size="50px"
+                         color="primary" />
+      </q-inner-loading>
       <div class="selectedProductsList">
         <div class="selectedProductsList-row head">
           <div class="selectedProductsList-title">
@@ -25,14 +29,14 @@
             مبلغ
           </div>
         </div>
-        <div v-for="product in selectedProducts.list"
-             :key="product.id"
+        <div v-for="item in basket.registrations_info.list"
+             :key="item.id"
              class="selectedProductsList-row">
           <div class="selectedProductsList-title">
-            {{ product.title }}
+            {{ item.item_info.title }}
           </div>
           <div class="selectedProductsList-price">
-            {{ (product.count * product.unit_price).toLocaleString('fa') }}
+            {{ (item.count * item.item_info.unit_price).toLocaleString('fa') }}
             تومان
           </div>
         </div>
@@ -41,9 +45,17 @@
             قابل پرداخت
           </div>
           <div class="selectedProductsList-price">
-            {{ invoice.amount.toLocaleString('fa') }}
+            {{ (basket.amount) ? basket.amount.toLocaleString('fa') : 0 }}
             تومان
           </div>
+        </div>
+        <div class="action">
+          <q-btn color="primary"
+                 :loading="basket.loading"
+                 class="q-px-xl"
+                 @click="onAccept">
+            تایید
+          </q-btn>
         </div>
       </div>
     </q-card>
@@ -51,20 +63,16 @@
 </template>
 
 <script>
-import { Invoice } from 'src/models/Invoice.js'
+import { Basket } from 'src/models/Basket.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
+import { APIGateway } from 'src/api/APIGateway.js'
 
 export default {
   name: 'Step2',
   mixins: [mixinWidget],
-  props: {
-    invoice: {
-      type: Invoice,
-      default: new Invoice()
-    }
-  },
   data: () => {
     return {
+      basket: new Basket(),
       entityLoading: true
     }
   },
@@ -73,7 +81,24 @@ export default {
       return this.$store.getters['Shop/selectedProducts']
     }
   },
+  mounted() {
+    this.checkoutReview()
+  },
   methods: {
+    checkoutReview () {
+      this.basket.loading = true
+      APIGateway.basket.checkoutReview(this.$route.params.shopServiceName)
+        .then((basket) => {
+          this.basket = new Basket(basket)
+          this.basket.loading = false
+        })
+        .catch(() => {
+          this.basket.loading = false
+        })
+    },
+    onAccept () {
+      this.$emit('onAccept')
+    },
     onPrevStep () {
       this.$emit('onPrevStep')
     }

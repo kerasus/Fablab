@@ -75,6 +75,25 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
+  decrement(data) {
+    const shopServiceName = data.shopServiceName
+    delete data.shopServiceName
+    return this.sendRequest({
+      apiMethod: 'post',
+      api: this.api,
+      request: this.APIAdresses.decrement(shopServiceName),
+      data: this.getNormalizedSendData({
+        item: null // Number ,  item id
+      }, data),
+      resolveCallback: (response) => {
+        return new Registration(response.data)
+      },
+      rejectCallback: (error) => {
+        return error
+      }
+    })
+  }
+
   removeFromBasket(data) {
     const shopServiceName = data.shopServiceName
     const registrationId = data.registrationId

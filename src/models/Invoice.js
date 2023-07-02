@@ -1,4 +1,5 @@
 import { User } from 'src/models/User.js'
+import { BasketList } from 'src/models/Basket.js'
 import { Model, Collection } from 'js-abstract-model'
 
 class Invoice extends Model {
@@ -14,6 +15,10 @@ class Invoice extends Model {
       { key: 'is_active' },
       { key: 'is_deleted' },
       { key: 'creator' },
+      {
+        key: 'products_info',
+        relatedModel: BasketList
+      },
       {
         key: 'creator_info',
         relatedModel: User

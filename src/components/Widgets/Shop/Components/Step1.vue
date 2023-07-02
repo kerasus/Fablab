@@ -4,10 +4,13 @@
                        indeterminate />
     <product-category v-for="productCategory in productCategories.list"
                       :key="productCategory.id"
-                      :product-category-data="productCategory" />
+                      :basket="basket"
+                      :product-category-data="productCategory"
+                      @onIncrease="onIncrease"
+                      @onDecrease="onDecrease" />
     <div class="action">
       <q-btn color="primary"
-             :loading="loading"
+             :loading="basket.loading"
              class="q-px-xl"
              @click="onNextStep">
         مرحله بعد
@@ -17,6 +20,7 @@
 </template>
 
 <script>
+import { Basket } from 'src/models/Basket.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 import { ProductCategoryList } from 'src/models/ProductCategory.js'
 import ProductCategory from 'src/components/Widgets/Shop/Components/ProductCategory.vue'
@@ -27,9 +31,9 @@ export default {
     ProductCategory
   },
   props: {
-    loading: {
-      type: Boolean,
-      default: false
+    basket: {
+      type: Basket,
+      default: new Basket()
     }
   },
   data: () => {
@@ -41,6 +45,12 @@ export default {
     this.getCategories()
   },
   methods: {
+    onIncrease (product) {
+      this.$emit('onIncrease', product)
+    },
+    onDecrease (product) {
+      this.$emit('onDecrease', product)
+    },
     getCategories() {
       this.productCategories.loading = true
       APIGateway.productCategory.index({ shopServiceName: this.$route.params.shopServiceName })
