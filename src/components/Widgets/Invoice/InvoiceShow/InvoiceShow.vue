@@ -127,14 +127,6 @@ export default {
           col: 'col-md-6 col-12'
         },
         {
-          type: 'date',
-          name: 'creation_time',
-          responseKey: 'creation_time',
-          label: 'تاریخ سررسید',
-          placeholder: ' ',
-          col: 'col-md-6 col-12'
-        },
-        {
           type: 'select',
           name: 'status',
           responseKey: 'status',
