@@ -15,62 +15,69 @@
       </div>
     </q-card>
     <div class="info">
-      <div class="members-and-leader">
-        <div class="members">
-          <div class="members-title">
-            اعضا
+      <template v-if="!user.team">
+        <div class="no-team">
+          هنوز تیمی مشخص نشده است.
+        </div>
+      </template>
+      <template>
+        <div class="members-and-leader">
+          <div class="members">
+            <div class="members-title">
+              اعضا
+            </div>
+            <div v-for="member in team.members_info.list"
+                 :key="member.id"
+                 class="member-item">
+              <q-avatar size="32px">
+                <q-img :src="member.picture" />
+              </q-avatar>
+            </div>
+            <div v-for="member in team.members_info.list"
+                 :key="member.id"
+                 class="member-item">
+              <q-avatar size="32px">
+                <q-img :src="member.picture" />
+              </q-avatar>
+            </div>
+            <div v-for="member in team.members_info.list"
+                 :key="member.id"
+                 class="member-item">
+              <q-avatar size="32px">
+                <q-img :src="member.picture" />
+              </q-avatar>
+            </div>
           </div>
-          <div v-for="member in team.members_info.list"
-               :key="member.id"
-               class="member-item">
-            <q-avatar size="32px">
-              <q-img :src="member.picture" />
-            </q-avatar>
-          </div>
-          <div v-for="member in team.members_info.list"
-               :key="member.id"
-               class="member-item">
-            <q-avatar size="32px">
-              <q-img :src="member.picture" />
-            </q-avatar>
-          </div>
-          <div v-for="member in team.members_info.list"
-               :key="member.id"
-               class="member-item">
-            <q-avatar size="32px">
-              <q-img :src="member.picture" />
-            </q-avatar>
+          <div class="leader ellipsis">
+            <span class="title">
+              مدیر تیم:
+            </span>
+            <span class="value">
+              {{ team.leader_info.firstname }}
+              {{ team.leader_info.lastname }}
+            </span>
           </div>
         </div>
-        <div class="leader ellipsis">
-          <span class="title">
-            مدیر تیم:
-          </span>
-          <span class="value">
-            {{ team.leader_info.firstname }}
-            {{ team.leader_info.lastname }}
-          </span>
+        <div class="services">
+          <div class="services-item">
+            <span class="title">
+              تعداد میز:
+            </span>
+            <span class="value">
+              ۵ عدد
+            </span>
+          </div>
+          <div class="services-item">
+            <span class="title">
+              تعداد اینترنت:
+            </span>
+            <span class="value">
+              ۳ عدد
+            </span>
+          </div>
+          <div class="services-item" />
         </div>
-      </div>
-      <div class="services">
-        <div class="services-item">
-          <span class="title">
-            تعداد میز:
-          </span>
-          <span class="value">
-            ۵ عدد
-          </span>
-        </div>
-        <div class="services-item">
-          <span class="title">
-            تعداد اینترنت:
-          </span>
-          <span class="value">
-            ۳ عدد
-          </span>
-        </div>
-        <div class="services-item" />
-      </div>
+      </template>
     </div>
   </q-card>
 </template>
@@ -101,6 +108,9 @@ export default {
   },
   methods: {
     loadTeam () {
+      if (!this.user.team) {
+        return
+      }
       this.team.loading = true
       APIGateway.team.get({ data: { id: this.user.team } })
         .then(team => {
@@ -149,6 +159,12 @@ export default {
   .info {
     width: calc( 100% - 116px );
     padding-left: 16px;
+    .no-team {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
     .members-and-leader {
       width: 100%;
       border-bottom: solid 1px #EDEDED;
