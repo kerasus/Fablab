@@ -79,13 +79,6 @@ export default {
             field: row => Assist.miladiToShamsi(row.creation_time)
           },
           {
-            name: 'creation_time',
-            required: true,
-            label: 'تاریخ سررسید',
-            align: 'left',
-            field: row => Assist.miladiToShamsi(row.creation_time)
-          },
-          {
             name: 'amount',
             required: true,
             label: 'کل',
