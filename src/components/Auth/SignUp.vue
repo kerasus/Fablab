@@ -10,9 +10,8 @@
       <div v-else>
         <div v-if="defaultLayout"
              class="header">
-          وافیا
+          فب لب
         </div>
-
         <q-tab-panels v-model="step"
                       animated>
           <q-tab-panel name="input-mobile">
@@ -41,8 +40,8 @@
                    @click="sendOtp" />
             <div class="regiser-link-section q-mt-md">
               حساب کاربری دارید؟
-              <router-link :to="{name: 'login'}"
-                           class="text-red">
+              <router-link :to="{name: 'Login'}"
+                           class="text-red cursor-pointer">
                 ورود
               </router-link>
             </div>
@@ -75,7 +74,7 @@
                    :loading="signUpLoading"
                    color="primary"
                    label="تایید"
-                   @click="signUp" />
+                   @click="goToInputPasswordStep" />
             <div class="regiser-link-section q-mt-md">
               شماره موبایل اشتباه است؟
               <q-btn flat
@@ -151,7 +150,7 @@ export default {
     timer: '00:00',
     timerInterval: null,
     userLogin: false,
-    loading: true,
+    loading: false,
     mobileNumber: null,
     username: null,
     password: null,
@@ -188,14 +187,13 @@ export default {
     },
     signUp () {
       this.signUpLoading = true
-      APIGateway.auth.signUp({
+      this.$store.dispatch('Auth/signUpByOtpAndPassword', {
         mobile_number: this.mobileNumber,
-        otp: this.otp
+        otp: this.otp,
+        password: this.password
       })
         .then(() => {
-          this.signUpLoading = false
-          this.step = 'input-verify-code'
-          this.goToInputPasswordStep()
+          this.$router.push({ name: 'Public.Home' })
         })
         .catch(() => {
           this.signUpLoading = false
@@ -210,19 +208,7 @@ export default {
         })
         return
       }
-      this.signUpLoading = true
-      APIGateway.auth.changePass({
-        new_password: this.password
-      })
-        .then(() => {
-          this.signUpLoading = false
-          this.step = 'input-verify-code'
-          this.goToInputPasswordStep()
-          this.$router.push({ name: 'Public.Home' })
-        })
-        .catch(() => {
-          this.signUpLoading = false
-        })
+      this.signUp()
     },
     startTimer () {
       this.timer = '2:00'
@@ -247,7 +233,7 @@ export default {
     },
     handleOnCompleteOtp (value) {
       this.otp = value
-      this.signUp()
+      this.goToInputPasswordStep()
     },
     getToken () {
       return this.$store.getters['Auth/accessToken']

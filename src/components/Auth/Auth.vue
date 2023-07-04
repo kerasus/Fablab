@@ -10,7 +10,7 @@
       <div v-else>
         <div v-if="defaultLayout"
              class="header">
-          وافیا
+          فب لب
         </div>
         <div v-if="defaultLayout"
              class="sub-header">
@@ -46,7 +46,7 @@
         <div class="regiser-link-section q-mt-md">
           حساب کاربری ندارید؟
           <router-link :to="{name: 'SignUp'}"
-                       class="text-red">
+                       class="text-red cursor-pointer">
             ثبت نام
           </router-link>
         </div>
@@ -78,7 +78,7 @@ export default {
   }),
   mounted () {
     this.loading = false
-    this.$store.dispatch('Auth/logOut')
+    this.$store.dispatch('Auth/logOut', { clearRedirectTo: true, redirect: false })
   },
   methods: {
     getToken () {

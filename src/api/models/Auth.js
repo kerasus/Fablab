@@ -8,6 +8,7 @@ export default class AuthAPI extends APIRepository {
     this.APIAdresses = {
       login: '/auth/login',
       signUp: '/auth/sign-up',
+      signUpByOtpAndPassword: '/auth/sign-up-set-password',
       refreshToken: '/auth/refresh-token',
       sendOtp: '/auth/send-otp',
       changePass: '/auth/change-pass'
@@ -72,6 +73,32 @@ export default class AuthAPI extends APIRepository {
       request: this.APIAdresses.signUp,
       data: this.getNormalizedSendData({
         mobile_number: '', // String
+        otp: '' // String
+      }, data),
+      resolveCallback: (response) => {
+        const token = response.data.token
+
+        const accessToken = token.access_token
+        const expiresIn = token.expires_in
+        const refreshToken = token.refresh_token
+        // const user = new User(response.data.data.user)
+
+        return { access_token: accessToken, expires_in: expiresIn, refresh_token: refreshToken }
+      },
+      rejectCallback: (error) => {
+        return error
+      }
+    })
+  }
+
+  signUpByOtpAndPassword (data) {
+    return this.sendRequest({
+      apiMethod: 'post',
+      api: this.api,
+      request: this.APIAdresses.signUpByOtpAndPassword,
+      data: this.getNormalizedSendData({
+        mobile_number: '', // String
+        password: '', // String
         otp: '' // String
       }, data),
       resolveCallback: (response) => {
