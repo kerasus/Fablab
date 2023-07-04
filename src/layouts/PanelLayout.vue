@@ -13,7 +13,8 @@
             خوش آمدید
           </div>
           <div class="full-name">
-            محمد راوش
+            {{user.firstname}}
+            {{user.lastname}}
           </div>
           <q-card class="wallet">
             <div class="value">
@@ -21,7 +22,7 @@
                 تومان
               </div>
               <div class="value-number">
-                100,000
+                {{ (wallet.inventory) ? wallet.inventory.toLocaleString('fa') : 0 }}
               </div>
             </div>
             <q-btn class="action card"
@@ -113,8 +114,9 @@
 <script>
 import { User } from 'src/models/User.js'
 import Router from 'src/router/Router.vue'
+import { APIGateway } from 'src/api/APIGateway.js'
+import { Wallet, WalletList } from 'src/models/Wallet.js'
 import KeepAliveComponents from 'src/assets/js/KeepAliveComponents.js'
-import { APIGateway } from 'src/api/APIGateway'
 export default {
   components: { Router },
   data () {
@@ -185,6 +187,7 @@ export default {
         }
       ],
       user: new User(),
+      wallet: new Wallet(),
       keepAliveComponents: KeepAliveComponents
     }
   },
@@ -192,6 +195,15 @@ export default {
     this.loadAuthData()
   },
   methods: {
+    getUserWallet () {
+      APIGateway.wallet.index({ owner: this.user.id })
+        .then((wallets) => {
+          this.wallet = (new WalletList(wallets)).list[0]
+        })
+        .catch(() => {
+          this.depositLoading = false
+        })
+    },
     loadAuthData() { // prevent Hydration node mismatch
       this.user = this.$store.getters['Auth/user']
     },

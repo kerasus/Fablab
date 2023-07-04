@@ -25,6 +25,7 @@ export default class WalletAPI extends APIRepository {
       api: this.api,
       request: this.APIAdresses.base,
       data: this.getNormalizedSendData({
+        owner: null, // Number
         page: 1 // Number
       }, data),
       resolveCallback: (response) => {
