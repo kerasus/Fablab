@@ -1,7 +1,7 @@
 <template>
   <q-responsive :ratio="1"
                 :style="localOptions.style">
-    <q-btn>
+    <q-btn @click="darkModeToggle">
       <q-icon name="dark_mode" />
     </q-btn>
   </q-responsive>
@@ -12,7 +12,12 @@ import { mixinWidget } from 'src/mixin/Mixins'
 
 export default {
   name: 'NightModeAction',
-  mixins: [mixinWidget]
+  mixins: [mixinWidget],
+  methods: {
+    darkModeToggle () {
+      this.$q.dark.toggle()
+    }
+  }
 }
 </script>
 

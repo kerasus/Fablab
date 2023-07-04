@@ -8,3 +8,12 @@
   @include widget-custom-card;
 }
 
+.body--dark .q-card.custom-card,
+.q-card.q-card--dark {
+  background: #333333;
+  .title,
+  .full-name {
+    color: white !important;
+  }
+}
+
