@@ -1,7 +1,7 @@
 <template>
   <q-responsive :ratio="1"
                 :style="localOptions.style">
-    <q-btn>
+    <q-btn :to="{name: 'UserPanel.Notice.List'}">
       <q-icon name="notifications" />
     </q-btn>
   </q-responsive>
