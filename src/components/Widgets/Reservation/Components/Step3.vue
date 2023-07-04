@@ -14,46 +14,61 @@
         </q-btn>
       </div>
     </div>
-    <q-card class="form"
+    <q-card class="form q-mt-lg"
             flat>
-      <entity-show v-if="mounted"
-                   ref="entityEdit"
-                   v-model:value="inputs"
-                   :api="api"
-                   :entity-id-key="entityIdKey"
-                   :entity-param-key="entityParamKey"
-                   :show-route-name="showRouteName"
-                   :show-close-button="false"
-                   :show-edit-button="false"
-                   :show-expand-button="false"
-                   :show-save-button="false"
-                   :show-reload-button="false"
-                   :default-layout="false"
-                   :redirect-after-edit="false"
-                   :after-load-input-data="afterLoadInputData" />
-      <div class="action">
-        <q-btn color="primary"
-               :loading="loading"
-               class="q-px-xl"
-               @click="onAccept">
-          تایید
-        </q-btn>
+      <q-inner-loading :showing="invoice.loading">
+        <q-spinner-gears size="50px"
+                         color="primary" />
+      </q-inner-loading>
+      <div class="selectedProductsList">
+        <div class="selectedProductsList-row head">
+          <div class="selectedProductsList-title">
+            شرح خدمات
+          </div>
+          <div class="selectedProductsList-price">
+            مبلغ
+          </div>
+        </div>
+        <div v-for="item in invoice.products_info.list"
+             :key="item.id"
+             class="selectedProductsList-row">
+          <div class="selectedProductsList-title">
+            {{ item.title }}
+          </div>
+          <div class="selectedProductsList-price">
+            {{ (item.unit_price).toLocaleString('fa') }}
+            تومان
+          </div>
+        </div>
+        <div class="selectedProductsList-row footer">
+          <div class="selectedProductsList-title">
+            قابل پرداخت
+          </div>
+          <div class="selectedProductsList-price">
+            {{ (invoice.amount) ? invoice.amount.toLocaleString('fa') : 0 }}
+            تومان
+          </div>
+        </div>
+        <div class="action">
+          <q-btn color="primary"
+                 :loading="loading"
+                 class="q-px-xl"
+                 @click="onAccept">
+            تایید
+          </q-btn>
+        </div>
       </div>
     </q-card>
   </div>
 </template>
 
 <script>
-import { EntityShow } from 'quasar-crud'
 import { Invoice } from 'src/models/Invoice.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 
 export default {
   name: 'Step3',
-  components: {
-    EntityShow
-  },
   mixins: [mixinWidget],
   props: {
     invoiceId: {
@@ -67,135 +82,32 @@ export default {
   },
   data: () => {
     return {
-      mounted: false,
-      entityLoading: true,
-      entityId: '',
-      api: APIGateway.invoice.APIAdresses.base,
-      entityIdKey: 'id',
-      entityParamKey: 'id',
-      showRouteName: 'UserPanel.Invoice.Show',
-      indexRouteName: 'UserPanel.Invoice.List',
-      inputs: [
-        {
-          type: 'date',
-          name: 'creation_time',
-          responseKey: 'creation_time',
-          label: 'تاریخ صورت‌حساب',
-          placeholder: ' ',
-          col: 'col-md-6 col-12'
-        },
-        {
-          type: 'date',
-          name: 'creation_time',
-          responseKey: 'creation_time',
-          label: 'تاریخ سررسید',
-          placeholder: ' ',
-          col: 'col-md-6 col-12'
-        },
-        {
-          type: 'input',
-          name: 'amount',
-          responseKey: 'amount',
-          label: 'مبلغ کل',
-          placeholder: ' ',
-          col: 'col-md-6 col-12'
-        },
-        {
-          type: 'select',
-          name: 'status',
-          responseKey: 'status',
-          label: 'وضعیت',
-          placeholder: ' ',
-          options: (new Invoice()).statusEnums,
-          col: 'col-md-6 col-12'
-        },
-        {
-          type: 'formBuilder',
-          name: 'formBuilderCol',
-          col: 'col-md-6',
-          gutterSize: 'lg',
-          value: [
-            {
-              type: 'input',
-              name: 'creator_info.firstname',
-              responseKey: 'creator_info.firstname',
-              label: 'نام فروشنده',
-              placeholder: ' ',
-              col: 'col-md-4 col-12'
-            },
-            {
-              type: 'input',
-              name: 'creator_info.lastname',
-              responseKey: 'creator_info.lastname',
-              label: 'نام خانوادگی فروشنده',
-              placeholder: ' ',
-              col: 'col-md-4 col-12'
-            }
-          ]
-        },
-        {
-          type: 'formBuilder',
-          name: 'formBuilderCol',
-          col: 'col-md-6',
-          gutterSize: 'lg',
-          value: [
-            {
-              type: 'input',
-              name: 'owner_info.firstname',
-              responseKey: 'owner_info.firstname',
-              label: 'نام خریداد',
-              placeholder: ' ',
-              col: 'col-md-4 col-12'
-            },
-            {
-              type: 'input',
-              name: 'owner_info.lastname',
-              responseKey: 'owner_info.lastname',
-              label: 'نام خانوادگی خریداد',
-              placeholder: ' ',
-              col: 'col-md-4 col-12'
-            }
-          ]
-        },
-        {
-          type: 'hidden',
-          name: 'id',
-          responseKey: 'id'
-        }
-      ]
+      invoice: new Invoice(),
+      entityLoading: true
     }
   },
   created() {
-    this.api = this.api + '/' + this.invoiceId
+    this.loadInvoice()
   },
   mounted() {
-    this.mounted = true
   },
   methods: {
+    loadInvoice () {
+      this.invoice.loading = true
+      APIGateway.invoice.get({ data: { id: this.invoiceId } })
+        .then((invoice) => {
+          this.invoice = new Invoice(invoice)
+          this.invoice.loading = false
+        })
+        .catch(() => {
+          this.invoice.loading = false
+        })
+    },
     onPrevStep () {
       this.$emit('onPrevStep')
     },
     onAccept () {
       this.$emit('onAccept')
-    },
-    onUpdateServices () {
-      this.$refs.entityEdit.getData()
-    },
-    afterLoadInputData (response) {
-      this.entityId = response.id
-      this.entityLoading = false
-    },
-    edit() {
-      this.entityLoading = true
-      this.$refs.entityEdit.editEntity()
-        .then(() => {
-          this.$refs.entityEdit.getData()
-          this.entityLoading = false
-        })
-        .catch(() => {
-          this.$refs.entityEdit.getData()
-          this.entityLoading = false
-        })
     }
   }
 }
@@ -227,6 +139,78 @@ export default {
   }
   :deep(.form) {
     padding: 24px;
+
+    .selectedProductsList {
+      width: 100%;
+
+      .selectedProductsList-row {
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: solid 1px #F6F6F6;
+
+        &.head {
+          .selectedProductsList-title {
+            color: #6589C3;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 140%;
+          }
+
+          .selectedProductsList-price {
+            color: #6589C3;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 140%;
+          }
+        }
+
+        &.footer {
+          .selectedProductsList-title {
+            color: #2FA84A;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 140%;
+          }
+
+          .selectedProductsList-price {
+            color: #2FA84A;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 140%;
+          }
+        }
+
+        .selectedProductsList-title {
+          width: calc(100% - 150px);
+          color: #272727;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 140%;
+        }
+
+        .selectedProductsList-price {
+          width: 150px;
+          color: #272727;
+          font-size: 16px;
+          line-height: 140%;
+        }
+      }
+
+      :deep(.form) {
+        padding: 24px;
+
+        .action {
+          display: flex;
+          flex-flow: row;
+          justify-content: flex-end;
+          margin-top: 32px;
+        }
+      }
+    }
+
     .action {
       display: flex;
       flex-flow: row;

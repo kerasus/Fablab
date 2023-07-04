@@ -6,6 +6,16 @@ class Basket extends Model {
   constructor (data) {
     super(data, [
       { key: 'id' },
+      // -----------------
+      { key: 'unit_price' },
+      { key: 'title' },
+      { key: 'thumbnail' },
+      { key: 'slug' },
+      { key: 'slug' },
+      { key: 'product_type' },
+      { key: 'description' },
+      { key: 'capacity' },
+      // -----------------
       { key: 'creator' },
       {
         key: 'creator_info',
