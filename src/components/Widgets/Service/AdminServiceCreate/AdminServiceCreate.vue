@@ -32,6 +32,7 @@
 
 <script>
 import { EntityCreate } from 'quasar-crud'
+import { Service } from 'src/models/Service.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 
@@ -59,16 +60,7 @@ export default {
           name: 'unit',
           label: 'واحد',
           placeholder: ' ',
-          options: [
-            {
-              label: 'ساعت',
-              value: 'HOUR'
-            },
-            {
-              label: 'دقیقه',
-              value: 'MINUTE'
-            }
-          ],
+          options: (new Service()).unitEnums,
           col: 'col-md-6 col-12'
         },
         {
@@ -83,13 +75,22 @@ export default {
           name: 'order_verification_required',
           label: 'نیاز به تایید',
           placeholder: ' ',
-          options: [],
+          options: [
+            {
+              label: 'دارد',
+              value: true
+            },
+            {
+              label: 'ندارد',
+              value: false
+            }
+          ],
           col: 'col-md-6 col-12'
         },
         {
           type: 'file',
           name: 'thumbnail',
-          label: 'تصویر رویداد',
+          label: 'تصویر',
           placeholder: 'تصویر مورد نظر را آپلود کنید',
           col: 'col-md-6 col-12'
         },
@@ -101,17 +102,26 @@ export default {
           col: 'col-md-6 col-12'
         },
         {
+          type: 'inputEditor',
+          name: 'description',
+          label: 'توضیحات',
+          col: 'col-12'
+        },
+        {
           type: 'checkbox',
           name: 'standalone',
           label: 'انتشار به عنوان خدمت تکی',
           value: false,
           placeholder: ' ',
-          col: 'col-md-12 col-12'
+          col: 'col-md-6 col-12'
         },
         {
-          type: 'hidden',
-          name: 'description',
-          value: '...'
+          type: 'checkbox',
+          name: 'is_reservation_enabled',
+          label: 'قابلیت رزرو شدن',
+          value: false,
+          placeholder: ' ',
+          col: 'col-md-6 col-12'
         }
       ]
     }

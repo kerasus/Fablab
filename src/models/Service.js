@@ -7,10 +7,12 @@ class Service extends Model {
       { key: 'title' },
       { key: 'slug' },
       { key: 'unit' },
+      { key: 'unit_info' },
       { key: 'minimum_order' },
       { key: 'unit_price' },
       { key: 'order_verification_required' },
       { key: 'standalone' },
+      { key: 'is_reservation_enabled' },
       { key: 'thumbnail' },
       {
         key: 'count',
@@ -24,8 +26,33 @@ class Service extends Model {
       { key: 'creator' }
     ])
 
+    this.unitEnums = [
+      {
+        label: 'ساعت',
+        value: 'HOUR'
+      },
+      {
+        label: 'ماه',
+        value: 'MONTH'
+      },
+      {
+        label: 'گیگ',
+        value: 'GIGABYTE'
+      }
+    ]
+
+    this.loadUnitInfo()
     if (!this.thumbnail) {
       this.thumbnail = '/img/FabLab-logo.png'
+    }
+  }
+
+  loadUnitInfo () {
+    const target = this.unitEnums.find(type => type.value === this.unit)
+    if (!target) {
+      this.unit_info = null
+    } else {
+      this.unit_info = target
     }
   }
 

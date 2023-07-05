@@ -62,6 +62,7 @@
 import { EntityEdit } from 'quasar-crud'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
+import { Service } from 'src/models/Service'
 
 export default {
   name: 'AdminServiceShow',
@@ -93,19 +94,10 @@ export default {
         {
           type: 'select',
           name: 'unit',
-          label: 'واحد',
           responseKey: 'unit',
+          label: 'واحد',
           placeholder: ' ',
-          options: [
-            {
-              label: 'ساعت',
-              value: 'HOUR'
-            },
-            {
-              label: 'دقیقه',
-              value: 'MINUTE'
-            }
-          ],
+          options: (new Service()).unitEnums,
           col: 'col-md-6 col-12'
         },
         {
@@ -117,19 +109,28 @@ export default {
           col: 'col-md-6 col-12'
         },
         {
-          type: 'checkbox',
+          type: 'select',
           name: 'order_verification_required',
           responseKey: 'order_verification_required',
           label: 'نیاز به تایید',
           placeholder: ' ',
-          value: false,
+          options: [
+            {
+              label: 'دارد',
+              value: true
+            },
+            {
+              label: 'ندارد',
+              value: false
+            }
+          ],
           col: 'col-md-6 col-12'
         },
         {
           type: 'file',
           name: 'thumbnail',
           responseKey: 'thumbnail',
-          label: 'تصویر رویداد',
+          label: 'تصویر',
           placeholder: 'تصویر مورد نظر را آپلود کنید',
           col: 'col-md-6 col-12'
         },
@@ -142,19 +143,29 @@ export default {
           col: 'col-md-6 col-12'
         },
         {
+          type: 'inputEditor',
+          name: 'description',
+          responseKey: 'description',
+          label: 'توضیحات',
+          col: 'col-12'
+        },
+        {
           type: 'checkbox',
           name: 'standalone',
           responseKey: 'standalone',
           label: 'انتشار به عنوان خدمت تکی',
-          placeholder: ' ',
           value: false,
-          col: 'col-md-12 col-12'
+          placeholder: ' ',
+          col: 'col-md-6 col-12'
         },
         {
-          type: 'hidden',
-          name: 'description',
-          responseKey: 'description',
-          value: '...'
+          type: 'checkbox',
+          name: 'is_reservation_enabled',
+          responseKey: 'is_reservation_enabled',
+          label: 'قابلیت رزرو شدن',
+          value: false,
+          placeholder: ' ',
+          col: 'col-md-6 col-12'
         }
       ]
     }

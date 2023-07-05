@@ -37,6 +37,7 @@
 import { EntityIndex } from 'quasar-crud'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
+import { Service } from 'src/models/Service.js'
 
 export default {
   name: 'AdminServiceList',
@@ -67,14 +68,14 @@ export default {
             required: true,
             label: 'واحد',
             align: 'left',
-            field: row => row.unit
+            field: row => (new Service(row)).unit_info.label
           },
           {
             name: 'standalone',
             required: true,
             label: 'تایید',
             align: 'left',
-            field: row => row.standalone
+            field: row => (row.standalone) ? 'دارد' : 'ندارد'
           },
           {
             name: 'minimum_order',
