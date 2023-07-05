@@ -60,36 +60,36 @@ export default {
       showRouteName: 'AdminPanel.Blog.Show',
       indexRouteName: 'AdminPanel.Blog.List',
       inputs: [
-        { type: 'input', name: 'title', responseKey: 'title', label: 'تیتر', col: 'col-md-12' },
+        { type: 'input', name: 'title', responseKey: 'title', label: 'تیتر', col: 'col-md-12 col-12' },
         {
           type: 'formBuilder',
           name: 'formBuilderCol',
-          col: 'col-md-6',
+          col: 'col-md-6 col-12',
           gutterSize: 'lg',
           value: [
-            { type: 'select', name: 'category', responseKey: 'category', options: [], label: 'دسته', col: 'col-md-12' },
-            { type: 'select', name: 'type', responseKey: 'type', options: (new Media()).typeEnums, label: 'نوع', col: 'col-md-12' }
+            { type: 'select', name: 'category', responseKey: 'category', options: [], label: 'دسته', col: 'col-md-12 col-12' },
+            { type: 'select', name: 'type', responseKey: 'type', options: (new Media()).typeEnums, label: 'نوع', col: 'col-md-12 col-12' }
           ]
         },
         {
           type: 'formBuilder',
           name: 'formBuilderCol',
-          col: 'col-md-6',
+          col: 'col-md-6 col-12',
           gutterSize: 'lg',
           value: [
-            { type: 'file', name: 'thumbnail', responseKey: 'thumbnail', label: 'تصویر', size: '250px', col: 'col-md-12' },
-            { type: 'checkbox', name: 'is_active', responseKey: 'is_active', value: false, label: 'فعال', col: 'col-md-6' },
-            { type: 'checkbox', name: 'is_deleted', responseKey: 'is_deleted', value: false, label: 'آرشیو', col: 'col-md-6' }
-            // { type: 'checkbox', name: 'is_live_streaming', responseKey: 'is_live_streaming', value: false, label: 'لایو', col: 'col-md-6' },
+            { type: 'file', name: 'thumbnail', responseKey: 'thumbnail', label: 'تصویر', size: '250px', col: 'col-md-12 col-12' },
+            { type: 'checkbox', name: 'is_active', responseKey: 'is_active', value: false, label: 'فعال', col: 'col-md-6 col-12' },
+            { type: 'checkbox', name: 'is_deleted', responseKey: 'is_deleted', value: false, label: 'آرشیو', col: 'col-md-6 col-12' }
+            // { type: 'checkbox', name: 'is_live_streaming', responseKey: 'is_live_streaming', value: false, label: 'لایو', col: 'col-md-6 col-12' },
           ]
         },
-        { type: 'select', name: 'hashtags', responseKey: 'hashtags', options: [], multiple: true, label: 'تگ های مناسبت', col: 'col-md-12' },
-        { type: 'inputEditor', name: 'description', responseKey: 'description', label: 'متن', col: 'col-md-12' },
-        { type: 'input', name: 'iframe_code', responseKey: 'iframe_code', label: 'iframe', col: 'col-md-12' },
-        { type: 'input', name: 'script_code', responseKey: 'script_code', label: 'script', col: 'col-md-12' },
-        { type: 'input', name: 'url', responseKey: 'url', label: 'url', col: 'col-md-12' },
-        { type: 'file', name: 'file', responseKey: 'file', label: 'صوت', col: 'col-md-12' },
-        { type: 'hidden', name: 'id', responseKey: 'id', label: 'شناسه', col: 'col-md-12' }
+        { type: 'select', name: 'hashtags', responseKey: 'hashtags', options: [], multiple: true, label: 'تگ های مناسبت', col: 'col-md-12 col-12' },
+        { type: 'inputEditor', name: 'description', responseKey: 'description', label: 'متن', col: 'col-md-12 col-12' },
+        { type: 'input', name: 'iframe_code', responseKey: 'iframe_code', label: 'iframe', col: 'col-md-12 col-12' },
+        { type: 'input', name: 'script_code', responseKey: 'script_code', label: 'script', col: 'col-md-12 col-12' },
+        { type: 'input', name: 'url', responseKey: 'url', label: 'url', col: 'col-md-12 col-12' },
+        { type: 'file', name: 'file', responseKey: 'file', label: 'صوت', col: 'col-md-12 col-12' },
+        { type: 'hidden', name: 'id', responseKey: 'id', label: 'شناسه', col: 'col-md-12 col-12' }
       ]
     }
   },

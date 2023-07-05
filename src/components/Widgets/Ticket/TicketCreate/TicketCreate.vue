@@ -42,7 +42,6 @@
 
 <script>
 import { EntityCreate } from 'quasar-crud'
-import { Ticket } from 'src/models/Ticket.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 
@@ -60,19 +59,10 @@ export default {
       showRouteName: 'AdminPanel.Ticket.Show',
       indexRouteName: 'AdminPanel.Ticket.List',
       inputs: [
-        { type: 'select', name: 'category', responseKey: 'category', options: [], label: 'دسته', col: 'col-md-6' },
-        {
-          type: 'select',
-          name: 'state',
-          responseKey: 'state',
-          options: (new Ticket()).statusEnums,
-          multiple: false,
-          label: 'وضعیت',
-          col: 'col-md-3'
-        },
-        { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', col: 'col-md-12' },
-        { type: 'inputEditor', name: 'body', responseKey: 'body', label: 'متن', col: 'col-md-12' },
-        { type: 'hidden', name: 'owner', responseKey: 'owner', value: 1, label: 'owner', col: 'col-md-12' }
+        { type: 'select', name: 'category', responseKey: 'category', options: [], label: 'دسته', col: 'col-md-12 col-12' },
+        { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', col: 'col-md-12 col-12' },
+        { type: 'inputEditor', name: 'body', responseKey: 'body', label: 'متن', col: 'col-md-12 col-12' },
+        { type: 'hidden', name: 'owner', responseKey: 'owner', value: 1, label: 'owner', col: 'col-md-12 col-12' }
       ]
     }
   },
