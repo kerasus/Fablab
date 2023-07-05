@@ -17,22 +17,7 @@
           </div>
         </div>
         <div class="items-section">
-          <q-list>
-            <q-item v-for="(menuItem, menuItemIndex) in menuItems"
-                    :key="menuItemIndex"
-                    v-ripple
-                    clickable
-                    exact
-                    :to="menuItem.route">
-              <q-item-section avatar>
-                <q-icon :name="menuItem.icon" />
-              </q-item-section>
-              <q-item-section>
-                {{ menuItem.label }}
-              </q-item-section>
-            </q-item>
-          </q-list>
-
+          <side-menu-items :menu-items="menuItems" />
         </div>
       </q-card>
       <div class="content">
@@ -45,10 +30,12 @@
 <script>
 import { User } from 'src/models/User.js'
 import Router from 'src/router/Router.vue'
+import SideMenuItems from 'src/components/SideMenuItems.vue'
 import KeepAliveComponents from 'src/assets/js/KeepAliveComponents.js'
+
 export default {
   name: 'AdminPanelLayout',
-  components: { Router },
+  components: { SideMenuItems, Router },
   data () {
     return {
       menuItems: [
@@ -58,14 +45,25 @@ export default {
           route: { name: 'AdminPanel.Dashboard' }
         },
         {
-          label: 'سرویس‌ها',
+          label: 'خدمات',
           icon: 'post_add',
-          route: { name: 'AdminPanel.Service.List' }
-        },
-        {
-          label: 'پکیج‌ها',
-          icon: 'content_copy',
-          route: { name: 'AdminPanel.Package.List' }
+          children: [
+            {
+              label: 'پکیج‌ها',
+              icon: 'content_copy',
+              route: { name: 'AdminPanel.Package.List' }
+            },
+            {
+              label: 'سرویس‌ها',
+              icon: 'post_add',
+              route: { name: 'AdminPanel.Service.List' }
+            },
+            {
+              label: 'ثبت نام',
+              icon: 'panorama_photosphere',
+              route: { name: 'AdminPanel.Event.List' }
+            }
+          ]
         },
         {
           label: 'سفارشات',
@@ -73,19 +71,36 @@ export default {
           route: { name: 'AdminPanel.Invoice.List' }
         },
         {
-          label: 'رویدادها',
-          icon: 'panorama_photosphere',
-          route: { name: 'AdminPanel.Event.List' }
-        },
-        {
           label: 'کافه',
           icon: 'content_copy',
-          route: { name: 'AdminPanel.Product.List', params: { shopServiceName: 'cafe' } }
+          children: [
+            {
+              label: 'منو',
+              icon: 'content_copy',
+              route: { name: 'AdminPanel.Product.List', params: { shopServiceName: 'cafe' } }
+            },
+            {
+              label: 'سفارشات',
+              icon: 'content_copy',
+              route: { name: 'AdminPanel.Shop.Invoice.List', params: { shopServiceName: 'cafe' } }
+            }
+          ]
         },
         {
           label: 'فروشگاه',
           icon: 'content_copy',
-          route: { name: 'AdminPanel.Product.List', params: { shopServiceName: 'store' } }
+          children: [
+            {
+              label: 'محصولات',
+              icon: 'content_copy',
+              route: { name: 'AdminPanel.Product.List', params: { shopServiceName: 'store' } }
+            },
+            {
+              label: 'سفارشات',
+              icon: 'content_copy',
+              route: { name: 'AdminPanel.Shop.Invoice.List', params: { shopServiceName: 'store' } }
+            }
+          ]
         },
         {
           label: 'بلاگ',
@@ -189,36 +204,6 @@ export default {
         }
       }
       .items-section {
-        .q-list {
-          .q-item {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 25px;
-            color: #A9A9A9;
-            padding-left: 24.67px;
-            margin-bottom: 27px;
-            padding-right: 0;
-            align-items: center;
-            &.q-router-link--active {
-              color: $primary;
-            }
-            .q-item__section--avatar {
-              width: 18.67px;
-              min-width: 18.67px;
-              max-width: 18.67px;
-              padding-right: 0;
-              margin-right: 20.67px;
-              .q-icon {
-                width: 18.67px;
-                font-size: 18.67px;
-              }
-            }
-            .q-item__section:nth-child(3) {
-              height: 25px;
-            }
-          }
-        }
       }
     }
     .content {

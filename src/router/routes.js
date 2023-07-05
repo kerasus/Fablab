@@ -335,9 +335,17 @@ const routes = [
           },
           {
             path: 'shop',
-            name: 'AdminPanel.Product',
+            name: 'AdminPanel.Shop',
             component: () => import('layouts/bareLayout.vue'),
             children: [
+              {
+                path: ':shopServiceName/invoice',
+                name: 'AdminPanel.Shop.Invoice.List',
+                meta: {
+                  hasDynamicSetting: true
+                },
+                component: () => import('src/pages/Admin/Product/InvoiceList.vue')
+              },
               {
                 path: ':shopServiceName/product',
                 name: 'AdminPanel.Product.List',

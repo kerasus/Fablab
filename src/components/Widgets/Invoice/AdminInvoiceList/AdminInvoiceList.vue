@@ -46,6 +46,9 @@ export default {
   mixins: [mixinWidget],
   data: () => {
     return {
+      defaultOptions: {
+        invoiceType: null
+      },
       api: APIGateway.invoice.APIAdresses.base,
       tableKeys: {
         data: 'results',
@@ -102,6 +105,16 @@ export default {
         ]
       },
       createRouteName: ''
+    }
+  },
+  created() {
+    const shopServiceNameInRouteParams = this.$route.params?.shopServiceName
+    if (shopServiceNameInRouteParams) {
+      this.inputs.push({
+        type: 'hidden',
+        name: 'type',
+        value: shopServiceNameInRouteParams.toUpperCase()
+      })
     }
   }
 }
