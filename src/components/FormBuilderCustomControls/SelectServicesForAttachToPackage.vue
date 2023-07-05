@@ -6,6 +6,7 @@
       <div class="col-md-4 col-12 serviceCol">
         <div class="label">
           نام خدمت
+          ({{localServices[serviceIndex].service_info.title}})
         </div>
         <div class="input">
           <entity-input v-model:value="localServices[serviceIndex].service"
@@ -25,7 +26,7 @@
           اندازه واحد
         </div>
         <div class="input">
-          <q-input v-model="localServices[serviceIndex].unite_amount" />
+          <q-input v-model="localServices[serviceIndex].count" />
         </div>
       </div>
       <div class="col-md-4 col-12 serviceCol">
@@ -57,6 +58,7 @@
 
 <script>
 import { EntityInput } from 'quasar-crud'
+import { Service } from 'src/models/Service.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 
 export default {
@@ -139,14 +141,14 @@ export default {
             required: true,
             label: 'واحد',
             align: 'left',
-            field: row => row.unit
+            field: row => (new Service(row)).unit_info.label
           },
           {
             name: 'standalone',
             required: true,
             label: 'تایید',
             align: 'left',
-            field: row => row.standalone
+            field: row => (row.standalone) ? 'دارد' : 'ندارد'
           },
           {
             name: 'minimum_order',
@@ -183,7 +185,7 @@ export default {
         if (this.services.length === 0) {
           return [{
             service: null,
-            unite_amount: null,
+            count: null,
             extendable: false
           }]
         }
@@ -207,7 +209,7 @@ export default {
     addServiceRow () {
       this.localServices.push({
         service: null,
-        unite_amount: null,
+        count: null,
         extendable: false
       })
     },
@@ -216,7 +218,8 @@ export default {
       const services = this.localServices.filter(item => item.service)
         .map(item => {
           return {
-            service: item.service.id,
+            service: item.service,
+            count: item.count,
             extendable: item.extendable
           }
         })
