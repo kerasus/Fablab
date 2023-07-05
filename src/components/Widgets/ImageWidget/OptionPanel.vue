@@ -4,10 +4,8 @@
       <div class="option-panel-container">
         <div class="row q-col-gutter-md">
           <div class="input-container col-12 q-mt-md">
-
-            <div class="outsideLabel">لینک عکس</div>
-            <q-input v-model="localOptions.imageSource"
-                     label="image" />
+            <div class="outsideLabel">آدرس عکس</div>
+            <image-uploader v-model:file="localOptions.imageSource" />
           </div>
           <!--          <div class="input-container q-py-md">-->
           <!--            <div class="outsideLabel">height</div>-->
@@ -68,14 +66,16 @@
     </template>
   </option-panel-tabs>
 </template>
+
 <script>
 import { defineComponent } from 'vue'
 import { mixinOptionPanel } from 'quasar-ui-q-page-builder'
+import ImageUploader from 'src/components/ImageUploader.vue'
 import OptionPanelTabs from 'quasar-ui-q-page-builder/src/components/OptionPanelComponents/OptionPanelTabs.vue'
 
 export default defineComponent({
   name: 'OptionPanel',
-  components: { OptionPanelTabs },
+  components: { ImageUploader, OptionPanelTabs },
   mixins: [mixinOptionPanel],
   data() {
     return {

@@ -50,6 +50,10 @@ class Media extends Model {
       {
         label: 'صوت',
         value: 'SOUND'
+      },
+      {
+        label: 'تصویر',
+        value: 'IMAGE'
       }
     ]
 

@@ -9,8 +9,7 @@
                label="height" />
     </div>
     <div class="col-7">
-      <q-input v-model="image.src"
-               label="src" />
+      <image-uploader v-model:file="image.src" />
     </div>
     <div class="col-12">
       <q-img v-if="size"
@@ -27,11 +26,11 @@
 
 <script>
 import { Banner } from 'src/models/Banner.js'
-import LazyImg from 'src/components/lazyImg.vue'
+import ImageUploader from 'src/components/ImageUploader.vue'
 
 export default {
   name: 'bannerPreview',
-  components: [LazyImg],
+  components: { ImageUploader },
   props: {
     banner: {
       type: Banner,

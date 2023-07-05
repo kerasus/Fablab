@@ -41,36 +41,20 @@ class Basket extends Model {
 
     this.statusEnums = [
       {
-        label: 'در حال تأیید',
-        value: 'VERIFYING'
+        label: 'باز',
+        value: 'OPEN'
       },
       {
-        label: 'لغو شد',
+        label: 'لغو شده',
         value: 'CANCELED'
       },
       {
-        label: 'تأیید نشده',
-        value: 'NOT_VERIFIED'
-      },
-      {
-        label: 'درحال پرداخت',
-        value: 'PAYING'
-      },
-      {
-        label: 'درحال تایید پرداخت',
-        value: 'TRANSACTION_VERIFYING'
+        label: 'بسته شده',
+        value: 'CLOSED'
       },
       {
         label: 'پرداخت شده',
-        value: 'PAID_FULL'
-      },
-      {
-        label: 'درحال پرداخت اقساط',
-        value: 'PAYING_IN_INSTALMENT'
-      },
-      {
-        label: 'اقساط پرداخت شده',
-        value: 'PAID_IN_INSTALMENT'
+        value: 'PAID'
       }
     ]
 

@@ -4,8 +4,7 @@
       <div class="option-panel-container">
         <div class="input-container q-py-md">
           <div class="outsideLabel">image</div>
-          <q-input v-model="localOptions.image"
-                   label="image" />
+          <image-uploader v-model:file="localOptions.image" />
         </div>
         <div class="input-container q-py-md">
           <div class="outsideLabel">title</div>
@@ -24,11 +23,12 @@
 <script>
 import { defineComponent } from 'vue'
 import { mixinOptionPanel } from 'quasar-ui-q-page-builder'
+import ImageUploader from 'src/components/ImageUploader.vue'
 import OptionPanelTabs from 'quasar-ui-q-page-builder/src/components/OptionPanelComponents/OptionPanelTabs.vue'
 
 export default defineComponent({
   name: 'OptionPanel',
-  components: { OptionPanelTabs },
+  components: { OptionPanelTabs, ImageUploader },
   mixins: [mixinOptionPanel],
   props: {
     options: {
