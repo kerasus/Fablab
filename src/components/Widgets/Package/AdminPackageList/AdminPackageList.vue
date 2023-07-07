@@ -18,7 +18,10 @@
                     :show-reload-button="false"
                     :default-layout="false">
         <template #entity-index-table-cell="{inputData}">
-          <template v-if="inputData.col.name === 'action'">
+          <template v-if="inputData.col.name === 'thumbnail'">
+            <q-img :src="inputData.props.row.thumbnail" />
+          </template>
+          <template v-else-if="inputData.col.name === 'action'">
             <q-btn flat
                    color="primary"
                    :to="{name: 'AdminPanel.Package.Show', params: {id: inputData.props.row.id}}">
@@ -62,6 +65,13 @@ export default {
             label: 'پکیج',
             align: 'left',
             field: row => row.title
+          },
+          {
+            name: 'thumbnail',
+            required: true,
+            label: 'تصویر',
+            align: 'left',
+            field: row => row.thumbnail
           },
           {
             name: 'unit_price',
