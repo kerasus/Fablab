@@ -54,14 +54,75 @@
         </div>
       </div>
     </q-card>
+    <q-card v-if="invoice.products_info.list.length > 0"
+            class="q-mt-lg">
+      <q-card-section>
+        <div class="selectedProductsList">
+          <div class="selectedProductsList-row head">
+            <div class="selectedProductsList-title">
+              شرح خدمات
+            </div>
+            <div class="selectedProductsList-count">
+              تعداد
+            </div>
+            <div class="selectedProductsList-price">
+              مبلغ
+            </div>
+          </div>
+          <div v-for="item in invoice.products_info.list"
+               :key="item.id">
+            <template v-if="item.registrations_info.list.length > 0">
+              <div v-for="registrationsInfoItem in item.registrations_info.list"
+                   :key="registrationsInfoItem.id"
+                   class="selectedProductsList-row">
+                <div class="selectedProductsList-title">
+                  {{ registrationsInfoItem.item_info.title }}
+                </div>
+                <div class="selectedProductsList-count">
+                  {{ registrationsInfoItem.count }}
+                </div>
+                <div class="selectedProductsList-price">
+                  {{ (registrationsInfoItem.item_info.unit_price).toLocaleString('fa') }}
+                  تومان
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <div class="selectedProductsList-row">
+                <div class="selectedProductsList-title">
+                  {{ item.title }}
+                </div>
+                <div class="selectedProductsList-count">
+                  -
+                </div>
+                <div class="selectedProductsList-price">
+                  {{ (item.unit_price).toLocaleString('fa') }}
+                  تومان
+                </div>
+              </div>
+            </template>
+          </div>
+          <div class="selectedProductsList-row footer">
+            <div class="selectedProductsList-title">
+              قابل پرداخت
+            </div>
+            <div class="selectedProductsList-count" />
+            <div class="selectedProductsList-price">
+              {{ (invoice.amount) ? invoice.amount.toLocaleString('fa') : 0 }}
+              تومان
+            </div>
+          </div>
+        </div>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 
 <script>
 import { EntityEdit } from 'quasar-crud'
+import { Invoice } from 'src/models/Invoice.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
-import { Invoice } from 'src/models/Invoice'
 
 export default {
   name: 'AdminInvoiceShow',
@@ -75,6 +136,7 @@ export default {
       entityLoading: true,
       serviceTitle: '',
       services: [],
+      invoice: new Invoice(),
       api: APIGateway.invoice.APIAdresses.base,
       entityIdKey: 'id',
       entityParamKey: 'id',
@@ -116,56 +178,22 @@ export default {
           col: 'col-md-6 col-12'
         },
         {
-          type: 'formBuilder',
-          name: 'formBuilderCol',
-          col: 'col-md-6',
-          gutterSize: 'lg',
-          value: [
-            {
-              type: 'input',
-              name: 'creator_info.firstname',
-              responseKey: 'creator_info.firstname',
-              label: 'نام فروشنده',
-              placeholder: ' ',
-              disable: true,
-              col: 'col-md-4 col-12'
-            },
-            {
-              type: 'input',
-              name: 'creator_info.lastname',
-              responseKey: 'creator_info.lastname',
-              label: 'نام خانوادگی فروشنده',
-              placeholder: ' ',
-              disable: true,
-              col: 'col-md-4 col-12'
-            }
-          ]
+          type: 'input',
+          name: 'amount',
+          responseKey: 'owner_info.firstname',
+          label: 'نام صاحب سفارش',
+          placeholder: ' ',
+          disable: true,
+          col: 'col-md-6 col-12'
         },
         {
-          type: 'formBuilder',
-          name: 'formBuilderCol',
-          col: 'col-md-6',
-          gutterSize: 'lg',
-          value: [
-            {
-              type: 'input',
-              name: 'owner_info.firstname',
-              responseKey: 'owner_info.firstname',
-              label: 'نام خریداد',
-              placeholder: ' ',
-              disable: true,
-              col: 'col-md-4 col-12'
-            },
-            {
-              type: 'input',
-              name: 'owner_info.lastname',
-              responseKey: 'owner_info.lastname',
-              label: 'نام خانوادگی خریداد',
-              placeholder: ' ',
-              disable: true,
-              col: 'col-md-4 col-12'
-            }
-          ]
+          type: 'input',
+          name: 'amount',
+          responseKey: 'owner_info.lastname',
+          label: 'نام خانوادگی صاحب سفارش',
+          placeholder: ' ',
+          disable: true,
+          col: 'col-md-6 col-12'
         },
         {
           type: 'hidden',
@@ -186,6 +214,7 @@ export default {
       this.$refs.entityEdit.getData()
     },
     afterLoadInputData (response) {
+      this.invoice = new Invoice(response)
       this.serviceTitle = response.title
       this.entityLoading = false
     },
@@ -230,6 +259,85 @@ export default {
   }
   :deep(.form) {
     padding: 24px;
+  }
+
+  .selectedProductsList {
+    width: 100%;
+
+    .selectedProductsList-row {
+      display: flex;
+      flex-flow: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: solid 1px #F6F6F6;
+
+      &.head {
+        .selectedProductsList-title {
+          color: #6589C3;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 140%;
+        }
+
+        .selectedProductsList-price,
+        .selectedProductsList-count {
+          color: #6589C3;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 140%;
+        }
+      }
+
+      &.footer {
+        .selectedProductsList-title {
+          color: #2FA84A;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 140%;
+        }
+
+        .selectedProductsList-price {
+          color: #2FA84A;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 140%;
+        }
+      }
+
+      .selectedProductsList-title {
+        width: calc(100% - 200px);
+        color: #272727;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 140%;
+      }
+
+      .selectedProductsList-count {
+        width: 50px;
+        color: #272727;
+        font-size: 16px;
+        line-height: 140%;
+      }
+
+      .selectedProductsList-price {
+        width: 150px;
+        color: #272727;
+        font-size: 16px;
+        line-height: 140%;
+      }
+    }
+
+    :deep(.form) {
+      padding: 24px;
+
+      .action {
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-end;
+        margin-top: 32px;
+      }
+    }
   }
 }
 </style>
