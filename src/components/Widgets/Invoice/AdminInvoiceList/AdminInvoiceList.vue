@@ -75,6 +75,13 @@ export default {
             field: row => row.title
           },
           {
+            name: 'owner_info',
+            required: true,
+            label: 'صاحب سفارش',
+            align: 'left',
+            field: row => row.owner_info.firstname + ' ' + row.owner_info.lastname
+          },
+          {
             name: 'creation_time',
             required: true,
             label: 'تاریخ صورت‌حساب',
