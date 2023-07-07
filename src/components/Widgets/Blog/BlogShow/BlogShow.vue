@@ -75,7 +75,8 @@ export default {
   }
   .thumbnail {
     width: 100%;
-    margin-bottom: 72px;
+    max-width: 300px;
+    margin: 0 auto 72px auto;
     .q-img {
       width: 100%;
       //border-radius: 24px;
