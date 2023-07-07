@@ -122,6 +122,12 @@ export default {
         name: 'type',
         value: shopServiceNameInRouteParams.toUpperCase()
       })
+    } else {
+      this.inputs.push({
+        type: 'hidden',
+        name: 'type',
+        value: 'SERVICE'
+      })
     }
   }
 }

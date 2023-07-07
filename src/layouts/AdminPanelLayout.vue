@@ -59,16 +59,16 @@ export default {
               route: { name: 'AdminPanel.Service.List' }
             },
             {
-              label: 'ثبت نام',
-              icon: 'panorama_photosphere',
-              route: { name: 'AdminPanel.Event.List' }
+              label: 'سفارشات',
+              icon: 'reorder',
+              route: { name: 'AdminPanel.Invoice.List' }
             }
           ]
         },
         {
-          label: 'سفارشات',
-          icon: 'reorder',
-          route: { name: 'AdminPanel.Invoice.List' }
+          label: 'ثبت نام',
+          icon: 'panorama_photosphere',
+          route: { name: 'AdminPanel.Event.List' }
         },
         {
           label: 'کافه',
