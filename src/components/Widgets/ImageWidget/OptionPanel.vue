@@ -47,15 +47,18 @@
                 <q-select v-model="localOptions.action.type"
                           :options="actionTypes" />
               </div>
-              <div class="col-9">
+              <div v-if="localOptions.action.type === 'link'"
+                   class="col-9">
                 <q-input v-model="localOptions.action.route"
                          label="route" />
               </div>
-              <div class="col-6">
+              <div v-if="localOptions.action.type === 'event'"
+                   class="col-6">
                 <q-input v-model="localOptions.action.eventName"
                          label="event name" />
               </div>
-              <div class="col-6">
+              <div v-if="localOptions.action.type === 'event'"
+                   class="col-6">
                 <q-input v-model="localOptions.action.eventArgs"
                          label="event args" />
               </div>
@@ -81,7 +84,7 @@ export default defineComponent({
     return {
       size: 'xs',
       sizeOptions: ['xs', 'sm', 'md', 'lg', 'xl'],
-      actionTypes: ['event', 'scroll', 'link'],
+      actionTypes: ['event', 'link', 'full-view'],
       defaultOptions: {
         imageSource: null,
         ratio: null,

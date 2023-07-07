@@ -7,6 +7,23 @@
          :style="localOptions.style"
          :class="localOptions.className"
          @click="takeAction(localOptions.action)" />
+  <q-dialog v-model="showFullView"
+            full-width
+            full-height>
+    <div>
+      <q-btn v-close-popup
+             round
+             color="red"
+             icon="close"
+             class="absolute cursor-pointer z-top" />
+      <q-img :src="getImageSource(localOptions)"
+             :ratio="localOptions.ratio"
+             spinner-color="primary"
+             :width="getImageWidth(localOptions)"
+             :height="getImageHeight(localOptions)"
+             class="full-width" />
+    </div>
+  </q-dialog>
 </template>
 
 <script>
@@ -17,6 +34,7 @@ export default {
   mixins: [mixinPrefetchServerData, mixinWidget],
   data() {
     return {
+      showFullView: false,
       windowWidth: 0,
       defaultOptions: {
         imageSource: null,
@@ -125,12 +143,14 @@ export default {
     takeAction(action) {
       if (this.callBack) {
         this.callBack()
-      } else if (action.name === 'scroll') {
+      } else if (action.type === 'scroll') {
         this.scrollToElement(action.scrollTo)
-      } else if (action.name === 'link') {
+      } else if (action.type === 'link') {
         this.router.push(action.route)
-      } else if (action.name === 'event') {
+      } else if (action.type === 'event') {
         this.$bus.emit(action.eventName, action.eventArgs)
+      } else if (action.type === 'full-view') {
+        this.showFullView = true
       }
     }
   }
