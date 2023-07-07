@@ -79,7 +79,14 @@
       </q-card-section>
     </q-card>
     <div class="action q-mt-lg">
+      <q-card v-if="invoice.status!=='PAYING'"
+              class="q-mb-md">
+        <q-card-section>
+          تنها در صورتی که وضعیت سفارش در حال پرداخت باشد امکان پرداخت با کیف پول وجود دارد
+        </q-card-section>
+      </q-card>
       <q-btn color="green"
+             :disable="invoice.status!=='PAYING'"
              class="q-px-xl"
              @click="pay">
         پرداخت با کیف پول
