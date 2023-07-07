@@ -7,7 +7,8 @@
          :style="localOptions.style"
          :class="localOptions.className"
          @click="takeAction(localOptions.action)" />
-  <q-dialog v-model="showFullView"
+  <q-dialog v-if="localOptions.action.type === 'full-view'"
+            v-model="showFullView"
             full-width
             full-height>
     <div>

@@ -71,6 +71,14 @@ const routes = [
             component: () => import('src/pages/Public/AboutUs.vue')
           },
           {
+            path: 'gallery',
+            name: 'Public.Gallery',
+            meta: {
+              hasDynamicSetting: true
+            },
+            component: () => import('src/pages/Public/Gallery.vue')
+          },
+          {
             path: 'blog',
             name: 'Public.Blog',
             component: () => import('layouts/bareLayout.vue'),
