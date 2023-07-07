@@ -66,6 +66,13 @@ export default {
             field: row => row.id
           },
           {
+            name: 'title',
+            required: true,
+            label: 'پکیج یا خدمت',
+            align: 'left',
+            field: row => row.title
+          },
+          {
             name: 'creation_time',
             required: true,
             label: 'تاریخ صورت‌حساب',
