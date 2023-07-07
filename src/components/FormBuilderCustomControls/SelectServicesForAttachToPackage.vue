@@ -6,7 +6,7 @@
       <div class="col-md-4 col-12 serviceCol">
         <div class="label">
           نام خدمت
-          ({{localServices[serviceIndex].service_info.title}})
+          ({{packageData.title}})
         </div>
         <div class="input">
           <entity-input v-model:value="localServices[serviceIndex].service"
@@ -58,6 +58,7 @@
 
 <script>
 import { EntityInput } from 'quasar-crud'
+import { Package } from 'src/models/Package.js'
 import { Service } from 'src/models/Service.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 
@@ -65,6 +66,10 @@ export default {
   name: 'SelectServicesForAttachToPackage',
   components: { EntityInput },
   props: {
+    packageData: {
+      type: Package,
+      default: new Package()
+    },
     services: {
       type: Array,
       default: () => []
@@ -204,6 +209,7 @@ export default {
   },
   created () {
     this.inputData = this.value
+    console.log('localServices', this.localServices)
   },
   methods: {
     addServiceRow () {

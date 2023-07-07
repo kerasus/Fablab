@@ -57,6 +57,7 @@
       <div class="AttachServiceSection q-mt-lg">
         <select-services-for-attach-to-package v-model:services="services"
                                                v-model:loading="entityLoading"
+                                               :package-data="packageData"
                                                @updated="onUpdateServices" />
       </div>
     </q-card>
@@ -65,6 +66,7 @@
 
 <script>
 import { EntityEdit } from 'quasar-crud'
+import { Package } from 'src/models/Package.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 import SelectServicesForAttachToPackage from 'src/components/FormBuilderCustomControls/SelectServicesForAttachToPackage.vue'
@@ -82,6 +84,7 @@ export default {
       entityLoading: true,
       packageTitle: '',
       services: [],
+      packageData: new Package(),
       api: APIGateway.package.APIAdresses.base,
       entityIdKey: 'id',
       entityParamKey: 'id',
@@ -142,6 +145,7 @@ export default {
     },
     afterLoadInputData (response) {
       this.packageTitle = response.title
+      this.packageData = new Package(response)
       this.services = response.services_relation_info
       this.entityLoading = false
     },
