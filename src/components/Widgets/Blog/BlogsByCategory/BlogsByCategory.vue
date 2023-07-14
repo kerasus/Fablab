@@ -9,7 +9,8 @@
               dir="rtl">
       <slide v-for="media in mediaList.list"
              :key="media.id">
-        <blog-item :media="media" />
+        <blog-item :media="media"
+                   @click="toBlog(media.id)" />
       </slide>
 
       <template #addons="{ slidesCount }">
@@ -51,6 +52,9 @@ export default {
     this.mounted = true
   },
   methods: {
+    toBlog (mediaId) {
+      this.$router.push({ name: 'Public.Blog.Show', params: { id: mediaId } })
+    },
     prefetchServerDataPromise () {
       return this.getApiRequest()
     },
