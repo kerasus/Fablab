@@ -146,8 +146,9 @@ const routes = [
         layoutConfig: {
           layoutHeader: false,
           layoutHeaderVisible: false,
-          layoutLeftDrawer: false,
+          layoutLeftDrawer: true,
           layoutLeftDrawerVisible: false,
+          layoutLeftSideBarType: 'dashboard',
           layoutFooter: false,
           layoutFooterVisible: false
         },
