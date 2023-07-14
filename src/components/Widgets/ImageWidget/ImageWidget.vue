@@ -5,8 +5,8 @@
          :width="getImageWidth(localOptions)"
          :height="getImageHeight(localOptions)"
          :style="localOptions.style"
-         :class="localOptions.className"
-         @click="takeAction(localOptions.action)" />
+         :class="computedClass"
+         @click="takeAction" />
   <q-dialog v-if="localOptions.action.type === 'full-view'"
             v-model="showFullView"
             full-width
@@ -76,6 +76,11 @@ export default {
       }
     }
   },
+  computed: {
+    computedClass () {
+      return this.localOptions.className + ((this.localOptions.action.type) ? ' cursor-pointer' : '')
+    }
+  },
   mounted() {
     this.windowWidth = window.innerWidth
     window.addEventListener('resize', this.onResize)
@@ -141,13 +146,28 @@ export default {
         return ''
       }
     },
-    takeAction(action) {
+    isExternal(url) {
+      if (typeof window === 'undefined') {
+        return true
+      }
+      // return ((url.indexOf(':') > -1 || url.indexOf('//') > -1) && this.checkDomain(window.location.href) !== this.checkDomain(url))
+      // return ((url.indexOf('http://') > -1 || url.indexOf('https://') > -1) && this.checkDomain(window.location.href) !== this.checkDomain(url))
+      return (url.indexOf('http://') > -1 || url.indexOf('https://') > -1)
+    },
+    takeAction(event) {
+      event.preventDefault()
+      event.stopPropagation()
+      const action = this.localOptions.action
       if (this.callBack) {
         this.callBack()
       } else if (action.type === 'scroll') {
         this.scrollToElement(action.scrollTo)
       } else if (action.type === 'link') {
-        this.router.push(action.route)
+        if (this.isExternal(action.route)) {
+          window.location.href = this.localOptions.action.route
+        } else {
+          this.$router.push(this.localOptions.action.route)
+        }
       } else if (action.type === 'event') {
         this.$bus.emit(action.eventName, action.eventArgs)
       } else if (action.type === 'full-view') {
