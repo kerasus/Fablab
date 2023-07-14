@@ -84,28 +84,28 @@ export default {
           ]
         },
         { type: 'select', name: 'hashtags', responseKey: 'hashtags', options: [], multiple: true, label: 'تگ های مناسبت', col: 'col-md-12 col-12' },
-        { type: 'tiptap-editor', name: 'description', responseKey: 'description', label: 'متن', col: 'col-md-12 col-12' },
-        // {
-        //   type: 'tiptap-editor',
-        //   name: 'description',
-        //   responseKey: 'description',
-        //   label: 'متن',
-        //   options: {
-        //     bubbleMenu: false,
-        //     floatingMenu: false,
-        //     poem: false,
-        //     reading: false,
-        //     persianKeyboard: true,
-        //     mathliveOptions: { smartFence: false },
-        //     uploadServer: {
-        //       url: 'API_ADDRESS.media.upload',
-        //       instantUpload: true,
-        //       responseKey: 'file',
-        //       headers: { Authorization: 'Bearer ' + 'Auth/accessToken' }
-        //     }
-        //   },
-        //   col: 'col-md-12 col-12'
-        // },
+        // { type: 'tiptap-editor', name: 'description', responseKey: 'description', label: 'متن', col: 'col-md-12 col-12' },
+        {
+          type: 'tiptap-editor',
+          name: 'description',
+          responseKey: 'description',
+          label: 'متن',
+          options: {
+            bubbleMenu: false,
+            floatingMenu: false,
+            poem: false,
+            reading: false,
+            persianKeyboard: true,
+            mathliveOptions: { smartFence: false },
+            uploadServer: {
+              url: '/app/api' + APIGateway.media.APIAdresses.base,
+              instantUpload: true,
+              responseKey: 'file',
+              headers: { Authorization: null }
+            }
+          },
+          col: 'col-md-12 col-12'
+        },
         { type: 'input', name: 'iframe_code', responseKey: 'iframe_code', label: 'iframe', col: 'col-md-12 col-12' },
         { type: 'input', name: 'script_code', responseKey: 'script_code', label: 'script', col: 'col-md-12 col-12' },
         { type: 'input', name: 'url', responseKey: 'url', label: 'url', col: 'col-md-12 col-12' },
@@ -114,6 +114,9 @@ export default {
       ]
     }
   },
+  created () {
+    this.setImageUploaderToken()
+  },
   mounted() {
     this.loadOptions()
     this.$nextTick(() => {
@@ -121,6 +124,10 @@ export default {
     })
   },
   methods: {
+    setImageUploaderToken () {
+      const target = this.inputs.findIndex(item => item.name === 'description')
+      this.inputs[target].options.uploadServer.headers.Authorization = 'Bearer ' + this.$store.getters['Auth/accessToken']
+    },
     create() {
       this.entityLoading = true
       this.$refs.entityCreate.createEntity()
