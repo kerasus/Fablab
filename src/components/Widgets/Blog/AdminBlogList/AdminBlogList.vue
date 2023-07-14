@@ -75,7 +75,7 @@ export default {
             required: true,
             label: 'دسته',
             align: 'left',
-            field: row => row.category_info.title
+            field: row => row.category_info?.title
           },
           {
             name: 'status',
