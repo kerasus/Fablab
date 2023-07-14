@@ -2,7 +2,7 @@
   <q-card>
     <q-card-section>
       <div>
-        ({{ file }})
+        ({{ value || file }})
       </div>
       <entity-create ref="entityCreate"
                      v-model:value="inputs"
@@ -38,6 +38,10 @@ export default {
   name: 'ImageUploader',
   components: { EntityCreate },
   props: {
+    value: {
+      type: String,
+      default: null
+    },
     file: {
       type: String,
       default: null
@@ -70,6 +74,7 @@ export default {
     },
     afterSendData (response) {
       this.$emit('update:file', response.data.file)
+      this.$emit('update:value', "url('" + response.data.file + "')")
     }
   }
 }

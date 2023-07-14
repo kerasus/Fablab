@@ -1,5 +1,8 @@
 <template>
   <option-panel-tabs v-model:options="localOptions">
+    <template #backgroundImageSrcInput>
+      aaaaa
+    </template>
     <template #main-tab>
       <div class="option-panel-container">
         <div class="row q-col-gutter-md">
