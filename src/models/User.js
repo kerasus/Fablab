@@ -51,7 +51,8 @@ class User extends Model {
       this.id = this.user_id
     }
     if (!this.picture) {
-      this.picture = '/img/custom/Mask_group2.png'
+      this.picture = '/img/default-avatar.png'
+      // this.picture = '/img/custom/Mask_group2.png'
     }
   }
 
