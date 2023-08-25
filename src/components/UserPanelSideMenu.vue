@@ -57,7 +57,7 @@
         </div>
         <div style="margin-bottom: 40px;">
           موجودی فعلی:
-          ۱۰۰,۰۰۰
+          {{ (wallet.inventory) ? wallet.inventory.toLocaleString('fa') : 0 }}
           تومان
         </div>
         <div class="flex justify-between"

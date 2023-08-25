@@ -41,10 +41,15 @@
 </template>
 
 <script>
+import { shallowRef } from 'vue'
 import { Media } from 'src/models/Media.js'
 import { EntityCreate } from 'quasar-crud'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
+import { FormBuilderAssist } from 'quasar-form-builder'
+import FormBuilderTiptapEditor from 'src/components/FormBuilderTiptapEditor.vue'
+
+const FormBuilderTiptapEditorComp = shallowRef(FormBuilderTiptapEditor)
 
 export default {
   name: 'AdminBlogCreate',
@@ -84,9 +89,8 @@ export default {
           ]
         },
         { type: 'select', name: 'hashtags', responseKey: 'hashtags', options: [], multiple: true, label: 'تگ های مناسبت', col: 'col-md-12 col-12' },
-        // { type: 'tiptap-editor', name: 'description', responseKey: 'description', label: 'متن', col: 'col-md-12 col-12' },
         {
-          type: 'tiptap-editor',
+          type: FormBuilderTiptapEditorComp,
           name: 'description',
           responseKey: 'description',
           label: 'متن',
@@ -106,6 +110,7 @@ export default {
           },
           col: 'col-md-12 col-12'
         },
+
         { type: 'input', name: 'iframe_code', responseKey: 'iframe_code', label: 'iframe', col: 'col-md-12 col-12' },
         { type: 'input', name: 'script_code', responseKey: 'script_code', label: 'script', col: 'col-md-12 col-12' },
         { type: 'input', name: 'url', responseKey: 'url', label: 'url', col: 'col-md-12 col-12' },
@@ -114,10 +119,8 @@ export default {
       ]
     }
   },
-  created () {
-    this.setImageUploaderToken()
-  },
   mounted() {
+    this.setImageUploaderToken()
     this.loadOptions()
     this.$nextTick(() => {
       this.mounted = true
@@ -125,8 +128,9 @@ export default {
   },
   methods: {
     setImageUploaderToken () {
-      const target = this.inputs.findIndex(item => item.name === 'description')
-      this.inputs[target].options.uploadServer.headers.Authorization = 'Bearer ' + this.$store.getters['Auth/accessToken']
+      const oldOptions = FormBuilderAssist.getInputsByName(this.inputs, 'description').options
+      oldOptions.uploadServer.headers.Authorization = 'Bearer ' + this.$store.getters['Auth/accessToken']
+      FormBuilderAssist.setAttributeByName(this.inputs, 'description', 'options', oldOptions)
     },
     create() {
       this.entityLoading = true

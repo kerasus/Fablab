@@ -59,12 +59,16 @@
 </template>
 
 <script>
+import { shallowRef } from 'vue'
+import FormBuilderTiptapEditor from 'src/components/FormBuilderTiptapEditor.vue'
 import { EntityEdit } from 'quasar-crud'
 import { Media } from 'src/models/Media.js'
 import { MediaCategoryList } from 'src/models/MediaCategory.js'
 import { MediaHashtagList } from 'src/models/MediaHashtag.js'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
+
+const FormBuilderTiptapEditorComp = shallowRef(FormBuilderTiptapEditor)
 
 export default {
   name: 'AdminBlogShow',
@@ -112,7 +116,8 @@ export default {
         { type: 'select', name: 'hashtags', responseKey: 'hashtags', options: [], multiple: true, label: 'تگ های مناسبت', col: 'col-md-12 col-12' },
         // { type: 'inputEditor', name: 'description', responseKey: 'description', label: 'متن', col: 'col-md-12 col-12' },
         {
-          type: 'tiptap-editor',
+          // type: 'tiptap-editor',
+          type: FormBuilderTiptapEditorComp,
           name: 'description',
           responseKey: 'description',
           label: 'متن',
