@@ -904,6 +904,9 @@ export default {
   //         }
   //       }]
   //   }
+  // },
+  // mounted() {
+  //   this.currenSections = this.sections
   // }
 }
 </script>
