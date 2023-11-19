@@ -13,7 +13,7 @@
             خوش آمدید
           </div>
           <div class="full-name">
-            محمد راوش
+            کاربر
           </div>
         </div>
         <div class="items-section">
