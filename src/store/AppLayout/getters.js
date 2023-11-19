@@ -11,6 +11,9 @@ const getters = {
   loginDialog: (state) => {
     return state.loginDialog
   },
+  loginDialogPersistent: (state) => {
+    return state.loginDialogPersistent
+  },
   confirmDialog: (state) => {
     return state.confirmDialog
   },
@@ -31,6 +34,9 @@ const getters = {
   },
   layoutRightSideBarType: (state) => {
     return state.layoutRightSideBarType
+  },
+  layoutFooterType: (state) => {
+    return state.layoutFooterType
   },
   breadcrumbs: (state) => {
     return state.breadcrumbs

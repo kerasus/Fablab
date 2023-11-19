@@ -1,6 +1,6 @@
 <template>
   <div class="main-layout">
-    <quasar-template-builder @onResize="resize">
+    <quasar-template-builder>
       <template #header>
         <template-header :type="getTemplateHeaderType" />
         <q-linear-progress v-if="$store.getters['loading/loading']"
@@ -56,7 +56,7 @@
 <script>
 import { User } from 'src/models/User.js'
 import Router from 'src/router/Router.vue'
-import AuthLogin from 'components/Auth/Auth.vue'
+import AuthLogin from 'src/components/Auth/Auth.vue'
 import AppFooter from 'src/components/Template/AppFooter.vue'
 import KeepAliveComponents from 'src/assets/js/KeepAliveComponents.js'
 import templateHeader from 'src/components/Template/Header/TemplateHeader.vue'
@@ -66,9 +66,9 @@ import FloatingActionButton from 'components/Template/FloatingActionButton/Float
 
 export default {
   components: {
-    AuthLogin,
     Router,
     AppFooter,
+    AuthLogin,
     templateHeader,
     TemplateSideBar,
     FloatingActionButton,

@@ -54,7 +54,7 @@ export default {
 
 <style scoped lang="scss">
 .text-widget-container {
-  @media screen and(max-width: 599px) {
+  @media screen and (max-width: 599px) {
     //display: flex;
     //width: 100%;
   }

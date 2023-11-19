@@ -2,6 +2,7 @@ const state = {
   drawer: false,
   pageBuilderEditable: false,
   loginDialog: false,
+  loginDialogPersistent: false,
   confirmDialog: {
     show: false,
     message: '',
@@ -10,6 +11,7 @@ const state = {
   layoutHeaderType: '',
   layoutLeftSideBarType: '',
   layoutRightSideBarType: '',
+  layoutFooterType: '',
   // layoutRightSideBarType: '',
   windowSize: {
     x: 0,
