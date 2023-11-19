@@ -60,7 +60,41 @@ const routes = [
             meta: {
               hasDynamicSetting: true
             },
-            component: () => import('src/pages/Public/FabFamily.vue')
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              {
+                path: '',
+                name: 'Public.FabFamily.Index',
+                meta: {
+                  hasDynamicSetting: true
+                },
+                component: () => import('src/pages/Public/FabFamily/Index.vue')
+              },
+              {
+                path: 'fabfactory',
+                name: 'Public.FabFamily.Factory',
+                meta: {
+                  hasDynamicSetting: true
+                },
+                component: () => import('src/pages/Public/FabFamily/Factory.vue')
+              },
+              {
+                path: 'fabcafe',
+                name: 'Public.FabFamily.Cafe',
+                meta: {
+                  hasDynamicSetting: true
+                },
+                component: () => import('src/pages/Public/FabFamily/Cafe.vue')
+              },
+              {
+                path: 'fabkids',
+                name: 'Public.FabFamily.Kids',
+                meta: {
+                  hasDynamicSetting: true
+                },
+                component: () => import('src/pages/Public/FabFamily/Kids.vue')
+              }
+            ]
           },
           {
             path: 'about-us',

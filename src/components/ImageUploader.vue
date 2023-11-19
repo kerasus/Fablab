@@ -4,6 +4,8 @@
       <div>
         ({{ value || file }})
       </div>
+      <q-input v-model="localFile"
+               label="آدرس فایل عکس" />
       <entity-create ref="entityCreate"
                      v-model:value="inputs"
                      title="آپلود تصویر"
@@ -47,6 +49,7 @@ export default {
       default: null
     }
   },
+  emits: ['update:value', 'update:file'],
   data: () => {
     return {
       entityLoading: false,
@@ -57,8 +60,20 @@ export default {
       indexRouteName: 'AdminPanel.Service.List',
       inputs: [
         { type: 'file', name: 'file', responseKey: 'file', label: 'فایل تصویر', col: 'col-md-6 col-12' },
+        { type: 'hidden', name: 'source_type', value: 'SETTING' },
         { type: 'hidden', name: 'type', value: 'VIDEO' }
       ]
+    }
+  },
+  computed: {
+    localFile: {
+      get () {
+        return this.file
+      },
+      set (newValue) {
+        this.$emit('update:file', newValue)
+        this.$emit('update:value', "url('" + newValue + "')")
+      }
     }
   },
   methods: {

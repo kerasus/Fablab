@@ -78,6 +78,7 @@
               </div>
               <div v-if="localOptions.action.name === 'link'">
                 <q-input v-model="localOptions.action.route"
+                         dir="ltr"
                          label="route" />
               </div>
               <div v-if="localOptions.action.name === 'event'">

@@ -198,7 +198,7 @@ export default {
     onClickLink (event) {
       event.preventDefault()
       event.stopPropagation()
-      if (this.parentComponent === 'a') {
+      if (this.parentComponent === 'a' || this.localOptions.action.route.toString().charAt(0) === '/') {
         window.location.href = this.localOptions.action.route
       } else if (this.parentComponent === 'router-link') {
         this.$router.push(this.localOptions.action.route)
