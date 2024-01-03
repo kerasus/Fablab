@@ -1,0 +1,14 @@
+<template>
+  <q-page-builder v-model:sections="currenSections"
+                  v-model:options="pageConfig"
+                  :editable="false" />
+</template>
+
+<script>
+import { mixinSEO, mixinPageOptions, mixinPrefetchServerData } from 'src/mixin/Mixins.js'
+
+export default {
+  name: 'BasicDynamicPage',
+  mixins: [mixinPrefetchServerData, mixinPageOptions, mixinSEO]
+}
+</script>
