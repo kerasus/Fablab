@@ -86,7 +86,8 @@ export default {
   computed: {
     canShowFloatingActionBtn () {
       // return true
-      return this.hasDynamicSetting || this.hasDynamicSettingWithParams
+      return this.user.isSuperUser() && (this.hasDynamicSetting || this.hasDynamicSettingWithParams)
+      // return this.hasDynamicSetting || this.hasDynamicSettingWithParams
     },
     hasDynamicSetting () {
       return !!this.$route.meta?.hasDynamicSetting
