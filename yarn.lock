@@ -1449,11 +1449,6 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@socket.io/component-emitter@~3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
-  integrity sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==
-
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-2.2.3.tgz#ee34985952ca21558ab0d952f00298ad2190c053"
@@ -1934,11 +1929,6 @@
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-2.3.4.tgz#966a6279060eb2d9d1a02ea1a331af071afdcf9e"
   integrity sha512-IfFNbtkbIm36O9KB8QodlwwYvTEsJb4Lll4c2IwB3VHc2gie2mSPtSzL0eYay7X2jd/2WX02FjSGTWR6OPr/zg==
 
-"@vue-leaflet/vue-leaflet@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@vue-leaflet/vue-leaflet/-/vue-leaflet-0.7.0.tgz#5497ede3346ca3bd009c5636dba2512ea01579d7"
-  integrity sha512-YY1bcg+7ftGZk4ihCOckOSFMfuhimGxEpPabtpBpaaaquABliB0dkANNFx5d8Y5Vadko5Yjc8Vq74hb/dg4gQw==
-
 "@vue/compiler-core@3.2.47":
   version "3.2.47"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.2.47.tgz#3e07c684d74897ac9aa5922c520741f3029267f8"
@@ -2370,21 +2360,21 @@ axios@^1.2.1:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
-axios@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.2.tgz#de67d42c755b571d3e698df1b6504cde9b0ee9f2"
-  integrity sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==
-  dependencies:
-    follow-redirects "^1.15.0"
-    form-data "^4.0.0"
-    proxy-from-env "^1.1.0"
-
 axios@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.3.tgz#7f50f23b3aa246eff43c54834272346c396613f4"
   integrity sha512-fWyNdeawGam70jXSVlKl+SUNVcL6j6W79CuSIPfi6HnDUmSCH6gyUys/HrqHeA/wU0Az41rRgean494d0Jb+ww==
   dependencies:
     follow-redirects "^1.15.0"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.7.tgz#7b48c2e27c96f9c68a2f8f31e2ab19f59b06b0a7"
+  integrity sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==
+  dependencies:
+    follow-redirects "^1.15.4"
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
@@ -2908,7 +2898,7 @@ debug@^3.2.7:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4, debug@~4.3.1, debug@~4.3.2:
+debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -3063,22 +3053,6 @@ end-of-stream@^1.4.1:
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   dependencies:
     once "^1.4.0"
-
-engine.io-client@~6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/engine.io-client/-/engine.io-client-6.4.0.tgz#88cd3082609ca86d7d3c12f0e746d12db4f47c91"
-  integrity sha512-GyKPDyoEha+XZ7iEqam49vz6auPnNJ9ZBfy89f+rMMas8AuiMWOZ9PVzu8xb9ZC6rafUqiGHSCfu22ih66E+1g==
-  dependencies:
-    "@socket.io/component-emitter" "~3.1.0"
-    debug "~4.3.1"
-    engine.io-parser "~5.0.3"
-    ws "~8.11.0"
-    xmlhttprequest-ssl "~2.0.0"
-
-engine.io-parser@~5.0.3:
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/engine.io-parser/-/engine.io-parser-5.0.6.tgz#7811244af173e157295dec9b2718dfe42a64ef45"
-  integrity sha512-tjuoZDMAdEhVnSFleYPCtdL2GXwVTGtNjoeJd9IhIG3C1xs9uwxqRNEu5WpnDZCaozwVlK/nuQhpodhXSIMaxw==
 
 entities@~3.0.1:
   version "3.0.1"
@@ -3816,6 +3790,11 @@ follow-redirects@^1.14.4, follow-redirects@^1.15.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
+
+follow-redirects@^1.15.4:
+  version "1.15.5"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.5.tgz#54d4d6d062c0fa7d9d17feb008461550e3ba8020"
+  integrity sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==
 
 for-each@^0.3.3:
   version "0.3.3"
@@ -5510,29 +5489,29 @@ qs@6.11.0:
   dependencies:
     side-channel "^1.0.4"
 
-quasar-app-extension-q-page-builder@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/quasar-app-extension-q-page-builder/-/quasar-app-extension-q-page-builder-0.4.4.tgz#e7af235ca8a71dbd6a7ffcb9b39182e9f841ce81"
-  integrity sha512-whu85MB6ZXpKxw3O3ves2YnHW75xLwUxvnF/11Tzf+WfK3o7cemE+WpgY7mqGXJL1V62YyvQpe/FkWvZTKm1gg==
+quasar-app-extension-q-page-builder@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/quasar-app-extension-q-page-builder/-/quasar-app-extension-q-page-builder-1.0.1.tgz#28ec7b150eafa7ea168a32983c39ed0813c23251"
+  integrity sha512-6v6x9fpNbgvMVSvlabCaaF6tCnpXaFPyttDFWFF8A65L2O9BGH2Bf3VKDSax6D8p/VstbcbyZWTVDqrBwhkvgg==
   dependencies:
-    quasar-ui-q-page-builder "^0.4.4"
+    quasar-ui-q-page-builder "^1.0.1"
 
-quasar-crud@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/quasar-crud/-/quasar-crud-1.0.3.tgz#4e056a49857e6d3a416d94735cae9e0f4516ee8c"
-  integrity sha512-ub5tYILpfFbr6e6X4pILTRYoekpv65tZO9H+13/58G3gUZF0XjrZ/05JK/ksZiBH1JmUcNtcAQYlYlGo7VMw1g==
+quasar-crud@^1.0.9:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/quasar-crud/-/quasar-crud-1.4.0.tgz#23e8f840e1f74819c0aa0f7e2deed75d4c42288a"
+  integrity sha512-xTEpviuDf/m0z7Od60Pl+enOEpD2UkkCCVukao+ZZ7jYuECoAb8t0UxZpx1w46CQGvkpBXLwOalDqgfSHmSG+Q==
   dependencies:
     "@quasar/extras" "^1.16.9"
-    axios "^1.6.2"
+    axios "^1.6.7"
     moment-jalaali "^0.10.0"
-    quasar "^2.14.2"
-    quasar-form-builder "^1.0.2"
+    quasar "^2.14.3"
+    quasar-form-builder "^1.0.6"
     shvl "^3.0.0"
 
-quasar-form-builder@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/quasar-form-builder/-/quasar-form-builder-1.0.2.tgz#fe4b04165561f24a79cd39aa45659343b79a92c8"
-  integrity sha512-yRtU6UWNLOhnxW525Unpw32nq0wuZoRXigGeJ/G0TOB93kHcyR2Aoz+FyRypPJyQiYw+SCTK84yIrA1OXjMo0Q==
+quasar-form-builder@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/quasar-form-builder/-/quasar-form-builder-1.0.6.tgz#3f8caab7c1544d9c74f10a0bf34684703a39e7a6"
+  integrity sha512-Q7DHlVUsDmk3EMpBfE1K9Ih1VHeMYcGkTjvkqDa4MS2yBUa23glMZhjlLrF0h+SM+agcyad9WsAd1CQSjbE5Hw==
   dependencies:
     "@quasar/extras" "^1.16.9"
     core-js "^3.34.0"
@@ -5540,19 +5519,19 @@ quasar-form-builder@^1.0.2:
     quasar "^2.14.2"
     shvl "^3.0.0"
 
-quasar-template-builder@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/quasar-template-builder/-/quasar-template-builder-1.1.1.tgz#14ff5632b2b827dba707052cd22a8c9d705f2e09"
-  integrity sha512-4pT/oKIHEQlq5EkFACg7Z4GOeyhJ+HHyMuPIzvIa8S1PyW5PX+NOWU/3YnRdWcpb3DuSahx7NumXHJtRmM50ZQ==
+quasar-template-builder@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/quasar-template-builder/-/quasar-template-builder-1.2.0.tgz#a14260e306b518c54aaef0521cf0d1cc8c671265"
+  integrity sha512-+TUvBvFIPtz1sVU8tBzlyvPIzCLRZgxoACc08cszyB2LhT0Ym2I74GKzRdSDIk4JMNVIAA9w2L6CdWLPckYrmQ==
   dependencies:
     "@quasar/extras" "^1.16.9"
     quasar "^2.14.2"
     vuex "^4.1.0"
 
-quasar-ui-q-page-builder@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/quasar-ui-q-page-builder/-/quasar-ui-q-page-builder-0.4.4.tgz#f9d67deecf4224afabb28c8761db7f77e422de6c"
-  integrity sha512-xO6SIXpQLFpyijDc2lVLZ7uo2atw7Gc7+JhefKQ5Rd1kLckfMeKXirZgbi2dcVTBWVbyZsMKt3qopbVbAzK4oQ==
+quasar-ui-q-page-builder@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/quasar-ui-q-page-builder/-/quasar-ui-q-page-builder-1.0.1.tgz#a2749cb16d0f88a0425e9dc7416a8d179325817b"
+  integrity sha512-2bMaEafDgahZNASnvsWKQaw76a9DWjNvMJz80nHMQHT4f7yRp7cULwlavSTp/dBlUtWmN3w+vyD1vKxw5UaPUA==
   dependencies:
     "@quasar/extras" "^1.16.1"
     "@vue/compiler-sfc" "^3.2.47"
@@ -5569,6 +5548,11 @@ quasar@^2.14.2:
   version "2.14.2"
   resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.14.2.tgz#794d8434eb449549fc8455aaec9bc14b71a57c98"
   integrity sha512-f5KliWtM5BEuFsDU4yvuP+dlVIWZNrGu5VpWFsxzjpoykcP4B2HIOUiCl3mx2NCqERHd4Ts0aeioRkt9TTeExA==
+
+quasar@^2.14.3:
+  version "2.14.6"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.14.6.tgz#d48d8c5d2844c286941fc656c59f4d623cceb344"
+  integrity sha512-/mG6TEH4vBHU1CqMXwijlYjwvmPsIGBmz/8NXbV6g1AVCfMXvol1SBQOI19OPfKK/oTMdq43HZbHQEO3WhSowg==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
@@ -6006,24 +5990,6 @@ slice-ansi@^4.0.0:
     ansi-styles "^4.0.0"
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
-
-socket.io-client@^4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/socket.io-client/-/socket.io-client-4.6.1.tgz#80d97d5eb0feca448a0fb6d69a7b222d3d547eab"
-  integrity sha512-5UswCV6hpaRsNg5kkEHVcbBIXEYoVbMQaHJBXJCyEQ+CiFPV1NIOY0XOFWG4XR4GZcB8Kn6AsRs/9cy9TbqVMQ==
-  dependencies:
-    "@socket.io/component-emitter" "~3.1.0"
-    debug "~4.3.2"
-    engine.io-client "~6.4.0"
-    socket.io-parser "~4.2.1"
-
-socket.io-parser@~4.2.1:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/socket.io-parser/-/socket.io-parser-4.2.2.tgz#1dd384019e25b7a3d374877f492ab34f2ad0d206"
-  integrity sha512-DJtziuKypFkMMHCm2uIshOYC7QaylbtzQwiMYDuCKy3OPkjLzu4B2vAhTlqipRHHzrI0NJeBAizTK7X+6m1jVw==
-  dependencies:
-    "@socket.io/component-emitter" "~3.1.0"
-    debug "~4.3.1"
 
 "source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.2:
   version "1.0.2"
@@ -7151,11 +7117,6 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
 
-ws@~8.11.0:
-  version "8.11.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.11.0.tgz#6a0d36b8edfd9f96d8b25683db2f8d7de6e8e143"
-  integrity sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==
-
 xhr@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/xhr/-/xhr-2.2.2.tgz#2ee72571869f8686d41559a9ea286c18971435ff"
@@ -7170,11 +7131,6 @@ xml-name-validator@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-4.0.0.tgz#79a006e2e63149a8600f15430f0a4725d1524835"
   integrity sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==
-
-xmlhttprequest-ssl@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/xmlhttprequest-ssl/-/xmlhttprequest-ssl-2.0.0.tgz#91360c86b914e67f44dce769180027c0da618c67"
-  integrity sha512-QKxVRxiRACQcVuQEYFsI1hhkrMlrXHPegbbd1yn9UHOmRxY+si12nQYzri3vbzt8VdTTRviqcKxcyllFas5z2A==
 
 xtend@^4.0.0:
   version "4.0.2"
