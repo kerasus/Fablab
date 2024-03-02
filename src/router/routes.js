@@ -334,7 +334,10 @@ const routes = [
           layoutFooter: false,
           layoutFooterVisible: false
         },
-        meta: { middlewares: [Authenticated] },
+        meta: {
+          hasDynamicSetting: true,
+          middlewares: [Authenticated]
+        },
         component: () => import('src/layouts/AdminPanelLayout.vue'),
         children: [
           {

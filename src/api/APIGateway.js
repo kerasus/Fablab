@@ -1,6 +1,7 @@
 import Auth from 'src/api/models/Auth.js'
 import User from 'src/api/models/User.js'
 import Role from 'src/api/models/Role.js'
+import Post from 'src/api/models/Post.js'
 import Team from 'src/api/models/Team.js'
 import Media from 'src/api/models/Media.js'
 import Event from 'src/api/models/Event.js'
@@ -27,6 +28,7 @@ export const APIGateway = {
   auth: new Auth(),
   user: new User(),
   role: new Role(),
+  post: new Post(),
   team: new Team(),
   media: new Media(),
   event: new Event(),
