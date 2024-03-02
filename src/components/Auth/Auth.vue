@@ -8,10 +8,11 @@
                         size="5em" />
       </div>
       <div v-else>
-        <div v-if="defaultLayout"
-             class="header">
+        <router-link v-if="defaultLayout"
+                     :to="{name: 'Public.Home'}"
+                     class="header">
           فب لب
-        </div>
+        </router-link>
         <div v-if="defaultLayout"
              class="sub-header">
           ورود
@@ -163,6 +164,7 @@ export default {
     justify-content: center;
   }
   .header{
+    display: block;
     text-align: center;
     margin-bottom: 50px;
     font-style: normal;

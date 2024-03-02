@@ -8,10 +8,11 @@
                         size="5em" />
       </div>
       <div v-else>
-        <div v-if="defaultLayout"
-             class="header">
+        <router-link v-if="defaultLayout"
+                     :to="{name: 'Public.Home'}"
+                     class="header">
           فب لب
-        </div>
+        </router-link>
         <q-tab-panels v-model="step"
                       animated>
           <q-tab-panel name="input-mobile">
@@ -333,7 +334,8 @@ export default {
     align-items: center;
     justify-content: center;
   }
-  .header{
+  .header {
+    display: block;
     text-align: center;
     margin-bottom: 50px;
     font-style: normal;
