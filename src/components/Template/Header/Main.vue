@@ -165,15 +165,11 @@ export default {
       user: new User(),
       isAdmin: false,
       isUserLogin: false,
-      items: menuItems
-    }
-  },
-  computed: {
-    profileTitlesList () {
-      const items = [
+      items: menuItems,
+      profileTitlesList: [
         {
           title: 'داشبورد',
-          icon: 'isax:gift',
+          icon: 'isax:document',
           routeName: 'UserPanel.Dashboard',
           params: null,
           permission: 'all',
@@ -181,21 +177,9 @@ export default {
           children: []
         }
       ]
-
-      if (this.user.isSuperuser()) {
-        items.push({
-          title: 'پنل ادمین',
-          icon: 'isax:gift',
-          routeName: 'AdminPanel.Dashboard',
-          params: null,
-          permission: 'all',
-          active: false,
-          children: []
-        })
-      }
-
-      return items
-    },
+    }
+  },
+  computed: {
     showHamburger () {
       return this.$store.getters['AppLayout/showHamburgerBtn'] || this.$q.screen.lt.md
     },
@@ -228,20 +212,17 @@ export default {
   },
   methods: {
     checkMenurItemsForAuthenticatedUser () {
-      // ToDo: check menu items by user role
-      // if (this.isAdmin) {
-      //   const hasAdminPanel = this.items.find((item) => item.routeName === 'Admin.UploadCenter.Contents')
-      //   if (!hasAdminPanel) {
-      //     this.items.push({
-      //       selected: 'adminPanel',
-      //       title: 'پنل ادمین',
-      //       routeName: 'Admin.UploadCenter.Contents',
-      //       type: 'itemMenu',
-      //       permission: 'all',
-      //       show: false
-      //     })
-      //   }
-      // }
+      if (this.user.isSuperUser()) {
+        this.profileTitlesList.push({
+          title: 'پنل ادمین',
+          icon: 'isax:strongbox',
+          routeName: 'AdminPanel.Dashboard',
+          params: null,
+          permission: 'all',
+          active: false,
+          children: []
+        })
+      }
     },
     filterByStatement() {
       const param = {
@@ -255,9 +236,6 @@ export default {
       this.isUserLogin = this.$store.getters['Auth/isUserLogin']
     },
     ...mapMutations('AppLayout', [
-      'updateVisibilityBreadcrumb',
-      'updateBreadcrumbs',
-      'updateBreadcrumbLoading',
       'updateLayoutLeftDrawerVisible'
     ]),
     logOut() {

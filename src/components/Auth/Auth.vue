@@ -71,12 +71,14 @@ export default {
       type: Boolean
     }
   },
-  data: () => ({
-    userLogin: false,
-    loading: true,
-    username: null,
-    password: null
-  }),
+  data () {
+    return {
+      userLogin: false,
+      loading: true,
+      username: null,
+      password: null
+    }
+  },
   mounted () {
     this.loading = false
     this.$store.dispatch('Auth/logOut', { clearRedirectTo: true, redirect: false })
@@ -129,12 +131,6 @@ export default {
       })
         .then(() => {
           this.loading = false
-          // this.$axios.defaults.headers.common.Authorization = 'Bearer ' + this.$store.getters['Auth/accessToken']
-          // this.getUserData()
-          //   .then(() => {
-          //     this.$store.commit('AppLayout/updateLoginDialog', false)
-          //     this.redirectTo()
-          //   })
           this.$store.commit('AppLayout/updateLoginDialog', false)
           this.redirectTo()
         })
