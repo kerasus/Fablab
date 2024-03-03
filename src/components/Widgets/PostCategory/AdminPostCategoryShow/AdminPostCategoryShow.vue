@@ -16,7 +16,6 @@
                  :api="api"
                  :entity-id-key="entityIdKey"
                  :entity-param-key="entityParamKey"
-                 :show-route-name="showRouteName"
                  :show-close-button="false"
                  :show-edit-button="false"
                  :show-expand-button="false"
@@ -88,7 +87,6 @@ export default {
       api: APIGateway.postCategory.APIAdresses.byId(postCategoryId),
       entityIdKey: 'id',
       entityParamKey: 'id',
-      showRouteName: 'Admin.Ticket.Show',
       inputs: [
         { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', value: null, placeholder: ' ', col: 'col-md-6 col-12' },
         { type: 'file', name: 'thumbnail', responseKey: 'thumbnail', label: 'عکس', value: null, placeholder: ' ', col: 'col-md-6 col-12' },

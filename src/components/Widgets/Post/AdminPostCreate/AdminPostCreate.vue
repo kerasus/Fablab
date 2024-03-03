@@ -1,27 +1,46 @@
 <template>
   <div class="AdminPostCreate"
        :style="localOptions.style">
-    <div class="flex justify-end">
-      <q-btn flat
-             color="grey"
-             @click="$router.go(-1)">
-        بازگشت
-        >
-      </q-btn>
+    <div class="title">
+      نوشته جدید
+      <div class="back-action">
+        <q-btn flat
+               :to="{name: 'AdminPanel.Post.List'}"
+               color="grey">
+          بازگشت
+          >
+        </q-btn>
+      </div>
     </div>
-    <entity-create v-if="mounted"
-                   ref="entityCreate"
-                   v-model:value="inputs"
-                   title="ایجاد پست"
-                   :api="api"
-                   :entity-id-key="entityIdKey"
-                   :entity-param-key="entityParamKey"
-                   :show-route-name="showRouteName"
-                   :show-close-button="false"
-                   :show-edit-button="false"
-                   :show-expand-button="false"
-                   :show-save-button="false"
-                   :show-reload-button="false" />
+    <q-card class="form"
+            flat>
+      <entity-create v-if="mounted"
+                     ref="entityCreate"
+                     v-model:value="inputs"
+                     title=""
+                     :api="api"
+                     :entity-id-key="entityIdKey"
+                     :entity-param-key="entityParamKey"
+                     :show-route-name="showRouteName"
+                     :default-layout="false"
+                     :show-close-button="false"
+                     :show-edit-button="false"
+                     :show-expand-button="false"
+                     :show-save-button="false"
+                     :show-reload-button="false" />
+      <div class="action">
+        <div class="row q-mt-lg justify-end">
+          <div class="col-md-4 col-12">
+            <q-btn color="primary"
+                   class="full-width"
+                   :loading="entityLoading"
+                   @click="create">
+              انتشار
+            </q-btn>
+          </div>
+        </div>
+      </div>
+    </q-card>
   </div>
 </template>
 
@@ -30,13 +49,11 @@ import { shallowRef } from 'vue'
 import { EntityCreate } from 'quasar-crud'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
-import BtnControl from 'src/components/Control/btn.vue'
 import PostMixin from 'src/components/Widgets/Post/PostMixin.js'
-import PostCategorySelector from 'src/components/FormBuilderCustumComponents/PostCategorySelector.vue'
-import FormBuilderTiptapEditor from 'src/components/FormBuilderCustumComponents/FormBuilderTiptapEditor.vue'
+import PostCategorySelector from 'src/components/FormBuilderCustomControls/PostCategorySelector.vue'
+import FormBuilderTiptapEditor from 'src/components/FormBuilderCustomControls/FormBuilderTiptapEditor.vue'
 // import { FormBuilderAssist } from 'quasar-form-builder'
 
-const BtnControlComp = shallowRef(BtnControl)
 const PostCategorySelectorComp = shallowRef(PostCategorySelector)
 const FormBuilderTiptapEditorComp = shallowRef(FormBuilderTiptapEditor)
 
@@ -54,7 +71,7 @@ export default {
       api: APIGateway.post.APIAdresses.base,
       entityIdKey: 'id',
       entityParamKey: 'id',
-      showRouteName: 'Admin.Post.Show',
+      showRouteName: 'AdminPanel.Post.Show',
       inputs: [
         { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', placeholder: ' ', col: 'col-12' },
         { type: 'input', name: 'order', responseKey: 'order', label: 'ترتیب', placeholder: ' ', col: 'col-md-6 col-12' },
@@ -109,29 +126,14 @@ export default {
             uploadAudio
           },
           col: 'col-md-12 col-12'
-        },
-        { type: BtnControlComp, name: 'btn', responseKey: 'btn', label: 'ایجاد محتوا', placeholder: ' ', atClick: () => {}, col: 'col-md-6' }
+        }
       ]
     }
   },
   mounted () {
-    this.setActionBtn()
-    // const options = FormBuilderAssist.getInputsByName(this.inputs, 'text').options
-    // options.uploadVideo = this.uploadVideo
-    // FormBuilderAssist.setAttributeByName(this.inputs, 'text', 'options', options)
     this.mounted = true
   },
   methods: {
-    setActionBtn () {
-      this.inputs.forEach((item, index) => {
-        if (item.name === 'btn') {
-          this.inputs[index].atClick = this.onSubmit
-        }
-      })
-    },
-    onSubmit () {
-      this.create()
-    },
     create() {
       this.entityLoading = true
       this.$refs.entityCreate.createEntity()

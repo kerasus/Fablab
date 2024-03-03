@@ -34,8 +34,8 @@ import { mixinWidget } from 'src/mixin/Mixins.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 import BtnControl from 'src/components/Control/btn.vue'
 import PostMixin from 'src/components/Widgets/Post/PostMixin.js'
-import PostCategorySelector from 'src/components/FormBuilderCustumComponents/PostCategorySelector.vue'
-import FormBuilderTiptapEditor from 'src/components/FormBuilderCustumComponents/FormBuilderTiptapEditor.vue'
+import PostCategorySelector from 'src/components/FormBuilderCustomControls/PostCategorySelector.vue'
+import FormBuilderTiptapEditor from 'src/components/FormBuilderCustomControls/FormBuilderTiptapEditor.vue'
 
 const BtnControlComp = shallowRef(BtnControl)
 const PostCategorySelectorComp = shallowRef(PostCategorySelector)
@@ -58,8 +58,8 @@ export default {
       api: APIGateway.post.APIAdresses.byId(postId),
       entityIdKey: 'id',
       entityParamKey: 'id',
-      showRouteName: 'Admin.Post.Show',
-      indexRouteName: 'Admin.Post.List',
+      showRouteName: 'AdminPanel.Post.Show',
+      indexRouteName: 'AdminPanel.Post.List',
       inputs: [
         { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', placeholder: ' ', col: 'col-12' },
         { type: 'input', name: 'order', responseKey: 'order', label: 'ترتیب', placeholder: ' ', col: 'col-md-6 col-12' },

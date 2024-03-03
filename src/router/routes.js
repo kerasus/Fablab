@@ -439,6 +439,26 @@ const routes = [
             ]
           },
           {
+            path: 'post',
+            name: 'AdminPanel.Post',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              { path: '', name: 'AdminPanel.Post.List', component: () => import('src/pages/Admin/Post/List.vue') },
+              { path: 'create', name: 'AdminPanel.Post.Create', component: () => import('src/pages/Admin/Post/Create.vue') },
+              { path: ':id', name: 'AdminPanel.Post.Show', component: () => import('src/pages/Admin/Post/Show.vue') }
+            ]
+          },
+          {
+            path: 'post-category',
+            name: 'AdminPanel.PostCategory',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              { path: '', name: 'AdminPanel.PostCategory.List', component: () => import('src/pages/Admin/PostCategory/List.vue') },
+              { path: 'create', name: 'AdminPanel.PostCategory.Create', component: () => import('src/pages/Admin/PostCategory/Create.vue') },
+              { path: ':id', name: 'AdminPanel.PostCategory.Show', component: () => import('src/pages/Admin/PostCategory/Show.vue') }
+            ]
+          },
+          {
             path: 'user',
             name: 'AdminPanel.User',
             component: () => import('layouts/bareLayout.vue'),
@@ -633,7 +653,6 @@ const routes = [
       }
     ]
   },
-  // are u mr Esmaeili ? '' : dont touch this route
 
   // Always leave this as last one,
   // but you can also remove it

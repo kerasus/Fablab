@@ -16,6 +16,7 @@ import Payment from 'src/api/models/Payment.js'
 import Product from 'src/api/models/Product.js'
 import Scenarios from 'src/api/models/Scenarios.js'
 import PageSetting from 'src/api/models/PageSetting.js'
+import PostCategory from 'src/api/models/PostCategory.js'
 import MediaHashtag from 'src/api/models/MediaHashtag.js'
 import Registration from 'src/api/models/Registration.js'
 import MediaCategory from 'src/api/models/MediaCategory.js'
@@ -43,6 +44,7 @@ export const APIGateway = {
   payment: new Payment(),
   scenarios: new Scenarios(),
   pageSetting: new PageSetting(),
+  postCategory: new PostCategory(),
   mediaHashtag: new MediaHashtag(),
   registration: new Registration(),
   mediaCategory: new MediaCategory(),

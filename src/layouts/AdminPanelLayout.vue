@@ -105,7 +105,7 @@ export default {
         {
           label: 'بلاگ',
           icon: 'content_copy',
-          route: { name: 'AdminPanel.Blog.List' }
+          route: { name: 'AdminPanel.Post.List' }
         },
         // {
         //   label: 'چندرسانه‌ای',

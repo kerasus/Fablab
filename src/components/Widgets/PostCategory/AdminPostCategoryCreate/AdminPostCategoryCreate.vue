@@ -56,8 +56,8 @@ export default {
       api: APIGateway.postCategory.APIAdresses.base,
       entityIdKey: 'id',
       entityParamKey: 'id',
-      showRouteName: 'Admin.PostCategory.Show',
-      indexRouteName: 'Admin.PostCategory.List',
+      showRouteName: 'AdminPanel.PostCategory.Show',
+      indexRouteName: 'AdminPanel.PostCategory.List',
       inputs: [
         { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', placeholder: ' ', col: 'col-md-6 col-12' },
         // { type: 'file', name: 'thumbnail', responseKey: 'thumbnail', label: 'عکس', placeholder: ' ', col: 'col-md-6 col-12' },
