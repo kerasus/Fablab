@@ -50,7 +50,7 @@ export default {
       postList: new PostList()
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {
@@ -65,7 +65,7 @@ export default {
       this.postList.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.postList.loading = true
       return APIGateway.post.index({ category: this.localOptions.categoryId })
     }

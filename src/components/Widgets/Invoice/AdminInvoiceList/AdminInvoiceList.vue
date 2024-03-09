@@ -114,7 +114,7 @@ export default {
       createRouteName: ''
     }
   },
-  created() {
+  created () {
     const shopServiceNameInRouteParams = this.$route.params?.shopServiceName
     if (shopServiceNameInRouteParams) {
       this.inputs.push({

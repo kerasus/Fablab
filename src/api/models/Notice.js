@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Notice, NoticeList } from 'src/models/Notice.js'
 
 export default class NoticeAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('ticket', appApiInstance)
     this.APIAdresses = {
       base: '/mma/notices'
@@ -18,7 +18,7 @@ export default class NoticeAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

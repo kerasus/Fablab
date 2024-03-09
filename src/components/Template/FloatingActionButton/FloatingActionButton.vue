@@ -210,7 +210,7 @@ export default {
     this.loadDefaultSeoData()
   },
   methods: {
-    truncateString(string, length) {
+    truncateString (string, length) {
       return string.length > length ? string.slice(0, length) + '...' : string
     },
     importPageBuilderConfigs () {

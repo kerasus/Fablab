@@ -108,12 +108,12 @@ export default {
       this.events.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.events.loading = true
       return APIGateway.event.index()
     },
 
-    goToEvent(eventId) {
+    goToEvent (eventId) {
       this.$router.push({ name: 'Public.Event.Show', params: { id: eventId } })
     }
   }

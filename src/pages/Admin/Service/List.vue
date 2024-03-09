@@ -16,7 +16,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminServiceList', options: { style: { marginTop: '124px' } } }, { name: 'AdminServiceCreate', options: { style: { marginTop: '32px' } } }], options: {} }], options: {} }] } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
 }

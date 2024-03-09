@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Basket, BasketList } from 'src/models/Basket.js'
 
 export default class BasketAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('basket', appApiInstance, 'basket', Basket)
     this.APIAdresses = {
       base: (shopServiceName) => '/' + shopServiceName + '/baskets',
@@ -20,7 +20,7 @@ export default class BasketAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     const shopServiceName = data.shopServiceName
     delete data.shopServiceName
     return this.sendRequest({
@@ -53,7 +53,7 @@ export default class BasketAPI extends APIRepository {
     })
   }
 
-  checkoutReview(shopServiceName) {
+  checkoutReview (shopServiceName) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

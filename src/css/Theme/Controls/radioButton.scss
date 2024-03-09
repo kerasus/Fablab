@@ -1,12 +1,15 @@
 .q-radio {
+  &.disabled {
+    opacity: 0.3 !important;
+  }
+
   .q-radio__inner {
-    .q-radio__icon-container {
-      border-radius: 50%;
-      color: white;
-      background: var(--alaa-Secondary);
-      i {
-        font-size: 16px;
-      }
+    font-size: 24px;
+    .q-radio__bg {
+      left: $spacing-base;
+      top: $spacing-base;
+      width: 16px;
+      height: 16px;
     }
   }
 }

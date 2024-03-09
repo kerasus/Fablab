@@ -111,10 +111,10 @@ export default {
       ]
     }
   },
-  created() {
+  created () {
     this.api = this.api + '/' + this.$route.params.id
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {

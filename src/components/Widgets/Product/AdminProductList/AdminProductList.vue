@@ -93,10 +93,10 @@ export default {
       createRouteName: ''
     }
   },
-  created() {
+  created () {
     this.api = APIGateway.product.APIAdresses.base(this.$route.params.shopServiceName)
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   }
 }

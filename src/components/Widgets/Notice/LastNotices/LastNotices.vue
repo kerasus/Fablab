@@ -36,7 +36,7 @@ export default {
       notices: new NoticeList()
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
     this.loadData()
   },
@@ -58,7 +58,7 @@ export default {
       this.notices.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.notices.loading = true
       return APIGateway.notice.index()
     }

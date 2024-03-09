@@ -1,7 +1,7 @@
-export function updateShopServiceName(state, newInfo) {
+export function updateShopServiceName (state, newInfo) {
   state.shopServiceName = newInfo
 }
 
-export function updateSelectedProducts(state, newInfo) {
+export function updateSelectedProducts (state, newInfo) {
   state.selectedProducts = newInfo
 }

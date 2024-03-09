@@ -141,7 +141,7 @@ export default {
     }
   },
   computed: {
-    parentComponent() {
+    parentComponent () {
       if (this.selectedSlide.link) {
         if (this.isExternal(this.selectedSlide.link)) {
           return 'a'
@@ -153,7 +153,7 @@ export default {
     }
   },
   watch: {
-    slide(newVal) {
+    slide (newVal) {
       this.selectedSlide = new Banner(this.localOptions.list[newVal])
       this.$nextTick(() => {
         this.setAEEEvent(newVal)
@@ -168,11 +168,11 @@ export default {
     window.addEventListener('resize', this.onResize)
     this.windowWidth = window.innerWidth
   },
-  beforeUnmount() {
+  beforeUnmount () {
     window.removeEventListener('resize', this.onResize)
   },
   methods: {
-    isExternal(url) {
+    isExternal (url) {
       if (typeof window === 'undefined') {
         return true
       }
@@ -184,7 +184,7 @@ export default {
       const observer = new IntersectionObserver(this.handleIntersection)
       observer.observe(element)
     },
-    handleIntersection(entries, observer) {
+    handleIntersection (entries, observer) {
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0) {
           this.slideViewed()
@@ -192,7 +192,7 @@ export default {
         }
       })
     },
-    getAEEKey() {
+    getAEEKey () {
       let AEEKey
       Object.values(this.selectedSlide.AEEEventBody).forEach(item => {
         AEEKey += item
@@ -217,7 +217,7 @@ export default {
       }
       this.setSliderIntersectionObserver(sliderIndex)
     },
-    onResize() {
+    onResize () {
       if (typeof window === 'undefined') {
         return
       }
@@ -283,7 +283,7 @@ export default {
 
       return getFeatureSizeOfGTSize(features, key, this.$q.screen.name)
     },
-    takeAction(slide) {
+    takeAction (slide) {
       if (slide.useAEEEvent) {
         this.pushClickedEvent(slide)
       }

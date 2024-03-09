@@ -16,7 +16,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminEventList', options: { style: { marginBottom: '32px' } } }, { name: 'AdminEventCreate', options: { style: {} } }], options: { style: { paddingTop: '124px' } } }], options: {} }] } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
 }

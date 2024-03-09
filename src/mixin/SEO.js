@@ -2,7 +2,7 @@ import { createMetaMixin } from 'quasar'
 import SeoMeta from 'src/assets/js/SeoMeta.js'
 
 const mixinSEO = {
-  data() {
+  data () {
     return {
       title: 'فب لب',
       description: 'اگر خود را صاحب ایده‌ای می‌دانید یا حتی دوست دارید چیزی طراحی کنید و یا بسازید، احتمالا فب‌لب جای مناسبی برای شما خواهد بود.',

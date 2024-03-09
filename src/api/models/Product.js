@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Product, ProductList } from 'src/models/Product.js'
 
 export default class ProductAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('product', appApiInstance, '/product', Product)
     this.APIAdresses = {
       base: (shopServiceName) => '/' + shopServiceName + '/items'
@@ -21,7 +21,7 @@ export default class ProductAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     const shopServiceName = data.shopServiceName
     delete data.shopServiceName
     return this.sendRequest({

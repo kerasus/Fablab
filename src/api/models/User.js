@@ -3,7 +3,7 @@ import { User, UserList } from 'src/models/User.js'
 import APIRepository from '../classes/APIRepository.js'
 
 export default class UserAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('user', appApiInstance)
     this.APIAdresses = {
       base: '/uma/users',
@@ -26,7 +26,7 @@ export default class UserAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -57,7 +57,7 @@ export default class UserAPI extends APIRepository {
     })
   }
 
-  getCurrent() {
+  getCurrent () {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -71,7 +71,7 @@ export default class UserAPI extends APIRepository {
     })
   }
 
-  updateCurrent(data) {
+  updateCurrent (data) {
     return this.sendRequest({
       apiMethod: 'put',
       api: this.api,
@@ -86,7 +86,7 @@ export default class UserAPI extends APIRepository {
     })
   }
 
-  changeTeam(data) {
+  changeTeam (data) {
     return this.sendRequest({
       apiMethod: 'put',
       api: this.api,

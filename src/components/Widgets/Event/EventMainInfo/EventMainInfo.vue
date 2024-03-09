@@ -140,20 +140,20 @@ export default {
     }
   }),
   computed: {
-    getRoutingObject() {
+    getRoutingObject () {
       return {
         name: 'Public.Event.Show',
         params: { id: this.event.id || -1 }
       }
     },
     localEvent: {
-      get() {
+      get () {
         if (this.event.id !== null) {
           return this.event
         }
         return this.localOptions.event
       },
-      set(value) {
+      set (value) {
         this.event = value
       }
     }
@@ -170,7 +170,7 @@ export default {
       this.localEvent.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.localEvent.loading = true
       return APIGateway.event.get({ data: { id: this.$route.params.id } })
     },
@@ -178,13 +178,13 @@ export default {
     getDateTime (date) {
       return Assist.miladiToShamsi(date, 'ddd jDD jMMMM jYYYY ساعت HH:mm')
     },
-    getTeacherOfEvent() {
+    getTeacherOfEvent () {
       if (this.event.attributes.info.teacher) {
         return this.event.attributes.info.teacher[0]
       }
       return null
     },
-    addToCart() {
+    addToCart () {
       this.addToCartLoading = true
       this.$store.dispatch('Cart/addToCart', { event_id: this.event.id })
         .then(() => {

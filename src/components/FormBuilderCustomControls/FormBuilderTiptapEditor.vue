@@ -118,13 +118,13 @@ export default {
       type: Object
     }
   },
-  data() {
+  data () {
     return {
       editorComponent: null
     }
   },
   watch: {
-    value(newValue) {
+    value (newValue) {
       if (newValue === false) {
         this.inputData = ''
       }
@@ -142,7 +142,7 @@ export default {
       .catch()
   },
   methods: {
-    setNewContent(val) {
+    setNewContent (val) {
       this.$refs.tiptap.setContent(val)
     }
   }

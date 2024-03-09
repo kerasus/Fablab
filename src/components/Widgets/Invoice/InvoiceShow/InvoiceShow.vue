@@ -155,10 +155,10 @@ export default {
       return this.invoiceId || this.$route.params.id
     }
   },
-  created() {
+  created () {
     this.api = this.api + '/' + this.localInvoiceId
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {
@@ -181,7 +181,7 @@ export default {
       this.entityId = response.id
       this.entityLoading = false
     },
-    edit() {
+    edit () {
       this.entityLoading = true
       this.$refs.entityEdit.editEntity()
         .then(() => {

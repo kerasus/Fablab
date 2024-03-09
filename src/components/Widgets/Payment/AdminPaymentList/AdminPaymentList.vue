@@ -106,7 +106,7 @@ export default {
       createRouteName: ''
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   }
 }

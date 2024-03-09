@@ -56,7 +56,7 @@ export default {
     prefetchServerDataPromiseCatch () {
       this.media.loading = false
     },
-    getApiRequest() {
+    getApiRequest () {
       this.media.loading = true
       return APIGateway.media.get({ data: { id: this.$route.params.id } })
     }

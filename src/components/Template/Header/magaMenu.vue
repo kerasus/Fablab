@@ -104,19 +104,19 @@ export default {
   props: {
     data: {
       type: Object,
-      default() {
+      default () {
         return {}
       }
     }
   },
-  data() {
+  data () {
     return {
       showMenu: false,
       onMouseleaveSetTimeout: null
     }
   },
   methods: {
-    isSelectedItem(index) {
+    isSelectedItem (index) {
       return this.data.subCategoryItemsCol.findIndex(item => item.selected) === index
     },
     onMouseover () {
@@ -130,7 +130,7 @@ export default {
         this.showMenu = false
       }, 50)
     },
-    showData(colIndex) {
+    showData (colIndex) {
       this.data.subCategoryItemsCol.forEach((item, subIndex) => {
         item.selected = colIndex === subIndex
       })

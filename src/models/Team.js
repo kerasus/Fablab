@@ -70,7 +70,7 @@ class Team extends Model {
 }
 
 class TeamList extends Collection {
-  model() {
+  model () {
     return Team
   }
 }

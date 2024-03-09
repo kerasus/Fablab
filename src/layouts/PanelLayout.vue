@@ -30,7 +30,7 @@ export default {
     }
   },
   computed: {
-    layoutLeftDrawerVisible() {
+    layoutLeftDrawerVisible () {
       return this.$store.getters['AppLayout/layoutLeftDrawerVisible']
     }
   },

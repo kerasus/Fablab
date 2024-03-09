@@ -123,13 +123,13 @@ export default {
       createRouteName: ''
     }
   },
-  created() {
+  created () {
     FormBuilderAssist.setAttributeByName(this.inputs, 'parent', 'value', this.parent)
     if (!this.parent) {
       FormBuilderAssist.setAttributeByName(this.inputs, 'parent__isnull', 'value', 'true')
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   }
 }

@@ -86,10 +86,10 @@ export default {
       entityLoading: true
     }
   },
-  created() {
+  created () {
     this.loadInvoice()
   },
-  mounted() {
+  mounted () {
   },
   methods: {
     loadInvoice () {

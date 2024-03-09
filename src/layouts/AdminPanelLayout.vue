@@ -141,7 +141,7 @@ export default {
     this.loadAuthData()
   },
   methods: {
-    loadAuthData() { // prevent Hydration node mismatch
+    loadAuthData () { // prevent Hydration node mismatch
       this.user = this.$store.getters['Auth/user']
     }
   }

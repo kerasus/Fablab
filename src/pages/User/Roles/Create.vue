@@ -19,7 +19,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'RoleCreate' }], options: { style: { paddingTop: '32px', paddingBottom: '317px' } } }], options: { className: '', height: 'auto', boxed: true, boxedWidth: 1200, gutterXSize: 'md', gutterYSize: 'md', absolute: 'none', paddingOfBoxedInFullWidth: '30px', style: { maxWidth: '1200px', width: '1200px' } } }] } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
   // mixins: [mixinPrefetchServerData, mixinPageOptions, mixinSEO]

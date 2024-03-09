@@ -2,13 +2,13 @@ const mixinWidget = {
   props: {
     data: {
       type: Object,
-      default() {
+      default () {
         return {}
       }
     },
     options: {
       type: Object,
-      default() {
+      default () {
         return {}
       }
     },
@@ -35,7 +35,7 @@ const mixinWidget = {
   },
   computed: {
     localOptions: {
-      get() {
+      get () {
         return Object.assign(this.defaultOptions, this.options)
       }
     }

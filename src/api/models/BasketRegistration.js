@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Registration, RegistrationList } from 'src/models/Registration.js'
 
 export default class RegistrationAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('registration', appApiInstance, 'registration', Registration)
     this.APIAdresses = {
       base: (shopServiceName) => '/' + shopServiceName + '/baskets',
@@ -22,7 +22,7 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     const shopServiceName = data.shopServiceName
     delete data.shopServiceName
     return this.sendRequest({
@@ -55,7 +55,7 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
-  addToBasket(data) {
+  addToBasket (data) {
     const shopServiceName = data.shopServiceName
     delete data.shopServiceName
     return this.sendRequest({
@@ -75,7 +75,7 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
-  decrement(data) {
+  decrement (data) {
     const shopServiceName = data.shopServiceName
     delete data.shopServiceName
     return this.sendRequest({
@@ -94,7 +94,7 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
-  removeFromBasket(data) {
+  removeFromBasket (data) {
     const shopServiceName = data.shopServiceName
     const registrationId = data.registrationId
     delete data.shopServiceName

@@ -80,10 +80,10 @@ export default {
       ]
     }
   },
-  created() {
+  created () {
     this.api = APIGateway.product.APIAdresses.base(this.$route.params.shopServiceName)
   },
-  mounted() {
+  mounted () {
     this.loadOptions()
     this.$nextTick(() => {
       this.mounted = true
@@ -108,7 +108,7 @@ export default {
     setInputOptions (name, options) {
       this.$refs.entityCreate.setInputAttributeByName(name, 'options', options)
     },
-    create() {
+    create () {
       this.$refs.entityCreate.createEntity()
     }
   }

@@ -35,11 +35,11 @@ export default {
       selectedEvent: new Event()
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {
-    onSelectEvent(event) {
+    onSelectEvent (event) {
       this.selectedEvent = event
       if (this.selectedEvent.is_current_user_registered) {
         this.$q.notify({

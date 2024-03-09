@@ -68,14 +68,14 @@ export default {
       ]
     }
   },
-  mounted() {
+  mounted () {
     this.loadOptions()
     this.$nextTick(() => {
       this.mounted = true
     })
   },
   methods: {
-    create() {
+    create () {
       this.entityLoading = true
       this.$refs.entityCreate.createEntity()
         .then(() => {

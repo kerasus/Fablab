@@ -59,10 +59,10 @@ export default {
       return this.inputs.find(input => input.name === 'replies_info').value
     }
   },
-  created() {
+  created () {
     this.api = APIGateway.media.APIAdresses.byId(this.$route.params.id)
   },
-  mounted() {
+  mounted () {
     this.setActionBtn()
     this.mounted = true
   },
@@ -77,7 +77,7 @@ export default {
     afterLoadInputData () {
       this.entityLoading = false
     },
-    edit() {
+    edit () {
       this.entityLoading = true
       this.$refs.entityEdit.editEntity(false)
         .then(() => {

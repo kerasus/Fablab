@@ -18,7 +18,7 @@ class Wallet extends Model {
 }
 
 class WalletList extends Collection {
-  model() {
+  model () {
     return Wallet
   }
 }

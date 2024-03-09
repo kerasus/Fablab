@@ -42,7 +42,7 @@ export default {
   name: 'HeaderMenu',
   components: { LazyImg },
   mixins: [mixinWidget],
-  data() {
+  data () {
     return {
       defaultOptions: {
         menuLink: [],
@@ -61,10 +61,10 @@ export default {
     }
   },
   methods: {
-    routeTo(name) {
+    routeTo (name) {
       this.$router.push({ name })
     },
-    takeAction(item) {
+    takeAction (item) {
       if (item.type === 'link') {
         openURL(item.route)
       } else if (item.type === 'scroll') {
@@ -73,7 +73,7 @@ export default {
         this.$bus.emit(item.eventName, item.eventArgs)
       }
     },
-    scrollToElement(className) {
+    scrollToElement (className) {
       const el = document.getElementsByClassName(className)[0]
       const headerOffset = 0
       const elementPosition = el.getBoundingClientRect().top

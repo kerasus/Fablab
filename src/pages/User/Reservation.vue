@@ -16,7 +16,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'Reservation' }], options: { style: { paddingTop: '124px' } } }], options: {} }] } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
 }

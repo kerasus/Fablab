@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Payment, PaymentList } from 'src/models/Payment.js'
 
 export default class PaymentAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('payment', appApiInstance)
     this.APIAdresses = {
       base: '/accounting/payments'
@@ -21,7 +21,7 @@ export default class PaymentAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

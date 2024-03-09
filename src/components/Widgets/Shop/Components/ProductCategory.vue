@@ -47,7 +47,7 @@ export default {
       products: new ProductList()
     }
   },
-  mounted() {
+  mounted () {
     this.getProducts()
   },
   methods: {

@@ -45,11 +45,11 @@ export default {
       this.packages.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.packages.loading = true
       return APIGateway.package.index()
     },
-    onSelectPackage(packageItem) {
+    onSelectPackage (packageItem) {
       const packages = this.$store.getters['Reservation/packages']
       const target = packages.list.findIndex(packageData => packageData.id === packageItem.id)
       if (target === -1) {

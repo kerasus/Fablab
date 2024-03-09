@@ -74,28 +74,28 @@ export default {
   props: {
     value: {
       type: String,
-      default() {
+      default () {
         return null
       }
     }
   },
-  data() {
+  data () {
     return {
       foreColor: '#000000'
     }
   },
   computed: {
     editorValue: {
-      get() {
+      get () {
         return this.value
       },
-      set(newValue) {
+      set (newValue) {
         this.$emit('update:value', newValue)
       }
     }
   },
   methods: {
-    color(cmd, name) {
+    color (cmd, name) {
       const edit = this.$refs.editor
       this.$refs.colorPicker.hide()
       edit.caret.restore()

@@ -107,7 +107,7 @@ export default {
     }
   },
   methods: {
-    create() {
+    create () {
       this.$refs.entityCreate.createEntity()
     }
   }

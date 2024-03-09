@@ -146,11 +146,11 @@ export default {
       ]
     }
   },
-  created() {
+  created () {
     this.api = this.api + '/' + this.$route.params.id
     this.setImageUploaderToken()
   },
-  mounted() {
+  mounted () {
     this.loadOptions()
       .then(() => {
         this.mounted = true
@@ -181,7 +181,7 @@ export default {
     afterLoadInputData () {
       this.entityLoading = false
     },
-    edit() {
+    edit () {
       this.entityLoading = true
       this.$refs.entityEdit.editEntity()
         .then(() => {

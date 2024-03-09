@@ -67,10 +67,10 @@ export default {
       ]
     }
   },
-  created() {
+  created () {
     FormBuilderAssist.setAttributeByName(this.inputs, 'parent', 'value', this.parent)
   },
-  mounted() {
+  mounted () {
     this.setActionBtn()
     this.mounted = true
   },
@@ -85,7 +85,7 @@ export default {
     onSubmit () {
       this.create()
     },
-    create() {
+    create () {
       const redirect = !this.parent
       this.entityLoading = true
       this.$refs.entityCreate.createEntity(redirect)

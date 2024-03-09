@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Service, ServiceList } from 'src/models/Service.js'
 
 export default class ServiceAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('services', appApiInstance)
     this.APIAdresses = {
       base: '/core/services'
@@ -21,7 +21,7 @@ export default class ServiceAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

@@ -45,11 +45,11 @@ export default {
       this.events.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.events.loading = true
       return APIGateway.event.index()
     },
-    onSelectEvent(eventItem) {
+    onSelectEvent (eventItem) {
       this.$emit('onSelectEvent', eventItem)
     }
   }

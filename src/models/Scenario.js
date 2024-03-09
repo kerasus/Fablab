@@ -1,7 +1,7 @@
 import { Model, Collection } from 'js-abstract-model'
 
 class Scenario extends Model {
-  constructor(data) {
+  constructor (data) {
     super(data, [
       { key: 'id' },
       { key: 'creator' },
@@ -24,7 +24,7 @@ class Scenario extends Model {
 }
 
 class ScenarioList extends Collection {
-  model() {
+  model () {
     return Scenario
   }
 }

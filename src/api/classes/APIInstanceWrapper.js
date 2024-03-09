@@ -212,7 +212,7 @@ export default class APIInstanceWrapper {
     // return fetchInstance(baseURL, serverURL)
   }
 
-  static getRequest(req, option) {
+  static getRequest (req, option) {
     if (req === 'get') {
       return option.api.get(option.request, { params: option.data, timeout })
     } else if (req === 'post') {
@@ -224,7 +224,7 @@ export default class APIInstanceWrapper {
     }
   }
 
-  static requestCache(method, option) {
+  static requestCache (method, option) {
     if (!!option.cache && !!option.cache.TTL) {
       if (option.cache.fresh) {
         const response = this.getRequest(method, option)
@@ -273,23 +273,23 @@ export default class APIInstanceWrapper {
     }
   }
 
-  static get(option) {
+  static get (option) {
     return this.requestCache('get', option)
   }
 
-  static post(option) {
+  static post (option) {
     return this.requestCache('post', option)
   }
 
-  static put(option) {
+  static put (option) {
     return this.requestCache('put', option)
   }
 
-  static delete(option) {
+  static delete (option) {
     return this.requestCache('delete', option)
   }
 
-  static purgeRequest(key) {
+  static purgeRequest (key) {
     delete cache[key]
   }
 }

@@ -102,10 +102,10 @@ export default {
       return this.inputs.find(input => input.name === 'replies_info').value
     }
   },
-  created() {
+  created () {
     this.postCategory.loading = true
   },
-  mounted() {
+  mounted () {
     this.mounted = true
     this.setActionBtn()
   },
@@ -123,7 +123,7 @@ export default {
       this.postCategory.loading = false
       this.entityLoading = false
     },
-    edit() {
+    edit () {
       this.entityLoading = true
       this.$refs.entityEdit.editEntity(false)
         .then(() => {

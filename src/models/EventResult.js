@@ -4,7 +4,7 @@ import { User } from './User'
 import { Media } from 'src/models/Media'
 
 class EventResult extends Model {
-  constructor(data) {
+  constructor (data) {
     super(data, [
       { key: 'id' },
       { key: 'event' },

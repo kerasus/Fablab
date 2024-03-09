@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export default function incompleteProfile(
+export default function incompleteProfile (
   /* { to, from, next, store } */ { next, store, to }
 ) {
   // defining incompleteness of the personal information due to issue #52 is inside here

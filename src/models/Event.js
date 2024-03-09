@@ -2,7 +2,7 @@ import { User } from 'src/models/User.js'
 import { Model, Collection } from 'js-abstract-model'
 
 class Event extends Model {
-  constructor(data) {
+  constructor (data) {
     super(data, [
       { key: 'id' },
       { key: 'creator' },
@@ -35,7 +35,7 @@ class Event extends Model {
 }
 
 class EventList extends Collection {
-  model() {
+  model () {
     return Event
   }
 }

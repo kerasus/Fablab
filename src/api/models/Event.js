@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Event, EventList } from 'src/models/Event.js'
 
 export default class EventAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('event', appApiInstance)
     this.APIAdresses = {
       base: '/core/events',
@@ -23,7 +23,7 @@ export default class EventAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -54,7 +54,7 @@ export default class EventAPI extends APIRepository {
     })
   }
 
-  register(eventId) {
+  register (eventId) {
     return this.sendRequest({
       apiMethod: 'put',
       api: this.api,

@@ -172,10 +172,10 @@ module.exports = configure(function (ctx) {
       //     viteConf.base = process.env.NODES_SERVER_URL_SSL || '/'
       //   }
       // },
-      beforeDev({ quasarConf }) {
+      beforeDev ({ quasarConf }) {
         generateWidgetList('./src/components/Widgets')
       },
-      beforeBuild({ quasarConf }) {
+      beforeBuild ({ quasarConf }) {
         generateWidgetList('./src/components/Widgets')
       },
 

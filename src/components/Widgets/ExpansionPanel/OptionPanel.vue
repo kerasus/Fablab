@@ -69,7 +69,7 @@ export default defineComponent({
     EditorOptions
   },
   mixins: [PageBuilderOptionPanel],
-  data() {
+  data () {
     return {
       themeOptions: ['theme1', 'theme2'],
       defaultOptions: {
@@ -126,7 +126,7 @@ export default defineComponent({
     }
   },
   methods: {
-    addItem() {
+    addItem () {
       this.localOptions.expansionList.push({
         label: '',
         caption: '',
@@ -134,7 +134,7 @@ export default defineComponent({
         expanded: false
       })
     },
-    removeItem(itemIndex) {
+    removeItem (itemIndex) {
       this.localOptions.expansionList.splice(itemIndex, 1)
     }
   }

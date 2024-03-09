@@ -157,7 +157,7 @@ import itemMenu from 'src/components/Template/Header/itemMenu.vue'
 export default {
   name: 'MainHeaderTemplate',
   components: { LazyImg, megaMenu, simpleMenu, itemMenu },
-  data() {
+  data () {
     return {
       conferenceMenu: false,
       showHamburgerConfig: true,
@@ -191,7 +191,7 @@ export default {
 
       return user.id
     },
-    layoutLeftDrawerVisible() {
+    layoutLeftDrawerVisible () {
       return this.$store.getters['AppLayout/layoutLeftDrawerVisible']
     },
     showMenuItem () {
@@ -224,7 +224,7 @@ export default {
         })
       }
     },
-    filterByStatement() {
+    filterByStatement () {
       const param = {
         q: this.searchInput
       }
@@ -238,22 +238,22 @@ export default {
     ...mapMutations('AppLayout', [
       'updateLayoutLeftDrawerVisible'
     ]),
-    logOut() {
+    logOut () {
       return this.$store.dispatch('Auth/logOut')
     },
-    toggleLeftDrawer() {
+    toggleLeftDrawer () {
       this.updateLayoutLeftDrawerVisible(!this.layoutLeftDrawerVisible)
     },
-    hasRoute(route) {
+    hasRoute (route) {
       if (!route) {
         return
       }
       return !!(route.name || route.path)
     },
-    goToLogin() {
+    goToLogin () {
       this.$router.push({ name: 'Login' })
     },
-    routeTo(name) {
+    routeTo (name) {
       this.$router.push({ name })
     }
   }

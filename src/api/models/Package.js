@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Package, PackageList } from 'src/models/Package.js'
 
 export default class PackageAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('package', appApiInstance)
     this.APIAdresses = {
       base: '/core/packages',
@@ -22,7 +22,7 @@ export default class PackageAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -53,7 +53,7 @@ export default class PackageAPI extends APIRepository {
     })
   }
 
-  assignService(data) {
+  assignService (data) {
     return this.sendRequest({
       apiMethod: 'put',
       api: this.api,

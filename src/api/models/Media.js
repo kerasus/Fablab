@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Media, MediaList } from 'src/models/Media.js'
 
 export default class MediaAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('media', appApiInstance)
     this.APIAdresses = {
       base: '/cma/medias',
@@ -22,7 +22,7 @@ export default class MediaAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

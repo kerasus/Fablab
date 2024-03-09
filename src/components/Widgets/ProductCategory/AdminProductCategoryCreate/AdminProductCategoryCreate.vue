@@ -57,14 +57,14 @@ export default {
       ]
     }
   },
-  created() {
+  created () {
     this.api = APIGateway.productCategory.APIAdresses.base(this.$route.params.shopServiceName)
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {
-    create() {
+    create () {
       this.$refs.entityCreate.createEntity()
     }
   }

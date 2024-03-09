@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { PageSetting, PageSettingList } from 'src/models/PageSetting.js'
 
 export default class PageSettingAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('page-setting', appApiInstance)
     this.APIAdresses = {
       base: '/cma/settings',

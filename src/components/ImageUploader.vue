@@ -77,7 +77,7 @@ export default {
     }
   },
   methods: {
-    create() {
+    create () {
       this.entityLoading = true
       this.$refs.entityCreate.createEntity(false)
         .then(() => {

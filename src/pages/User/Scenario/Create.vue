@@ -19,7 +19,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'ScenarioCreate' }], options: { style: { paddingTop: '32px', paddingBottom: '317px' } } }], options: { className: '', height: 'auto', boxed: true, boxedWidth: '724px', gutterXSize: null, gutterYSize: null, absolute: 'none', paddingOfBoxedInFullWidth: '15px', style: { maxWidth: '724pxpx', width: '724pxpx' } } }] } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
   // mixins: [mixinPrefetchServerData, mixinPageOptions, mixinSEO]

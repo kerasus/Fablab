@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { MediaHashtag, MediaHashtagList } from 'src/models/MediaHashtag.js'
 
 export default class MediaHashtagAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('mediaHashtag', appApiInstance)
     this.APIAdresses = {
       base: '/cma/hashtags'
@@ -21,7 +21,7 @@ export default class MediaHashtagAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

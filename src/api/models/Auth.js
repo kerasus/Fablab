@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 // import { User } from 'src/models/User'
 
 export default class AuthAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('auth', appApiInstance)
     this.APIAdresses = {
       login: '/auth/login',

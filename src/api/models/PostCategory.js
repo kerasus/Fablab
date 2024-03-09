@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { PostCategory, PostCategoryList } from 'src/models/PostCategory.js'
 
 export default class PostCategoryAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('post-category', appApiInstance)
     this.APIAdresses = {
       base: '/cma/posts/categories',
@@ -22,7 +22,7 @@ export default class PostCategoryAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

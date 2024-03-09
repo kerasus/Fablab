@@ -16,7 +16,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminBlogCreate', options: { style: { marginTop: '124px' } } }], options: {} }], options: {} }] } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
 }

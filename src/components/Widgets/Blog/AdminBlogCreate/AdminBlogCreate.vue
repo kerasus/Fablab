@@ -119,7 +119,7 @@ export default {
       ]
     }
   },
-  mounted() {
+  mounted () {
     this.setImageUploaderToken()
     this.loadOptions()
     this.$nextTick(() => {
@@ -132,7 +132,7 @@ export default {
       oldOptions.uploadServer.headers.Authorization = 'Bearer ' + this.$store.getters['Auth/accessToken']
       FormBuilderAssist.setAttributeByName(this.inputs, 'description', 'options', oldOptions)
     },
-    create() {
+    create () {
       this.entityLoading = true
       this.$refs.entityCreate.createEntity()
         .then(() => {

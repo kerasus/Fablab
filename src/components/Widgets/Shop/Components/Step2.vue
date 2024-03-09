@@ -77,11 +77,11 @@ export default {
     }
   },
   computed: {
-    selectedProducts() {
+    selectedProducts () {
       return this.$store.getters['Shop/selectedProducts']
     }
   },
-  mounted() {
+  mounted () {
     this.checkoutReview()
   },
   methods: {

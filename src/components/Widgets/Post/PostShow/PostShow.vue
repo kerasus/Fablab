@@ -179,10 +179,10 @@ export default {
           this.downloadLoading = false
         })
     },
-    toDataURL(src, callback, outputFormat) {
+    toDataURL (src, callback, outputFormat) {
       const img = new Image()
       img.crossOrigin = 'Anonymous'
-      img.onload = function() {
+      img.onload = function () {
         const canvas = document.createElement('CANVAS')
         const ctx = canvas.getContext('2d')
         canvas.height = this.naturalHeight
@@ -211,7 +211,7 @@ export default {
       }
       const images = this.$refs.printArea.getElementsByTagName('img')
       images.forEach(image => {
-        this.toDataURL(image.src, function(dataUrl) {
+        this.toDataURL(image.src, function (dataUrl) {
           image.src = dataUrl
         })
       })

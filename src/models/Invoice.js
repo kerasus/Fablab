@@ -82,7 +82,7 @@ class Invoice extends Model {
 }
 
 class InvoiceList extends Collection {
-  model() {
+  model () {
     return Invoice
   }
 }

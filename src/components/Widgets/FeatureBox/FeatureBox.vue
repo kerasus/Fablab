@@ -18,7 +18,7 @@ import { mixinWidget } from 'src/mixin/Mixins.js'
 export default {
   name: 'FeatureBox',
   mixins: [mixinWidget],
-  data() {
+  data () {
     return {
       defaultOptions: {
         title: null,

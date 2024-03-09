@@ -36,7 +36,7 @@ export default {
       tickets: new TicketList()
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
     this.loadData()
   },
@@ -58,7 +58,7 @@ export default {
       this.tickets.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.tickets.loading = true
       return APIGateway.ticket.index()
     }

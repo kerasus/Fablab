@@ -5,30 +5,34 @@
 </template>
 
 <script>
-import { mixinSEO, mixinPageOptions, mixinPrefetchServerData } from 'src/mixin/Mixins.js'
+// import { mixinSEO, mixinPageOptions, mixinPrefetchServerData } from 'src/mixin/Mixins.js'
 
 export default {
   name: 'HomePage',
-  mixins: [mixinPrefetchServerData, mixinPageOptions, mixinSEO],
+  // mixins: [mixinPrefetchServerData, mixinPageOptions, mixinSEO],
   data () {
     return {
-      // pageConfig: {},
-      // currenSections: [
-      //   {
-      //     data:
-      //       {
-      //         rows: [
-      //           {
-      //             cols: [
-      //               {
-      //                 widgets: []
-      //               }
-      //             ]
-      //           }
-      //         ]
-      //       }
-      //   }
-      // ]
+      pageConfig: {},
+      currenSections: [
+        {
+          data:
+            {
+              rows: [
+                {
+                  cols: [
+                    {
+                      widgets: [
+                        {
+                          name: 'TextWidget'
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+        }
+      ]
 
       //
       //     sections2: [

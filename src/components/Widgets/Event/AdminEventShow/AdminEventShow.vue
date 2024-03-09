@@ -142,10 +142,10 @@ export default {
       ]
     }
   },
-  created() {
+  created () {
     this.api = this.api + '/' + this.$route.params.id
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {
@@ -157,7 +157,7 @@ export default {
       this.services = response.services_relation_info
       this.entityLoading = false
     },
-    edit() {
+    edit () {
       this.entityLoading = true
       this.$refs.entityEdit.editEntity()
         .then(() => {

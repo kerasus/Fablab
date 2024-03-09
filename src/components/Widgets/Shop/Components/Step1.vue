@@ -41,7 +41,7 @@ export default {
       productCategories: new ProductCategoryList()
     }
   },
-  mounted() {
+  mounted () {
     this.getCategories()
   },
   methods: {
@@ -51,7 +51,7 @@ export default {
     onDecrease (product) {
       this.$emit('onDecrease', product)
     },
-    getCategories() {
+    getCategories () {
       this.productCategories.loading = true
       APIGateway.productCategory.index({ shopServiceName: this.$route.params.shopServiceName })
         .then(({ list }) => {

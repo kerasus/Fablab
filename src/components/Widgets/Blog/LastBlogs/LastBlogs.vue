@@ -27,7 +27,7 @@ export default {
       mediaList: new MediaList()
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
       this.mediaList.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.mediaList.loading = true
       return APIGateway.media.index()
     }

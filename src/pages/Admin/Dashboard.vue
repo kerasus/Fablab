@@ -16,7 +16,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminDashboardStatistic' }, { name: 'AdminPendingOrderList', options: { style: { marginTop: '32px' } } }, { name: 'AdminOpenChatList', options: { style: { marginTop: '32px' } } }], options: {} }], options: {} }] } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
 }

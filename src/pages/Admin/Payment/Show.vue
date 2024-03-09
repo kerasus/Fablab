@@ -16,7 +16,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminPaymentShow' }], options: {} }], options: {} }] }, options: { style: { paddingTop: '124px' } } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
 }

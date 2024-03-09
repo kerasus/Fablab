@@ -75,7 +75,7 @@ class Basket extends Model {
 }
 
 class BasketList extends Collection {
-  model() {
+  model () {
     return Basket
   }
 }

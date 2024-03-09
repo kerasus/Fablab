@@ -118,12 +118,12 @@ export default defineComponent({
   props: {
     options: {
       type: Object,
-      default() {
+      default () {
         return {}
       }
     }
   },
-  data() {
+  data () {
     return {
       actionObjectTypeOptions: ['link', 'event', 'scroll'],
       defaultOptions: {

@@ -20,7 +20,7 @@ import { mixinWidget } from 'src/mixin/Mixins.js'
 export default {
   name: 'ActionButton',
   mixins: [mixinWidget],
-  data() {
+  data () {
     return {
       defaultOptions: {
         color: null,
@@ -42,16 +42,16 @@ export default {
   },
   watch: {
     options: {
-      handler() {
+      handler () {
         this.loadConfig()
       }
     }
   },
-  mounted() {
+  mounted () {
     this.loadConfig()
   },
   methods: {
-    loadConfig() {
+    loadConfig () {
       if (this.localOptions.imageSource) {
         this.localOptions.flat = true
         this.localOptions.className = this.localOptions.className + ' img-btn'
@@ -60,7 +60,7 @@ export default {
         this.localOptions.className = this.localOptions.className + ' fixed-btn' + ` ${this.localOptions.fixedPosition}`
       }
     },
-    scrollToElement(className) {
+    scrollToElement (className) {
       const el = document.getElementsByClassName(className)[0]
       const headerOffset = 0
       const elementPosition = el.getBoundingClientRect().top
@@ -70,7 +70,7 @@ export default {
         behavior: 'smooth'
       })
     },
-    takeAction() {
+    takeAction () {
       if (this.callBack) {
         this.callBack()
       } else if (this.options.action && this.options.action === 'scroll') {

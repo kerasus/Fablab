@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Setting, SettingList } from 'src/models/Setting.js'
 
 export default class SettingAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('setting', appApiInstance)
     this.APIAdresses = {
       base: '/cma/settings'
@@ -19,7 +19,7 @@ export default class SettingAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

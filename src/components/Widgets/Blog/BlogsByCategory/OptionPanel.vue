@@ -18,7 +18,7 @@ export default defineComponent({
     OptionPanelTabs
   },
   mixins: [mixinOptionPanel],
-  data() {
+  data () {
     return {
       defaultOptions: {
         categoryId: null

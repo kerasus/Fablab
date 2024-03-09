@@ -194,7 +194,7 @@ export default {
           this.depositLoading = false
         })
     },
-    loadAuthData() { // prevent Hydration node mismatch
+    loadAuthData () { // prevent Hydration node mismatch
       this.user = this.$store.getters['Auth/user']
     },
     chargeWallet () {

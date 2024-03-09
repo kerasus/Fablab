@@ -1,7 +1,7 @@
 import { Model, Collection } from 'js-abstract-model'
 
 class Role extends Model {
-  constructor(data) {
+  constructor (data) {
     super(data, [
       { key: 'id' },
       { key: 'side' },
@@ -18,7 +18,7 @@ class Role extends Model {
 }
 
 class RoleList extends Collection {
-  model() {
+  model () {
     return Role
   }
 

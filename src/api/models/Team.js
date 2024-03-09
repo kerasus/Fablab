@@ -3,7 +3,7 @@ import { Team, TeamList } from 'src/models/Team.js'
 import APIRepository from '../classes/APIRepository.js'
 
 export default class TeamAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('team', appApiInstance)
     this.APIAdresses = {
       base: '/uma/teams',
@@ -22,7 +22,7 @@ export default class TeamAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Registration, RegistrationList } from 'src/models/Registration.js'
 
 export default class RegistrationAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('package', appApiInstance)
     this.APIAdresses = {
       base: '/core/registrations'
@@ -21,7 +21,7 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -52,7 +52,7 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
-  myEvents(page) {
+  myEvents (page) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -84,7 +84,7 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
-  myPackages(page) {
+  myPackages (page) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -116,7 +116,7 @@ export default class RegistrationAPI extends APIRepository {
     })
   }
 
-  myServices(page) {
+  myServices (page) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

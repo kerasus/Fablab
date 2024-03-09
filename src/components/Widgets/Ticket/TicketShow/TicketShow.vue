@@ -170,10 +170,10 @@ export default {
       return this.inputs.find(input => input.name === 'replies_info').value
     }
   },
-  created() {
+  created () {
     this.api = this.api + '/' + this.$route.params.id
   },
-  mounted() {
+  mounted () {
     this.loadOptions()
       .then(() => {
         this.mounted = true
@@ -198,7 +198,7 @@ export default {
     afterLoadInputData () {
       this.entityLoading = false
     },
-    sendReply() {
+    sendReply () {
       this.entityLoading = true
       APIGateway.ticket.reply({
         id: this.$route.params.id,

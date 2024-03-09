@@ -1,7 +1,7 @@
 import { Model, Collection } from 'js-abstract-model'
 
 class Setting extends Model {
-  constructor(data) {
+  constructor (data) {
     super(data, [
       { key: 'id' },
       { key: 'key' },
@@ -11,7 +11,7 @@ class Setting extends Model {
 }
 
 class SettingList extends Collection {
-  model() {
+  model () {
     return Setting
   }
 }

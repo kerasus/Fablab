@@ -76,14 +76,14 @@ export default {
       return products
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {
-    setStep(step) {
+    setStep (step) {
       this.step = step
     },
-    onAccept() {
+    onAccept () {
       this.payInvoice()
     },
     createInvoice () {

@@ -3,7 +3,7 @@ import { Role, RoleList } from 'src/models/Role.js'
 import APIRepository from '../classes/APIRepository.js'
 
 export default class RoleAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('role', appApiInstance)
     this.APIAdresses = {
       base: '/core/roles'
@@ -19,7 +19,7 @@ export default class RoleAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

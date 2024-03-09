@@ -118,16 +118,16 @@ export default {
         this.$emit('update:menu', this.menuItems)
       }
     },
-    selectedTopic() {
+    selectedTopic () {
       return null
       // return this.$store.getters['ChatreNejat/selectedTopic']
     }
   },
   methods: {
-    isActive(item) {
+    isActive (item) {
       return (item.title === this.selectedTopic) || (item.title === this.clickedItem.title)
     },
-    redirectRoute(item) {
+    redirectRoute (item) {
       if (item.tags) {
         return { name: 'Public.Content.Search', query: { 'tags[]': item.tags } }
       } else if (item.href) {
@@ -137,7 +137,7 @@ export default {
       }
       return { name: item.routeName }
     },
-    itemSelected(item) {
+    itemSelected (item) {
       this.clickedItem = item
       this.$emit('itemSelected', item)
     },

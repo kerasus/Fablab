@@ -90,7 +90,7 @@ export default {
       this.$emit('update:value', categoryId)
     }
   },
-  mounted() {
+  mounted () {
     this.getCategories()
   },
   methods: {

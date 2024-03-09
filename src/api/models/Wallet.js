@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Wallet, WalletList } from 'src/models/Wallet.js'
 
 export default class WalletAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('ticket', appApiInstance)
     this.APIAdresses = {
       base: '/accounting/wallets',
@@ -19,7 +19,7 @@ export default class WalletAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -51,7 +51,7 @@ export default class WalletAPI extends APIRepository {
     })
   }
 
-  deposit(amount) {
+  deposit (amount) {
     return this.sendRequest({
       apiMethod: 'post',
       api: this.api,

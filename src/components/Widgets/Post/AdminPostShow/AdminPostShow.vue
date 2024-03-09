@@ -119,7 +119,7 @@ export default {
       ]
     }
   },
-  mounted() {
+  mounted () {
     this.setActionBtn()
     this.mounted = true
   },
@@ -134,7 +134,7 @@ export default {
     afterLoadInputData () {
       this.entityLoading = false
     },
-    edit() {
+    edit () {
       this.entityLoading = true
       this.$refs.entityEdit.editEntity(false)
         .then(() => {

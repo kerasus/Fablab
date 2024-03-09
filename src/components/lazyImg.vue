@@ -107,7 +107,7 @@ export default {
       this.updateLazyImageSrc()
     }
   },
-  mounted() {
+  mounted () {
     this.updateLazyImageSrc()
   },
   methods: {

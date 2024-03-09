@@ -130,10 +130,10 @@ export default {
       ]
     }
   },
-  created() {
+  created () {
     this.api = APIGateway.product.APIAdresses.base(this.$route.params.shopServiceName) + '/' + this.$route.params.id
   },
-  mounted() {
+  mounted () {
     this.loadOptions()
     this.$nextTick(() => {
       this.mounted = true
@@ -167,7 +167,7 @@ export default {
       this.services = response.services_relation_info
       this.entityLoading = false
     },
-    edit() {
+    edit () {
       this.entityLoading = true
       this.$refs.entityEdit.editEntity()
         .then(() => {

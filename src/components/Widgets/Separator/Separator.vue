@@ -25,7 +25,7 @@ import { mixinWidget, mixinPrefetchServerData } from 'src/mixin/Mixins.js'
 export default {
   name: 'Separator',
   mixins: [mixinPrefetchServerData, mixinWidget],
-  data() {
+  data () {
     return {
       defaultOptions: {
         spaced: false,

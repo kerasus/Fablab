@@ -70,12 +70,12 @@ export default {
   props: {
     menuContent: {
       type: Object,
-      default() {
+      default () {
         return {}
       }
     }
   },
-  data() {
+  data () {
     return {
       showMenu: false,
       onMouseleaveSetTimeout: null
@@ -96,10 +96,10 @@ export default {
         })
       }, 50)
     },
-    isItemSelected(item) {
+    isItemSelected (item) {
       return item.selected
     },
-    showData(colIndex) {
+    showData (colIndex) {
       this.menuContent.children.forEach((item, subIndex) => {
         item.selected = colIndex === subIndex
       })

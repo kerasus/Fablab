@@ -91,7 +91,7 @@ import { APIGateway } from 'src/api/APIGateway.js'
 export default {
   name: 'AccountInfo',
   mixins: [mixinWidget],
-  data() {
+  data () {
     return {
       user: new User(),
       isAdmin: true,
@@ -101,7 +101,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.loadAuthData()
     this.team = this.user.getTeam()
     this.loadTeam()

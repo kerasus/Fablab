@@ -136,19 +136,19 @@ export default {
     }
   },
   computed: {
-    isUserLogin() {
+    isUserLogin () {
       return this.$store.getters['Auth/isUserLogin']
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   },
-  beforeUnmount() {
+  beforeUnmount () {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    handleResize() {
+    handleResize () {
       const windowWidth = window.innerWidth
       this.menuItems.forEach(item => {
         if (item.mobileMode) {

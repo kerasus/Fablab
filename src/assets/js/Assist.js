@@ -7,11 +7,11 @@ const ajaxCacheTTLPrefix = 'ajaxCacheTTL-'
 class Assist {
   // constructor() {}
 
-  static isValidData(data) {
+  static isValidData (data) {
     return (typeof data !== 'undefined' && data !== null && data !== '')
   }
 
-  static optional(data, optionalData, refinementData) {
+  static optional (data, optionalData, refinementData) {
     if (this.isValidData(data)) {
       if (typeof refinementData === 'function') {
         return refinementData(data)
@@ -27,7 +27,7 @@ class Assist {
     }
   }
 
-  static miladiToShamsi(miladi, format = 'jYYYY/jMM/jDD HH:mm:ss') {
+  static miladiToShamsi (miladi, format = 'jYYYY/jMM/jDD HH:mm:ss') {
     if (!miladi) {
       return null
     }
@@ -35,37 +35,37 @@ class Assist {
     return moment(miladi, 'YYYY/M/D').locale('fa').format(format)
   }
 
-  static diffDate(date1, date2, diffType) {
+  static diffDate (date1, date2, diffType) {
     const a = new PersianDate(new Date(date1)),
       b = new PersianDate(new Date(date2))
     return a.diff(b, diffType)
   }
 
-  static relatedModelId(model, relatedModelName) {
+  static relatedModelId (model, relatedModelName) {
     model[relatedModelName + '_id'] = model[relatedModelName].id
   }
 
-  static bufferNewData(item, props) {
+  static bufferNewData (item, props) {
     for (let i = 0; typeof props[i] !== 'undefined'; i++) {
       item[props[i] + '_updated'] = item[props[i]]
     }
   }
 
-  static applyNewData(item, props) {
+  static applyNewData (item, props) {
     for (let i = 0; typeof props[i] !== 'undefined'; i++) {
       item[props[i] + '_old'] = item[props[i]]
       item[props[i]] = item[props[i] + '_updated']
     }
   }
 
-  static revertToOldData(item, props) {
+  static revertToOldData (item, props) {
     for (let i = 0; typeof props[i] !== 'undefined'; i++) {
       item[props[i]] = item[props[i] + '_old']
       item[props[i] + '_updated'] = null
     }
   }
 
-  static getErrors(errors) {
+  static getErrors (errors) {
     const errorsArray = []
 
     for (const prop in errors) {
@@ -79,7 +79,7 @@ class Assist {
     return errorsArray
   }
 
-  static handleErrorMessage(error) {
+  static handleErrorMessage (error) {
     if (error.response) {
       if (error.response.status === 422) {
         const errorsArray = Assist.getErrors(error.response.data.errors)
@@ -96,7 +96,7 @@ class Assist {
     }
   }
 
-  static stringContain(search, string) {
+  static stringContain (search, string) {
     if (typeof search === 'undefined' || search === null || search.trim().length === 0) {
       return true
     }

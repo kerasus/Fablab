@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Scenario, ScenarioList } from 'src/models/Scenario'
 
 export default class ScenariosAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('scenarios', appApiInstance)
     this.APIAdresses = {
       base: '/core/scenarios',
@@ -20,7 +20,7 @@ export default class ScenariosAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,

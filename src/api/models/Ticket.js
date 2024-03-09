@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Ticket, TicketList } from 'src/models/Ticket.js'
 
 export default class TicketAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('ticket', appApiInstance)
     this.APIAdresses = {
       base: '/mma/tickets',
@@ -20,7 +20,7 @@ export default class TicketAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -51,7 +51,7 @@ export default class TicketAPI extends APIRepository {
     })
   }
 
-  reply(data) {
+  reply (data) {
     return this.sendRequest({
       apiMethod: 'put',
       api: this.api,

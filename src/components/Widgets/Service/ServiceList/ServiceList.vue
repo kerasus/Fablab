@@ -45,11 +45,11 @@ export default {
       this.services.loading = false
     },
 
-    getApiRequest() {
+    getApiRequest () {
       this.services.loading = true
       return APIGateway.service.index()
     },
-    onSelectService(serviceItem) {
+    onSelectService (serviceItem) {
       const services = this.$store.getters['Reservation/services']
       const target = services.list.findIndex(serviceData => serviceData.id === serviceItem.id)
       if (target === -1) {

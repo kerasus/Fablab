@@ -4,7 +4,7 @@ import { Ticket, TicketList } from 'src/models/Ticket.js'
 import { TicketCategory } from 'src/models/TicketCategory.js'
 
 export default class TicketCategoryAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('ticketCategories', appApiInstance)
     this.APIAdresses = {
       base: '/mma/categories',
@@ -20,7 +20,7 @@ export default class TicketCategoryAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -51,7 +51,7 @@ export default class TicketCategoryAPI extends APIRepository {
     })
   }
 
-  reply(data) {
+  reply (data) {
     return this.sendRequest({
       apiMethod: 'put',
       api: this.api,

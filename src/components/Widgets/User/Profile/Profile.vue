@@ -110,7 +110,7 @@ export default {
       ]
     }
   },
-  mounted() {
+  mounted () {
     this.mounted = true
   },
   methods: {
@@ -120,7 +120,7 @@ export default {
     afterLoadInputData () {
       this.entityLoading = false
     },
-    edit() {
+    edit () {
       this.entityLoading = true
       this.$refs.entityEdit.editEntity(false)
         .then(() => {

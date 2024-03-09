@@ -1,7 +1,7 @@
 import { APIGateway } from 'src/api/APIGateway'
 
 const mixinPageOptions = {
-  data() {
+  data () {
     return {
       pageConfig: {}
     }
@@ -16,25 +16,25 @@ const mixinPageOptions = {
     pageBuilderEditable () {
       return this.$store.getters['PageBuilder/pageBuilderEditable']
     },
-    initialSections() {
+    initialSections () {
       return this.$store.getters['PageBuilder/initialSections']
     },
     pageDataLoaded () {
       return this.$store.getters['PageBuilder/pageDataLoaded']
     },
     pageBuilderLoading: {
-      get() {
+      get () {
         return this.$store.getters['PageBuilder/pageBuilderLoading']
       },
-      set(newInfo) {
+      set (newInfo) {
         return this.$store.commit('PageBuilder/updatePageBuilderLoading', newInfo)
       }
     },
     currenSections: {
-      get() {
+      get () {
         return this.$store.getters['PageBuilder/currentSections']
       },
-      set(newInfo) {
+      set (newInfo) {
         return this.$store.commit('PageBuilder/updateCurrentSections', newInfo)
       }
     }
@@ -66,7 +66,7 @@ const mixinPageOptions = {
     prefetchServerDataPromiseCatch () {
       this.pageBuilderLoading = false
     },
-    getPageConfigRequest() {
+    getPageConfigRequest () {
       this.pageBuilderLoading = true
       const params = JSON.stringify(this.$route.params)
       const routeName = this.$route.name

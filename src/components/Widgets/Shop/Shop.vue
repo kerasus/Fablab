@@ -49,7 +49,7 @@ export default {
       return this.$store.getters['Shop/selectedProducts']
     }
   },
-  mounted() {
+  mounted () {
     this.setStore()
     this.checkoutReview()
     this.mounted = true
@@ -100,7 +100,7 @@ export default {
       this.$store.commit('Shop/updateShopServiceName', this.$route.params.shopServiceName)
       this.$store.commit('Shop/updateSelectedProducts', [])
     },
-    setStep(step) {
+    setStep (step) {
       this.step = step
     },
     onStep1Complete () {
@@ -128,7 +128,7 @@ export default {
       //   })
     },
 
-    onAccept() {
+    onAccept () {
       this.createInvoice()
     },
     createInvoice () {

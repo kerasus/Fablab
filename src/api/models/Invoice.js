@@ -3,7 +3,7 @@ import APIRepository from '../classes/APIRepository.js'
 import { Invoice, InvoiceList } from 'src/models/Invoice.js'
 
 export default class InvoiceAPI extends APIRepository {
-  constructor() {
+  constructor () {
     super('invoice', appApiInstance)
     this.APIAdresses = {
       base: '/accounting/invoices',
@@ -22,7 +22,7 @@ export default class InvoiceAPI extends APIRepository {
     })
   }
 
-  index(data) {
+  index (data) {
     return this.sendRequest({
       apiMethod: 'get',
       api: this.api,
@@ -53,7 +53,7 @@ export default class InvoiceAPI extends APIRepository {
     })
   }
 
-  pay(invoiceId) {
+  pay (invoiceId) {
     return this.sendRequest({
       apiMethod: 'put',
       api: this.api,

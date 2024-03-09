@@ -16,7 +16,7 @@ export default {
       sections: [{ data: { rows: [{ cols: [{ widgets: [{ name: 'AdminNoticeList' }, { name: 'AdminNoticeCreate', options: { style: { paddingTop: '', marginTop: '32px' } } }], options: { style: { paddingTop: '124px' } } }], options: {} }] } }]
     }
   },
-  created() {
+  created () {
     this.currenSections = this.sections
   }
 }
