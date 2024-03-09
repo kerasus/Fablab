@@ -136,6 +136,29 @@ const routes = [
             ]
           },
           {
+            path: 'post',
+            name: 'Public.Post',
+            component: () => import('layouts/bareLayout.vue'),
+            children: [
+              {
+                path: '',
+                name: 'Public.Post.List',
+                meta: {
+                  hasDynamicSetting: true
+                },
+                component: () => import('src/pages/Public/BlogList.vue')
+              },
+              {
+                path: ':id',
+                name: 'Public.Post.Show',
+                meta: {
+                  hasDynamicSetting: true
+                },
+                component: () => import('src/pages/Public/BlogShow.vue')
+              }
+            ]
+          },
+          {
             path: 'contact-us',
             name: 'Public.ContactUs',
             meta: {
