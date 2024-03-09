@@ -75,7 +75,7 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
       vueRouterMode: 'history', // available values: 'hash', 'history'
-      productName: 'آموزش مجازی آلاء',
+      productName: 'فبلب',
       transpile: true,
       // Add dependencies for transpiling with Babel (Array of string/regex)
       // (from node_modules, which are by default not transpiled).
@@ -89,8 +89,9 @@ module.exports = configure(function (ctx) {
       rtl: true, // https://v2.quasar.dev/options/rtl-support
       preloadChunks: true,
       showProgress: true,
+      sourcemap: true,
       gzip: true,
-      analyze: true,
+      analyze: false,
 
       env: process.env,
 
@@ -163,6 +164,14 @@ module.exports = configure(function (ctx) {
       //   //   ]
       //   // }))
       // },
+      // extendViteConf (viteConf, { isServer, isClient }) {
+      //   // console.log('viteConf.build', viteConf.build)
+      //   viteConf.build.sourcemap = true
+      //   // Set the base URL based on the environment
+      //   if (process.env.ASSET_SERVE === 'remote') {
+      //     viteConf.base = process.env.NODES_SERVER_URL_SSL || '/'
+      //   }
+      // },
       beforeDev({ quasarConf }) {
         generateWidgetList('./src/components/Widgets')
       },
@@ -175,32 +184,8 @@ module.exports = configure(function (ctx) {
         node: 'node16'
       },
 
-      // minify: false,
-      // polyfillModulePreload: true,
-
-      extendViteConf(viteConf) {
-        // viteConf.resolve = {
-        //   alias: {
-        //     src: path.resolve(__dirname, './src'),
-        //     boot: path.resolve(__dirname, './src/boot'),
-        //     app: path.resolve(__dirname, './'),
-        //     layouts: path.resolve(__dirname, './src/layouts'),
-        //     pages: path.resolve(__dirname, './src/pages'),
-        //     assets: path.resolve(__dirname, './src/assets'),
-        //     mixin: path.resolve(__dirname, './src/mixin'),
-        //     components: path.resolve(__dirname, './src/components'),
-        //     models: path.resolve(__dirname, './src/models'),
-        //     plugins: path.resolve(__dirname, './src/plugins'),
-        //     router: path.resolve(__dirname, './src/router'),
-        //     css: path.resolve(__dirname, './src/css'),
-        //     api: path.resolve(__dirname, './src/api')
-        //   },
-        //   extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
-        //   dedupe: [
-        //     'vue'
-        //   ]
-        // }
-      },
+      minify: true,
+      polyfillModulePreload: true,
       vitePlugins: [
         // ['@intlify/vite-plugin-vue-i18n', {
         //   // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
@@ -227,6 +212,12 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
       https: false,
+      // host: "0.0.0.0",
+      // hmr: {
+      //   port: process.env.DEV_HMR_PORT,
+      //   path: '/socket.io',
+      //   clientPort: process.env.DEV_HMR_CLIENT_PORT
+      // },
       port: 8083,
       open: true, // opens browser window automatically
       proxy: {
@@ -413,7 +404,11 @@ module.exports = configure(function (ctx) {
       injectPwaMetaTags: true,
       swFilename: 'sw.js',
       manifestFilename: 'manifest.json',
-      useCredentialsForManifestTag: false
+      useCredentialsForManifestTag: false,
+      extendGenerateSWOptions (cfg) {
+        cfg.skipWaiting = false
+        cfg.clientsClaim = false
+      }
       // useFilenameHashes: true,
       // extendGenerateSWOptions (cfg) {}
       // extendInjectManifestOptions (cfg) {},
