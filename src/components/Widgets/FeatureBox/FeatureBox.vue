@@ -22,9 +22,7 @@ export default {
     return {
       defaultOptions: {
         title: null,
-        description: null,
-        image: null,
-        horizontal: true
+        image: null
       }
     }
   }

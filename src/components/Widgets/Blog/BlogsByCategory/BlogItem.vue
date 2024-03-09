@@ -1,24 +1,26 @@
 <template>
-  <q-card class="BlogItem"
-          flat>
-    <div class="thumbnail">
-      <q-img :src="media.thumbnail" />
-    </div>
-    <div class="title ellipsis-2-lines">
-      {{ media.title }}
-    </div>
-  </q-card>
+  <router-link class="BlogItem"
+               :to="{ name: 'Public.Post.Show', params: { id: post.id } }">
+    <q-card flat>
+      <div class="thumbnail">
+        <q-img :src="post.thumbnail" />
+      </div>
+      <div class="title ellipsis-2-lines">
+        {{ post.title }}
+      </div>
+    </q-card>
+  </router-link>
 </template>
 
 <script>
-import { Media } from 'src/models/Media.js'
+import { Post } from 'src/models/Post.js'
 
 export default {
   name: 'BlogItem',
   props: {
-    media: {
-      type: Media,
-      default: new Media()
+    post: {
+      type: Post,
+      default: new Post()
     }
   }
 }

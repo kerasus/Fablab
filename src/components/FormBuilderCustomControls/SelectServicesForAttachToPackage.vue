@@ -209,7 +209,6 @@ export default {
   },
   created () {
     this.inputData = this.value
-    console.log('localServices', this.localServices)
   },
   methods: {
     addServiceRow () {

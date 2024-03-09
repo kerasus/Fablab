@@ -7,10 +7,9 @@
               :snap-align="'center'"
               wrapAround
               dir="rtl">
-      <slide v-for="media in mediaList.list"
-             :key="media.id">
-        <blog-item :media="media"
-                   @click="toBlog(media.id)" />
+      <slide v-for="post in postList.list"
+             :key="post.id">
+        <blog-item :post="post" />
       </slide>
 
       <template #addons="{ slidesCount }">
@@ -27,7 +26,7 @@ import {
   Carousel, Slide, Pagination
 /* Navigation */
 } from 'vue3-carousel/dist/carousel'
-import { MediaList } from 'src/models/Media.js'
+import { PostList } from 'src/models/Post.js'
 import { APIGateway } from 'src/api/APIGateway.js'
 import { mixinPrefetchServerData, mixinWidget } from 'src/mixin/Mixins.js'
 import BlogItem from 'src/components/Widgets/Blog/BlogsByCategory/BlogItem.vue'
@@ -45,30 +44,30 @@ export default {
   data: () => {
     return {
       mounted: false,
-      mediaList: new MediaList()
+      defaultOptions: {
+        categoryId: null
+      },
+      postList: new PostList()
     }
   },
   mounted() {
     this.mounted = true
   },
   methods: {
-    toBlog (mediaId) {
-      this.$router.push({ name: 'Public.Blog.Show', params: { id: mediaId } })
-    },
     prefetchServerDataPromise () {
       return this.getApiRequest()
     },
     prefetchServerDataPromiseThen ({ list }) {
-      this.mediaList = new MediaList(list)
-      this.mediaList.loading = false
+      this.postList = new PostList(list)
+      this.postList.loading = false
     },
     prefetchServerDataPromiseCatch () {
-      this.mediaList.loading = false
+      this.postList.loading = false
     },
 
     getApiRequest() {
-      this.mediaList.loading = true
-      return APIGateway.media.index()
+      this.postList.loading = true
+      return APIGateway.post.index({ category: this.localOptions.categoryId })
     }
   }
 }
