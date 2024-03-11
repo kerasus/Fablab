@@ -84,8 +84,8 @@
     "vue-router": "^4.2.5",
     "vue3-carousel": "^0.3.1",
     "vue3-otp-input": "^0.4.1",
+    "vue3-tiptap-katex": "^1.1.27",
     "vuex": "^4.1.0",
-    "vue": "3.4.13",
     "vuex-persistedstate": "^4.1.0",
     "wavesurfer.js": "^7.7.1",
     "workbox-build": "^7.0.0",
@@ -95,9 +95,7 @@
     "workbox-precaching": "^7.0.0",
     "workbox-routing": "^7.0.0",
     "workbox-strategies": "^7.0.0",
-    "workbox-window": "^7.0.0",
-    "vue-tiptap-katex-core": "^2.1.5",
-    "vue3-tiptap-katex": "^1.1.27"
+    "workbox-window": "^7.0.0"
   },
   "engines": {
     "node": "^20 || ^18",
