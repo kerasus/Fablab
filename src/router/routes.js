@@ -45,7 +45,7 @@ const routes = [
             meta: {
               hasDynamicSetting: true
             },
-            component: () => import('src/pages/Public/Home.vue')
+            component: () => import('src/pages/Public/BasicDynamicPage.vue')
           },
           {
             path: 'packages',

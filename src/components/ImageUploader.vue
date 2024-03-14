@@ -1,7 +1,12 @@
 <template>
-  <q-card>
+  <q-card class="ImageUploader">
     <q-card-section>
-      <div>
+      <q-btn label="x"
+             size="sm"
+             color="red"
+             class="btn-clear-value"
+             @click="clearValue" />
+      <div class="preview-value">
         ({{ value || file }})
       </div>
       <q-input v-model="localFile"
@@ -16,25 +21,17 @@
                      :index-route-name="indexRouteName"
                      :show-route-name="showRouteName"
                      :after-send-data="afterSendData" />
-      <div class="action">
-        <div class="row q-mt-lg justify-end">
-          <div class="col-md-4 col-12">
-            <q-btn color="primary"
-                   class="full-width"
-                   :loading="entityLoading"
-                   @click="create">
-              آپلود
-            </q-btn>
-          </div>
-        </div>
-      </div>
     </q-card-section>
   </q-card>
 </template>
 
 <script>
+import { shallowRef } from 'vue'
 import { EntityCreate } from 'quasar-crud'
 import { APIGateway } from 'src/api/APIGateway.js'
+import BtnControl from 'src/components/Control/btn.vue'
+
+const BtnControlComp = shallowRef(BtnControl)
 
 export default {
   name: 'ImageUploader',
@@ -50,7 +47,7 @@ export default {
     }
   },
   emits: ['update:value', 'update:file'],
-  data: () => {
+  data () {
     return {
       entityLoading: false,
       api: APIGateway.media.APIAdresses.base,
@@ -60,6 +57,16 @@ export default {
       indexRouteName: 'AdminPanel.Service.List',
       inputs: [
         { type: 'file', name: 'file', responseKey: 'file', label: 'فایل تصویر', col: 'col-md-6 col-12' },
+        {
+          type: BtnControlComp,
+          name: 'btn',
+          responseKey: 'btn',
+          label: 'آپلود',
+          atClick: () => {
+            this.create()
+          },
+          col: 'col-md-6 q-mt-sm'
+        },
         { type: 'hidden', name: 'source_type', value: 'SETTING' },
         { type: 'hidden', name: 'type', value: 'VIDEO' }
       ]
@@ -90,11 +97,28 @@ export default {
     afterSendData (response) {
       this.$emit('update:file', response.data.file)
       this.$emit('update:value', "url('" + response.data.file + "')")
+    },
+    clearValue () {
+      this.$emit('update:file', null)
+      this.$emit('update:value', null)
     }
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.ImageUploader {
+  position: relative;
+  .btn-clear-value {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+  }
+  .preview-value {
+    /* rtl:ignore */
+    text-align: left;
+    /* rtl:ignore */
+    direction: ltr;
+  }
+}
 </style>
