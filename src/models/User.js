@@ -1,3 +1,4 @@
+import { Team } from 'src/models/Team.js'
 import { Collection, Model } from 'js-abstract-model'
 
 class User extends Model {
@@ -81,6 +82,10 @@ class User extends Model {
     if (this.user_id !== null) {
       this.id = this.user_id
     }
+  }
+
+  getTeam () {
+    return new Team(this.team_info)
   }
 
   fullname () {

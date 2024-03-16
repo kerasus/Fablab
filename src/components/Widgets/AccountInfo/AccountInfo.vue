@@ -15,69 +15,54 @@
       </div>
     </q-card>
     <div class="info">
-      <template v-if="!user.team">
-        <div class="no-team">
-          هنوز تیمی مشخص نشده است.
-        </div>
-      </template>
-      <template>
-        <div class="members-and-leader">
-          <div class="members">
-            <div class="members-title">
-              اعضا
-            </div>
-            <div v-for="member in team.members_info.list"
-                 :key="member.id"
-                 class="member-item">
-              <q-avatar size="32px">
-                <q-img :src="member.picture" />
-              </q-avatar>
-            </div>
-            <div v-for="member in team.members_info.list"
-                 :key="member.id"
-                 class="member-item">
-              <q-avatar size="32px">
-                <q-img :src="member.picture" />
-              </q-avatar>
-            </div>
-            <div v-for="member in team.members_info.list"
-                 :key="member.id"
-                 class="member-item">
-              <q-avatar size="32px">
-                <q-img :src="member.picture" />
-              </q-avatar>
-            </div>
+      <div v-if="!user.team"
+           class="no-team">
+        هنوز تیمی مشخص نشده است.
+      </div>
+      <div v-if="user.team"
+           class="members-and-leader">
+        <div class="members">
+          <div class="members-title">
+            اعضا
           </div>
-          <div class="leader ellipsis">
-            <span class="title">
-              مدیر تیم:
-            </span>
-            <span class="value">
-              {{ team.leader_info.firstname }}
-              {{ team.leader_info.lastname }}
-            </span>
+          <div v-for="member in team.members_info.list"
+               :key="member.id"
+               class="member-item">
+            <q-avatar size="32px">
+              <q-img :src="member.picture" />
+            </q-avatar>
           </div>
         </div>
-        <div class="services">
-          <div class="services-item">
-            <span class="title">
-              تعداد میز:
-            </span>
-            <span class="value">
-              ۵ عدد
-            </span>
-          </div>
-          <div class="services-item">
-            <span class="title">
-              تعداد اینترنت:
-            </span>
-            <span class="value">
-              ۳ عدد
-            </span>
-          </div>
-          <div class="services-item" />
+        <div class="leader ellipsis">
+          <span class="title">
+            مدیر تیم:
+          </span>
+          <span class="value">
+            {{ team.leader_info.firstname }}
+            {{ team.leader_info.lastname }}
+          </span>
         </div>
-      </template>
+      </div>
+      <div v-if="user.team"
+           class="services">
+        <div class="services-item">
+          <span class="title">
+            تعداد میز:
+          </span>
+          <span class="value">
+            ۵ عدد
+          </span>
+        </div>
+        <div class="services-item">
+          <span class="title">
+            تعداد اینترنت:
+          </span>
+          <span class="value">
+            ۳ عدد
+          </span>
+        </div>
+        <div class="services-item" />
+      </div>
     </div>
   </q-card>
 </template>
@@ -91,7 +76,7 @@ import { APIGateway } from 'src/api/APIGateway.js'
 export default {
   name: 'AccountInfo',
   mixins: [mixinWidget],
-  data() {
+  data () {
     return {
       user: new User(),
       isAdmin: true,
@@ -101,7 +86,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.loadAuthData()
     this.team = this.user.getTeam()
     this.loadTeam()
@@ -159,19 +144,20 @@ export default {
   .info {
     width: calc( 100% - 116px );
     padding-left: 16px;
+    display: flex;
+    flex-direction: column;
     .no-team {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .members-and-leader {
       width: 100%;
-      border-bottom: solid 1px #EDEDED;
       display: flex;
       flex-flow: row;
       align-items: center;
-      height: 50px;
+      border-bottom: solid 1px #EDEDED;
       .members {
         width: 50%;
         display: flex;
