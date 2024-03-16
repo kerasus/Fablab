@@ -33,7 +33,8 @@
         <div class="label" />
         <div class="input">
           <q-checkbox v-model="localServices[serviceIndex].extendable"
-                      label="قابل تمدید" />
+                      label="قابل تمدید"
+                      @update:model-value="onChangeExtendableCheckBox($event, serviceIndex)" />
         </div>
       </div>
     </div>
@@ -211,6 +212,11 @@ export default {
     this.inputData = this.value
   },
   methods: {
+    onChangeExtendableCheckBox (newValue, serviceIndex) {
+      const services = this.localServices
+      services[serviceIndex].extendable = newValue
+      this.$emit('update:services', services)
+    },
     addServiceRow () {
       this.localServices.push({
         service: null,
@@ -223,7 +229,7 @@ export default {
       const services = this.localServices.filter(item => item.service)
         .map(item => {
           return {
-            service: item.service,
+            service: item.service.id,
             count: item.count,
             extendable: item.extendable
           }
