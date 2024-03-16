@@ -27,6 +27,7 @@ export default class ServiceAPI extends APIRepository {
       api: this.api,
       request: this.APIAdresses.base,
       data: this.getNormalizedSendData({
+        standalone: null, // Boolean
         page: 1 // Number
       }, data),
       resolveCallback: (response) => {

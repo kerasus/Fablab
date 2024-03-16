@@ -27,6 +27,7 @@ export default {
     return {
       services: new ServiceList(),
       defaultOptions: {
+        standalone: null,
         routeToPanel: false,
         light: false,
         cols: 'col-md-3 col-sm-6 col-12'
@@ -47,7 +48,9 @@ export default {
 
     getApiRequest() {
       this.services.loading = true
-      return APIGateway.service.index()
+      return APIGateway.service.index({
+        standalone: this.localOptions.standalone
+      })
     },
     onSelectService(serviceItem) {
       const services = this.$store.getters['Reservation/services']

@@ -10,7 +10,7 @@
       <div class="list-title">
         خدمات
       </div>
-      <service-list :options="{cols: 'col-md-4 col-sm-6 col-12', light:true}" />
+      <service-list :options="{cols: 'col-md-4 col-sm-6 col-12', light:true, standalone:true}" />
     </div>
     <div class="action">
       <q-btn color="primary"
