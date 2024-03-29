@@ -115,7 +115,19 @@ export default {
           },
           col: 'col-md-12 col-12'
         },
-        { type: BtnControlComp, name: 'btn', responseKey: 'btn', label: 'ویرایش پست', placeholder: ' ', ignoreValue: true, atClick: () => {}, col: 'col-md-6' }
+        { type: BtnControlComp, name: 'btn', responseKey: 'btn', label: 'ویرایش پست', placeholder: ' ', ignoreValue: true, atClick: () => {}, col: 'col-md-6' },
+        {
+          type: BtnControlComp,
+          name: 'btnShowPost',
+          responseKey: 'btn',
+          label: 'مشاهده پست',
+          placeholder: ' ',
+          ignoreValue: true,
+          atClick: () => {
+            this.showPost()
+          },
+          col: 'col-md-6'
+        }
       ]
     }
   },
@@ -124,6 +136,10 @@ export default {
     this.mounted = true
   },
   methods: {
+    showPost () {
+      const routeData = this.$router.resolve({ name: 'Public.Post.Show', params: { id: this.$route.params.id } })
+      window.open(routeData.href, '_blank')
+    },
     setActionBtn () {
       this.inputs.forEach((item, index) => {
         if (item.name === 'btn') {

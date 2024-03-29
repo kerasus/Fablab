@@ -1,7 +1,7 @@
 <template>
   <div class="Breadcrumbs"
        :style="localOptions.style">
-    <q-breadcrumbs v-if="breadcrumbs.visible">
+    <q-breadcrumbs v-if="mounted && breadcrumbs.visible">
       <!--      <template v-slot:separator>-->
       <!--        <q-icon name="chevron_right"-->
       <!--                color="gray" />-->
@@ -20,10 +20,18 @@ import { mixinWidget } from 'src/mixin/Mixins.js'
 export default {
   name: 'Breadcrumbs',
   mixins: [mixinWidget],
+  data () {
+    return {
+      mounted: false
+    }
+  },
   computed: {
     breadcrumbs () {
       return this.$store.getters['AppLayout/breadcrumbs']
     }
+  },
+  mounted() {
+    this.mounted = true
   }
 }
 </script>

@@ -184,7 +184,7 @@ const routes = [
           {
             path: '/login',
             name: 'Login',
-            component: () => import('pages/Auth/Login.vue')
+            component: () => import('src/pages/Auth/Login.vue')
           },
           {
             path: '/otp-login',

@@ -36,7 +36,7 @@ export default {
   props: {
     value: {
       default: () => [],
-      type: [Array, String, Number, Boolean]
+      type: [Array, String, Number, Boolean, Object]
     },
     disable: {
       default: false,
@@ -57,7 +57,7 @@ export default {
   },
   watch: {
     value () {
-      if (this.value.id) {
+      if (this.value?.id) {
         this.getCategories()
       } else {
         this.inputData = this.value
@@ -66,24 +66,28 @@ export default {
     mainCategory (newValue) {
       this.subCategory = null
       this.subCategoryOptions = []
-      this.subCategoryOptions = newValue.item.children.map(item => {
-        return {
-          item,
-          label: item.title,
-          value: item.id
-        }
-      })
+      if (newValue?.item) {
+        this.subCategoryOptions = newValue.item.children.map(item => {
+          return {
+            item,
+            label: item.title,
+            value: item.id
+          }
+        })
+      }
     },
     subCategory (newValue) {
       this.bakhshCategory = null
       this.bakhshCategoryOptions = []
-      this.bakhshCategoryOptions = newValue.item.children.map(item => {
-        return {
-          item,
-          label: item.title,
-          value: item.id
-        }
-      })
+      if (newValue?.item) {
+        this.bakhshCategoryOptions = newValue.item.children.map(item => {
+          return {
+            item,
+            label: item.title,
+            value: item.id
+          }
+        })
+      }
     },
     bakhshCategory (newValue) {
       const categoryId = newValue ? newValue.value : null

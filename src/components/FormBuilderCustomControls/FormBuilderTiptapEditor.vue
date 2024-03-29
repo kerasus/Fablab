@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { shallowRef } from 'vue'
 import { inputMixin } from 'quasar-form-builder'
 
 export default {
@@ -59,7 +60,7 @@ export default {
 
     import('vue3-tiptap-katex')
       .then((vue3TiptapKatex) => {
-        this.editorComponent = vue3TiptapKatex.VueTiptapKatexNoSsr
+        this.editorComponent = shallowRef(vue3TiptapKatex.VueTiptapKatexNoSsr)
       })
       .catch()
   },

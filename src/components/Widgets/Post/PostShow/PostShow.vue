@@ -301,6 +301,9 @@ export default {
       max-width: 100%;
       margin: auto;
     }
+    video {
+      max-width: 100%;
+    }
   }
 }
 </style>

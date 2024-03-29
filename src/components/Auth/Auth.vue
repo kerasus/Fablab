@@ -1,7 +1,7 @@
 <template>
-  <div class="login-card"
+  <div class="login-card aaa"
        :class="{defaultLoginCard: defaultLayout}">
-    <div v-if="!userLogin">
+    <div v-if="!isUserLogin">
       <div v-if="loading"
            class="text-center login-loading">
         <q-spinner-ball color="primary"
@@ -73,7 +73,6 @@ export default {
   },
   data () {
     return {
-      userLogin: false,
       loading: true,
       username: null,
       password: null
