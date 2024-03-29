@@ -367,6 +367,7 @@ const routes = [
           {
             path: 'dashboard',
             name: 'AdminPanel.Dashboard',
+            redirect: { name: 'AdminPanel.Package.List' },
             component: () => import('src/pages/Admin/Dashboard.vue')
           },
           {
