@@ -49,8 +49,8 @@ export default {
   mixins: [mixinWidget, PostMixin],
   data () {
     const postId = this.$route.params.id
-    const authorization = 'Bearer ' + this.$store.getters['Auth/accessToken']
     const uploadVideo = this.uploadVideo
+    const uploadPhoto = this.uploadPhoto
     const uploadAudio = this.uploadAudio
     return {
       mounted: false,
@@ -72,19 +72,9 @@ export default {
           responseKey: 'summary',
           label: 'خلاصه',
           options: {
-            bubbleMenu: false,
-            floatingMenu: false,
-            poem: false,
-            reading: false,
             loadBareHtml: true,
             persianKeyboard: true,
-            mathliveOptions: { smartFence: false },
-            uploadServer: {
-              url: '/api' + APIGateway.media.APIAdresses.base,
-              instantUpload: true,
-              responseKey: 'file',
-              headers: { Authorization: authorization }
-            },
+            uploadPhoto,
             uploadVideo,
             uploadAudio
           },
@@ -97,25 +87,26 @@ export default {
           responseKey: 'text',
           label: 'متن',
           options: {
-            bubbleMenu: false,
-            floatingMenu: false,
-            poem: false,
-            reading: false,
             loadBareHtml: true,
             persianKeyboard: true,
-            mathliveOptions: { smartFence: false },
-            uploadServer: {
-              url: '/api' + APIGateway.media.APIAdresses.base,
-              instantUpload: true,
-              responseKey: 'file',
-              headers: { Authorization: authorization }
-            },
+            uploadPhoto,
             uploadVideo,
             uploadAudio
           },
           col: 'col-md-12 col-12'
         },
-        { type: BtnControlComp, name: 'btn', responseKey: 'btn', label: 'ویرایش پست', placeholder: ' ', ignoreValue: true, atClick: () => {}, col: 'col-md-6' },
+        {
+          type: BtnControlComp,
+          name: 'btn',
+          responseKey: 'btn',
+          label: 'ویرایش پست',
+          placeholder: ' ',
+          ignoreValue: true,
+          atClick: () => {
+            this.edit()
+          },
+          col: 'col-md-6'
+        },
         {
           type: BtnControlComp,
           name: 'btnShowPost',
@@ -132,20 +123,12 @@ export default {
     }
   },
   mounted() {
-    this.setActionBtn()
     this.mounted = true
   },
   methods: {
     showPost () {
       const routeData = this.$router.resolve({ name: 'Public.Post.Show', params: { id: this.$route.params.id } })
       window.open(routeData.href, '_blank')
-    },
-    setActionBtn () {
-      this.inputs.forEach((item, index) => {
-        if (item.name === 'btn') {
-          this.inputs[index].atClick = this.edit
-        }
-      })
     },
     afterLoadInputData () {
       this.entityLoading = false
