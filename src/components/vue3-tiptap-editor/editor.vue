@@ -140,13 +140,16 @@ export default {
         vueTiptapKatexInstance.newModelValue = VueTiptapKatexAssist.convertToTiptap(htmlContent)
       }
     })
+
+    this.editor.editorOptions = this.editorOptions
   },
   beforeUnmount() {
     this.editor.destroy()
   },
   methods: {
     setContent(pureHTML) {
-      const string = VueTiptapKatexAssist.convertToTiptap(pureHTML)
+      const htmlContent = this.editorOptions.loadBareHtml ? VueTiptapKatexAssist.convertBareHtml(pureHTML) : pureHTML
+      const string = VueTiptapKatexAssist.convertToTiptap(htmlContent)
       // const oldanchor = this.editor.state.tr.selection.anchor
       if (string.length) {
         this.editor.commands.setContent(string)

@@ -22,6 +22,9 @@ export default Node.create({
       data: {
         default: null
       },
+      ['data-data']: {
+        default: null
+      },
     }
   },
 
@@ -29,10 +32,11 @@ export default Node.create({
     return [
       {
         tag: 'div.barehtml',
-        // getAttrs: (element) => {
-        //   if (typeof element === 'string') return {};
-        //   return element.getAttribute('class') === 'barehtml';
-        // },
+        getAttrs: (element) => {
+          // https://tiptap.dev/docs/editor/guide/custom-extensions#using-get-attrs
+          // Get a specific attribute
+          element.getAttribute('data-data')
+        },
         // getAttrs: (element) => element.getAttribute('class') === 'barehtml'
       }
     ]
@@ -42,8 +46,7 @@ export default Node.create({
     // if (data.HTMLAttributes.data) {
     //   return ['div', { class: 'barehtml', data: data.HTMLAttributes.data }]
     // }
-
-    return ['div', { class: 'barehtml', data: data.HTMLAttributes.data }]
+    return ['div', { class: 'barehtml', data: data.HTMLAttributes['data-data'] }]
   },
 
   addNodeView() {

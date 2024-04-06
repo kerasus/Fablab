@@ -15,16 +15,6 @@
       <node-view-content class="content" />
     </div>
   </node-view-wrapper>
-
-<!--  <node-view-wrapper class="barehtml"-->
-<!--                     data-drag-handle>-->
-<!--    <textarea v-model="scriptData" @input="onChangeScript($event.target.value)" />-->
-<!--    <div v-if="scriptData"-->
-<!--         class="resizer-container">-->
-<!--      <span class="mdi mdi-drag" />-->
-<!--      <div style="width: 100%" ref="scriptContainer"></div>-->
-<!--    </div>-->
-<!--  </node-view-wrapper>-->
 </template>
 
 <script>
@@ -49,6 +39,14 @@ export default {
   data () {
     return {
       scriptData: null
+    }
+  },
+  mounted () {
+    if (this.node.attrs['data-data']) {
+      this.scriptData = this.node.attrs['data-data']
+      this.$nextTick(() => {
+        this.onChangeScript(this.scriptData)
+      })
     }
   },
   methods: {
