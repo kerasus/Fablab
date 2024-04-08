@@ -41,13 +41,12 @@ export const convertBareHtml = (string) => {
   const doms = wrapper.querySelectorAll('div.barehtml')
   doms.forEach((item, itemIndex) => {
     const domItem = item.attributes[0].nodeValue
-    const innerHTML = item.innerHTML
-    if (domItem && innerHTML) {
+    const itemData = item.attributes?.data
+    if (domItem && itemData) {
       const domWrapper = document.createElement('div')
-      domWrapper.innerHTML = innerHTML
-      domWrapper.dataset.data = innerHTML
+      domWrapper.innerHTML = itemData.nodeValue
+      domWrapper.setAttribute('data', itemData.nodeValue)
       domWrapper.classList.add('barehtml')
-      domWrapper.classList.add('barehtml7777')
       doms[itemIndex].replaceWith(domWrapper)
     }
   })

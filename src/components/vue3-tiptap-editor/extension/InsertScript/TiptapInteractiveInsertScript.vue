@@ -8,6 +8,7 @@
            class="resizer-container">
         <span class="mdi mdi-drag" />
         <div ref="scriptContainer"
+             class="preview-code"
              style="width: 100%" />
       </div>
     </div>
@@ -42,8 +43,8 @@ export default {
     }
   },
   mounted () {
-    if (this.node.attrs['data-data']) {
-      this.scriptData = this.node.attrs['data-data']
+    if (this.node.attrs.data) {
+      this.scriptData = this.node.attrs.data
       this.$nextTick(() => {
         this.onChangeScript(this.scriptData)
       })
@@ -65,8 +66,8 @@ export default {
 
 <style scoped lang="scss">
 .barehtml {
-  width: 100%;
-  max-width: 500px;
+  width: 40%;
+  max-width: 40%;
   textarea {
     width: 100%;
     border: solid 1px #dadada;

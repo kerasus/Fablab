@@ -90,6 +90,7 @@ export default {
   },
   mounted() {
     const vueTiptapKatexInstance = this
+    this.localModelValue = this.editorOptions.loadBareHtml ? VueTiptapKatexAssist.convertBareHtml(this.localModelValue) : this.localModelValue
     this.editor = new Editor({
       content: this.localModelValue,
       extensions: [

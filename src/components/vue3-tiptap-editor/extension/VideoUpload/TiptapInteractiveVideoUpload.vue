@@ -81,47 +81,26 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .vue-component.inline {
   display: inline-block;
-}
-
-video {
-  max-width: 100%;
-}
-
-.inline.uploading {
-  width: 500px;
-}
-
-.inline .resizer-container {
-  margin: 0 24px;
+  max-width: 40%;
 }
 
 .resizer-container {
   position: relative;
   cursor: grab;
   display: flex;
-  margin-right: 32px;
+  max-width: 100%;
+  video {
+    width: 100% !important;
+    max-width: 100%;
+    height: auto;
+  }
 }
 
-.resizer-container .mdi-drag {
-  background: #e6e6e6;
-  position: absolute;
-  left: -16px;
-}
-
-.resizer-container .mdi-drag::before {
-  position: relative;
-  top: calc(50% - 10px);
-}
-
-.vdr {
-  position: relative !important;
-}
-
-.resizer-container img {
-  height: 100% !important;
+.inline.uploading {
+  width: 500px;
 }
 
 </style>

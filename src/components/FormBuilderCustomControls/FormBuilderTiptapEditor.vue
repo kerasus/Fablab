@@ -4,6 +4,7 @@
     <p v-text="label" />
     <tiptap-editor v-if="!disable && !readonly"
                    ref="tiptap"
+                   :key="key"
                    v-model="inputData"
                    :name="name"
                    :options="options"
@@ -51,15 +52,18 @@ export default {
   },
   data() {
     return {
+      key: Date.now(),
       editorComponent: null
     }
   },
   watch: {
-    value(newValue) {
+    value(newValue, oldValue) {
       if (newValue === false) {
         this.inputData = ''
-      } else {
-        this.setNewContent(newValue)
+      }
+      if (!oldValue && newValue) {
+        this.inputData = newValue
+        this.key = Date.now()
       }
     }
   },
@@ -131,10 +135,10 @@ export default {
         .catch(() => {
           onError()
         })
-    },
-    setNewContent(val) {
-      this.$refs.tiptap.setContent(val)
     }
+    // setNewContent(val) {
+    //   this.$refs.tiptap.setContent(val)
+    // }
   }
 }
 </script>

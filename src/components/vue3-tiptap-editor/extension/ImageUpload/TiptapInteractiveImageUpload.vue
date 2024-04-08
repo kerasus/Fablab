@@ -169,55 +169,23 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.resizer-container {
+  position: relative;
+  cursor: grab;
+  display: flex;
+  img {
+    width: 100% !important;
+    height: auto;
+  }
+}
+
 .vue-component.inline {
   display: inline-block;
+  max-width: 40%;
 }
 
 .inline.uploading {
   width: 500px;
 }
-
-.inline .resizer-container {
-  margin: 0 24px;
-}
-
-.filepond--credits {
-  display: none;
-}
-
-.filepond--action-revert-item-processing {
-  display: none;
-}
-
-.filepond--file-status-sub {
-  display: none;
-}
-
-.resizer-container {
-  position: relative;
-  cursor: grab;
-  display: flex;
-  margin-right: 32px;
-}
-
-.resizer-container .mdi-drag {
-  background: #e6e6e6;
-  position: absolute;
-  left: -16px;
-}
-
-.resizer-container .mdi-drag::before {
-  position: relative;
-  top: calc(50% - 10px);
-}
-
-.vdr {
-  position: relative !important;
-}
-
-.resizer-container img {
-  height: 100% !important;
-}
-
 </style>

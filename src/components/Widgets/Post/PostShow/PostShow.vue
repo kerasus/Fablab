@@ -247,6 +247,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "src/css/HTMLContent.scss";
 .post {
   .post-banner {
     margin-top: 52px;
@@ -289,21 +290,15 @@ export default {
         border-radius: 2px;
       }
     }
-    .summary-body {
+    :deep(.summary-body) {
       font-size: 20px;
       color: #707070;
+      @include HTMLContent;
     }
   }
   :deep(.post-body) {
     margin-top: 32px;
-    .barehtml {
-      width: 600px;
-      max-width: 100%;
-      margin: auto;
-    }
-    video {
-      max-width: 100%;
-    }
+    @include HTMLContent;
   }
 }
 </style>
