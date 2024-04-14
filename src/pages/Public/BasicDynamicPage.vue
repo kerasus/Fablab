@@ -1,7 +1,8 @@
 <template>
   <q-page-builder v-model:sections="currenSections"
                   v-model:options="pageConfig"
-                  :editable="false" />
+                  :editable="pageBuilderEditable"
+                  :loading="pageBuilderLoading" />
 </template>
 
 <script>

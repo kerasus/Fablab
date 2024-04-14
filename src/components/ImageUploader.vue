@@ -1,26 +1,33 @@
 <template>
   <q-card class="ImageUploader">
+    <q-btn label="x"
+           size="sm"
+           color="red"
+           class="btn-clear-value"
+           @click="clearValue" />
     <q-card-section>
-      <q-btn label="x"
-             size="sm"
-             color="red"
-             class="btn-clear-value"
-             @click="clearValue" />
       <div class="preview-value">
         ({{ value || file }})
       </div>
-      <q-input v-model="localFile"
-               label="آدرس فایل عکس" />
-      <entity-create ref="entityCreate"
-                     v-model:value="inputs"
-                     title="آپلود تصویر"
-                     :api="api"
-                     :default-layout="false"
-                     :entity-id-key-in-response="entityIdKeyInResponse"
-                     :show-route-param-key="showRouteParamKey"
-                     :index-route-name="indexRouteName"
-                     :show-route-name="showRouteName"
-                     :after-send-data="afterSendData" />
+      <div v-if="value"
+           class="preview-pic"
+           :style="{backgroundImage: value, height: '150px', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}" />
+      <div>
+        <q-input v-model="localFile"
+                 label="آدرس فایل عکس" />
+      </div>
+      <div class="entity-create-section">
+        <entity-create ref="entityCreate"
+                       v-model:value="inputs"
+                       title="آپلود تصویر"
+                       :api="api"
+                       :default-layout="false"
+                       :entity-id-key-in-response="entityIdKeyInResponse"
+                       :show-route-param-key="showRouteParamKey"
+                       :index-route-name="indexRouteName"
+                       :show-route-name="showRouteName"
+                       :after-send-data="afterSendData" />
+      </div>
     </q-card-section>
   </q-card>
 </template>
@@ -56,7 +63,7 @@ export default {
       showRouteName: 'AdminPanel.Service.Show',
       indexRouteName: 'AdminPanel.Service.List',
       inputs: [
-        { type: 'file', name: 'file', responseKey: 'file', label: 'فایل تصویر', col: 'col-md-6 col-12' },
+        { type: 'file', name: 'file', responseKey: 'file', label: 'فایل تصویر', col: 'col-md-9 col-12' },
         {
           type: BtnControlComp,
           name: 'btn',
@@ -65,7 +72,7 @@ export default {
           atClick: () => {
             this.create()
           },
-          col: 'col-md-6 q-mt-sm'
+          col: 'col-md-3 q-mt-sm'
         },
         { type: 'hidden', name: 'source_type', value: 'SETTING' },
         { type: 'hidden', name: 'type', value: 'VIDEO' }
@@ -119,6 +126,12 @@ export default {
     text-align: left;
     /* rtl:ignore */
     direction: ltr;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .entity-create-section {
+
   }
 }
 </style>
