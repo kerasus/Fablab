@@ -18,7 +18,7 @@ const menuItems = [
   {
     selected: 'shop',
     title: 'خانواده فب',
-    routeName: 'Public.FabFamily',
+    routeName: 'Public.FabFamily.Index',
     type: 'itemMenu',
     permission: 'all',
     show: true

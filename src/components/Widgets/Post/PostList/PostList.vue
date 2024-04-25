@@ -3,9 +3,6 @@
        :style="localOptions.style">
     <breadcrumbs class="q-mb-xl"
                  style="margin-top: 29px; margin-bottom: 19px;" />
-    <q-banner class="q-mb-xl">
-      یادداشت ها و مقالات
-    </q-banner>
     <entity-index v-if="mounted"
                   ref="entityIndex"
                   v-model:value="inputs"
@@ -84,7 +81,7 @@ export default {
   },
   computed: {
     postCategoryId () {
-      if (this.localOptions.categoryFromQueryParams && this.$route.params.category_id) {
+      if (this.localOptions.categoryFromQueryParams && this.$route.params?.category_id) {
         return this.$route.params.category_id
       }
 
@@ -147,6 +144,18 @@ export default {
 
 <style scoped lang="scss">
 .PostList {
+  :deep(.entity-index) {
+    .quasar-crud-index-table {
+      .q-table__top {
+        display: none;
+      }
+      .q-table__bottom {
+        .q-table__control {
+          display: none;
+        }
+      }
+    }
+  }
   .more-action {
     display: flex;
     flex-flow: row;

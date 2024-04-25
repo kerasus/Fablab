@@ -12,5 +12,9 @@
   "files.autoSave": "onFocusChange",
   "[javascript]": {
     "editor.defaultFormatter": "Vue.volar"
-  } // optional but recommended
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript"]
 }

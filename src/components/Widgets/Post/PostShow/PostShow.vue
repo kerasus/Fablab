@@ -1,69 +1,38 @@
 <template>
   <div class="post printable">
     <template v-if="!post.loading">
-      <breadcrumbs class="q-mb-xl"
-                   style="margin-top: 29px; margin-bottom: 19px;" />
+      <div class="breadcrumbs">
+        <breadcrumbs />
+      </div>
       <div ref="printArea"
            class="print-area">
-        <q-banner v-if="!post.post"
-                  class="banner post-banner">
-          عنوان
-        </q-banner>
-        <div class="attributes row">
-          <div class="col-md-4 col-12">
-            <div class="attribute-item">
-              <div class="attribute-item-icon">
-                <q-icon name="auto_stories"
-                        size="23px" />
-              </div>
-              <div class="attribute-item-title">
-                {{post.title}}
-              </div>
-            </div>
-            <div class="attribute-item">
-              <div v-if="post.category_info"
-                   class="attribute-item-title">
-                {{post.category_info.title}}
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="attribute-item">
-              <div v-if="post.category_info?.parent?.parent"
-                   class="attribute-item-title">
-                دسته بندی کلی:
-                {{post.category_info.parent.parent.title}}
-              </div>
-            </div>
-            <div class="attribute-item">
-              <div v-if="post.category_info?.parent"
-                   class="attribute-item-title">
-                دسته بندی جزئی:
-                {{post.category_info.parent.title}}
-              </div>
-            </div>
-          </div>
-          <div v-if="false"
-               class="col-md-4 col-12 flex justify-end items-start">
-            <q-btn color="primary"
-                   class="print-btn"
-                   @click="print">
-              دریافت فایل
-            </q-btn>
-          </div>
-        </div>
-        <div class="summary">
-          <div class="summary-title">
-            خلاصه
-          </div>
-          <div class="summary-body"
-               v-html="post.summary" />
+        <div v-if="!post.post"
+             class="post-title">
+          {{post.title}}
         </div>
 
-        <q-separator />
+        <q-separator class="q-mt-md" />
 
         <div class="post-body"
              v-html="post.text" />
+
+        <div class="attributes">
+          <q-btn v-if="post.category_info?.parent?.parent?.id"
+                 :to="{name: 'Public.PostCategoryParentParent.Show', params: {category_id: post.category_info.parent.parent.id}}"
+                 class="attribute-item">
+            {{post.category_info.parent.parent.title}}
+          </q-btn>
+          <q-btn v-if="post.category_info?.parent?.id"
+                 :to="{name: 'Public.PostCategoryParent.Show', params: {category_id: post.category_info.parent.id}}"
+                 class="attribute-item">
+            {{post.category_info.parent.title}}
+          </q-btn>
+          <q-btn v-if="post.category_info?.id"
+                 :to="{name: 'Public.PostCategory.Show', params: {category_id: post.category_info.id}}"
+                 class="attribute-item">
+            {{post.category_info.title}}
+          </q-btn>
+        </div>
       </div>
     </template>
 
@@ -129,10 +98,10 @@ export default {
       this.post = new Post(post)
       this.post.post = false
 
-      this.breadcrumbs.path.push({
-        label: this.post.category_info.title,
-        to: { name: 'Public.PostCategory.Show', params: { category_id: this.post.category_info.id } }
-      })
+      // this.breadcrumbs.path.push({
+      //   label: this.post.category_info.title,
+      //   to: { name: 'Public.PostCategory.Show', params: { category_id: this.post.category_info.id } }
+      // })
       this.breadcrumbs.path.push({
         label: this.post.title,
         to: { name: 'Public.Post.Show', params: { id: this.post.id } }
@@ -249,52 +218,27 @@ export default {
 <style scoped lang="scss">
 @import "src/css/HTMLContent.scss";
 .post {
-  .post-banner {
-    margin-top: 52px;
-    margin-bottom: 42px;
+  .breadcrumbs {
+    margin-bottom: 40px;
+  }
+  .post-title {
+    font-weight: 900;
+    font-size: 1.4rem;
   }
   .attributes {
-    .attribute-item {
       display: flex;
       flex-flow: row;
-      margin-bottom: 46px;
-      .attribute-item-icon {
-        color: #AAA095;
-        margin-right: 8px;
-      }
-      .attribute-item-title {
-        color: #475f4a;
-        font-size: 16px;
-      }
+    .attribute-item {
+      color: #475f4a;
+      background-color: #eaeaea;
+      border-radius: 8px;
+      padding: 4px 8px;
+      margin: 0 4px;
+      font-size: 16px;
     }
   }
   .print-btn {
     width: 252px;
-  }
-  .summary {
-    margin-bottom: 16px;
-    .summary-title {
-      font-size: 18px;
-      color: #212121;
-      position: relative;
-      padding-left: 8px;
-      margin-bottom: 33px;
-      &:before {
-        content: ' ';
-        position: absolute;
-        top: 11px;
-        left: 0;
-        background: #EAC38A;
-        width: 4px;
-        height: 4px;
-        border-radius: 2px;
-      }
-    }
-    :deep(.summary-body) {
-      font-size: 20px;
-      color: #707070;
-      @include HTMLContent;
-    }
   }
   :deep(.post-body) {
     margin-top: 32px;
