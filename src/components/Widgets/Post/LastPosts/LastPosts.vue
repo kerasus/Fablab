@@ -44,7 +44,7 @@ export default {
 
     getApiRequest() {
       this.postList.loading = true
-      return APIGateway.post.index()
+      return APIGateway.post.index({ category__parent__parent: 1 })
     }
   }
 }
