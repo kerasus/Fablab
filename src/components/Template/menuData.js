@@ -25,6 +25,14 @@ const menuItems = [
   },
   {
     selected: 'shop',
+    title: 'مقالات',
+    routeName: 'Public.Post.List',
+    type: 'itemMenu',
+    permission: 'all',
+    show: true
+  },
+  {
+    selected: 'shop',
     title: 'درباره ما',
     routeName: 'Public.AboutUs',
     type: 'itemMenu',

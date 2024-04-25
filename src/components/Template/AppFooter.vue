@@ -94,5 +94,10 @@ export default {
     font-size: 16px;
     line-height: 40px;
   }
+
+  @media screen and (max-width: 1024px){
+    padding-right: 8px;
+    padding-left: 8px;
+  }
 }
 </style>

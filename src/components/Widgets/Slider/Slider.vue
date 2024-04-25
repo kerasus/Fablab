@@ -1,81 +1,82 @@
 <template>
-  <q-carousel ref="SliderCarousel"
-              v-model="slide"
-              :arrows="localOptions.controlNavigation.arrows"
-              :prev-icon="localOptions.controlNavigation.prevIcon"
-              :next-icon="localOptions.controlNavigation.nextIcon"
-              :navigation="localOptions.controlNavigation.navigation"
-              :navigation-position="localOptions.controlNavigation.navigationPosition"
-              :navigation-icon="localOptions.controlNavigation.navigationIcon"
-              :navigation-active-icon="localOptions.controlNavigation.navigationActiveIcon"
-              :thumbnails="localOptions.controlNavigation.thumbnails"
-              :control-color="localOptions.controlNavigation.controlColor"
-              :control-text-color="localOptions.controlNavigation.controlTextColor"
-              :control-type="localOptions.controlNavigation.controlType"
-              :animated="localOptions.transition.animated"
-              :infinite="localOptions.transition.infinite"
-              :swipeable="localOptions.transition.swipeable"
-              :autoplay="localOptions.transition.autoplay"
-              :transition-prev="localOptions.transition.transitionPrev"
-              :transition-next="localOptions.transition.transitionNext"
-              :transition-duration="localOptions.transition.transitionDuration"
-              :height="localOptions.styles.height ? localOptions.styles.height : 'auto'"
-              :class="localOptions.styles.classes"
-              class="slider-widget">
-    <q-carousel-slide v-for="(slide, index) in options.list"
-                      :key="index"
-                      :ref="'slider' + index"
-                      :name="index"
-                      @click="takeAction(slide)">
-      <component :is="parentComponent"
-                 :to="slide.link"
-                 :href="slide.link"
-                 class="slider-parent">
-        <template v-if="hasPhoto(slide) && !hasVideo(slide)">
-          <q-img v-if="slide.photo.src !== ''"
-                 :src="slide.photo.src"
-                 :alt="slide.title"
-                 class="slider-image" />
-          <q-img v-else
-                 :src="responsiveFeaturesForPhoto(slide.features).src"
-                 :alt="slide.title"
-                 class="slider-image" />
-        </template>
-        <template v-if="hasVideo(slide)">
-          <video :key="videoKey + '-' + index"
-                 autoplay
-                 loop
-                 muted
-                 class="full-width">
-            <source :src="slide.video?.src || responsiveFeaturesForVideo(slide.features).videoSrc">
-            Your browser does not support the video tag.
-          </video>
+  <div class="slider-widget">
+    <q-carousel ref="SliderCarousel"
+                v-model="slide"
+                :arrows="localOptions.controlNavigation.arrows"
+                :prev-icon="localOptions.controlNavigation.prevIcon"
+                :next-icon="localOptions.controlNavigation.nextIcon"
+                :navigation="localOptions.controlNavigation.navigation"
+                :navigation-position="localOptions.controlNavigation.navigationPosition"
+                :navigation-icon="localOptions.controlNavigation.navigationIcon"
+                :navigation-active-icon="localOptions.controlNavigation.navigationActiveIcon"
+                :thumbnails="localOptions.controlNavigation.thumbnails"
+                :control-color="localOptions.controlNavigation.controlColor"
+                :control-text-color="localOptions.controlNavigation.controlTextColor"
+                :control-type="localOptions.controlNavigation.controlType"
+                :animated="localOptions.transition.animated"
+                :infinite="localOptions.transition.infinite"
+                :swipeable="localOptions.transition.swipeable"
+                :autoplay="localOptions.transition.autoplay"
+                :transition-prev="localOptions.transition.transitionPrev"
+                :transition-next="localOptions.transition.transitionNext"
+                :transition-duration="localOptions.transition.transitionDuration"
+                :height="localOptions.styles.height ? localOptions.styles.height : 'auto'"
+                :class="localOptions.styles.classes">
+      <q-carousel-slide v-for="(slide, index) in options.list"
+                        :key="index"
+                        :ref="'slider' + index"
+                        :name="index"
+                        @click="takeAction(slide)">
+        <component :is="parentComponent"
+                   :to="slide.link"
+                   :href="slide.link"
+                   class="slider-parent">
+          <template v-if="hasPhoto(slide) && !hasVideo(slide)">
+            <q-img v-if="slide.photo.src !== ''"
+                   :src="slide.photo.src"
+                   :alt="slide.title"
+                   class="slider-image" />
+            <q-img v-else
+                   :src="responsiveFeaturesForPhoto(slide.features).src"
+                   :alt="slide.title"
+                   class="slider-image" />
+          </template>
+          <template v-if="hasVideo(slide)">
+            <video :key="videoKey + '-' + index"
+                   autoplay
+                   loop
+                   muted
+                   class="full-width">
+              <source :src="slide.video?.src || responsiveFeaturesForVideo(slide.features).videoSrc">
+              Your browser does not support the video tag.
+            </video>
 
-          <!--          <q-video v-if="!!slide.video?.src"-->
-          <!--                   :ratio="slide.video?.width / video?.height"-->
-          <!--                   :src="slide.video?.src"-->
-          <!--                   :alt="slide.title"-->
-          <!--                   class="slider-image" />-->
-          <!--          <q-video v-else-->
-          <!--                   :ratio="getVideoRatio(responsiveFeaturesForVideo(slide.features))"-->
-          <!--                   :src="responsiveFeaturesForVideo(slide.features).videoSrc"-->
-          <!--                   :alt="slide.title"-->
-          <!--                   class="slider-image" />-->
-        </template>
-        <q-tooltip v-if="slide.title"
-                   :offset="[18, 18]">
-          {{ slide.title }}
-        </q-tooltip>
-      </component>
-    </q-carousel-slide>
-    <template v-slot:control>
-      <q-carousel-control :position="localOptions.control.position"
-                          :offset="localOptions.control.offset"
-                          :class="localOptions.control.class">
-        <slot name="controls-content" />
-      </q-carousel-control>
-    </template>
-  </q-carousel>
+            <!--          <q-video v-if="!!slide.video?.src"-->
+            <!--                   :ratio="slide.video?.width / video?.height"-->
+            <!--                   :src="slide.video?.src"-->
+            <!--                   :alt="slide.title"-->
+            <!--                   class="slider-image" />-->
+            <!--          <q-video v-else-->
+            <!--                   :ratio="getVideoRatio(responsiveFeaturesForVideo(slide.features))"-->
+            <!--                   :src="responsiveFeaturesForVideo(slide.features).videoSrc"-->
+            <!--                   :alt="slide.title"-->
+            <!--                   class="slider-image" />-->
+          </template>
+          <q-tooltip v-if="slide.title"
+                     :offset="[18, 18]">
+            {{ slide.title }}
+          </q-tooltip>
+        </component>
+      </q-carousel-slide>
+      <template v-slot:control>
+        <q-carousel-control :position="localOptions.control.position"
+                            :offset="localOptions.control.offset"
+                            :class="localOptions.control.class">
+          <slot name="controls-content" />
+        </q-carousel-control>
+      </template>
+    </q-carousel>
+  </div>
 </template>
 
 <script>
@@ -317,11 +318,15 @@ export default {
 .slider-widget {
   width: 100%;
   background-color: transparent;
-  &:deep(.q-carousel__slide) {
+
+  :deep(.q-carousel) {
+  }
+
+  :deep(.q-carousel__slide) {
     padding: 0;
     display: block;
     background: transparent;
-
+    cursor: pointer;
     .slider-parent{
       display: block;
       background: transparent;

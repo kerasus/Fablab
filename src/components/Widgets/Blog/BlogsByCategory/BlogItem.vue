@@ -54,6 +54,10 @@ export default {
     font-size: 20px;
     font-weight: 700;
     padding: 0 24px;
+
+    @media screen and (max-width: 1024px){
+      font-size: 12px;
+    }
   }
 }
 </style>
