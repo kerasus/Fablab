@@ -37,6 +37,19 @@ class Banner extends Model {
           }
         }
       },
+      {
+        key: 'hasFilter',
+        default: false
+      },
+      {
+        key: 'hasSlideText',
+        default: false
+      },
+      {
+        key: 'filterColor',
+        default: '#FF00FFCC'
+      },
+      { key: 'slideText' },
       { key: 'link' },
       { key: 'order' },
       { key: 'ratio' },

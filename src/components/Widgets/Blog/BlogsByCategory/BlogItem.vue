@@ -3,7 +3,7 @@
                :to="{ name: 'Public.Post.Show', params: { id: post.id } }">
     <q-card flat>
       <div class="thumbnail">
-        <q-img :src="post.thumbnail" />
+        <img :src="post.thumbnail">
       </div>
       <div class="title ellipsis-2-lines">
         {{ post.title }}
@@ -42,6 +42,10 @@ export default {
       box-shadow: 0px -149px 76px -124px rgba(0,0,0,0.75) inset;
       -webkit-box-shadow: 0px -149px 76px -124px rgba(0,0,0,0.75) inset;
       -moz-box-shadow: 0px -149px 76px -124px rgba(0,0,0,0.75) inset;
+    }
+    img {
+      width: 100%;
+      max-width: 100%;
     }
   }
   .title {

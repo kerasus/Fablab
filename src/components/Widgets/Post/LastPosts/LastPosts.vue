@@ -21,9 +21,14 @@ export default {
     PostItem
   },
   mixins: [mixinWidget, mixinPrefetchServerData],
-  data: () => {
+  data () {
     return {
       mounted: false,
+      defaultOptions: {
+        categoryId: null,
+        categoryParentId: null,
+        categoryParentParentId: 1
+      },
       postList: new PostList()
     }
   },
@@ -44,7 +49,7 @@ export default {
 
     getApiRequest() {
       this.postList.loading = true
-      return APIGateway.post.index({ category__parent__parent: 1 })
+      return APIGateway.post.index({ category__parent__parent: this.localOptions.categoryParentParentId, category__parent: this.localOptions.categoryParentId, category: this.localOptions.categoryId })
     }
   }
 }

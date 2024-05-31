@@ -66,6 +66,13 @@
                      :offset="[18, 18]">
             {{ slide.title }}
           </q-tooltip>
+          <div v-if="slide.hasSlideText"
+               class="slide-text">
+            <text-widget :options="slide.slideText" />
+          </div>
+          <div v-if="slide.hasFilter"
+               class="slide-filter"
+               :style="{background: slide.filterColor}" />
         </component>
       </q-carousel-slide>
       <template v-slot:control>
@@ -85,9 +92,11 @@ import { openURL } from 'quasar'
 import { mixinWidget } from 'src/mixin/Mixins.js'
 import { Banner, BannerList } from 'src/models/Banner.js'
 import { AEE } from 'assets/js/AEE/AnalyticsEnhancedEcommerce'
+import TextWidget from 'src/components/Widgets/TextWidget/TextWidget.vue'
 
 export default {
   name: 'Slider',
+  components: { TextWidget },
   mixins: [mixinWidget],
   props: {
     options: {
@@ -332,6 +341,26 @@ export default {
       background: transparent;
       pointer-events: none !important;
       cursor: pointer;
+      position: relative;
+      z-index: 1;
+      .slide-text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+      }
+      .slide-filter {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+      }
     }
     .slider-image {
       width: 100%;

@@ -67,6 +67,23 @@
                @click="responsive = ''" />
       </q-card-section>
       <q-card-section>
+        <div>
+          <q-checkbox v-model="selectedSlide.hasSlideText"
+                      label="متن روی اسلاید" />
+        </div>
+        <div v-if="selectedSlide.hasSlideText">
+          <text-widget-option-panel v-model:options="selectedSlide.slideText" />
+        </div>
+        <div>
+          <q-checkbox v-model="selectedSlide.hasFilter"
+                      label="نمایش فیلتر" />
+          <q-color v-if="selectedSlide.hasFilter"
+                   v-model="selectedSlide.filterColor"
+                   class="my-picker" />
+        </div>
+
+      </q-card-section>
+      <q-card-section>
         <div class="row">
           <div class="col-6">
             <q-input v-model="selectedSlide.title"
@@ -197,14 +214,16 @@ import { Banner } from 'src/models/Banner.js'
 import lazyImg from 'src/components/lazyImg.vue'
 import { PageBuilderOptionPanel } from 'src/mixin/Mixins.js'
 import bannerPreview from 'src/components/Widgets/Slider/bannerPreview.vue'
+import TextWidgetOptionPanel from 'src/components/Widgets/TextWidget/OptionPanel.vue'
 import OptionPanelTabs from 'quasar-ui-q-page-builder/src/components/OptionPanelComponents/OptionPanelTabs.vue'
 
 export default defineComponent({
   name: 'OptionPanel',
   components: {
-    OptionPanelTabs,
+    lazyImg,
     bannerPreview,
-    lazyImg
+    OptionPanelTabs,
+    TextWidgetOptionPanel
   },
   mixins: [PageBuilderOptionPanel],
   data() {

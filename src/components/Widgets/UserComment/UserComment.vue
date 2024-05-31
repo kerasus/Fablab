@@ -47,6 +47,8 @@ export default {
 <style scoped lang="scss">
 .UserComment {
   padding: 43px 94px;
+  width: 100%;
+  height: 100%;
   .image {
     height: 60px;
     margin-bottom: 40px;

@@ -29,6 +29,7 @@ export default class PostAPI extends APIRepository {
       request: this.APIAdresses.base,
       data: this.getNormalizedSendData({
         category: null, // Number
+        category__parent: null, // Number
         category__parent__parent: null, // Number
         per_page: 10, // Number
         page: 1 // Number
