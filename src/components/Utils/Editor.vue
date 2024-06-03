@@ -42,7 +42,8 @@
                     'size-6',
                     'size-7'
                   ]
-                }
+                },
+                'link'
               ],
               ['viewsource']
             ]">
