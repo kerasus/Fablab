@@ -3,6 +3,10 @@
     <template #main-tab>
       <q-input v-model="localOptions.categoryId"
                label="category id" />
+      <q-input v-model="localOptions.categoryParentId"
+               label="category parent id" />
+      <q-input v-model="localOptions.categoryParentParentId"
+               label="category parent parent id" />
     </template>
   </option-panel-tabs>
 </template>
@@ -21,7 +25,9 @@ export default defineComponent({
   data() {
     return {
       defaultOptions: {
-        categoryId: null
+        categoryId: null,
+        categoryParentId: null,
+        categoryParentParentId: null
       }
     }
   }

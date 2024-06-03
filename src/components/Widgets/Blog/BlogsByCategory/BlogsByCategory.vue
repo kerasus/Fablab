@@ -45,7 +45,9 @@ export default {
     return {
       mounted: false,
       defaultOptions: {
-        categoryId: null
+        categoryId: null,
+        categoryParentId: null,
+        categoryParentParentId: null
       },
       postList: new PostList()
     }
@@ -67,7 +69,7 @@ export default {
 
     getApiRequest() {
       this.postList.loading = true
-      return APIGateway.post.index({ category: this.localOptions.categoryId })
+      return APIGateway.post.index({ category__parent__parent: this.localOptions.categoryParentParentId, category__parent: this.localOptions.categoryParentId, category: this.localOptions.categoryId })
     }
   }
 }
