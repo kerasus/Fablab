@@ -58,6 +58,10 @@ const routes = [
           {
             path: 'fab-family',
             name: 'Public.FabFamily',
+            meta: {
+              hasDynamicHeader: true,
+              hasDynamicSetting: true
+            },
             component: () => import('layouts/bareLayout.vue'),
             children: [
               {
@@ -98,6 +102,7 @@ const routes = [
             path: 'about-us',
             name: 'Public.AboutUs',
             meta: {
+              hasDynamicHeader: true,
               hasDynamicSetting: true
             },
             component: () => import('src/pages/Public/AboutUs.vue')

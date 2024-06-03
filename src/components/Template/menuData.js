@@ -1,51 +1,39 @@
 const menuItems = [
   {
-    selected: 'home',
     title: 'صفحه اصلی',
     routeName: 'Public.Home',
     type: 'itemMenu',
-    permission: 'all',
-    show: true
+    permission: 'all'
   },
   {
-    selected: 'shop',
     title: 'پکیج ها',
     routeName: 'Public.Packages',
     type: 'itemMenu',
-    permission: 'all',
-    show: true
+    permission: 'all'
   },
   {
-    selected: 'shop',
     title: 'خانواده فب',
     routeName: 'Public.FabFamily.Index',
     type: 'itemMenu',
-    permission: 'all',
-    show: true
+    permission: 'all'
   },
   {
-    selected: 'shop',
     title: 'مقالات',
     routeName: 'Public.Post.List',
     type: 'itemMenu',
-    permission: 'all',
-    show: true
+    permission: 'all'
   },
   {
-    selected: 'shop',
     title: 'درباره ما',
     routeName: 'Public.AboutUs',
     type: 'itemMenu',
-    permission: 'all',
-    show: true
+    permission: 'all'
   },
   {
-    selected: 'shop',
     title: 'تماس با ما',
     routeName: 'Public.ContactUs',
     type: 'itemMenu',
-    permission: 'all',
-    show: true
+    permission: 'all'
   }
 ]
 

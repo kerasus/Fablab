@@ -15,14 +15,14 @@
                    @click="toggleLeftDrawer" />
           </div>
           <div class="logo-pic">
-            <q-img src="/img/menu-logo.png"
+            <q-img :src="logoPic"
                    width="113" />
           </div>
         </div>
         <!--        -----------------------------------------------------Tabs Section--------------------------------------------   -->
         <div class="tab-section">
           <q-list class="flex tabs-list">
-            <div v-for="(item , index) in items"
+            <div v-for="(item , index) in headerItems"
                  :key="index"
                  class="tabs-list-container">
               <div v-if="showMenuItem(/* item */)"
@@ -139,9 +139,62 @@
             <!--                   label="ثبت نام"-->
             <!--                   :to="{ name: 'Login' }" />-->
           </div>
+          <q-btn v-if="pageBuilderEditable"
+                 icon="isax:setting"
+                 flat
+                 @click="openHeaderConfigDialog" />
         </div>
       </div>
     </div>
+    <q-dialog v-model="headerConfigDialog">
+      <q-card>
+        <q-card-section>
+          <div>
+            <div class="outsideLabel">آدرس فایل عکس لوگو</div>
+            <image-uploader v-model:file="localHeaderConfig.logoPic" />
+          </div>
+          <div>
+            <q-list bordered
+                    separator>
+              <q-item v-for="(item, itemIndex) in localHeaderConfig.items"
+                      :key="itemIndex">
+                <div>
+                  <div>
+                    {{ item.title }}
+                  </div>
+                  <div>
+                    {{ item.routePath }}
+                  </div>
+                  <div>
+                    <q-btn color="red"
+                           class="full-width"
+                           @click="addMenuItem">
+                      حذف
+                    </q-btn>
+                  </div>
+                </div>
+              </q-item>
+            </q-list>
+            <div>
+              <q-input v-model="localHeaderConfigTitle"
+                       label="title" />
+              <q-input v-model="localHeaderConfigPath"
+                       label="routePath" />
+              <q-btn color="primary"
+                     class="full-width"
+                     @click="addMenuItem">
+                افزودن آیتم
+              </q-btn>
+              <q-btn color="green"
+                     class="full-width"
+                     @click="updateHeaderConfig">
+                ثبت
+              </q-btn>
+            </div>
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -151,14 +204,27 @@ import megaMenu from './magaMenu.vue'
 import simpleMenu from './simpleMenu.vue'
 import { User } from 'src/models/User.js'
 import LazyImg from 'src/components/lazyImg.vue'
+import { APIGateway } from 'src/api/APIGateway.js'
 import menuItems from 'src/components/Template/menuData.js'
+import ImageUploader from 'src/components/ImageUploader.vue'
 import itemMenu from 'src/components/Template/Header/itemMenu.vue'
+import { mixinPrefetchServerData, mixinPageOptions } from 'src/mixin/Mixins.js'
 
 export default {
   name: 'MainHeaderTemplate',
-  components: { LazyImg, megaMenu, simpleMenu, itemMenu },
+  components: { LazyImg, megaMenu, simpleMenu, itemMenu, ImageUploader },
+  mixins: [mixinPrefetchServerData, mixinPageOptions],
   data() {
     return {
+      localHeaderConfigTitle: null,
+      localHeaderConfigPath: null,
+      localHeaderConfig: {
+        logoPic: null,
+        items: []
+      },
+      headerConfig: null,
+      headerConfigDialog: false,
+      headerConfigLoading: false,
       conferenceMenu: false,
       showHamburgerConfig: true,
       searchInput: '',
@@ -180,6 +246,12 @@ export default {
     }
   },
   computed: {
+    logoPic () {
+      return this.headerConfig?.logoPic ?? '/img/menu-logo.png'
+    },
+    headerItems () {
+      return this.headerConfig?.items ?? menuItems
+    },
     showHamburger () {
       return this.$store.getters['AppLayout/showHamburgerBtn'] || this.$q.screen.lt.md
     },
@@ -211,6 +283,79 @@ export default {
     this.checkMenurItemsForAuthenticatedUser()
   },
   methods: {
+    prefetchServerDataPromise () {
+      // return Promise.resolve()
+      if (this.routeHasDynamicHeader()) {
+        return APIGateway.pageSetting.get(this.getHeaderConfigKey())
+      }
+
+      return Promise.resolve()
+    },
+    prefetchServerDataPromiseThen ({ value }) {
+      if (!this.$route.meta?.hasDynamicHeader) {
+        return
+      }
+      this.headerConfig = value
+      this.headerConfigLoading = false
+    },
+    prefetchServerDataPromiseCatch () {
+      this.headerConfigLoading = false
+    },
+    routeHasDynamicHeader () {
+      return !!this.getHeaderConfigKey()
+    },
+    getHeaderConfigKey () {
+      const preKey = 'header_config-route_name:'
+      if (this.$route.name.startsWith('Public.FabFamily.Cafe')) {
+        return preKey + 'Public.FabFamily.Cafe'
+      }
+      if (this.$route.name.startsWith('Public.FabFamily.Kids')) {
+        return preKey + 'Public.FabFamily.Kids'
+      }
+      if (this.$route.name.startsWith('Public.FabFamily.Factory')) {
+        return preKey + 'Public.FabFamily.Factory'
+      }
+
+      return null
+    },
+    freshHeaderConfig () {
+      APIGateway.pageSetting.get(this.getHeaderConfigKey())
+        .then((config) => {
+          this.prefetchServerDataPromiseThen(config)
+        })
+        .catch(() => {
+          this.prefetchServerDataPromiseCatch()
+        })
+      // /
+      // /packages
+      // //fab-family
+      // /post
+      // /about-us
+      // /contact-us
+    },
+    openHeaderConfigDialog () {
+      this.headerConfigDialog = true
+    },
+    updateHeaderConfig () {
+      APIGateway.pageSetting.update({
+        key: 'header_config-route_name:' + this.$route.name,
+        value: JSON.stringify(this.localHeaderConfig)
+      })
+        .then(() => {
+          this.freshHeaderConfig()
+        })
+    },
+    removeMenuItem (index) {
+      this.localHeaderConfig.items.splice(index, 1)
+    },
+    addMenuItem () {
+      this.localHeaderConfig.items.push({
+        title: this.localHeaderConfigTitle,
+        routePath: this.localHeaderConfigPath,
+        type: 'itemMenu',
+        permission: 'all'
+      })
+    },
     checkMenurItemsForAuthenticatedUser () {
       if (this.user.isSuperUser()) {
         this.profileTitlesList.push({
