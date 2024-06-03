@@ -343,23 +343,26 @@ export default {
       cursor: pointer;
       position: relative;
       z-index: 1;
-      .slide-text {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        display: flex;
-        align-items: center;
-      }
       .slide-filter {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
+        z-index: 2;
+      }
+      .slide-text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
         z-index: 3;
+        display: flex;
+        align-items: center;
+        .text-widget-container {
+          width: 100%;
+        }
       }
     }
     .slider-image {
