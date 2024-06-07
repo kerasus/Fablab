@@ -486,7 +486,7 @@ export default {
             $app-bar-height: 64px;
             max-height: $app-bar-height;
             img {
-              max-height: calc( #{$app-bar-height} - 4px);
+              max-height: calc( #{$app-bar-height} - 12px);
             }
           }
         }
