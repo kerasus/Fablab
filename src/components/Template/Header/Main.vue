@@ -15,8 +15,8 @@
                    @click="toggleLeftDrawer" />
           </div>
           <div class="logo-pic">
-            <q-img :src="logoPic"
-                   width="113" />
+            <img :src="logoPic"
+                 width="113">
           </div>
         </div>
         <!--        -----------------------------------------------------Tabs Section--------------------------------------------   -->
@@ -139,14 +139,15 @@
             <!--                   label="ثبت نام"-->
             <!--                   :to="{ name: 'Login' }" />-->
           </div>
-          <q-btn v-if="pageBuilderEditable"
+          <q-btn v-if="pageBuilderEditable && routeHasDynamicHeader()"
                  icon="isax:setting"
                  flat
                  @click="openHeaderConfigDialog" />
         </div>
       </div>
     </div>
-    <q-dialog v-model="headerConfigDialog">
+    <q-dialog v-model="headerConfigDialog"
+              class="header-config-dialog">
       <q-card>
         <q-card-section>
           <div>
@@ -155,10 +156,13 @@
           </div>
           <div>
             <q-list bordered
-                    separator>
+                    separator
+                    class="header-config-items">
               <q-item v-for="(item, itemIndex) in localHeaderConfig.items"
-                      :key="itemIndex">
-                <div>
+                      :key="itemIndex"
+                      clickable
+                      class="header-config-item">
+                <div class="header-config-item-wrapper">
                   <div>
                     {{ item.title }}
                   </div>
@@ -167,17 +171,19 @@
                   </div>
                   <div>
                     <q-btn color="red"
-                           class="full-width"
-                           @click="addMenuItem">
-                      حذف
-                    </q-btn>
+                           icon="isax:trash"
+                           size="xs"
+                           round
+                           class="remove-header-item-btn"
+                           @click="removeMenuItem(itemIndex)" />
                   </div>
                 </div>
               </q-item>
             </q-list>
             <div>
               <q-input v-model="localHeaderConfigTitle"
-                       label="title" />
+                       label="title"
+                       class="q-mt-md" />
               <q-input v-model="localHeaderConfigPath"
                        label="routePath" />
               <q-btn color="primary"
@@ -186,7 +192,7 @@
                 افزودن آیتم
               </q-btn>
               <q-btn color="green"
-                     class="full-width"
+                     class="full-width q-mt-lg"
                      @click="updateHeaderConfig">
                 ثبت
               </q-btn>
@@ -296,6 +302,7 @@ export default {
         return
       }
       this.headerConfig = value
+      this.localHeaderConfig = value
       this.headerConfigLoading = false
     },
     prefetchServerDataPromiseCatch () {
@@ -343,6 +350,7 @@ export default {
       })
         .then(() => {
           this.freshHeaderConfig()
+          this.headerConfigDialog = false
         })
     },
     removeMenuItem (index) {
@@ -464,13 +472,22 @@ export default {
           width: 100%;
         }
         .logo-pic {
+          $app-bar-height: 86px;
           cursor: pointer;
           display: flex;
-          height: 72px;
+          height: auto;
+          max-height: $app-bar-height;
           width: 113px;
           align-items: center;
+          img {
+            max-height: calc( #{$app-bar-height} - 4px);
+          }
           @media screen and (max-width: 1023px) {
-            height: 64px;
+            $app-bar-height: 64px;
+            max-height: $app-bar-height;
+            img {
+              max-height: calc( #{$app-bar-height} - 4px);
+            }
           }
         }
         .hamburger {
@@ -949,6 +966,23 @@ export default {
   .body {
     padding-right: 16px;
     padding-left: 16px;
+  }
+}
+
+.header-config-dialog {
+  .header-config-items {
+    .header-config-item {
+      .header-config-item-wrapper {
+        position: relative;
+        width: 100%;
+        .remove-header-item-btn {
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translateX(100%) translateY(-50%);
+        }
+      }
+    }
   }
 }
 </style>
