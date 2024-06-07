@@ -154,7 +154,7 @@ export default {
     },
     handleResize() {
       const windowWidth = window.innerWidth
-      this.menuItems.forEach(item => {
+      this.sidebarItems.forEach(item => {
         if (item.mobileMode) {
           item.show = windowWidth < 1024
         }
