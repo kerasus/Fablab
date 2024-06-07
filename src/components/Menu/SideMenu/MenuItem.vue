@@ -42,7 +42,7 @@
       </div>
     </q-expansion-item>
     <!--    (item.title === clickedItem.title) || -->
-    <q-item v-else-if="!loading && !item.children"
+    <q-item v-else-if="!loading && !item.children && (item.routeName || (item.routePath && item.routePath.startsWith('/')))"
             v-ripple
             clickable
             :active="isActive(item)"
@@ -61,6 +61,26 @@
           {{ item.title }}
         </q-item-section>
         <!--        <span class="indicator" />-->
+      </div>
+    </q-item>
+    <q-item v-else-if="!loading && !item.children && item.routePath && (item.routePath.startsWith('www') || item.routePath.startsWith('http'))"
+            v-ripple
+            clickable
+            class="item-list"
+            :class="{ 'alone-item': !item.children }"
+            exact-active-class="active-route">
+      <div class="section-title">
+        <q-item-section class="list-section title-icon"
+                        avatar>
+          <q-avatar :icon="item.icon"
+                    size="30" />
+        </q-item-section>
+        <q-item-section class="list-section">
+          <a :href="item.routePath"
+             target="_blank">
+            {{ item.title }}
+          </a>
+        </q-item-section>
       </div>
     </q-item>
     <q-badge v-if="item.badge"
@@ -130,8 +150,8 @@ export default {
     redirectRoute(item) {
       if (item.tags) {
         return { name: 'Public.Content.Search', query: { 'tags[]': item.tags } }
-      } else if (item.href) {
-        return { path: item.href }
+      } else if (item.routePath) {
+        return { path: item.routePath }
       } else if (!item.routeName) {
         return undefined
       }
