@@ -23,6 +23,7 @@
       <q-card-actions class="action-section">
         <q-btn color="primary"
                class="btn-show-post"
+               :class="btnShowPostClassName"
                :to="{name: 'Public.Post.Show', params: {id: post.id}}">
           مشاهده جزئیات
         </q-btn>
@@ -41,8 +42,15 @@ export default defineComponent({
     post: {
       type: Post,
       default: new Post()
+    },
+    btnShowPostClassName: {
+      type: String
     }
   }
+  // mounted() {
+  //   const bodyStyles = document.body.style
+  //   bodyStyles.setProperty('--q-primary', '#b10b6a!important')
+  // }
 })
 </script>
 
@@ -84,6 +92,24 @@ export default defineComponent({
       height: 48px;
       max-width: 252px;
       margin: auto;
+      //background-color: greenyellow!important;
+      //--q-primary: red!important;
+      //--q-primary: orange;
+    }
+    .btn-show-post-fablab {
+      --q-primary: #0063AE;
+    }
+
+    .btn-show-post-fabfactory {
+      --q-primary: #F8AF18;
+    }
+
+    .btn-show-post-fabcafe {
+      --q-primary: #D83527;
+    }
+
+    .btn-show-post-fabkids {
+      --q-primary: #25a74a;
     }
   }
 }

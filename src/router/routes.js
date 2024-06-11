@@ -81,28 +81,112 @@ const routes = [
                 component: () => import('src/pages/Public/BasicDynamicPage.vue')
               },
               {
+                path: 'fablab',
+                name: 'Public.FabFamily.Lab',
+                meta: {
+                  hasDynamicHeader: true,
+                  hasDynamicSetting: true
+                },
+                component: () => import('layouts/bareLayout.vue'),
+                children: [
+                  {
+                    path: '',
+                    name: 'Public.FabFamily.Lab.Index',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post',
+                    name: 'Public.FabFamily.Lab.Post',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  }
+                ]
+              },
+              {
                 path: 'fabfactory',
                 name: 'Public.FabFamily.Factory',
                 meta: {
+                  hasDynamicHeader: true,
                   hasDynamicSetting: true
                 },
-                component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                component: () => import('layouts/bareLayout.vue'),
+                children: [
+                  {
+                    path: '',
+                    name: 'Public.FabFamily.Factory.Index',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post',
+                    name: 'Public.FabFamily.Factory.Post',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  }
+                ]
               },
               {
                 path: 'fabcafe',
                 name: 'Public.FabFamily.Cafe',
                 meta: {
+                  hasDynamicHeader: true,
                   hasDynamicSetting: true
                 },
-                component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                component: () => import('layouts/bareLayout.vue'),
+                children: [
+                  {
+                    path: '',
+                    name: 'Public.FabFamily.Cafe.Index',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post',
+                    name: 'Public.FabFamily.Cafe.Post',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  }
+                ]
               },
               {
                 path: 'fabkids',
                 name: 'Public.FabFamily.Kids',
                 meta: {
+                  hasDynamicHeader: true,
                   hasDynamicSetting: true
                 },
-                component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                component: () => import('layouts/bareLayout.vue'),
+                children: [
+                  {
+                    path: '',
+                    name: 'Public.FabFamily.Kids.Index',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post',
+                    name: 'Public.FabFamily.Kids.Post',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  }
+                ]
               }
             ]
           },

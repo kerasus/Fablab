@@ -40,6 +40,15 @@
           <q-input v-model="localOptions.categoryId" />
         </div>
       </div>
+      <div>
+        نام کلاس دکمه های موجود در کامپوننت
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-12">
+          <q-input v-model="localOptions.btnShowPostClassName" />
+        </div>
+      </div>
+
     </template>
   </option-panel-tabs>
 </template>
@@ -58,6 +67,7 @@ export default defineComponent({
   data () {
     return {
       defaultOptions: {
+        btnShowPostClassName: null,
         categoryId: null,
         categoryCategoryId: null,
         categoryCategoryCategoryId: null,
