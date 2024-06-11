@@ -1,8 +1,13 @@
-import { Authenticated } from './middleware/middleware.js'
+import { Authenticated, SetPrimaryColor } from './middleware/middleware.js'
 
 const routes = [
   {
     path: '',
+    meta: {
+      middlewares: [
+        SetPrimaryColor('#0B6AB1')
+      ]
+    },
     layoutConfig: {
       layoutView: 'lHh Lpr fff',
       layoutHeader: true,
@@ -60,7 +65,10 @@ const routes = [
             name: 'Public.FabFamily',
             meta: {
               hasDynamicHeader: true,
-              hasDynamicSetting: true
+              hasDynamicSetting: true,
+              middlewares: [
+                SetPrimaryColor('red')
+              ]
             },
             component: () => import('layouts/bareLayout.vue'),
             children: [
