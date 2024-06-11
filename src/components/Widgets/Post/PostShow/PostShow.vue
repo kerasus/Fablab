@@ -85,9 +85,15 @@ export default {
         ]
       },
       defaultOptions: {
-        profileMode: false
+        profileMode: false,
+        postShowRouteName: 'Public.Post.Show'
       },
       post: new Post()
+    }
+  },
+  computed: {
+    postId () {
+      return this.$route.params.id ?? this.$route.params.post_id
     }
   },
   methods: {
@@ -104,7 +110,7 @@ export default {
       // })
       this.breadcrumbs.path.push({
         label: this.post.title,
-        to: { name: 'Public.Post.Show', params: { id: this.post.id } }
+        to: { name: this.localOptions.postShowRouteName, params: { id: this.post.id } }
       })
       this.$store.commit('AppLayout/updateBreadcrumbs', this.breadcrumbs)
       this.$emit('onloadn', this.post)
@@ -121,7 +127,7 @@ export default {
     },
     getPost () {
       this.post.post = true
-      return APIGateway.post.get(this.$route.params.id)
+      return APIGateway.post.get(this.postId)
     },
     print () {
       this.convertPhotosToBase64()

@@ -16,6 +16,7 @@
                   :show-reload-button="false">
       <template #entity-index-table-item-cell="{inputData}">
         <post-item :post="getPost(inputData.props.row)"
+                   :post-show-route-name="localOptions.postShowRouteName"
                    :btn-show-post-class-name="this.localOptions.btnShowPostClassName" />
       </template>
     </entity-index>
@@ -71,6 +72,7 @@ export default {
         ]
       },
       defaultOptions: {
+        postShowRouteName: 'Public.Post.Show',
         categoryId: null,
         categoryCategoryId: null,
         categoryCategoryCategoryId: null,

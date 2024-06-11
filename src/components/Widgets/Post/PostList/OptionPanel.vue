@@ -48,6 +48,10 @@
           <q-input v-model="localOptions.btnShowPostClassName" />
         </div>
       </div>
+      <div class="q-mt-md">
+        <q-input v-model="localOptions.postShowRouteName"
+                 label="post show Route name" />
+      </div>
 
     </template>
   </option-panel-tabs>
@@ -67,6 +71,7 @@ export default defineComponent({
   data () {
     return {
       defaultOptions: {
+        postShowRouteName: 'Public.Post.Show',
         btnShowPostClassName: null,
         categoryId: null,
         categoryCategoryId: null,

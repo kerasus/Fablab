@@ -3,12 +3,12 @@
     <q-card flat
             class="PostItem">
       <div class="thumbnail">
-        <router-link :to="{name: 'Public.Post.Show', params: {id: post.id}}">
+        <router-link :to="{name: postShowRouteName, params: {id: post.id, post_id: post.id}}">
           <q-img :src="post.thumbnail" />
         </router-link>
       </div>
       <div class="title ellipsis-2-lines">
-        <router-link :to="{name: 'Public.Post.Show', params: {id: post.id}}">
+        <router-link :to="{name: postShowRouteName, params: {id: post.id, post_id: post.id}}">
           {{post.title}}
         </router-link>
       </div>
@@ -24,7 +24,7 @@
         <q-btn color="primary"
                class="btn-show-post"
                :class="btnShowPostClassName"
-               :to="{name: 'Public.Post.Show', params: {id: post.id}}">
+               :to="{name: postShowRouteName, params: {id: post.id, post_id: post.id}}">
           مشاهده جزئیات
         </q-btn>
       </q-card-actions>
@@ -42,6 +42,10 @@ export default defineComponent({
     post: {
       type: Post,
       default: new Post()
+    },
+    postShowRouteName: {
+      type: String,
+      default: 'Public.Post.Show'
     },
     btnShowPostClassName: {
       type: String
