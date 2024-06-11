@@ -1,5 +1,4 @@
-import { Authenticated } from './middleware/middleware.js'
-
+import { Authenticated, setPrimaryColor } from './middleware/middleware.js'
 const routes = [
   {
     path: '',
@@ -60,7 +59,8 @@ const routes = [
             name: 'Public.FabFamily',
             meta: {
               hasDynamicHeader: true,
-              hasDynamicSetting: true
+              hasDynamicSetting: true,
+              middlewares: [setPrimaryColor]
             },
             component: () => import('layouts/bareLayout.vue'),
             children: [
