@@ -131,6 +131,14 @@ const routes = [
                       hasDynamicSetting: true
                     },
                     component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post/:post_id',
+                    name: 'Public.FabFamily.Factory.Post.Show',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
                   }
                 ]
               },
