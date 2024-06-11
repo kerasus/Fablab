@@ -15,7 +15,8 @@
                   :show-expand-button="false"
                   :show-reload-button="false">
       <template #entity-index-table-item-cell="{inputData}">
-        <post-item :post="getPost(inputData.props.row)" />
+        <post-item :post="getPost(inputData.props.row)"
+                   :btn-show-post-class-name="this.localOptions.btnShowPostClassName" />
       </template>
     </entity-index>
   </div>
@@ -73,6 +74,7 @@ export default {
         categoryId: null,
         categoryCategoryId: null,
         categoryCategoryCategoryId: null,
+        btnShowPostClassName: null,
         categoryFromQueryParams: false,
         categoryCategoryFromQueryParams: false,
         categoryCategoryCategoryFromQueryParams: false
