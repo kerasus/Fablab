@@ -1,13 +1,13 @@
 import { Authenticated, SetPrimaryColor } from './middleware/middleware.js'
-
+const fabColors = {
+  fablab: '#0063AE',
+  fabfactory: '#F8AF18',
+  fabcafe: '#D83527',
+  fabkids: '#25a74a'
+}
 const routes = [
   {
     path: '',
-    meta: {
-      middlewares: [
-        SetPrimaryColor('#0B6AB1')
-      ]
-    },
     layoutConfig: {
       layoutView: 'lHh Lpr fff',
       layoutHeader: true,
@@ -65,10 +65,7 @@ const routes = [
             name: 'Public.FabFamily',
             meta: {
               hasDynamicHeader: true,
-              hasDynamicSetting: true,
-              middlewares: [
-                SetPrimaryColor('red')
-              ]
+              hasDynamicSetting: true
             },
             component: () => import('layouts/bareLayout.vue'),
             children: [
@@ -85,7 +82,10 @@ const routes = [
                 name: 'Public.FabFamily.Lab',
                 meta: {
                   hasDynamicHeader: true,
-                  hasDynamicSetting: true
+                  hasDynamicSetting: true,
+                  middlewares: [
+                    SetPrimaryColor(fabColors.fablab)
+                  ]
                 },
                 component: () => import('layouts/bareLayout.vue'),
                 children: [
@@ -112,7 +112,10 @@ const routes = [
                 name: 'Public.FabFamily.Factory',
                 meta: {
                   hasDynamicHeader: true,
-                  hasDynamicSetting: true
+                  hasDynamicSetting: true,
+                  middlewares: [
+                    SetPrimaryColor(fabColors.fabfactory)
+                  ]
                 },
                 component: () => import('layouts/bareLayout.vue'),
                 children: [
@@ -147,7 +150,10 @@ const routes = [
                 name: 'Public.FabFamily.Cafe',
                 meta: {
                   hasDynamicHeader: true,
-                  hasDynamicSetting: true
+                  hasDynamicSetting: true,
+                  middlewares: [
+                    SetPrimaryColor(fabColors.fabcafe)
+                  ]
                 },
                 component: () => import('layouts/bareLayout.vue'),
                 children: [
@@ -174,7 +180,10 @@ const routes = [
                 name: 'Public.FabFamily.Kids',
                 meta: {
                   hasDynamicHeader: true,
-                  hasDynamicSetting: true
+                  hasDynamicSetting: true,
+                  middlewares: [
+                    SetPrimaryColor(fabColors.fabkids)
+                  ]
                 },
                 component: () => import('layouts/bareLayout.vue'),
                 children: [
