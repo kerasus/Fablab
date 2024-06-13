@@ -2,9 +2,9 @@
   <div class="AdminPostCategoryList"
        :style="localOptions.style">
     <div class="title">
-      لیست دسته بندی های کلی
+      لیست بخش ها
       <div class="back-action">
-        <q-btn label="دسته پست جدید"
+        <q-btn label="بخش جدید"
                color="primary"
                :to="{name: 'AdminPanel.PostCategory.Create'}" />
       </div>
@@ -99,7 +99,7 @@ export default {
           {
             name: 'title',
             required: true,
-            label: 'نام دسته',
+            label: 'بخش',
             align: 'left',
             field: row => row.title
           },

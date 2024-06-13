@@ -92,6 +92,13 @@ export default {
           {
             name: 'category_info',
             required: true,
+            label: 'بخش',
+            align: 'left',
+            field: row => row.category_info?.parent?.title
+          },
+          {
+            name: 'category_info',
+            required: true,
             label: 'دسته',
             align: 'left',
             field: row => row.category_info?.title

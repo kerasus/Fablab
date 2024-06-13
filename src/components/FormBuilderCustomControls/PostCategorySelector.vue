@@ -2,7 +2,7 @@
   <div class="PostCategorySelector row q-col-gutter-md">
     <div class="col-md-4 col-12">
       <div>
-        دسته بندی اصلی
+        بخش
       </div>
       <q-select v-model="mainCategory"
                 :options="mainCategoryOptions"
@@ -10,18 +10,10 @@
     </div>
     <div class="col-md-4 col-12">
       <div>
-        دسته بندی جزیی
+        دسته
       </div>
       <q-select v-model="subCategory"
                 :options="subCategoryOptions"
-                :loading="postCategories.laoding" />
-    </div>
-    <div class="col-md-4 col-12">
-      <div>
-        بخش
-      </div>
-      <q-select v-model="bakhshCategory"
-                :options="bakhshCategoryOptions"
                 :loading="postCategories.laoding" />
     </div>
   </div>
@@ -48,10 +40,8 @@ export default {
     return {
       mainCategory: null,
       subCategory: null,
-      bakhshCategory: null,
       mainCategoryOptions: [],
       subCategoryOptions: [],
-      bakhshCategoryOptions: [],
       postCategories: new PostCategoryList()
     }
   },
@@ -77,19 +67,6 @@ export default {
       }
     },
     subCategory (newValue) {
-      this.bakhshCategory = null
-      this.bakhshCategoryOptions = []
-      if (newValue?.item) {
-        this.bakhshCategoryOptions = newValue.item.children.map(item => {
-          return {
-            item,
-            label: item.title,
-            value: item.id
-          }
-        })
-      }
-    },
-    bakhshCategory (newValue) {
       const categoryId = newValue ? newValue.value : null
       this.$emit('update:value', categoryId)
     }
@@ -99,22 +76,16 @@ export default {
   },
   methods: {
     setMainCategory () {
-      if (!this.value?.parent?.parent?.id) {
-        return
-      }
-      this.mainCategory = this.mainCategoryOptions.find(item => item.value === this.value.parent.parent.id)
-    },
-    setSubCategory () {
       if (!this.value?.parent?.id) {
         return
       }
-      this.subCategory = this.subCategoryOptions.find(item => item.value === this.value.parent.id)
+      this.mainCategory = this.mainCategoryOptions.find(item => item.value === this.value.parent.id)
     },
-    setBakhshCategory () {
+    setSubCategory () {
       if (!this.value?.id) {
         return
       }
-      this.bakhshCategory = this.bakhshCategoryOptions.find(item => item.value === this.value.id)
+      this.subCategory = this.subCategoryOptions.find(item => item.value === this.value.id)
     },
     getCategories () {
       this.postCategories.laoding = true
@@ -130,15 +101,12 @@ export default {
             }
           })
 
-          if (this.value?.parent?.parent?.id && this.value.id) {
+          if (this.value?.parent?.id && this.value.id) {
             this.$nextTick(() => {
               this.setMainCategory()
               this.$nextTick(() => {
                 this.setSubCategory()
-                this.$nextTick(() => {
-                  this.setBakhshCategory()
-                  this.$emit('update:value', this.value.id)
-                })
+                this.$emit('update:value', this.value.id)
               })
             })
           }
