@@ -367,6 +367,7 @@ export default {
     }
     .slider-image {
       width: 100%;
+      height: calc(100vh - 65px);
       pointer-events: none !important;
     }
   }
