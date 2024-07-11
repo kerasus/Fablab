@@ -34,8 +34,18 @@ export default {
   },
   mounted() {
     this.mounted = true
+    this.loadData()
   },
   methods: {
+    loadData () {
+      this.getApiRequest()
+        .then((data) => {
+          this.prefetchServerDataPromiseThen(data)
+        })
+        .catch(() => {
+          this.prefetchServerDataPromiseCatch()
+        })
+    },
     prefetchServerDataPromise () {
       return this.getApiRequest()
     },
