@@ -2,7 +2,7 @@
   <q-card class="PostItem"
           flat>
     <div class="thumbnail">
-      <router-link :to="{name: 'Public.Post.Show', params: {id: post.id}}">
+      <router-link :to="{name: postShowRouteName, params: {id: post.id, post_id: post.id}}">
         <q-img :src="post.thumbnail" />
       </router-link>
     </div>
@@ -32,6 +32,10 @@ import Assist from 'src/assets/js/Assist.js'
 export default {
   name: 'PostItem',
   props: {
+    postShowRouteName: {
+      type: String,
+      default: 'Public.Post.Show'
+    },
     post: {
       type: Post,
       default: new Post()

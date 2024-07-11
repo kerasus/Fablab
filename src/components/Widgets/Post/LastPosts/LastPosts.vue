@@ -4,7 +4,8 @@
     <div v-for="post in postList.list"
          :key="post.id"
          class="col-md-6 col-12">
-      <post-item :post="post" />
+      <post-item :post="post"
+                 :post-show-route-name="localOptions.postShowRouteName" />
     </div>
   </div>
 </template>
@@ -25,6 +26,7 @@ export default {
     return {
       mounted: false,
       defaultOptions: {
+        postShowRouteName: 'Public.Post.Show',
         categoryId: null,
         categoryParentId: null,
         categoryParentParentId: 1
