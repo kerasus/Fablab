@@ -49,10 +49,21 @@
         </div>
       </div>
       <div class="q-mt-md">
+        <q-input v-model="localOptions.homeRouteNameTitle"
+                 label="home Route name title" />
+      </div>
+      <div class="q-mt-md">
+        <q-input v-model="localOptions.homeRouteName"
+                 label="home Route name" />
+      </div>
+      <div class="q-mt-md">
+        <q-input v-model="localOptions.postCategoryShowRouteName"
+                 label="post category show Route name" />
+      </div>
+      <div class="q-mt-md">
         <q-input v-model="localOptions.postShowRouteName"
                  label="post show Route name" />
       </div>
-
     </template>
   </option-panel-tabs>
 </template>
@@ -72,6 +83,9 @@ export default defineComponent({
     return {
       defaultOptions: {
         postShowRouteName: 'Public.Post.Show',
+        homeRouteNameTitle: 'فب لب',
+        homeRouteName: 'Public.Home',
+        postCategoryShowRouteName: 'Public.PostCategory.Show',
         btnShowPostClassName: null,
         categoryId: null,
         categoryCategoryId: null,

@@ -9,16 +9,16 @@
       <div class="side-menu-body">
         <q-list class="side-menu-list"
                 padding>
-          <q-input v-model="searchText"
-                   dense
-                   filled
-                   class="gray-input search-input"
-                   placeholder="جست و جو"
-                   @update:model-value ="search(titlesList)">
-            <template v-slot:append>
-              <q-icon name="search" />
-            </template>
-          </q-input>
+          <!--<q-input v-model="searchText"-->
+          <!--dense-->
+          <!--filled-->
+          <!--class="gray-input search-input"-->
+          <!--placeholder="جست و جو"-->
+          <!--@update:model-value ="search(titlesList)">-->
+          <!--<template v-slot:append>-->
+          <!--<q-icon name="search" />-->
+          <!--</template>-->
+          <!--</q-input>-->
           <menu-item :items="sidebarItems"
                      :menu-items-color="'#5867dd'" />
         </q-list>
@@ -140,14 +140,14 @@ export default {
     },
     getHeaderConfigKey () {
       const preKey = 'header_config-route_name:'
-      if (this.$route.name.startsWith('Public.FabFamily.Cafe')) {
-        return preKey + 'Public.FabFamily.Cafe'
+      if (this.$route.name.startsWith('Public.FabFamily.Fabcafe')) {
+        return preKey + 'Public.FabFamily.Fabcafe'
       }
-      if (this.$route.name.startsWith('Public.FabFamily.Kids')) {
-        return preKey + 'Public.FabFamily.Kids'
+      if (this.$route.name.startsWith('Public.FabFamily.Fabkids')) {
+        return preKey + 'Public.FabFamily.Fabkids'
       }
-      if (this.$route.name.startsWith('Public.FabFamily.Factory')) {
-        return preKey + 'Public.FabFamily.Factory'
+      if (this.$route.name.startsWith('Public.FabFamily.Fabfactory')) {
+        return preKey + 'Public.FabFamily.Fabfactory'
       }
 
       return null

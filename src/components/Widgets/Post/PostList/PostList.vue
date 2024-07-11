@@ -61,18 +61,13 @@ export default {
         visible: true,
         loading: false,
         path: [
-          {
-            label: 'خانه',
-            to: { name: 'Public.Home' }
-          },
-          {
-            label: 'یادداشت ها و مقالات',
-            to: { name: 'Public.Post.List' }
-          }
         ]
       },
       defaultOptions: {
         postShowRouteName: 'Public.Post.Show',
+        homeRouteNameTitle: 'فب لب',
+        homeRouteName: 'Public.Home',
+        postCategoryShowRouteName: 'Public.PostCategory.Show',
         categoryId: null,
         categoryCategoryId: null,
         categoryCategoryCategoryId: null,
@@ -132,8 +127,12 @@ export default {
         .then((postCategory) => {
           this.postCategory = new PostCategory(postCategory)
           this.breadcrumbs.path.push({
+            label: this.localOptions.homeRouteNameTitle,
+            to: { name: this.localOptions.homeRouteName }
+          })
+          this.breadcrumbs.path.push({
             label: this.postCategory.title,
-            to: { name: 'Public.PostCategory.Show', params: { category_id: postCategoryId } }
+            to: { name: this.localOptions.postCategoryShowRouteName, params: { category_id: this.postCategory.id } }
           })
           this.$store.commit('AppLayout/updateBreadcrumbs', this.breadcrumbs)
           this.postCategory.loading = false

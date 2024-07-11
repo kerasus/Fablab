@@ -1,6 +1,12 @@
 <template>
   <option-panel-tabs v-model:options="localOptions">
     <template #main-tab>
+      <q-input v-model="localOptions.homeRouteNameTitle"
+               label="home Route name title" />
+      <q-input v-model="localOptions.homeRouteName"
+               label="home Route name" />
+      <q-input v-model="localOptions.postCategoryShowRouteName"
+               label="post category show Route name" />
       <q-input v-model="localOptions.postShowRouteName"
                label="post show Route name" />
     </template>
@@ -21,7 +27,10 @@ export default defineComponent({
   data () {
     return {
       defaultOptions: {
-        postShowRouteName: 'Public.Post.Show'
+        postShowRouteName: 'Public.Post.Show',
+        homeRouteNameTitle: 'فب لب',
+        homeRouteName: 'Public.Home',
+        postCategoryShowRouteName: 'Public.PostCategory.Show'
       }
     }
   }

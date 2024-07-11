@@ -79,7 +79,7 @@ const routes = [
               },
               {
                 path: 'fablab',
-                name: 'Public.FabFamily.Lab',
+                name: 'Public.FabFamily.Fablab',
                 meta: {
                   hasDynamicHeader: true,
                   hasDynamicSetting: true,
@@ -91,7 +91,7 @@ const routes = [
                 children: [
                   {
                     path: '',
-                    name: 'Public.FabFamily.Lab.Index',
+                    name: 'Public.FabFamily.Fablab.Index',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -99,7 +99,78 @@ const routes = [
                   },
                   {
                     path: 'post',
-                    name: 'Public.FabFamily.Lab.Post',
+                    name: 'Public.FabFamily.Fablab.Post',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post/:post_id',
+                    name: 'Public.FabFamily.Fablab.Post.Show',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post_category',
+                    name: 'Public.FabFamily.Fablab.PostCategory',
+                    component: () => import('layouts/bareLayout.vue'),
+                    children: [
+                      {
+                        path: 'parent/parent/:category_id',
+                        name: 'Public.FabFamily.Fablab.PostCategoryParentParent.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      },
+                      {
+                        path: 'parent/:category_id',
+                        name: 'Public.FabFamily.Fablab.PostCategoryParent.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      },
+                      {
+                        path: ':category_id',
+                        name: 'Public.FabFamily.Fablab.PostCategory.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      }
+                    ]
+                  },
+                  {
+                    path: 'project',
+                    name: 'Public.FabFamily.Fablab.Project',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'event',
+                    name: 'Public.FabFamily.Fablab.Event',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'research',
+                    name: 'Public.FabFamily.Fablab.Research',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'startup',
+                    name: 'Public.FabFamily.Fablab.Startup',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -109,7 +180,7 @@ const routes = [
               },
               {
                 path: 'fabfactory',
-                name: 'Public.FabFamily.Factory',
+                name: 'Public.FabFamily.Fabfactory',
                 meta: {
                   hasDynamicHeader: true,
                   hasDynamicSetting: true,
@@ -121,7 +192,7 @@ const routes = [
                 children: [
                   {
                     path: '',
-                    name: 'Public.FabFamily.Factory.Index',
+                    name: 'Public.FabFamily.Fabfactory.Index',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -129,7 +200,7 @@ const routes = [
                   },
                   {
                     path: 'post',
-                    name: 'Public.FabFamily.Factory.Post',
+                    name: 'Public.FabFamily.Fabfactory.Post',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -137,7 +208,62 @@ const routes = [
                   },
                   {
                     path: 'post/:post_id',
-                    name: 'Public.FabFamily.Factory.Post.Show',
+                    name: 'Public.FabFamily.Fabfactory.Post.Show',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post_category',
+                    name: 'Public.FabFamily.Fabfactory.PostCategory',
+                    component: () => import('layouts/bareLayout.vue'),
+                    children: [
+                      {
+                        path: 'parent/parent/:category_id',
+                        name: 'Public.FabFamily.Fabfactory.PostCategoryParentParent.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      },
+                      {
+                        path: 'parent/:category_id',
+                        name: 'Public.FabFamily.Fabfactory.PostCategoryParent.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      },
+                      {
+                        path: ':category_id',
+                        name: 'Public.FabFamily.Fabfactory.PostCategory.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      }
+                    ]
+                  },
+                  {
+                    path: 'event',
+                    name: 'Public.FabFamily.Fabfactory.Event',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'research',
+                    name: 'Public.FabFamily.Fabfactory.Research',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'startup',
+                    name: 'Public.FabFamily.Fabfactory.Startup',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -147,7 +273,7 @@ const routes = [
               },
               {
                 path: 'fabcafe',
-                name: 'Public.FabFamily.Cafe',
+                name: 'Public.FabFamily.Fabcafe',
                 meta: {
                   hasDynamicHeader: true,
                   hasDynamicSetting: true,
@@ -159,7 +285,7 @@ const routes = [
                 children: [
                   {
                     path: '',
-                    name: 'Public.FabFamily.Cafe.Index',
+                    name: 'Public.FabFamily.Fabcafe.Index',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -167,17 +293,65 @@ const routes = [
                   },
                   {
                     path: 'post',
-                    name: 'Public.FabFamily.Cafe.Post',
+                    name: 'Public.FabFamily.Fabcafe.Post',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post/:post_id',
+                    name: 'Public.FabFamily.Fabcafe.Post.Show',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post_category',
+                    name: 'Public.FabFamily.Fabkids.PostCategory',
+                    component: () => import('layouts/bareLayout.vue'),
+                    children: [
+                      {
+                        path: 'parent/parent/:category_id',
+                        name: 'Public.FabFamily.Fabkids.PostCategoryParentParent.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      },
+                      {
+                        path: 'parent/:category_id',
+                        name: 'Public.FabFamily.Fabkids.PostCategoryParent.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      },
+                      {
+                        path: ':category_id',
+                        name: 'Public.FabFamily.Fabkids.PostCategory.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      }
+                    ]
+                  },
+                  {
+                    path: 'event',
+                    name: 'Public.FabFamily.Fabcafe.Event',
                     meta: {
                       hasDynamicSetting: true
                     },
                     component: () => import('src/pages/Public/BasicDynamicPage.vue')
                   }
+
                 ]
               },
               {
                 path: 'fabkids',
-                name: 'Public.FabFamily.Kids',
+                name: 'Public.FabFamily.Fabkids',
                 meta: {
                   hasDynamicHeader: true,
                   hasDynamicSetting: true,
@@ -189,7 +363,7 @@ const routes = [
                 children: [
                   {
                     path: '',
-                    name: 'Public.FabFamily.Kids.Index',
+                    name: 'Public.FabFamily.Fabkids.Index',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -197,7 +371,54 @@ const routes = [
                   },
                   {
                     path: 'post',
-                    name: 'Public.FabFamily.Kids.Post',
+                    name: 'Public.FabFamily.Fabkids.Post',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post/:post_id',
+                    name: 'Public.FabFamily.Fabkids.Post.Show',
+                    meta: {
+                      hasDynamicSetting: true
+                    },
+                    component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                  },
+                  {
+                    path: 'post_category',
+                    name: 'Public.FabFamily.Fabkids.PostCategory',
+                    component: () => import('layouts/bareLayout.vue'),
+                    children: [
+                      {
+                        path: 'parent/parent/:category_id',
+                        name: 'Public.FabFamily.Fabkids.PostCategoryParentParent.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      },
+                      {
+                        path: 'parent/:category_id',
+                        name: 'Public.FabFamily.Fabkids.PostCategoryParent.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      },
+                      {
+                        path: ':category_id',
+                        name: 'Public.FabFamily.Fabkids.PostCategory.Show',
+                        meta: {
+                          hasDynamicSetting: true
+                        },
+                        component: () => import('src/pages/Public/BasicDynamicPage.vue')
+                      }
+                    ]
+                  },
+                  {
+                    path: 'event',
+                    name: 'Public.FabFamily.Fabkids.Event',
                     meta: {
                       hasDynamicSetting: true
                     },

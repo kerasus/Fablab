@@ -17,18 +17,20 @@
              v-html="post.text" />
 
         <div class="attributes">
+          <!--name: 'Public.PostCategoryParentParent.Show', params: {category_id: post.category_info.parent.parent.id}          -->
           <q-btn v-if="post.category_info?.parent?.parent?.id"
-                 :to="{name: 'Public.PostCategoryParentParent.Show', params: {category_id: post.category_info.parent.parent.id}}"
+                 :to="{}"
                  class="attribute-item">
             {{post.category_info.parent.parent.title}}
           </q-btn>
+          <!--name: this.localOptions.postCategoryShowRouteName , params: {category_id: post.category_info.parent.id}          -->
           <q-btn v-if="post.category_info?.parent?.id"
-                 :to="{name: 'Public.PostCategoryParent.Show', params: {category_id: post.category_info.parent.id}}"
+                 :to="{}"
                  class="attribute-item">
             {{post.category_info.parent.title}}
           </q-btn>
           <q-btn v-if="post.category_info?.id"
-                 :to="{name: 'Public.PostCategory.Show', params: {category_id: post.category_info.id}}"
+                 :to="{name: this.localOptions.postCategoryShowRouteName , params: {category_id: post.category_info.id}}"
                  class="attribute-item">
             {{post.category_info.title}}
           </q-btn>
@@ -74,19 +76,14 @@ export default {
         visible: true,
         loading: false,
         path: [
-          {
-            label: 'خانه',
-            to: { name: 'Public.Home' }
-          },
-          {
-            label: 'یادداشت ها و مقالات',
-            to: { name: 'Public.Post.List' }
-          }
         ]
       },
       defaultOptions: {
         profileMode: false,
-        postShowRouteName: 'Public.Post.Show'
+        postShowRouteName: 'Public.Post.Show',
+        homeRouteNameTitle: 'فب لب',
+        homeRouteName: 'Public.Home',
+        postCategoryShowRouteName: 'Public.PostCategory.Show'
       },
       post: new Post()
     }
@@ -103,11 +100,19 @@ export default {
     prefetchServerDataPromiseThen (post) {
       this.post = new Post(post)
       this.post.post = false
+      console.log(this.post)
+      console.log(this.localOptions)
+      console.log(this.localOptions.postShowRouteName)
+      console.log(this.localOptions.postShowRouteName.includes('FabFamily') ? this.localOptions.postShowRouteName.replace('.Post.Show', '') : 'Public.Home')
 
-      // this.breadcrumbs.path.push({
-      //   label: this.post.category_info.title,
-      //   to: { name: 'Public.PostCategory.Show', params: { category_id: this.post.category_info.id } }
-      // })
+      this.breadcrumbs.path.push({
+        label: this.localOptions.homeRouteNameTitle,
+        to: { name: this.localOptions.homeRouteName }
+      })
+      this.breadcrumbs.path.push({
+        label: this.post.category_info.title,
+        to: { name: this.localOptions.postCategoryShowRouteName, params: { category_id: this.post.category_info.id } }
+      })
       this.breadcrumbs.path.push({
         label: this.post.title,
         to: { name: this.localOptions.postShowRouteName, params: { id: this.post.id } }

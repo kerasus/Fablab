@@ -6,6 +6,6 @@ export default function () {
     ogTitle: null,
     ogUrl: null,
     ogDescription: null,
-    ogImage: '/img/menu-logo.png'
+    ogImage: '/img/menu-logo.svg'
   }
 }

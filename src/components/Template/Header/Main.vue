@@ -253,7 +253,7 @@ export default {
   },
   computed: {
     logoPic () {
-      return this.headerConfig?.logoPic ?? '/img/menu-logo.png'
+      return this.headerConfig?.logoPic ?? '/img/menu-logo.svg'
     },
     headerItems () {
       return this.headerConfig?.items ?? menuItems
@@ -313,14 +313,14 @@ export default {
     },
     getHeaderConfigKey () {
       const preKey = 'header_config-route_name:'
-      if (this.$route.name.startsWith('Public.FabFamily.Cafe')) {
-        return preKey + 'Public.FabFamily.Cafe'
+      if (this.$route.name.startsWith('Public.FabFamily.Fabcafe')) {
+        return preKey + 'Public.FabFamily.Fabcafe'
       }
-      if (this.$route.name.startsWith('Public.FabFamily.Kids')) {
-        return preKey + 'Public.FabFamily.Kids'
+      if (this.$route.name.startsWith('Public.FabFamily.Fabkids')) {
+        return preKey + 'Public.FabFamily.Fabkids'
       }
-      if (this.$route.name.startsWith('Public.FabFamily.Factory')) {
-        return preKey + 'Public.FabFamily.Factory'
+      if (this.$route.name.startsWith('Public.FabFamily.Fabfactory')) {
+        return preKey + 'Public.FabFamily.Fabfactory'
       }
 
       return null

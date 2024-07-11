@@ -3,7 +3,7 @@
        dir="ltr"
        :style="localOptions.style">
     <carousel v-if="mounted"
-              :items-to-show="3"
+              :items-to-show="2"
               :snap-align="'center'"
               wrapAround
               dir="rtl">
