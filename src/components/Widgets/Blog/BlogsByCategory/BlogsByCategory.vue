@@ -9,7 +9,8 @@
               dir="rtl">
       <slide v-for="post in postList.list"
              :key="post.id">
-        <blog-item :post="post" />
+        <blog-item :post="post"
+                   :post-show-route-name="localOptions.postShowRouteName" />
       </slide>
 
       <template #addons="{ slidesCount }">
@@ -45,6 +46,7 @@ export default {
     return {
       mounted: false,
       defaultOptions: {
+        postShowRouteName: 'Public.Post.Show',
         categoryId: null,
         categoryParentId: null,
         categoryParentParentId: null

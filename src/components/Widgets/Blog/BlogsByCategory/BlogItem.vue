@@ -1,6 +1,6 @@
 <template>
   <router-link class="BlogItem"
-               :to="{ name: 'Public.Post.Show', params: { id: post.id } }">
+               :to="{name: postShowRouteName , params: {id: post.id, post_id: post.id}}">
     <q-card flat>
       <div class="thumbnail">
         <img :src="post.thumbnail">
@@ -18,6 +18,10 @@ import { Post } from 'src/models/Post.js'
 export default {
   name: 'BlogItem',
   props: {
+    postShowRouteName: {
+      default: 'Public.Post.Show',
+      type: String
+    },
     post: {
       type: Post,
       default: new Post()

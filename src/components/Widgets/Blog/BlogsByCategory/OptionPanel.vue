@@ -7,6 +7,10 @@
                label="category parent id" />
       <q-input v-model="localOptions.categoryParentParentId"
                label="category parent parent id" />
+      <div class="q-mt-md">
+        <q-input v-model="localOptions.postShowRouteName"
+                 label="post show Route name" />
+      </div>
     </template>
   </option-panel-tabs>
 </template>
@@ -25,6 +29,7 @@ export default defineComponent({
   data() {
     return {
       defaultOptions: {
+        postShowRouteName: 'Public.Post.Show',
         categoryId: null,
         categoryParentId: null,
         categoryParentParentId: null
