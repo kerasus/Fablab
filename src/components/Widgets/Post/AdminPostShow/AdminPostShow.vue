@@ -62,6 +62,7 @@ export default {
       indexRouteName: 'AdminPanel.Post.List',
       inputs: [
         { type: 'input', name: 'title', responseKey: 'title', label: 'عنوان', placeholder: ' ', col: 'col-12' },
+        { type: 'dateTime', name: 'publish_time', responseKey: 'publish_time', placeholder: ' ', label: 'تاریخ انتشار', col: 'col-md-6 col-12' },
         { type: 'input', name: 'order', responseKey: 'order', label: 'ترتیب', placeholder: ' ', col: 'col-md-6 col-12' },
         { type: 'file', name: 'thumbnail', responseKey: 'thumbnail', label: 'عکس', placeholder: ' ', col: 'col-md-6 col-12' },
         { type: PostCategorySelectorComp, name: 'category', responseKey: 'category_info', col: 'col-md-12 col-12' },
