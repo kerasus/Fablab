@@ -16,6 +16,11 @@
           <q-input v-model="localOptions.description"
                    label="image" />
         </div>
+        <div class="input-container q-py-md">
+          <div class="outsideLabel">link</div>
+          <q-input v-model="localOptions.link"
+                   label="link" />
+        </div>
       </div>
     </template>
   </option-panel-tabs>
