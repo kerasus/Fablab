@@ -36,11 +36,12 @@ export default {
   },
   methods: {
     loadMap() {
-      this.mapInstance = leafletObject.map('map').setView([35.67, 51.4], 15)
+      this.mapInstance = leafletObject.map('map').setView([35.705302890238904, 51.34860785106978], 17)
       leafletObject.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(this.mapInstance)
+      leafletObject.marker([35.705302890238904, 51.34860785106978]).addTo(this.mapInstance)
     }
   }
 }
