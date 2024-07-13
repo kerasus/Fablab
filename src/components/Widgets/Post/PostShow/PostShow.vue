@@ -230,7 +230,8 @@ export default {
 @import "src/css/HTMLContent.scss";
 .post {
   .breadcrumbs {
-    margin-bottom: 40px;
+    margin-top: 24px;
+    margin-bottom: 32px;
   }
   .post-title {
     font-weight: 900;
@@ -239,6 +240,7 @@ export default {
   .attributes {
       display: flex;
       flex-flow: row;
+      margin-bottom: 16px;
     .attribute-item {
       color: #475f4a;
       background-color: #eaeaea;

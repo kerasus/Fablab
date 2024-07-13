@@ -65,13 +65,14 @@ export default {
   .top-section {
     width: 100%;
     max-width: 1060px;
-    padding: 64px 0;
+    padding: 64px 8px;
     margin: auto;
     .main-title {
       color: #0B6AB1;
       font-size: 20px;
       font-weight: 700;
-      margin-bottom: 24px;
+      margin-top: 8px;
+      margin-bottom: 8px;
     }
     .subtitle {
       color: #0B6AB1;
@@ -84,6 +85,7 @@ export default {
       font-size: 16px;
       font-weight: 300;
       line-height: 32px;
+      margin-bottom: 32px;
     }
   }
   .copyright {
