@@ -100,11 +100,6 @@ export default {
     prefetchServerDataPromiseThen (post) {
       this.post = new Post(post)
       this.post.post = false
-      console.log(this.post)
-      console.log(this.localOptions)
-      console.log(this.localOptions.postShowRouteName)
-      console.log(this.localOptions.postShowRouteName.includes('FabFamily') ? this.localOptions.postShowRouteName.replace('.Post.Show', '') : 'Public.Home')
-
       this.breadcrumbs.path.push({
         label: this.localOptions.homeRouteNameTitle,
         to: { name: this.localOptions.homeRouteName }
