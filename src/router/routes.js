@@ -65,6 +65,7 @@ const routes = [
             name: 'Public.FabFamily',
             meta: {
               hasDynamicHeader: true,
+              hasDynamicFooter: true,
               hasDynamicSetting: true
             },
             component: () => import('layouts/bareLayout.vue'),
@@ -82,6 +83,7 @@ const routes = [
                 name: 'Public.FabFamily.Fablab',
                 meta: {
                   hasDynamicHeader: true,
+                  hasDynamicFooter: true,
                   hasDynamicSetting: true,
                   middlewares: [
                     SetPrimaryColor(fabColors.fablab)
@@ -183,6 +185,7 @@ const routes = [
                 name: 'Public.FabFamily.Fabfactory',
                 meta: {
                   hasDynamicHeader: true,
+                  hasDynamicFooter: true,
                   hasDynamicSetting: true,
                   middlewares: [
                     SetPrimaryColor(fabColors.fabfactory)
@@ -276,6 +279,7 @@ const routes = [
                 name: 'Public.FabFamily.Fabcafe',
                 meta: {
                   hasDynamicHeader: true,
+                  hasDynamicFooter: true,
                   hasDynamicSetting: true,
                   middlewares: [
                     SetPrimaryColor(fabColors.fabcafe)
@@ -354,6 +358,7 @@ const routes = [
                 name: 'Public.FabFamily.Fabkids',
                 meta: {
                   hasDynamicHeader: true,
+                  hasDynamicFooter: true,
                   hasDynamicSetting: true,
                   middlewares: [
                     SetPrimaryColor(fabColors.fabkids)
@@ -433,6 +438,7 @@ const routes = [
             name: 'Public.AboutUs',
             meta: {
               hasDynamicHeader: true,
+              hasDynamicFooter: true,
               hasDynamicSetting: true
             },
             component: () => import('src/pages/Public/AboutUs.vue')
