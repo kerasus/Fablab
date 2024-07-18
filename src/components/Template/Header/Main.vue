@@ -128,17 +128,17 @@
               </div>
             </q-menu>
           </q-btn>
-          <div v-else
-               class="sub-mit-box">
-            <q-btn unelevated
-                   class="btn-style"
-                   label="ورود"
-                   :to="{ name: 'Login' }" />
-            <!--            <q-btn unelevated-->
-            <!--                   class="btn-style sign-up"-->
-            <!--                   label="ثبت نام"-->
-            <!--                   :to="{ name: 'Login' }" />-->
-          </div>
+          <!--          <div v-else-->
+          <!--               class="sub-mit-box">-->
+          <!--            <q-btn unelevated-->
+          <!--                   class="btn-style"-->
+          <!--                   label="ورود"-->
+          <!--                   :to="{ name: 'Login' }" />-->
+          <!--            <q-btn unelevated-->
+          <!--                   class="btn-style sign-up"-->
+          <!--                   label="ثبت نام"-->
+          <!--                   :to="{ name: 'Login' }" />-->
+          <!--          </div>-->
           <q-btn v-if="pageBuilderEditable && routeHasDynamicHeader()"
                  icon="isax:setting"
                  flat

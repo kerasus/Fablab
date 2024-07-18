@@ -22,7 +22,8 @@
           <menu-item :items="sidebarItems"
                      :menu-items-color="'#5867dd'" />
         </q-list>
-        <div class="log-out"
+        <div v-if="isUserLogin"
+             class="log-out"
              @click="logOut">
           <span>
             <q-avatar icon="isax:logout"
