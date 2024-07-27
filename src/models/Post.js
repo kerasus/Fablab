@@ -25,7 +25,7 @@ class Post extends Model {
         key: 'hashtags_info',
         relatedModel: PostHashtagList
       },
-      { key: 'publish_time' },
+      { key: 'publish_date' },
       { key: 'creation_time' },
       { key: 'last_modification_time' },
       { key: 'is_active' },

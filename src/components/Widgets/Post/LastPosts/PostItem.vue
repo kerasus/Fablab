@@ -19,7 +19,7 @@
       </div>
       <div class="published-date">
         تاریخ انتشار
-        {{ miladiToShamsi(post.publish_time) }}
+        {{ miladiToShamsi(post.publish_date) }}
       </div>
     </div>
   </q-card>
