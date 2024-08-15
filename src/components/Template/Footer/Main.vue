@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     logoPic () {
-      return this.footerConfig?.logoPic ?? '/img/menu-logo.svg'
+      return this.footerConfig?.logoPic ?? '/img/FABLAB.svg'
     },
     about () {
       return this.footerConfig?.about ?? 'کافه هست در فب لب و با توجه به رسالت کارگروه صنعت و بازار در تجاری سازی فناوری ها و محصولات فناوری نانو و به کارگیری آن\u200Eها در صنایع، این رو کارگروه تلاش کرده است تا با ایجاد بستری مناسب، زمینه همکاری شرکت های متقاضی صنعتی و شرکت های دارنده فناوری را آماده سازد.'
