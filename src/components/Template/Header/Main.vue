@@ -15,8 +15,10 @@
                    @click="toggleLeftDrawer" />
           </div>
           <div class="logo-pic">
-            <img :src="logoPic"
-                 width="113">
+            <a :href="logoLink">
+              <img :src="logoPic"
+                   width="113">
+            </a>
           </div>
         </div>
         <!--        -----------------------------------------------------Tabs Section--------------------------------------------   -->
@@ -226,6 +228,7 @@ export default {
       localHeaderConfigPath: null,
       localHeaderConfig: {
         logoPic: null,
+        logoLink: null,
         items: []
       },
       headerConfig: null,
@@ -254,6 +257,9 @@ export default {
   computed: {
     logoPic () {
       return this.headerConfig?.logoPic ?? '/img/menu-logo.svg'
+    },
+    logoLink () {
+      return this.headerConfig?.logoLink ?? '/'
     },
     headerItems () {
       return this.headerConfig?.items ?? menuItems
