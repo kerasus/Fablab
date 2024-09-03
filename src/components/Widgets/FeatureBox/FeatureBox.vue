@@ -78,7 +78,7 @@ export default {
     color: #3774B7;
   }
   .feature-description {
-    padding-top: 8px;
+    padding: 8px;
     cursor: pointer;
     width: 100%;
     font-style: normal;
