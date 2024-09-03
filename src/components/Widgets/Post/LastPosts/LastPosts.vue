@@ -27,6 +27,7 @@ export default {
       mounted: false,
       defaultOptions: {
         postShowRouteName: 'Public.Post.Show',
+        postItemsCount: 10,
         categoryId: null,
         categoryParentId: null,
         categoryParentParentId: 1
@@ -61,7 +62,7 @@ export default {
 
     getApiRequest() {
       this.postList.loading = true
-      return APIGateway.post.index({ category__parent__parent: this.localOptions.categoryParentParentId, category__parent: this.localOptions.categoryParentId, category: this.localOptions.categoryId })
+      return APIGateway.post.index({ category__parent__parent: this.localOptions.categoryParentParentId, category__parent: this.localOptions.categoryParentId, category: this.localOptions.categoryId, per_page: this.localOptions.postItemsCount })
     }
   }
 }

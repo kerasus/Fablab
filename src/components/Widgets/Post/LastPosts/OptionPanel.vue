@@ -1,6 +1,8 @@
 <template>
   <option-panel-tabs v-model:options="localOptions">
     <template #main-tab>
+      <q-input v-model="localOptions.postItemsCount"
+               label="post items count" />
       <q-input v-model="localOptions.categoryId"
                label="category id" />
       <q-input v-model="localOptions.categoryParentId"
@@ -28,6 +30,7 @@ export default defineComponent({
     return {
       defaultOptions: {
         postShowRouteName: 'Public.Post.Show',
+        postItemsCount: 10,
         categoryId: null,
         categoryParentId: null,
         categoryParentParentId: 1
