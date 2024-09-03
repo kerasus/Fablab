@@ -12,7 +12,7 @@
     </q-item>
     <q-item v-else-if="item.routeName || (item.routePath && item.routePath.startsWith('/'))"
             clickable
-            :active="isRouteSelected(item.routeName)"
+            :active="isRouteSelected(item.routeName) || isRoutePathSelected(item.routePath)"
             active-class="active-item"
             :to="item.routeName ? { name: item.routeName } : item.routePath">
       <q-item-section class="tab-title">
@@ -44,6 +44,9 @@ export default {
     }
   },
   methods: {
+    isRoutePathSelected (itemPath) {
+      return (this.$route.path === itemPath)
+    },
     isRouteSelected (itemName) {
       return (this.$route.name === itemName)
     }
