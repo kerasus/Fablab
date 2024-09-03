@@ -11,6 +11,10 @@
          @click="onClickLink">
       {{ localOptions.title }}
     </div>
+    <div class="feature-description"
+         @click="onClickLink">
+      {{ localOptions.description }}
+    </div>
   </div>
 </template>
 
@@ -24,6 +28,7 @@ export default {
     return {
       defaultOptions: {
         title: null,
+        description: null,
         image: null,
         link: null
       }
@@ -62,7 +67,6 @@ export default {
       transform: scale(1.1);
     }
   }
-
   .feature-title {
     cursor: pointer;
     width: 100%;
@@ -72,6 +76,17 @@ export default {
     line-height: 25px;
     text-align: center;
     color: #3774B7;
+  }
+  .feature-description {
+    padding-top: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #6589C3;
   }
 }
 </style>
