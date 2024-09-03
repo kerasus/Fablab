@@ -9,7 +9,7 @@
 import { mixinPageOptions, mixinPrefetchServerData, mixinSEO } from 'src/mixin/Mixins.js'
 
 export default {
-  name: 'Public.FabFamily',
+  name: 'Public.FabGroup',
   mixins: [mixinPrefetchServerData, mixinPageOptions, mixinSEO]
 }
 </script>

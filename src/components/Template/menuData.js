@@ -13,37 +13,37 @@ const menuItems = [
   // },
   {
     title: 'خانواده فب',
-    routeName: 'Public.FabFamily.Index',
+    routeName: 'Public.FabGroup.Index',
     type: 'itemMenu',
     permission: 'all'
   },
   {
     title: 'مقاله ها',
-    routeName: 'Public.FabFamily.Fablab.Post',
+    routeName: 'Public.FabGroup.Fablab.Post',
     type: 'itemMenu',
     permission: 'all'
   },
   {
     title: 'پروژه ها',
-    routeName: 'Public.FabFamily.Fablab.Project',
+    routeName: 'Public.FabGroup.Fablab.Project',
     type: 'itemMenu',
     permission: 'all'
   },
   {
     title: 'رویداد ها',
-    routeName: 'Public.FabFamily.Fablab.Event',
+    routeName: 'Public.FabGroup.Fablab.Event',
     type: 'itemMenu',
     permission: 'all'
   },
   {
     title: 'پژوهش ها',
-    routeName: 'Public.FabFamily.Fablab.Research',
+    routeName: 'Public.FabGroup.Fablab.Research',
     type: 'itemMenu',
     permission: 'all'
   },
   {
     title: 'استارت آپ ها',
-    routeName: 'Public.FabFamily.Fablab.Startup',
+    routeName: 'Public.FabGroup.Fablab.Startup',
     type: 'itemMenu',
     permission: 'all'
   },

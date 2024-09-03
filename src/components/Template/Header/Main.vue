@@ -319,14 +319,14 @@ export default {
     },
     getHeaderConfigKey () {
       const preKey = 'header_config-route_name:'
-      if (this.$route.name.startsWith('Public.FabFamily.Fabcafe')) {
-        return preKey + 'Public.FabFamily.Fabcafe'
+      if (this.$route.name.startsWith('Public.FabGroup.Fabcafe')) {
+        return preKey + 'Public.FabGroup.Fabcafe'
       }
-      if (this.$route.name.startsWith('Public.FabFamily.Fabkids')) {
-        return preKey + 'Public.FabFamily.Fabkids'
+      if (this.$route.name.startsWith('Public.FabGroup.Fabkids')) {
+        return preKey + 'Public.FabGroup.Fabkids'
       }
-      if (this.$route.name.startsWith('Public.FabFamily.Fabfactory')) {
-        return preKey + 'Public.FabFamily.Fabfactory'
+      if (this.$route.name.startsWith('Public.FabGroup.Fabfactory')) {
+        return preKey + 'Public.FabGroup.Fabfactory'
       }
 
       return null

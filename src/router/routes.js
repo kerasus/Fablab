@@ -61,8 +61,8 @@ const routes = [
             component: () => import('src/pages/Public/Packages.vue')
           },
           {
-            path: 'fab-family',
-            name: 'Public.FabFamily',
+            path: 'fab-group',
+            name: 'Public.FabGroup',
             meta: {
               hasDynamicHeader: true,
               hasDynamicFooter: true,
@@ -72,7 +72,7 @@ const routes = [
             children: [
               {
                 path: '',
-                name: 'Public.FabFamily.Index',
+                name: 'Public.FabGroup.Index',
                 meta: {
                   hasDynamicSetting: true
                 },
@@ -80,7 +80,7 @@ const routes = [
               },
               {
                 path: 'fablab',
-                name: 'Public.FabFamily.Fablab',
+                name: 'Public.FabGroup.Fablab',
                 meta: {
                   hasDynamicHeader: true,
                   hasDynamicFooter: true,
@@ -93,7 +93,7 @@ const routes = [
                 children: [
                   {
                     path: '',
-                    name: 'Public.FabFamily.Fablab.Index',
+                    name: 'Public.FabGroup.Fablab.Index',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -101,7 +101,7 @@ const routes = [
                   },
                   {
                     path: 'post',
-                    name: 'Public.FabFamily.Fablab.Post',
+                    name: 'Public.FabGroup.Fablab.Post',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -109,7 +109,7 @@ const routes = [
                   },
                   {
                     path: 'post/:post_id',
-                    name: 'Public.FabFamily.Fablab.Post.Show',
+                    name: 'Public.FabGroup.Fablab.Post.Show',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -117,12 +117,12 @@ const routes = [
                   },
                   {
                     path: 'post_category',
-                    name: 'Public.FabFamily.Fablab.PostCategory',
+                    name: 'Public.FabGroup.Fablab.PostCategory',
                     component: () => import('layouts/bareLayout.vue'),
                     children: [
                       {
                         path: 'parent/parent/:category_id',
-                        name: 'Public.FabFamily.Fablab.PostCategoryParentParent.Show',
+                        name: 'Public.FabGroup.Fablab.PostCategoryParentParent.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -130,7 +130,7 @@ const routes = [
                       },
                       {
                         path: 'parent/:category_id',
-                        name: 'Public.FabFamily.Fablab.PostCategoryParent.Show',
+                        name: 'Public.FabGroup.Fablab.PostCategoryParent.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -138,7 +138,7 @@ const routes = [
                       },
                       {
                         path: ':category_id',
-                        name: 'Public.FabFamily.Fablab.PostCategory.Show',
+                        name: 'Public.FabGroup.Fablab.PostCategory.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -148,7 +148,7 @@ const routes = [
                   },
                   {
                     path: 'project',
-                    name: 'Public.FabFamily.Fablab.Project',
+                    name: 'Public.FabGroup.Fablab.Project',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -156,7 +156,7 @@ const routes = [
                   },
                   {
                     path: 'event',
-                    name: 'Public.FabFamily.Fablab.Event',
+                    name: 'Public.FabGroup.Fablab.Event',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -164,7 +164,7 @@ const routes = [
                   },
                   {
                     path: 'research',
-                    name: 'Public.FabFamily.Fablab.Research',
+                    name: 'Public.FabGroup.Fablab.Research',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -172,7 +172,7 @@ const routes = [
                   },
                   {
                     path: 'startup',
-                    name: 'Public.FabFamily.Fablab.Startup',
+                    name: 'Public.FabGroup.Fablab.Startup',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -182,7 +182,7 @@ const routes = [
               },
               {
                 path: 'fabfactory',
-                name: 'Public.FabFamily.Fabfactory',
+                name: 'Public.FabGroup.Fabfactory',
                 meta: {
                   hasDynamicHeader: true,
                   hasDynamicFooter: true,
@@ -195,7 +195,7 @@ const routes = [
                 children: [
                   {
                     path: '',
-                    name: 'Public.FabFamily.Fabfactory.Index',
+                    name: 'Public.FabGroup.Fabfactory.Index',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -203,7 +203,7 @@ const routes = [
                   },
                   {
                     path: 'post',
-                    name: 'Public.FabFamily.Fabfactory.Post',
+                    name: 'Public.FabGroup.Fabfactory.Post',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -211,7 +211,7 @@ const routes = [
                   },
                   {
                     path: 'post/:post_id',
-                    name: 'Public.FabFamily.Fabfactory.Post.Show',
+                    name: 'Public.FabGroup.Fabfactory.Post.Show',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -219,12 +219,12 @@ const routes = [
                   },
                   {
                     path: 'post_category',
-                    name: 'Public.FabFamily.Fabfactory.PostCategory',
+                    name: 'Public.FabGroup.Fabfactory.PostCategory',
                     component: () => import('layouts/bareLayout.vue'),
                     children: [
                       {
                         path: 'parent/parent/:category_id',
-                        name: 'Public.FabFamily.Fabfactory.PostCategoryParentParent.Show',
+                        name: 'Public.FabGroup.Fabfactory.PostCategoryParentParent.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -232,7 +232,7 @@ const routes = [
                       },
                       {
                         path: 'parent/:category_id',
-                        name: 'Public.FabFamily.Fabfactory.PostCategoryParent.Show',
+                        name: 'Public.FabGroup.Fabfactory.PostCategoryParent.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -240,7 +240,7 @@ const routes = [
                       },
                       {
                         path: ':category_id',
-                        name: 'Public.FabFamily.Fabfactory.PostCategory.Show',
+                        name: 'Public.FabGroup.Fabfactory.PostCategory.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -250,7 +250,7 @@ const routes = [
                   },
                   {
                     path: 'event',
-                    name: 'Public.FabFamily.Fabfactory.Event',
+                    name: 'Public.FabGroup.Fabfactory.Event',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -258,7 +258,7 @@ const routes = [
                   },
                   {
                     path: 'research',
-                    name: 'Public.FabFamily.Fabfactory.Research',
+                    name: 'Public.FabGroup.Fabfactory.Research',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -266,7 +266,7 @@ const routes = [
                   },
                   {
                     path: 'startup',
-                    name: 'Public.FabFamily.Fabfactory.Startup',
+                    name: 'Public.FabGroup.Fabfactory.Startup',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -276,7 +276,7 @@ const routes = [
               },
               {
                 path: 'fabcafe',
-                name: 'Public.FabFamily.Fabcafe',
+                name: 'Public.FabGroup.Fabcafe',
                 meta: {
                   hasDynamicHeader: true,
                   hasDynamicFooter: true,
@@ -289,7 +289,7 @@ const routes = [
                 children: [
                   {
                     path: '',
-                    name: 'Public.FabFamily.Fabcafe.Index',
+                    name: 'Public.FabGroup.Fabcafe.Index',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -297,7 +297,7 @@ const routes = [
                   },
                   {
                     path: 'post',
-                    name: 'Public.FabFamily.Fabcafe.Post',
+                    name: 'Public.FabGroup.Fabcafe.Post',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -305,7 +305,7 @@ const routes = [
                   },
                   {
                     path: 'post/:post_id',
-                    name: 'Public.FabFamily.Fabcafe.Post.Show',
+                    name: 'Public.FabGroup.Fabcafe.Post.Show',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -313,12 +313,12 @@ const routes = [
                   },
                   {
                     path: 'post_category',
-                    name: 'Public.FabFamily.Fabkids.PostCategory',
+                    name: 'Public.FabGroup.Fabkids.PostCategory',
                     component: () => import('layouts/bareLayout.vue'),
                     children: [
                       {
                         path: 'parent/parent/:category_id',
-                        name: 'Public.FabFamily.Fabkids.PostCategoryParentParent.Show',
+                        name: 'Public.FabGroup.Fabkids.PostCategoryParentParent.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -326,7 +326,7 @@ const routes = [
                       },
                       {
                         path: 'parent/:category_id',
-                        name: 'Public.FabFamily.Fabkids.PostCategoryParent.Show',
+                        name: 'Public.FabGroup.Fabkids.PostCategoryParent.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -334,7 +334,7 @@ const routes = [
                       },
                       {
                         path: ':category_id',
-                        name: 'Public.FabFamily.Fabkids.PostCategory.Show',
+                        name: 'Public.FabGroup.Fabkids.PostCategory.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -344,7 +344,7 @@ const routes = [
                   },
                   {
                     path: 'event',
-                    name: 'Public.FabFamily.Fabcafe.Event',
+                    name: 'Public.FabGroup.Fabcafe.Event',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -355,7 +355,7 @@ const routes = [
               },
               {
                 path: 'fabkids',
-                name: 'Public.FabFamily.Fabkids',
+                name: 'Public.FabGroup.Fabkids',
                 meta: {
                   hasDynamicHeader: true,
                   hasDynamicFooter: true,
@@ -368,7 +368,7 @@ const routes = [
                 children: [
                   {
                     path: '',
-                    name: 'Public.FabFamily.Fabkids.Index',
+                    name: 'Public.FabGroup.Fabkids.Index',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -376,7 +376,7 @@ const routes = [
                   },
                   {
                     path: 'post',
-                    name: 'Public.FabFamily.Fabkids.Post',
+                    name: 'Public.FabGroup.Fabkids.Post',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -384,7 +384,7 @@ const routes = [
                   },
                   {
                     path: 'post/:post_id',
-                    name: 'Public.FabFamily.Fabkids.Post.Show',
+                    name: 'Public.FabGroup.Fabkids.Post.Show',
                     meta: {
                       hasDynamicSetting: true
                     },
@@ -392,12 +392,12 @@ const routes = [
                   },
                   {
                     path: 'post_category',
-                    name: 'Public.FabFamily.Fabkids.PostCategory',
+                    name: 'Public.FabGroup.Fabkids.PostCategory',
                     component: () => import('layouts/bareLayout.vue'),
                     children: [
                       {
                         path: 'parent/parent/:category_id',
-                        name: 'Public.FabFamily.Fabkids.PostCategoryParentParent.Show',
+                        name: 'Public.FabGroup.Fabkids.PostCategoryParentParent.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -405,7 +405,7 @@ const routes = [
                       },
                       {
                         path: 'parent/:category_id',
-                        name: 'Public.FabFamily.Fabkids.PostCategoryParent.Show',
+                        name: 'Public.FabGroup.Fabkids.PostCategoryParent.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -413,7 +413,7 @@ const routes = [
                       },
                       {
                         path: ':category_id',
-                        name: 'Public.FabFamily.Fabkids.PostCategory.Show',
+                        name: 'Public.FabGroup.Fabkids.PostCategory.Show',
                         meta: {
                           hasDynamicSetting: true
                         },
@@ -423,7 +423,7 @@ const routes = [
                   },
                   {
                     path: 'event',
-                    name: 'Public.FabFamily.Fabkids.Event',
+                    name: 'Public.FabGroup.Fabkids.Event',
                     meta: {
                       hasDynamicSetting: true
                     },
