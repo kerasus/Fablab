@@ -1,10 +1,10 @@
 <template>
   <div class="AppFooter">
-    <div class="row q-col-gutter-lg-x-xl top-section">
-      <div class="col-2">
+    <div class="row q-col-lg-x-xl top-section">
+      <div class="col-md-2 col-3 box-section">
         <lazy-img :src="logoPic" />
       </div>
-      <div class="col-md-5 col-12">
+      <div class="col-md-5 col-12 box-section">
         <div class="main-title">
           درباره ما
         </div>
@@ -12,7 +12,7 @@
           {{ about }}
         </div>
       </div>
-      <div class="col-md-5 col-12">
+      <div class="col-md-5 col-12 box-section">
         <div class="main-title">
           تماس با ما
         </div>
@@ -146,9 +146,13 @@ export default {
 .AppFooter {
   border-top: 1px solid #F6F6F6;
   background: #FFF;
+  .box-section {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
   .top-section {
     width: 100%;
-    max-width: 1060px;
+    max-width: 1440px;
     padding: 64px 8px;
     margin: auto;
     .main-title {

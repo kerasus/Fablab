@@ -64,7 +64,7 @@ export default {
   background: #FFF;
   .top-section {
     width: 100%;
-    max-width: 1060px;
+    max-width: 1439px;
     padding: 64px 8px;
     margin: auto;
     .main-title {
