@@ -57,20 +57,20 @@ export default {
 <style lang="scss" scoped>
 .active-item {
   .tab-title {
-    color: $primary;
+    color: var(--q-primary);
     font-weight: bold;
     font-size: 16px;
     a {
-      color: $primary;
+      color: var(--q-primary);
     }
   }
 }
 .tab-title {
-  color: lighten($primary, 10%);
+  color: var(--q-primary);
   font-size: 14px;
   font-weight: 500;
   a {
-    color: lighten($primary, 10%);
+    color: var(--q-primary);
   }
 }
 </style>
