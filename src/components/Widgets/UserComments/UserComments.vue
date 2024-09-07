@@ -54,6 +54,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.q-card{
+  //border-radius: 16px 0 16px 16px !important;
+  border-radius: 0 !important;
+}
 .user-comments {
   direction: ltr;
   :deep(.carousel) {
