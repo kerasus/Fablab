@@ -9,16 +9,6 @@
       <div class="side-menu-body">
         <q-list class="side-menu-list"
                 padding>
-          <!--<q-input v-model="searchText"-->
-          <!--dense-->
-          <!--filled-->
-          <!--class="gray-input search-input"-->
-          <!--placeholder="جست و جو"-->
-          <!--@update:model-value ="search(titlesList)">-->
-          <!--<template v-slot:append>-->
-          <!--<q-icon name="search" />-->
-          <!--</template>-->
-          <!--</q-input>-->
           <menu-item :items="sidebarItems"
                      :menu-items-color="'#5867dd'" />
         </q-list>
@@ -38,15 +28,15 @@
 </template>
 
 <script>
+import { APIGateway } from 'src/api/APIGateway.js'
 import menuItems from 'src/components/Template/menuData.js'
 import menuItem from 'src/components/Menu/SideMenu/MenuItem.vue'
-import { mixinPrefetchServerData, mixinPageOptions } from 'src/mixin/Mixins.js'
-import { APIGateway } from 'src/api/APIGateway'
+import { mixinPrefetchServerData, mixinPageOptions, mixinAuth } from 'src/mixin/Mixins.js'
 
 export default {
   name: 'MainSideBarTemplate',
   components: { menuItem },
-  mixins: [mixinPrefetchServerData, mixinPageOptions],
+  mixins: [mixinPrefetchServerData, mixinPageOptions, mixinAuth],
   data () {
     return {
       clickedItem: null,
@@ -103,9 +93,6 @@ export default {
     }
   },
   computed: {
-    isUserLogin() {
-      return this.$store.getters['Auth/isUserLogin']
-    },
     sidebarItems () {
       return this.headerConfig?.items ?? menuItems
     }
