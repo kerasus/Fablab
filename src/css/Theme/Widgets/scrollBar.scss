@@ -4,7 +4,7 @@
   width: 6px ;
   height: 5px;
   border-radius: 6px ;
-  background-color: $primary;
+  background-color: var(--q-primary);
 }
 
 ::-webkit-scrollbar-track{
@@ -14,5 +14,5 @@
 
 ::-webkit-scrollbar-thumb{
   border-radius: 6px ;
-  background-color: $primary;
+  background-color: var(--q-primary);
 }
