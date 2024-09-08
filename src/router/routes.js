@@ -48,7 +48,10 @@ const routes = [
             path: '',
             name: 'Public.Home',
             meta: {
-              hasDynamicSetting: true
+              hasDynamicSetting: true,
+              middlewares: [
+                SetPrimaryColor(fabColors.fablab)
+              ]
             },
             component: () => import('src/pages/Public/BasicDynamicPage.vue')
           },

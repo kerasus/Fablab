@@ -156,14 +156,14 @@ export default {
     padding: 64px 8px;
     margin: auto;
     .main-title {
-      color: #0B6AB1;
+      color: var(--q-primary);
       font-size: 20px;
       font-weight: 700;
       margin-top: 8px;
       margin-bottom: 8px;
     }
     .subtitle {
-      color: #0B6AB1;
+      color: var(--q-primary);
       font-size: 14px;
       font-weight: 700;
       margin-bottom: 8px;
