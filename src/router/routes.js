@@ -1,10 +1,17 @@
-import { Authenticated, SetPrimaryColor } from './middleware/middleware.js'
+import { Authenticated, SetFavicon, SetPrimaryColor } from './middleware/middleware.js'
 const fabColors = {
   fablab: '#0063AE',
   fabfactory: '#F8AF18',
   fabcafe: '#D83527',
   fabkids: '#25a74a'
 }
+const fabTitles = {
+  fablab: 'فب لب',
+  fabfactory: 'فب فکتوری',
+  fabcafe: 'فب کافه',
+  fabkids: 'فب کودک'
+}
+
 const routes = [
   {
     path: '',
@@ -50,7 +57,8 @@ const routes = [
             meta: {
               hasDynamicSetting: true,
               middlewares: [
-                SetPrimaryColor(fabColors.fablab)
+                SetPrimaryColor(fabColors.fablab),
+                SetFavicon(fabTitles.fablab, 'fablab')
               ]
             },
             component: () => import('src/pages/Public/BasicDynamicPage.vue')
@@ -89,7 +97,8 @@ const routes = [
                   hasDynamicFooter: true,
                   hasDynamicSetting: true,
                   middlewares: [
-                    SetPrimaryColor(fabColors.fablab)
+                    SetPrimaryColor(fabColors.fablab),
+                    SetFavicon(fabTitles.fablab, 'fablab')
                   ]
                 },
                 component: () => import('layouts/bareLayout.vue'),
@@ -191,7 +200,8 @@ const routes = [
                   hasDynamicFooter: true,
                   hasDynamicSetting: true,
                   middlewares: [
-                    SetPrimaryColor(fabColors.fabfactory)
+                    SetPrimaryColor(fabColors.fabfactory),
+                    SetFavicon(fabTitles.fabfactory, 'fabfactory')
                   ]
                 },
                 component: () => import('layouts/bareLayout.vue'),
@@ -285,7 +295,8 @@ const routes = [
                   hasDynamicFooter: true,
                   hasDynamicSetting: true,
                   middlewares: [
-                    SetPrimaryColor(fabColors.fabcafe)
+                    SetPrimaryColor(fabColors.fabcafe),
+                    SetFavicon(fabTitles.fabcafe, 'fabcafe')
                   ]
                 },
                 component: () => import('layouts/bareLayout.vue'),
@@ -364,7 +375,8 @@ const routes = [
                   hasDynamicFooter: true,
                   hasDynamicSetting: true,
                   middlewares: [
-                    SetPrimaryColor(fabColors.fabkids)
+                    SetPrimaryColor(fabColors.fabkids),
+                    SetFavicon(fabTitles.fabkids, 'fabkids')
                   ]
                 },
                 component: () => import('layouts/bareLayout.vue'),
