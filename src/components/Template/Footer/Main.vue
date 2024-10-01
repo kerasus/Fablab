@@ -32,10 +32,12 @@
             </div>
           </div>
           <div class="col-md-6 col-sm-12 colxs-12">
-            <div class="subtitle">
+            <div v-if="email"
+                 class="subtitle">
               ایمیل:
             </div>
-            <div class="content">
+            <div v-if="email"
+                 class="content">
               {{ email }}
             </div>
           </div>
