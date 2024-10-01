@@ -353,7 +353,7 @@ export default {
       }
       .slide-text {
         position: absolute;
-        left: 0;
+        left: 100px;
         top: 0;
         width: 100%;
         height: 100%;
@@ -387,6 +387,9 @@ export default {
     }
     &:deep(.q-carousel__prev-arrow) {
       left: 0;
+    }
+    &:deep(.q-carousel__slide .slider-parent .slide-text) {
+      left: 16px;
     }
   }
 }
