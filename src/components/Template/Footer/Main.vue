@@ -9,7 +9,7 @@
           درباره ما
         </div>
         <div class="content">
-          {{ about }}
+          <span v-html="about" />
         </div>
       </div>
       <div class="col-md-5 col-12 box-section">
@@ -80,13 +80,13 @@ export default {
       return this.footerConfig?.logoPic ?? '/img/FABLAB.svg'
     },
     about () {
-      return this.footerConfig?.about ?? 'کافه هست در فب لب و با توجه به رسالت کارگروه صنعت و بازار در تجاری سازی فناوری ها و محصولات فناوری نانو و به کارگیری آن\u200Eها در صنایع، این رو کارگروه تلاش کرده است تا با ایجاد بستری مناسب، زمینه همکاری شرکت های متقاضی صنعتی و شرکت های دارنده فناوری را آماده سازد.'
+      return this.footerConfig?.about ?? 'لابراتوآر طراحی و ساخت دیجیتال یا همان فب‌لب یک بستر نوآورانه برای تحقق ایده‌های طراحانه است . <br /> در فب‌لب دانش های مختلف  در کنار ماشین‌ها، ابزارها، مواد و مصالح و تخصص‌های حوزه‌ی ساخت گرد هم می‌آیند و مسیر تجربه را  هم‌وار می‌کنند.'
     },
     phone () {
-      return this.footerConfig?.phone ?? '۰۲۱۴۰۷۷۴۷۶۷ - ۰۲۱۷۶۲۵۱۲۵۱'
+      return this.footerConfig?.phone ?? '۰۲۱-۷۶۲۵۱۲۵۱'
     },
     address () {
-      return this.footerConfig?.phone ?? 'تهران، خیابان آزادی، بلوار اکبری، خیابان قاسمی شرقی، پلاک ۷۹، کارخانه هنر طراحی و ساخت '
+      return this.footerConfig?.phone ?? 'تهران، خیابان آزادی، بلوار اکبری، خیابان قاسمی شرقی، پلاک ۷۹، کارخانه هنر طراحی و ساخت'
     },
     email () {
       return this.footerConfig?.email ?? 'iranfablab@gmail.com'
@@ -147,7 +147,7 @@ export default {
   border-top: 1px solid #F6F6F6;
   background: #FFF;
   .box-section {
-    padding-right: 8px;
+    padding-right: 16px;
     padding-left: 8px;
   }
   .top-section {
@@ -174,6 +174,7 @@ export default {
       font-weight: 300;
       line-height: 32px;
       margin-bottom: 32px;
+      text-align: justify;
     }
   }
   .copyright {
