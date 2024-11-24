@@ -7,7 +7,8 @@ export default class PostAPI extends APIRepository {
     super('posts', appApiInstance)
     this.APIAdresses = {
       base: '/cma/posts',
-      byId: (id) => '/cma/posts/' + id
+      byId: (id) => '/cma/posts/' + id,
+      bySlug: (slug) => '/cma/posts/get_by_slug/' + slug
     }
     this.CacheList = {
       base: this.name + this.APIAdresses.base
@@ -62,6 +63,20 @@ export default class PostAPI extends APIRepository {
       apiMethod: 'get',
       api: this.api,
       request: this.APIAdresses.byId(id),
+      resolveCallback: (response) => {
+        return new Post(response.data)
+      },
+      rejectCallback: (error) => {
+        return error
+      }
+    })
+  }
+
+  getBySlug(slug) {
+    return this.sendRequest({
+      apiMethod: 'get',
+      api: this.api,
+      request: this.APIAdresses.bySlug(slug),
       resolveCallback: (response) => {
         return new Post(response.data)
       },

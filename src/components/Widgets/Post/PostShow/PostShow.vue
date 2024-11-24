@@ -115,7 +115,12 @@ export default {
     },
     getPost () {
       this.post.post = true
-      return APIGateway.post.get(this.postId)
+      if (isNaN(this.postId)) {
+        console.log(this.postId)
+        return APIGateway.post.getBySlug(this.postId)
+      } else {
+        return APIGateway.post.get(this.postId)
+      }
     }
   }
 }
