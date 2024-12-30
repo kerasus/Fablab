@@ -75,7 +75,9 @@ export default {
     font-size: 16px;
     line-height: 25px;
     text-align: center;
-    color: #3774B7;
+    //color: #3774B7;
+    color: #FFFFFF;
+    opacity: 70%;
   }
   .feature-description {
     padding: 8px;
@@ -86,7 +88,9 @@ export default {
     font-size: 12px;
     line-height: 18px;
     text-align: center;
-    color: #6589C3;
+    //color: #6589C3;
+    color: #FFFFFF;
+    opacity: 70%;
   }
 }
 </style>
