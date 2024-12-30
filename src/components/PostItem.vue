@@ -61,13 +61,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 .PostItem {
   background-color: #f6f6f6;
-  border-radius: 54px 0 54px 54px;
+  border-radius: 0 0 54px 0;
   padding: 20px 20px 30px;
   margin: 8px;
   .thumbnail {
     margin-bottom: 43px;
     .q-img {
-      border-radius: 54px 0 54px 54px;
+      border-radius: 0 0 54px 0;
     }
   }
   .title {
