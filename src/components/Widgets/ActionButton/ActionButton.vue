@@ -1,6 +1,5 @@
 <template>
-  <q-btn :color="localOptions.color"
-         :label="localOptions.label"
+  <q-btn :label="localOptions.label"
          :flat="localOptions.flat"
          :class="localOptions.className"
          :style="localOptions.style"
@@ -79,6 +78,8 @@ export default {
         this.$router.push(this.options.route)
       } else if (this.options.action && this.options.action === 'event') {
         this.$bus.emit(this.options.eventName, this.eventArgs)
+      } else if (this.options.action && this.options.action === 'external-link') {
+        window.open(this.options.route, '_blank')
       }
     }
   }
@@ -96,23 +97,28 @@ export default {
       top: 0;
       right: 0;
     }
+
     &.top-left {
       top: 0;
       left: 0;
     }
+
     &.bottom-right {
       bottom: 0;
       right: 0;
     }
+
     &.bottom-left {
       bottom: 0;
       left: 0;
     }
   }
-  &.img-btn{
-    &:deep(.q-btn__content){
+
+  &.img-btn {
+    &:deep(.q-btn__content) {
       margin: 0;
     }
+
     &:deep(.q-focus-helper) {
       display: none;
     }
