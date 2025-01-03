@@ -12,7 +12,7 @@ RUN yarn install --production --frozen-lockfile
 ARG APP_SERVER=https://fablab.ir/api
 ARG VUEX_PERSISTED_STATE_KEY=vuex
 ARG APP_API=/api
-ARG NGINX_PORT=8081
+ARG NGINX_PORT=80
 ARG SSR_PORT=3000
 ARG APP_ENV=production
 
