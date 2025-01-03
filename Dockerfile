@@ -9,9 +9,9 @@ COPY ./package*.json ./
 RUN yarn install --production --frozen-lockfile
 
 
-ARG APP_SERVER=http://ali.hghweb.ir/api
+ARG APP_SERVER=https://fablab.ir/api
 ARG VUEX_PERSISTED_STATE_KEY=vuex
-ARG APP_API=/app/api
+ARG APP_API=/api
 ARG NGINX_PORT=8081
 ARG SSR_PORT=3000
 ARG APP_ENV=production
