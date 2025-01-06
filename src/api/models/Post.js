@@ -32,6 +32,7 @@ export default class PostAPI extends APIRepository {
         category: null, // Number
         category__parent: null, // Number
         category__parent__parent: null, // Number
+        ordering: '-publish_date', // String
         per_page: 10, // Number
         page: 1 // Number
       }, data),
