@@ -31,7 +31,7 @@
               تماس:
             </div>
             <div class="content">
-              ۰۲۱-۷۶۲۵۱۲۵۱
+              ۰۲۱ ۷۶۲۵۱۲۵۱ - ۰۹۰۰۷۶۲۵۱۰۱
             </div>
           </div>
           <div class="col-md-6 col-sm-12 colxs-12">
