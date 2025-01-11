@@ -88,7 +88,7 @@ export default {
       return this.footerConfig?.phone ?? '۰۲۱ ۷۶۲۵۱۲۵۱ - ۰۹۰۰۷۶۲۵۱۰۱'
     },
     address () {
-      return this.footerConfig?.phone ?? 'تهران، خیابان آزادی، بلوار اکبری، خیابان قاسمی شرقی، پلاک ۷۹، کارخانه هنر طراحی و ساخت'
+      return this.footerConfig?.address ?? 'تهران، خیابان آزادی، بلوار اکبری، خیابان قاسمی شرقی، پلاک ۷۹، کارخانه هنر طراحی و ساخت'
     },
     email () {
       return this.footerConfig?.email ?? 'iranfablab@gmail.com'
