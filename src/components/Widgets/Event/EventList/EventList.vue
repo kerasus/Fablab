@@ -23,7 +23,7 @@ export default {
   name: 'EventList',
   components: { EventItem },
   mixins: [mixinWidget, mixinPrefetchServerData],
-  data: () => {
+  data () {
     return {
       events: new EventList(),
       defaultOptions: {

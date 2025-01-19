@@ -1,15 +1,20 @@
 <template>
-  <router-link class="BlogItem"
-               :to="{name: postShowRouteName , params: {id: post.id, post_id: post.id}}">
+  <div class="BlogItem"
+       @click="goToPostShowPage">
     <q-card flat>
       <div class="thumbnail">
-        <img :src="post.thumbnail">
+        <img :src="post.thumbnail"
+             @click="goToPostShowPage">
       </div>
       <div class="title ellipsis-2-lines">
-        {{ post.title }}
+        <router-link v-if="post.id"
+                     class="BlogItem"
+                     :to="{name: postShowRouteName , params: {id: post.id, post_id: post.id}}">
+          {{ post.title }}
+        </router-link>
       </div>
     </q-card>
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -25,6 +30,15 @@ export default {
     post: {
       type: Post,
       default: new Post()
+    }
+  },
+  methods: {
+    goToPostShowPage () {
+      if (!this.post.id) {
+        return
+      }
+
+      this.$router.push({ name: this.postShowRouteName, params: { id: this.post.id, post_id: this.post.id } })
     }
   }
 }

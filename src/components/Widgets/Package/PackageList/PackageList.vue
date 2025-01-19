@@ -23,7 +23,7 @@ export default {
   name: 'PackageList',
   components: { PackageItem },
   mixins: [mixinWidget, mixinPrefetchServerData],
-  data: () => {
+  data () {
     return {
       packages: new PackageList(),
       defaultOptions: {

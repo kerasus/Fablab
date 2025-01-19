@@ -126,19 +126,21 @@ export default {
   name: 'EventMainInfo',
   components: { LazyImg },
   mixins: [mixinWidget, mixinDateOptions, mixinPrefetchServerData],
-  data: () => ({
-    addToCartLoading: false,
-    loading: false,
-    event: new Event(),
-    defaultOptions: {
-      style: {},
-      minWidth: 'auto',
-      canAddToCart: true,
-      showPrice: true,
+  data () {
+    return {
+      addToCartLoading: false,
+      loading: false,
       event: new Event(),
-      routeToEvent: true
+      defaultOptions: {
+        style: {},
+        minWidth: 'auto',
+        canAddToCart: true,
+        showPrice: true,
+        event: new Event(),
+        routeToEvent: true
+      }
     }
-  }),
+  },
   computed: {
     getRoutingObject() {
       return {

@@ -37,18 +37,18 @@ export default {
   },
   mounted() {
     this.mounted = true
-    this.loadData()
+    // this.loadData()
   },
   methods: {
-    loadData () {
-      this.getApiRequest()
-        .then((data) => {
-          this.prefetchServerDataPromiseThen(data)
-        })
-        .catch(() => {
-          this.prefetchServerDataPromiseCatch()
-        })
-    },
+    // loadData () {
+    //   this.getApiRequest()
+    //     .then((data) => {
+    //       this.prefetchServerDataPromiseThen(data)
+    //     })
+    //     .catch(() => {
+    //       this.prefetchServerDataPromiseCatch()
+    //     })
+    // },
     prefetchServerDataPromise () {
       return this.getApiRequest()
     },
@@ -62,7 +62,12 @@ export default {
 
     getApiRequest() {
       this.postList.loading = true
-      return APIGateway.post.index({ category__parent__parent: this.localOptions.categoryParentParentId, category__parent: this.localOptions.categoryParentId, category: this.localOptions.categoryId, per_page: this.localOptions.postItemsCount })
+      return APIGateway.post.index({
+        category__parent__parent: this.localOptions.categoryParentParentId,
+        category__parent: this.localOptions.categoryParentId,
+        category: this.localOptions.categoryId,
+        per_page: this.localOptions.postItemsCount
+      })
     }
   }
 }

@@ -40,7 +40,7 @@ import { mixinPrefetchServerData, mixinWidget } from 'src/mixin/Mixins.js'
 export default {
   name: 'BlogShow',
   mixins: [mixinWidget, mixinPrefetchServerData],
-  data: () => {
+  data () {
     return {
       media: new Media()
     }

@@ -23,7 +23,7 @@ export default {
   name: 'ServiceList',
   components: { ServiceItem },
   mixins: [mixinWidget, mixinPrefetchServerData],
-  data: () => {
+  data () {
     return {
       services: new ServiceList(),
       defaultOptions: {

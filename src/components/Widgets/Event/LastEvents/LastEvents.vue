@@ -39,52 +39,54 @@ export default {
     EventItem
   },
   mixins: [mixinWidget, mixinPrefetchServerData],
-  data: () => ({
-    defaultMinWidth: '318px',
-    events: new EventList(),
-    breakpoints: {
-      // 1024 and up
-      1730: {
-        itemsToShow: 3.1
-        // snapAlign: 'start'
+  data () {
+    return {
+      defaultMinWidth: '318px',
+      events: new EventList(),
+      breakpoints: {
+        // 1024 and up
+        1730: {
+          itemsToShow: 3.1
+          // snapAlign: 'start'
+        },
+        // 1500px and up
+        1430: {
+          itemsToShow: 3.1,
+          snapAlign: 'start'
+        },
+        // 700px and up
+        1100: {
+          itemsToShow: 3.5,
+          snapAlign: 'center'
+        },
+        // 700px and up
+        900: {
+          itemsToShow: 2.1,
+          snapAlign: 'center'
+        },
+        // 700px and up
+        650: {
+          itemsToShow: 1.8,
+          snapAlign: 'center'
+        },
+        // 700px and up
+        400: {
+          itemsToShow: 1.5,
+          snapAlign: 'center'
+        },
+        // 300px and up
+        300: {
+          itemsToShow: 1.3,
+          snapAlign: 'center'
+        }
       },
-      // 1500px and up
-      1430: {
-        itemsToShow: 3.1,
-        snapAlign: 'start'
-      },
-      // 700px and up
-      1100: {
-        itemsToShow: 3.5,
-        snapAlign: 'center'
-      },
-      // 700px and up
-      900: {
-        itemsToShow: 2.1,
-        snapAlign: 'center'
-      },
-      // 700px and up
-      650: {
-        itemsToShow: 1.8,
-        snapAlign: 'center'
-      },
-      // 700px and up
-      400: {
-        itemsToShow: 1.5,
-        snapAlign: 'center'
-      },
-      // 300px and up
-      300: {
-        itemsToShow: 1.3,
-        snapAlign: 'center'
+      defaultOptions: {
+        style: {},
+        apiName: null,
+        gridView: false
       }
-    },
-    defaultOptions: {
-      style: {},
-      apiName: null,
-      gridView: false
     }
-  }),
+  },
   computed: {
     isGridView: {
       get () {
